@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings>
+    <mapping>
+        <!--  Don't serialize/deserialize calculated values. -->
+        <property name="allInvoices" ignore="true" />
+        <property name="amountDue" ignore="true" />
+        <property name="confirmationCodes" ignore="true" />
+        <property name="currentAmountDue" ignore="true" />
+        <property name="discount" ignore="true" />
+        <property name="empty" ignore="true" />
+        <property name="pastPayments" ignore="true" />
+        <property name="payment" ignore="true" />
+        <property name="remainingBalance" ignore="true" />
+        <property name="bins" ignore="true" />
+        <property name="valid" ignore="true" />
+
+<!-- type="" 
+        <component name="CartList" class="com.etcc.csc.cart.CartList" 
+        type="org.codehaus.xfire.aegis.type.basic.ObjectType"
+        componentType="com.etcc.csc.cart.CartList"/>
+        
+        <property name="bins" class="java.util.Collection" componentType="com.etcc.csc.cart.CartList" />
+        
+        <component name="CartList" class="com.etcc.csc.cart.CartList" 
+        type="org.codehaus.xfire.aegis.type.basic.ObjectType"
+        componentType="org.codehaus.xfire.aegis.type.basic.ObjectType"/>
+
+        <property name="bins" componentType="#bin" />
+        <component name="bin" class="com.etcc.csc.cart.CartList" 
+            componentType="org.codehaus.xfire.aegis.type.basic.ObjectType" 
+            type="org.codehaus.xfire.aegis.type.basic.ObjectType"/>
+        <component name="CartList" class="com.etcc.csc.cart.CartList" type="org.codehaus.xfire.aegis.type.basic.ObjectType"/>
+        
+        <component name="bin" class="com.etcc.csc.cart.CartList"
+        type="org.codehaus.xfire.aegis.type.basic.ObjectType"
+        componentType="com.etcc.csc.cart.CartList" />
+        
+        <component name="bin" class="com.etcc.csc.cart.CartList" componentType="com.etcc.csc.cart.CartItem" />
+        <property name="bins" class="java.util.Collection" componentType="com.etcc.csc.cart.CartList" />
+-->
+    </mapping>
+</mappings>
