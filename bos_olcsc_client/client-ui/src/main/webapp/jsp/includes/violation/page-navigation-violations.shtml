@@ -1,0 +1,7 @@
+	<div id="masthead">
+
+		<!--#include virtual="/includes/common/primary-navigation.shtml" -->
+
+		<!--#include virtual="/includes/common/search.shtml" -->
+
+	</div> <!-- end of masthead -->
