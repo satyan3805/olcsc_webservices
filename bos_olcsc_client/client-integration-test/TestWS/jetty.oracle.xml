@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure id="Server" class="org.mortbay.jetty.Server">
+    <!-- =========================================================== -->
+    <!-- Set handler Collection Structure                            -->
+    <!-- =========================================================== -->
+    <Set name="handler">
+        <!-- the collection of handlers that will handle the request -->
+        <New id="Handlers" class="org.mortbay.jetty.handler.HandlerCollection">
+            <Set name="handlers">
+                <Array type="org.mortbay.jetty.Handler">
+                    <Item>
+                        <New id="WebHandler" class="org.mortbay.jetty.webapp.WebAppContext" />
+                    </Item>
+                </Array>
+            </Set>
+        </New>
+    </Set>
+    <Ref id="WebHandler">
+        <Set name="contextPath">/webservices</Set>
+        <Set name="war"><SystemProperty name="localRepository" default="//repo//"/>/com/etcc/olcsc/hctra/services.web/<SystemProperty name="olcsc.version" default="VERSION"/>/services.web-<SystemProperty name="olcsc.version" default="VERSION"/>.war</Set>
+    </Ref>
+    <!-- an XADataSource                                                -->
+    <New id="OLCSCDS" class="org.mortbay.jetty.plus.naming.Resource">
+        <Arg></Arg>
+        <Arg>jdbc/OLCSCDS</Arg>
+        <!--
+        <Arg>
+            <New class="oracle.jdbc.pool.OracleConnectionPoolDataSource">
+                <Set name="URL">jdbc:oracle:thin:@localhost:1521:orcl</Set>
+                <Set name="User">user</Set>
+                <Set name="Password">pass</Set>
+            </New>
+        </Arg>
+        -->
+		<Arg>
+			<New class="oracle.jdbc.pool.OracleConnectionPoolDataSource">
+				<Set name="URL">jdbc:oracle:thin:@rchq-hctrabosdbd01-phli.etcchostedservices.local:1521:HCTRACD1</Set>
+				<Set name="User">OL_OWNER</Set>
+				<Set name="Password">OL_OWNERHCTRACD1</Set>
+			</New>
+		</Arg>
+        
+    </New>
+    
+</Configure>

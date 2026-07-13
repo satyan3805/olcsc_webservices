@@ -1,0 +1,6 @@
+2015-07-23 02:42:02,039 0     INFO  [main] general.GeneralCacheAdministrator - Constructed GeneralCacheAdministrator()
+2015-07-23 02:42:02,063 24    INFO  [main] general.GeneralCacheAdministrator - Creating new cache
+2015-07-23 02:42:02,140 101   INFO  [main] service.ServiceFactory - Loading Default service factory implementation: com.etcc.csc.delegate.EjbServiceFactoryTestImpl
+2015-07-23 02:42:02,140 101   INFO  [main] service.ServiceFactory - Loading Default service factory implementation: com.etcc.csc.delegate.EjbServiceFactoryTestImpl
+2015-07-23 02:42:02,140 101   INFO  [main] service.ServiceFactory - Loaded service factory implementation: com.etcc.csc.delegate.EjbServiceFactoryTestImpl
+2015-07-23 02:42:02,140 101   INFO  [main] service.ServiceFactory - Loaded service factory implementation: com.etcc.csc.delegate.EjbServiceFactoryTestImpl

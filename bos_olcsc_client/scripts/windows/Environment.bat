@@ -1,0 +1,1 @@
+set ENVIRONMENT=local

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC
+	"-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN"
+	"http://java.sun.com/dtd/application_1_3.dtd">
+<application>
+  <display-name>OLCSC</display-name>
+  <description>HCTRA/ETCC Online CSC and VPS</description>
+  <module>
+    <web>
+      <web-uri>hctra-olcsc-war-client-${project.version}.war</web-uri>
+      <context-root>/eztagstore</context-root>
+    </web>
+  </module>
+  <module>
+    <web>
+      <web-uri>hctra-olcsc_war-${project.version}.war</web-uri>
+      <context-root>/eztagstore/webservices</context-root>
+    </web>
+  </module>
+  <module>
+    <ejb>hctra-olcsc-service-${project.version}.jar</ejb>
+  </module>
+</application>
