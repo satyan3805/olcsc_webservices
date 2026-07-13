@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.etcc.olcsc.hctra</groupId>
+    <artifactId>hctra-olcsc-devtools</artifactId>
+    <description>
+        The Development tools, scripts, and other useful files for building the HCTRA project, and parts thereof.
+    </description>
+    <packaging>jar</packaging>
+    <name>HCTRA - OLCSC :: CLIENT :: DEV TOOLS</name>
+    <url>http://www.etcc.com</url>
+    <parent>
+        <groupId>com.etcc.olcsc</groupId>
+        <artifactId>hctra-olcsc-client</artifactId>
+        <version>3.9.24-a463cbce</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <dependencies>
+    </dependencies>
+    <build>
+    </build>
+</project>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>ETCC OLCSC/OLVPS Developer Tools Package</title>
+</head>
+<body>
+<p>
+This package consists of developer tools used for configuration,
+installation, and any other activities that will not be packaged as part
+of the final deployment.  The tools include both Java-based utilities and
+shell or other language scripts.
+</p>
+
+<hr />
+<p>
+<a href="InstallCert.html">InstallCert</a><br />
+Utility for resolving the SSLHandshakeException (see below) by installing
+a SSL certificate:<br />
+<tt>javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</tt>
+</p>
+<p>
+For a wealth of information, read Andreas Sterbenz's Java and Security blog entry at:
+<a href="http://blogs.sun.com/andreas/entry/no_more_unable_to_find" target="security-blog">http://blogs.sun.com/andreas/entry/no_more_unable_to_find</a>
+</p>
+<p>To resolve this issue follow the steps outlined below.
+The <tt>$ORACLE_HOME</tt> environment variable refers to the OC4J
+installation path (e.g. <tt>/app/oracle/product/10.1.3/as_1</tt>)
+and may need to be modified if multiple installations are present.</p>
+<ol>
+<li><a href="http://blogs.sun.com/andreas/resource/InstallCert.java" target="InstallCert">Download InstallCert.java</a></li>
+<li>Compile <tt>InstallCert</tt>:
+<dl><dd><tt>javac InstallCert.java</tt></dd></dl>
+</li>
+<li>Run <tt>InstallCert</tt> with the desired server host (the new
+certificate will be appended to the OC4J certificate file at
+<tt>$ORACLE_HOME/jdk/jre/lib/security/cacerts</tt> and written to
+<tt>jssecacerts</tt>):
+<dl><dd><tt>$ORACLE_HOME/jdk/bin/java InstallCert</tt> <i>dev-eztag.hctra.net</i></dd></dl>
+</li>
+<li><tt>InstallCert</tt> will display:
+<dl>
+<dd>Loading KeyStore <i>[path to cacerts]</i>cacerts...</dd>
+<dd>Opening connection to dev-eztag.hctra.net:443...</dd>
+<dd>Starting SSL handshake...</dd>
+</dl>
+followed by the Exception Stack Trace, and an option to add
+any of the certificates sent by the server.
+</li>
+<li>Select to add the first certificate (option 1).
+The certificate details are displayed followed by:
+<dl><dd>Added certificate to keystore 'jssecacerts' using alias 'dev-eztag.hctra.net-1'</dd></dl>
+</li>
+<li>Move the updated certificates back to OC4J
+(make a backup of the original <tt>cacerts</tt> just in case):
+<dl><dd><tt>mv jssecacerts $ORACLE_HOME/jdk/jre/lib/security/cacerts</tt></dd></dl>
+</li>
+<li>Run <tt>InstallCert</tt> again using the command from step 3 to
+confirm the new certificate is working (select option 'q' to exit).</li>
+</ol>
+
+</body>
+</html>

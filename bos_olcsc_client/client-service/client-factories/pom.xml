@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.etcc.olcsc.hctra</groupId>
+	<artifactId>hctra-olcsc-factories</artifactId>
+	<description>The Factories for HCTRA.  The Services objects are exposed both as WebServices and EJBs.</description>
+	<packaging>jar</packaging>
+	<name>HCTRA - OLCSC :: CLIENT :: FACTORIES</name>
+	<url>http://www.etcc.com</url>
+	<parent>
+		<groupId>com.etcc.olcsc</groupId>
+		<artifactId>hctra-olcsc-client</artifactId>
+		<version>3.9.24-a463cbce</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- As XFire might not be used by a Factory client, make it optional here. Can be supplied by the client if 
+        needed.  -->
+        <dependency>
+            <groupId>org.codehaus.xfire</groupId>
+            <artifactId>xfire-all</artifactId>
+            <version>${xfire.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.xfire</groupId>
+            <artifactId>xfire-aegis</artifactId>
+            <version>${xfire.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.xfire</groupId>
+            <artifactId>xfire-java5</artifactId>
+            <version>${xfire.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.etcc.olcsc.hctra</groupId>
+            <artifactId>hctra-olcsc-service</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version.source}</source>
+                    <target>${java.version.target}</target>
+                </configuration>
+            </plugin>
+            <!--  Make the test class available for deployment -->
+           <!--weblogic upgrade changes -->
+		   <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jar-services</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                   <!-- <execution>
+                        <id>jar-services-tests</id>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution> -->
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

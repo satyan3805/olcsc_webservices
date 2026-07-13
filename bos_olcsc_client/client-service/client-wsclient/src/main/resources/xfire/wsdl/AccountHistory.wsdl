@@ -1,0 +1,1334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ws.csc.etcc.com/AccountHistory" xmlns:ns2="http://common.csc.etcc.com" xmlns:ns1="http://dto.csc.etcc.com" xmlns:ns3="http://bean.dto.csc.etcc.com" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:tns="http://ws.csc.etcc.com/AccountHistory" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://dto.csc.etcc.com">
+<xsd:complexType name="AccountLoginDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="acctActivity" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="acctId" type="xsd:long"/>
+<xsd:element minOccurs="0" name="acctStatus" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dbSessionId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="extraLargeAccountFlag" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="invoiceId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="largeAccountFlag" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="lastLoginDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="lastLoginIp" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licPlate" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licState" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locked" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="loginId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="loginType" nillable="true" type="ns1:LoginType"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="paymentPlanId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="pwChangeRequired" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="validationId" type="xsd:long"/>
+<xsd:element minOccurs="0" name="violatorId" type="xsd:long"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:simpleType name="LoginType">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="AC"/>
+<xsd:enumeration value="IN"/>
+<xsd:enumeration value="TT"/>
+<xsd:enumeration value="CA"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:complexType name="ArrayOfAlertDTO">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="AlertDTO" nillable="true" type="ns1:AlertDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AlertDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="addressCleanseAlertType" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="alertId" type="xsd:int"/>
+<xsd:element minOccurs="0" name="alertMsg" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfErrorMessageDTO">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="ErrorMessageDTO" nillable="true" type="ns1:ErrorMessageDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ErrorMessageDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="key" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="TransactionRecordsDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="parkingRecords" nillable="true" type="ns3:ArrayOfOlcAccountHistoryRecBean"/>
+<xsd:element minOccurs="0" name="records" nillable="true" type="ns3:ArrayOfOlcAccountHistoryRecBean"/>
+<xsd:element minOccurs="0" name="totalAmt" type="xsd:double"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="StatementDatesDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dates" nillable="true" type="tns:ArrayOfString"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountStatementDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="accountHolderName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="accountId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="acctSummary" nillable="true" type="ns3:ArrayOfOlcAcctSummaryRecBean"/>
+<xsd:element minOccurs="0" name="acctSummaryHAS" nillable="true" type="ns3:ArrayOfOlcAcctSummaryRecBean"/>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="endingBalance" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="lastDayOfMonth" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="records" nillable="true" type="ns3:ArrayOfOlcViewMonthlyRecBean"/>
+<xsd:element minOccurs="0" name="recordsHAS" nillable="true" type="ns3:ArrayOfOlcViewMonthlyRecBean"/>
+<xsd:element minOccurs="0" name="statementEndingDate" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="tagSummary" nillable="true" type="ns3:ArrayOfOlcTagSummaryRecBean"/>
+<xsd:element minOccurs="0" name="tagSummaryHAS" nillable="true" type="ns3:ArrayOfOlcTagSummaryRecBean"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountTransactionDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="acctTags" nillable="true" type="ns3:ArrayOfOlcAccountTagRecBean"/>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="pdfLink" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="txnTypes" nillable="true" type="ns3:ArrayOfTxnTypeBean"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="vehicleNickNames" nillable="true" type="ns3:ArrayOfVehicleNickNameBean"/>
+<xsd:element minOccurs="0" name="xslLink" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountSummaryDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="acctAlert" nillable="true" type="ns3:ArrayOfAccountAlertDetailBean"/>
+<xsd:element minOccurs="0" name="acctSummary" nillable="true" type="ns3:ArrayOfAccountSummaryDetailBean"/>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="billingAcctNumber" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="daily" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="lastLoginDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="monthly" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="rebillDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountReceiptsDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="accountReceipts" nillable="true" type="ns1:ArrayOfAccountReceipt"/>
+<xsd:element minOccurs="0" name="acctId" type="xsd:long"/>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfAccountReceipt">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="AccountReceipt" nillable="true" type="ns1:AccountReceipt"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountReceipt">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="HASFlag" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="transactionAmt" type="xsd:float"/>
+<xsd:element minOccurs="0" name="transactionDate" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="transactionID" type="xsd:long"/>
+<xsd:element minOccurs="0" name="transactionType" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="MonthlyInvoicesDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="acctId" type="xsd:long"/>
+<xsd:element minOccurs="0" name="address1" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="address2" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="address3" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="address4" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="balSumBalanceRequirement" type="xsd:double"/>
+<xsd:element minOccurs="0" name="balSumCurrentBalance" type="xsd:double"/>
+<xsd:element minOccurs="0" name="balSumReplenishmentAmt" type="xsd:double"/>
+<xsd:element minOccurs="0" name="city" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="country" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dueAmount" type="xsd:double"/>
+<xsd:element minOccurs="0" name="dueMonth" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="firstName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="invSumEndingBalance" type="xsd:double"/>
+<xsd:element minOccurs="0" name="invoiceDate" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="invoiceDetails" nillable="true" type="ns3:ArrayOfOlcAccountHistoryRecBean"/>
+<xsd:element minOccurs="0" name="invoiceNumber" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="invoiceSubTotal" type="xsd:double"/>
+<xsd:element minOccurs="0" name="invoiceSummary" nillable="true" type="ns3:ArrayOfOlcAcctSummaryRecBean"/>
+<xsd:element minOccurs="0" name="lastName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="outstandingInvoices" nillable="true" type="ns3:ArrayOfOlcAcctSummaryRecBean"/>
+<xsd:element minOccurs="0" name="plus4" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="state" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="statementMonth" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="stmtPeriod" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="suspensionDate" nillable="true" type="ns3:ArrayOfOlcAcctSummaryRecBean"/>
+<xsd:element minOccurs="0" name="totalAmtDue" type="xsd:double"/>
+<xsd:element minOccurs="0" name="totalOutstandingAmt" type="xsd:double"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="zip" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="SummaryAvailableDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="summaryAvail" type="xsd:boolean"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountReceiptDetailsDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="accountTransactions" nillable="true" type="ns1:ArrayOfAccountTransaction"/>
+<xsd:element minOccurs="0" name="acctId" type="xsd:long"/>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="csrID" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="depositTransactions" nillable="true" type="ns1:ArrayOfAccountTransaction"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="parkTransaction" nillable="true" type="ns1:ParkTransaction"/>
+<xsd:element minOccurs="0" name="pmtDetails" nillable="true" type="ns1:ArrayOfAccountTransaction"/>
+<xsd:element minOccurs="0" name="transactionDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="transactionID" type="xsd:long"/>
+<xsd:element minOccurs="0" name="transactionType" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ParkTransaction">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="entryDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="entryLane" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="exitDate" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="exitLane" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="ezTagNum" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licPlate" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licState" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="parkingFee" type="xsd:double"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfAccountTransaction">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="AccountTransaction" nillable="true" type="ns1:AccountTransaction"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountTransaction">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="amt" type="xsd:float"/>
+<xsd:element minOccurs="0" name="description" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountYearlySummaryDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="acctSummary" nillable="true" type="ns3:ArrayOfOlcAcctSummaryRecBean"/>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="endingBalance" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="lastDayOfYear" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="tagSummary" nillable="true" type="ns3:ArrayOfOlcTagSummaryRecBean"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="InvoiceDatesDTO">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="alerts" nillable="true" type="ns1:ArrayOfAlertDTO"/>
+<xsd:element minOccurs="0" name="createdBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="dateCreated" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="dateModified" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="errors" nillable="true" type="ns1:ArrayOfErrorMessageDTO"/>
+<xsd:element minOccurs="0" name="invoiceDates" nillable="true" type="ns3:ArrayOfOlcCorpInvRecP"/>
+<xsd:element minOccurs="0" name="modifiedBy" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="valid" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.csc.etcc.com/AccountHistory">
+<xsd:element name="getReportURL">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in3" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getReportURLResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="EtccException" type="ns2:EtccException"/>
+<xsd:element name="EtccSecurityException" type="ns2:EtccSecurityException"/>
+<xsd:element name="getTransactionRecords">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:dateTime"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:dateTime"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in3" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in4" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in5" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in6" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in7" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in8" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getTransactionRecordsResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:TransactionRecordsDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getStatementDates">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" type="xsd:boolean"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:complexType name="ArrayOfString">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="string" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="getStatementDatesResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:StatementDatesDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getStatementHTML">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getStatementHTMLResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:AccountStatementDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="viewTransactionMain">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:dateTime"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:dateTime"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in3" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="viewTransactionMainResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:AccountTransactionDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getStatementPDF">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getStatementPDFResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getSummaryGraph">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getSummaryGraphResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:AccountSummaryDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getAccountReceipts">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:dateTime"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:dateTime"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getAccountReceiptsResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:AccountReceiptsDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getAcccountTags">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getAcccountTagsResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns3:ArrayOfOlcAccountTagRecBean"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getMonthlyInvoices">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="ns1:AccountLoginDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getMonthlyInvoicesResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:MonthlyInvoicesDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="hasLastYearSummary">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="hasLastYearSummaryResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:SummaryAvailableDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getAccountReceiptDetails">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" type="xsd:long"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in2" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getAccountReceiptDetailsResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:AccountReceiptDetailsDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getReportFilePath">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getReportFilePathResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="EtccReportException" type="ns2:EtccReportException"/>
+<xsd:element name="getReportServletUrl">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getReportServletUrlResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getSummaryHTML">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getSummaryHTMLResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:AccountYearlySummaryDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getSummaryPDF">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="in1" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getSummaryPDFResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getInvoiceDates">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="in0" nillable="true" type="ns1:AccountLoginDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="getInvoiceDatesResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="ns1:InvoiceDatesDTO"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://common.csc.etcc.com">
+<xsd:complexType name="EtccException">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="relatedIssueId" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="EtccSecurityException">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="relatedIssueId" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="EtccReportException">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="message" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="relatedIssueId" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bean.dto.csc.etcc.com">
+<xsd:complexType name="ArrayOfOlcAccountHistoryRecBean">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="OlcAccountHistoryRecBean" nillable="true" type="ns3:OlcAccountHistoryRecBean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="OlcAccountHistoryRecBean">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="amount" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="direction" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="laneFullName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="laneName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licensePlate" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licenseState" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="locationName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="parkingReportUrl" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="postedDate" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="serialNum" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="tagId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="transType" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="trxnDate" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="unitId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleClassCode" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleNickName" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfOlcViewMonthlyRecBean">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="OlcViewMonthlyRecBean" nillable="true" type="ns3:OlcViewMonthlyRecBean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="OlcViewMonthlyRecBean">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="amount" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="description" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="direction" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="lane" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="laneFullName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licensePlate" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="location" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="postedDate" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="serialNumber" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="tagId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="transactionDate" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="unitId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleClassCode" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfOlcAcctSummaryRecBean">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="OlcAcctSummaryRecBean" nillable="true" type="ns3:OlcAcctSummaryRecBean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="OlcAcctSummaryRecBean">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="amount" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="description" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="groupType" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="quantity" nillable="true" type="xsd:decimal"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfOlcTagSummaryRecBean">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="OlcTagSummaryRecBean" nillable="true" type="ns3:OlcTagSummaryRecBean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="OlcTagSummaryRecBean">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="amount" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="description" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licensePlate" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="quantity" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="tagId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="unitId" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfVehicleNickNameBean">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="VehicleNickNameBean" nillable="true" type="ns3:VehicleNickNameBean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="VehicleNickNameBean">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="vehicleNickName" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleNickNameType" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfTxnTypeBean">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="TxnTypeBean" nillable="true" type="ns3:TxnTypeBean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="TxnTypeBean">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="description" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="transTypeId" type="xsd:int"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfOlcAccountTagRecBean">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="OlcAccountTagRecBean" nillable="true" type="ns3:OlcAccountTagRecBean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="OlcAccountTagRecBean">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="acctTagSeq" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="acctTagStatus" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="agencyDesc" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="agencyId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="barcodePrefix" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licPlate" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="licState" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="plateExpirDate" nillable="true" type="xsd:dateTime"/>
+<xsd:element minOccurs="0" name="tagId" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="tagStatusDesc" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="tempPlateFlag" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleClassCode" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleClassDesc" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleColor" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleMake" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleModel" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="vehicleYear" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfAccountAlertDetailBean">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="AccountAlertDetailBean" nillable="true" type="ns3:AccountAlertDetailBean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountAlertDetailBean">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="alertId" type="xsd:int"/>
+<xsd:element minOccurs="0" name="alertText" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfAccountSummaryDetailBean">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="AccountSummaryDetailBean" nillable="true" type="ns3:AccountSummaryDetailBean"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="AccountSummaryDetailBean">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="amt" nillable="true" type="xsd:decimal"/>
+<xsd:element minOccurs="0" name="amtType" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ArrayOfOlcCorpInvRecP">
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" minOccurs="0" name="OlcCorpInvRecP" nillable="true" type="ns3:OlcCorpInvRecP"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="OlcCorpInvRecP">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="invoicePeriod" nillable="true" type="xsd:string"/>
+<xsd:element minOccurs="0" name="statementPeriod" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getMonthlyInvoicesResponse">
+    <wsdl:part name="parameters" element="tns:getMonthlyInvoicesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccountReceiptDetailsResponse">
+    <wsdl:part name="parameters" element="tns:getAccountReceiptDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccountReceiptsResponse">
+    <wsdl:part name="parameters" element="tns:getAccountReceiptsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatementHTMLResponse">
+    <wsdl:part name="parameters" element="tns:getStatementHTMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSummaryHTMLResponse">
+    <wsdl:part name="parameters" element="tns:getSummaryHTMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReportFilePathResponse">
+    <wsdl:part name="parameters" element="tns:getReportFilePathResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReportFilePathRequest">
+    <wsdl:part name="parameters" element="tns:getReportFilePath">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatementPDFRequest">
+    <wsdl:part name="parameters" element="tns:getStatementPDF">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInvoiceDatesResponse">
+    <wsdl:part name="parameters" element="tns:getInvoiceDatesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReportServletUrlResponse">
+    <wsdl:part name="parameters" element="tns:getReportServletUrlResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EtccException">
+    <wsdl:part name="EtccException" element="tns:EtccException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hasLastYearSummaryResponse">
+    <wsdl:part name="parameters" element="tns:hasLastYearSummaryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransactionRecordsResponse">
+    <wsdl:part name="parameters" element="tns:getTransactionRecordsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReportURLRequest">
+    <wsdl:part name="parameters" element="tns:getReportURL">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EtccReportException">
+    <wsdl:part name="EtccReportException" element="tns:EtccReportException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="viewTransactionMainResponse">
+    <wsdl:part name="parameters" element="tns:viewTransactionMainResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatementHTMLRequest">
+    <wsdl:part name="parameters" element="tns:getStatementHTML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EtccSecurityException">
+    <wsdl:part name="EtccSecurityException" element="tns:EtccSecurityException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSummaryPDFRequest">
+    <wsdl:part name="parameters" element="tns:getSummaryPDF">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAcccountTagsResponse">
+    <wsdl:part name="parameters" element="tns:getAcccountTagsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransactionRecordsRequest">
+    <wsdl:part name="parameters" element="tns:getTransactionRecords">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSummaryPDFResponse">
+    <wsdl:part name="parameters" element="tns:getSummaryPDFResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatementDatesRequest">
+    <wsdl:part name="parameters" element="tns:getStatementDates">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatementDatesResponse">
+    <wsdl:part name="parameters" element="tns:getStatementDatesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReportURLResponse">
+    <wsdl:part name="parameters" element="tns:getReportURLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getInvoiceDatesRequest">
+    <wsdl:part name="parameters" element="tns:getInvoiceDates">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAcccountTagsRequest">
+    <wsdl:part name="parameters" element="tns:getAcccountTags">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getReportServletUrlRequest">
+    <wsdl:part name="parameters" element="tns:getReportServletUrl">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccountReceiptDetailsRequest">
+    <wsdl:part name="parameters" element="tns:getAccountReceiptDetails">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="viewTransactionMainRequest">
+    <wsdl:part name="parameters" element="tns:viewTransactionMain">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMonthlyInvoicesRequest">
+    <wsdl:part name="parameters" element="tns:getMonthlyInvoices">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSummaryGraphResponse">
+    <wsdl:part name="parameters" element="tns:getSummaryGraphResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSummaryGraphRequest">
+    <wsdl:part name="parameters" element="tns:getSummaryGraph">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccountReceiptsRequest">
+    <wsdl:part name="parameters" element="tns:getAccountReceipts">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hasLastYearSummaryRequest">
+    <wsdl:part name="parameters" element="tns:hasLastYearSummary">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSummaryHTMLRequest">
+    <wsdl:part name="parameters" element="tns:getSummaryHTML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatementPDFResponse">
+    <wsdl:part name="parameters" element="tns:getStatementPDFResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AccountHistoryPortType">
+    <wsdl:operation name="getReportURL">
+      <wsdl:input name="getReportURLRequest" message="tns:getReportURLRequest">
+    </wsdl:input>
+      <wsdl:output name="getReportURLResponse" message="tns:getReportURLResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTransactionRecords">
+      <wsdl:input name="getTransactionRecordsRequest" message="tns:getTransactionRecordsRequest">
+    </wsdl:input>
+      <wsdl:output name="getTransactionRecordsResponse" message="tns:getTransactionRecordsResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatementDates">
+      <wsdl:input name="getStatementDatesRequest" message="tns:getStatementDatesRequest">
+    </wsdl:input>
+      <wsdl:output name="getStatementDatesResponse" message="tns:getStatementDatesResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatementHTML">
+      <wsdl:input name="getStatementHTMLRequest" message="tns:getStatementHTMLRequest">
+    </wsdl:input>
+      <wsdl:output name="getStatementHTMLResponse" message="tns:getStatementHTMLResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="viewTransactionMain">
+      <wsdl:input name="viewTransactionMainRequest" message="tns:viewTransactionMainRequest">
+    </wsdl:input>
+      <wsdl:output name="viewTransactionMainResponse" message="tns:viewTransactionMainResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatementPDF">
+      <wsdl:input name="getStatementPDFRequest" message="tns:getStatementPDFRequest">
+    </wsdl:input>
+      <wsdl:output name="getStatementPDFResponse" message="tns:getStatementPDFResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSummaryGraph">
+      <wsdl:input name="getSummaryGraphRequest" message="tns:getSummaryGraphRequest">
+    </wsdl:input>
+      <wsdl:output name="getSummaryGraphResponse" message="tns:getSummaryGraphResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountReceipts">
+      <wsdl:input name="getAccountReceiptsRequest" message="tns:getAccountReceiptsRequest">
+    </wsdl:input>
+      <wsdl:output name="getAccountReceiptsResponse" message="tns:getAccountReceiptsResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAcccountTags">
+      <wsdl:input name="getAcccountTagsRequest" message="tns:getAcccountTagsRequest">
+    </wsdl:input>
+      <wsdl:output name="getAcccountTagsResponse" message="tns:getAcccountTagsResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMonthlyInvoices">
+      <wsdl:input name="getMonthlyInvoicesRequest" message="tns:getMonthlyInvoicesRequest">
+    </wsdl:input>
+      <wsdl:output name="getMonthlyInvoicesResponse" message="tns:getMonthlyInvoicesResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="hasLastYearSummary">
+      <wsdl:input name="hasLastYearSummaryRequest" message="tns:hasLastYearSummaryRequest">
+    </wsdl:input>
+      <wsdl:output name="hasLastYearSummaryResponse" message="tns:hasLastYearSummaryResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountReceiptDetails">
+      <wsdl:input name="getAccountReceiptDetailsRequest" message="tns:getAccountReceiptDetailsRequest">
+    </wsdl:input>
+      <wsdl:output name="getAccountReceiptDetailsResponse" message="tns:getAccountReceiptDetailsResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReportFilePath">
+      <wsdl:input name="getReportFilePathRequest" message="tns:getReportFilePathRequest">
+    </wsdl:input>
+      <wsdl:output name="getReportFilePathResponse" message="tns:getReportFilePathResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccReportException" message="tns:EtccReportException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReportServletUrl">
+      <wsdl:input name="getReportServletUrlRequest" message="tns:getReportServletUrlRequest">
+    </wsdl:input>
+      <wsdl:output name="getReportServletUrlResponse" message="tns:getReportServletUrlResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSummaryHTML">
+      <wsdl:input name="getSummaryHTMLRequest" message="tns:getSummaryHTMLRequest">
+    </wsdl:input>
+      <wsdl:output name="getSummaryHTMLResponse" message="tns:getSummaryHTMLResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSummaryPDF">
+      <wsdl:input name="getSummaryPDFRequest" message="tns:getSummaryPDFRequest">
+    </wsdl:input>
+      <wsdl:output name="getSummaryPDFResponse" message="tns:getSummaryPDFResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInvoiceDates">
+      <wsdl:input name="getInvoiceDatesRequest" message="tns:getInvoiceDatesRequest">
+    </wsdl:input>
+      <wsdl:output name="getInvoiceDatesResponse" message="tns:getInvoiceDatesResponse">
+    </wsdl:output>
+      <wsdl:fault name="EtccException" message="tns:EtccException">
+    </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException" message="tns:EtccSecurityException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AccountHistoryHttpBinding" type="tns:AccountHistoryPortType">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getReportURL">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getReportURLRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReportURLResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTransactionRecords">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getTransactionRecordsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTransactionRecordsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatementDates">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getStatementDatesRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatementDatesResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatementHTML">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getStatementHTMLRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatementHTMLResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="viewTransactionMain">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="viewTransactionMainRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="viewTransactionMainResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatementPDF">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getStatementPDFRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatementPDFResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSummaryGraph">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getSummaryGraphRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSummaryGraphResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountReceipts">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getAccountReceiptsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAccountReceiptsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAcccountTags">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getAcccountTagsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAcccountTagsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMonthlyInvoices">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getMonthlyInvoicesRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMonthlyInvoicesResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="hasLastYearSummary">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="hasLastYearSummaryRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="hasLastYearSummaryResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAccountReceiptDetails">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getAccountReceiptDetailsRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAccountReceiptDetailsResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReportFilePath">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getReportFilePathRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReportFilePathResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccReportException">
+        <wsdlsoap:fault name="EtccReportException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getReportServletUrl">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getReportServletUrlRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReportServletUrlResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSummaryHTML">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getSummaryHTMLRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSummaryHTMLResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSummaryPDF">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getSummaryPDFRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSummaryPDFResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getInvoiceDates">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getInvoiceDatesRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getInvoiceDatesResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EtccException">
+        <wsdlsoap:fault name="EtccException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EtccSecurityException">
+        <wsdlsoap:fault name="EtccSecurityException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AccountHistory">
+    <wsdl:port name="AccountHistoryHttpPort" binding="tns:AccountHistoryHttpBinding">
+      <wsdlsoap:address location="http://localhost/services/AccountHistory"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
