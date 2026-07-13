@@ -1,3 +1,4 @@
+<%@ taglib uri="http://jakarta.apache.org/struts/tags-tiles" prefix="tiles" %>
 <tr>
         <td class="topleft"></td>
         <td class="topcenter"></td>
@@ -13,19 +14,15 @@
         <!-- begin options (buttons, pulldowns, etc.) -->
         <!-- end options -->	
 	<!-- begin tabular data -->
-        <td id="data" class="content">
+		<td id="data" class="content">
 		
 	<!-- IMPORTANT: If any of the cells below have no data, make sure to insert an &nbsp; (e.g. see Account Summary below)
 	otherwise the cell will be invisible, and the border will break in that cell. -->
 	
-                <!-- begin statement for current month -->
-                <table cellspacing="0" width="500" height="400">
-                <caption><span>Welcome to Account History</span></caption>
-                    <tr><td>
-                        
-                    </td></tr>
-                </table>
-        </td>		
+			<!-- begin statement for current month -->
+			
+                                <tiles:get name="contactUsContentTable"/>         
+		</td>		
 		<!-- end tabular data-->
     </td>
     <td class="right"></td>

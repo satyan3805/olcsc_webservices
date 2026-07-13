@@ -1,0 +1,1 @@
+<meta HTTP-EQUIV="refresh" content="0; url=${destination}"> 
