@@ -1,0 +1,217 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.etcc.olcsc.hctra</groupId>
+	<artifactId>hctra-olcsc-core-plsql</artifactId>
+	<description>For building/rebuilding the PL SQL Java Objects used by the Oracle DAO's</description>
+	<packaging>jar</packaging>
+	<name>HCTRA - OLCSC :: CLIENT :: PLSQL</name>
+	<url>http://www.etcc.com</url>
+	<parent>
+		<groupId>com.etcc.olcsc</groupId>
+		<artifactId>hctra-olcsc-client</artifactId>
+		<version>3.9.24-a463cbce</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<properties>
+		<!-- GIT Migration - Apply HCTRA Releases : Temporary connecting to the local PDB to generate PLSQL object:cingole-->
+		<!--database.user>OL_OWNER</database.user>
+        <database.password>OL_OWNERHCTRACD1</database.password>
+        <database.tns>rchq-hctrabosdbd01-phli.etcchostedservices.local:1521:HCTRACD1</database.tns-->
+		<database.user>OL_OWNER</database.user>
+		<database.password>OL_OWNER</database.password>
+		<database.tns>lt-sperumal7.etcc.local:1521/HCTRPDB2.etcc.local</database.tns>
+		<skipJPub>false</skipJPub>
+		<!--
+            Note, the ${project.build.outputDirectory} will need to be created
+            before this task is run if compileJava is changed to true.
+        -->
+        <jpub.compileJava>true</jpub.compileJava>
+        <jpub.case>upper</jpub.case>
+        <oracle.version.jdbc>11.2.0.3</oracle.version.jdbc>
+        <oracle.version.runtime>11.1</oracle.version.runtime>
+    </properties>
+ 
+	<dependencies>
+        <dependency>
+		<!--
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.3</version>
+            <scope>provided</scope>
+			-->
+		<groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>${oracle.version.jdbc}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>xdb6</artifactId>
+            <version>${oracle.version.jdbc}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>orai18n</artifactId>
+            <version>${oracle.version.jdbc}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- See readme to obtain these next two dependencies.  -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>runtime12</artifactId>
+			<!-- weblogic upgrade changes -->
+            <!--<version>${oracle.version.runtime}</version> -->
+			<version>11.1</version>
+			<!-- weblogic upgrade changes  ends -->
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>translator</artifactId>
+             <!--<version>${oracle.version.runtime}</version> -->
+			<version>11.1</version>
+			<!-- weblogic upgrade changes ends -->
+        </dependency>
+		<!-- Added for Jenkins build.  -->
+		<dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>xmlparserv2</artifactId>
+            <version>11.1.1</version>
+        </dependency>
+	</dependencies>
+    <!--
+        Command line to run; java -Xms256m -Xmx256m -classpath "C:\Documents and
+        Settings\sdavidson\.m2\repository\com\oracle\ojdbc14\${oracle.version.jdbc}\ojdbc14-${oracle.version.jdbc}.jar;
+        C:\Documents and
+        Settings\sdavidson\.m2\repository\com\oracle\orai18n\${oracle.version.jdbc}\orai18n-${oracle.version.jdbc}.jar;
+        C:\Documents and
+        Settings\sdavidson\.m2\repository\com\oracle\runtime12\${oracle.version.runtime}\runtime12-${oracle.version.runtime}.jar;
+        C:\Documents and
+        Settings\sdavidson\.m2\repository\com\oracle\translator\${oracle.version.runtime}\translator-${oracle.version.runtime}.jar"
+        oracle.jpub.java.Main -user=tag_owner/tag_ownerhtd1
+        -url=jdbc:oracle:thin:@dbs01du.hctra.net:1521:htd1
+        -package=com.etcc.csc.plsql
+        -dir=C:\projects\OLCSC_HCTRA\PLSQL\target\generated-sources\src
+        -compile=false -d C:\projects\OLCSC_HCTRA\PLSQL\target\classes
+        -case=upper -methods=true -builtintypes=jdbc -numbertypes=jdbc
+        -usertypes=oracle
+        -input=C:\projects\OLCSC_HCTRA\PLSQL\jplsql\config.text -encoding=UTF-8
+        -toString=true -serializable=false
+    -->
+    <organization>
+        <name>ETC Corp</name>
+        <url>http://www.etcc.com</url>
+    </organization>
+    <build>
+		<finalName>plsql-hctra</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.build.directory}</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/src/main/sqlj</directory>
+                            <includes>
+                               <!--<include>**/*.java</include>-->
+
+                                <include>**/*.sql</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/CVS/Entries</exclude>
+                                <exclude>**/CVS/Repository</exclude>
+                                <exclude>**/CVS/Root</exclude>
+                                <exclude>**/CVS/Tag</exclude>
+                            </excludes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                 <version>1.1.1</version>
+                <executions>
+                    <execution>
+                        <id>generate-plsql-objects</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${env.JAVA_HOME}\bin\java</executable>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <argument>"${settings.localRepository}/com/oracle/ojdbc6/${oracle.version.jdbc}/ojdbc6-${oracle.version.jdbc}.jar${path.separator}${settings.localRepository}/com/oracle/orai18n/${oracle.version.jdbc}/orai18n-${oracle.version.jdbc}.jar${path.separator}${settings.localRepository}/com/oracle/runtime12/${oracle.version.runtime}/runtime12-${oracle.version.runtime}.jar${path.separator}${settings.localRepository}/com/oracle/translator/${oracle.version.runtime}/translator-${oracle.version.runtime}.jar${path.separator}${settings.localRepository}/com/oracle/xdb6/${oracle.version.jdbc}/xdb6-${oracle.version.jdbc}.jar${path.separator}${settings.localRepository}/com/oracle/xmlparserv2/11.1.1/xmlparserv2-11.1.1.jar"</argument>
+                                <argument>oracle.jpub.java.Main</argument>
+                                <argument>-user=${database.user}/${database.password}</argument>
+                                <argument>-url=jdbc:oracle:thin:@${database.tns}</argument>
+                                <argument>-dir=${project.basedir}/src/main/sqlj</argument>
+                                <argument>-package=com.etcc.csc.plsql</argument>
+                                <argument>-compile=${jpub.compileJava}</argument>
+                                <argument>-d</argument>
+                                <argument>${project.build.outputDirectory}</argument>
+                                <argument>-case=${jpub.case}</argument>
+                                <argument>-methods=true</argument>
+                                <argument>-builtintypes=jdbc</argument>
+                                <argument>-numbertypes=jdbc</argument>
+                                <argument>-usertypes=oracle</argument>
+                                <argument>-input=${project.basedir}/jplsql/config.text</argument>
+                                <argument>-encoding=UTF-8</argument>
+                                <argument>-toString=true</argument>
+                                <argument>-serializable=false</argument>
+                            </arguments>
+                            <systemProperties>
+                            </systemProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- Make the Target directory early, as needed for PLSQL -->
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <tasks>
+                                <mkdir dir="${project.build.outputDirectory}" />
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.basedir}/src/main/sqlj</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <!--distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus Internal Repository</name>
+            <url>http://etccbuild01:8081/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement-->
+</project>
