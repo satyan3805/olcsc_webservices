@@ -1,0 +1,13 @@
+<!-- development-footer page component -->
+
+		<!-- simply "touch" this file to update the date in the footer:
+			http://en.wikipedia.org/wiki/Touch_(Unix) -->
+
+		<!-- The next few lines print the revision in ISO 8601 standard
+			international date format: http://en.wikipedia.org/wiki/ISO_8601 -->
+
+		<!--#config timefmt="%Y-%m-%d" -->
+		<p>Return to <a rel="directory" href="/developers-site-map.shtml">project devlopers&rsquo; site map</a>
+			- visit the <a href="https://geniant.projectpath.com/projects/543709/project/log">HCTRA basecamp</a>
+			- Page revision <!--#echo var="LAST_MODIFIED" -->
+		</p>

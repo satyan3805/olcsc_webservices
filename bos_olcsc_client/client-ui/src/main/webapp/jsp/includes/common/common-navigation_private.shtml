@@ -1,0 +1,7 @@
+<div id="common-navigation">
+	<ul>
+		<li id="find-a-store-common-navigation"><a href="#">Find a Store</a></li>
+		<li id="contact-us-common-navigation"><a href="#">Contact Us</a></li>
+		<li id="logged-in-common-navigation">logged in as John Doe <a href="#">Logout</a></li>
+	</ul>
+</div> <!-- end of common-navigation -->

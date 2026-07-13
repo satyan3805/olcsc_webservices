@@ -1,0 +1,15 @@
+
+	<img name="sitemap" src="../meta/media/project/sitemap.gif" width="776" height="415" usemap="#m_sitemap" alt="" border="0" /><!-- fwtable fwsrc="sitemap.png" fwbase="sitemap" fwstyle="Generic" fwdocid = "1465929815" fwnested="0" -->
+
+	<map name="m_sitemap">
+		<area shape="circle" coords="729,174, 45" href="/about-hctra/" title="" alt="About HCTRA"  />
+		<area shape="circle" coords="635,240, 45" href="/hctra-projects/" title="" alt="HCTRA Projects" />
+		<area shape="circle" coords="527,284, 46" href="/toll-road-info/" title="" alt="Toll Road Info" />
+		<area shape="circle" coords="418,303, 46" href="/signup/" title="" alt="Sign Up" />
+		<area shape="circle" coords="233,332, 83" href="/login/" title="" alt="Login" />
+		<area shape="circle" coords="308,223, 38" href="/setup-online-access/" title="" alt="Set Up Online Access" />
+		<area shape="circle" coords="232,165, 36" href="/login/" title="" alt="Login" />
+		<area shape="circle" coords="159,223, 37" href="/reset-password/" title="" alt="Reset Password" />
+		<area shape="circle" coords="46,304, 46" href="/violations/" title="" alt="Violations" />
+		<area shape="circle" coords="232,52, 51" href="home.shtml" title="" alt="Home" />
+	</map>
