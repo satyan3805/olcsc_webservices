@@ -1,0 +1,357 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.etcc.olcsc.hctra</groupId>
+	<artifactId>hctra-olcsc-war-client</artifactId>
+	<packaging>war</packaging>
+	<name>HCTRA - OLCSC :: CLIENT :: WAR</name>
+	<url>http://www.etcc.com</url>
+	<parent>
+		<groupId>com.etcc.olcsc</groupId>
+		<artifactId>hctra-olcsc-client</artifactId>
+		<version>3.9.24-a463cbce</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.codehaus.xfire</groupId>
+			<artifactId>xfire-all</artifactId>
+			<version>${xfire.version}</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.xfire</groupId>
+			<artifactId>xfire-java5</artifactId>
+			<version>${xfire.version}</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.xfire</groupId>
+			<artifactId>xfire-aegis</artifactId>
+			<version>${xfire.version}</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>${jmock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>biz.minaret</groupId>
+            <artifactId>datedFileAppender</artifactId>
+            <version>1.0.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.3.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+	    <!-- weblogic upgrade changes -->
+            <!--<version>${aspectjrt.version}</version> -->
+	    <version>1.8.7</version>
+	    <!-- weblogic upgrade changes  ends -->
+        </dependency>
+        <!-- dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>sqlj</artifactId>
+            <version>10.1.3</version>
+            <scope>provided</scope>
+        </dependency -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>5.0-2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>xfire</groupId>
+			<artifactId>xfire-jsr181-api</artifactId>
+			<version>1.0-M1</version>
+		</dependency>
+		<dependency>
+			<groupId>javanettasks</groupId>
+			<artifactId>javanettasks</artifactId>
+			<version>1.0.28</version>
+			<classifier>jar-with-dependencies</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javanettasks</groupId>
+			<artifactId>httpunit</artifactId>
+			<version>1.7</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>${jmock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+		<!-- <dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId>
+			<version>1.2.13</version> </dependency> -->
+		<!-- For struts 1.2.8 -->
+		<dependency>
+			<groupId>struts</groupId>
+			<artifactId>struts</artifactId>
+			<version>${struts.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-beanutils</groupId>
+					<artifactId>commons-beanutils</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-digester</groupId>
+					<artifactId>commons-digester</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>oro</groupId>
+					<artifactId>oro</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>struts</groupId>
+			<artifactId>struts-el</artifactId>
+			<version>${struts.version}</version>
+		</dependency>
+		<!-- Not required for Struts 1.2.8, for 1.3.x and later. -->
+		<!-- <dependency> <groupId>org.apache.struts</groupId> <artifactId>struts-core</artifactId>
+			<version>${struts.version}</version> </dependency> <dependency> <groupId>org.apache.struts</groupId>
+			<artifactId>struts-extras</artifactId> <version>${struts.version}</version>
+			</dependency> <dependency> <groupId>org.apache.struts</groupId> <artifactId>struts-taglib</artifactId>
+			<version>${struts.version}</version> </dependency> <dependency> <groupId>org.apache.struts</groupId>
+			<artifactId>struts-tiles</artifactId> <version>${struts.tiles.version}</version>
+			</dependency> -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jsp.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>displaytag</groupId>
+			<artifactId>displaytag</artifactId>
+			<version>1.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-collections</groupId>
+					<artifactId>commons-collections</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-lang</groupId>
+					<artifactId>commons-lang</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-beanutils</groupId>
+					<artifactId>commons-beanutils</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>1.0.12</version>
+		</dependency>
+		<!-- This has a dependency on javax.jms. There is a javax.jms jar available
+			from the jboss maven repository, which the ETC mirror has been configured
+			to access. If a mirror is NOT available, Download the jms.jar file from Sun,
+			then follow the instructions on the command line to import into the local
+			repository. -->
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>oscache</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.owasp.esapi</groupId>
+			<artifactId>esapi</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.owasp</groupId>
+			<artifactId>antisamy</artifactId>
+			<version>1.4.3</version>
+		</dependency>
+		<!-- Available from ibiblio & JBoss (Oracle 11) repositories -->
+		<!--
+            <dependency> <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId> <version>10.2.0</version>
+            <version>10.2.0.2.0</version> </dependency>
+        -->
+		<!-- dependency>
+	        <groupId>com.etcc.olcsc.hctra</groupId>
+	        <artifactId>OLCSC-Core-PLSQL</artifactId>
+	        <version>${plsql.version}</version>
+	    </dependency-->
+		<dependency>
+			<groupId>com.etcc.olcsc.hctra</groupId>
+			<artifactId>hctra-olcsc-service</artifactId>
+			<version>${olcsc.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- Commenting for the Jenkins build Git-Migration -->
+		<dependency>
+			<groupId>com.etcc.olcsc.hctra</groupId>
+			<artifactId>hctra-olcsc-service</artifactId>
+			<version>${olcsc.version}</version>
+			<type>test-jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.etcc.core.service.payment</groupId>
+			<artifactId>hctra-paymentappliance-ws-client-axis</artifactId>
+			<version>${payment-version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.persistence</groupId>
+					<artifactId>persistence-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.etcc</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>runtime12</artifactId>
+			<version>12.1.3</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<!-- plugin>
+                <groupId>com.oracle.weblogic</groupId>
+                <artifactId>wls-maven-plugin</artifactId>
+                <version>12.1.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>appc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<attachClasses>true</attachClasses>
+					  <!--  weblogic upgrade changes 
+						<excludes>
+                        			<exclude>**/test/**</exclude>
+                    				</excludes>-->
+					<webResources>
+                        <webResource>
+                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                            <includes>
+                                <include>web.xml</include>
+                            </includes>
+                            <targetPath>WEB-INF</targetPath>
+                            <filtering>true</filtering>
+                        </webResource>
+                    </webResources>
+				 
+				</configuration>
+			</plugin>
+
+
+            <!--  Make the test class available for deployment -->
+            <!--  weblogic upgrade changes -->
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3</version>
+				 
+               <!-- <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>-->
+            </plugin> 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <configuration>
+                    <verbose>true</verbose>
+                    <showWeaveInfo>true</showWeaveInfo>
+					<!-- weblogic upgrade changes -->
+					 <complianceLevel>1.5</complianceLevel>
+					 <!-- weblogic upgrade changes -->
+                    <warn>constructorName,unusedLocals,deprecation,unusedArguments,unusedImports</warn>
+                    <excludes>
+                        <exclude>**/CVS/**</exclude>
+                    </excludes>
+                </configuration>
+                <!--<version>1.3</version>-->
+				<version>1.8</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>       <!-- use this goal to weave all your main classes -->
+                            <goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+                        </goals>
+                    </execution>
+               </executions>
+           </plugin>
+        </plugins>
+    </build>
+</project>
