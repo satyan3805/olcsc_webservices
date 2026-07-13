@@ -1,0 +1,1993 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="menuForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="url" type="java.lang.String" />
+			<form-property name="top" type="java.lang.String" />
+			<form-property name="loc" type="java.lang.String" />
+			<form-property name="subMenu" type="java.lang.String" />
+		</form-bean>
+		<form-bean name="tabMenuForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="url" type="java.lang.String" />
+			<form-property name="menu" type="java.lang.String" />
+			<form-property name="secure" type="java.lang.String" />
+		</form-bean>
+		<form-bean name="acctMgmtTabMenuForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="url" type="java.lang.String" />
+			<form-property name="menu" type="java.lang.String" />
+		</form-bean>
+		<form-bean name="UserForm"
+			type="org.apache.struts.validator.DynaValidatorActionForm">
+			<form-property name="userName" type="java.lang.String" />
+			<form-property name="password" type="java.lang.String" />
+			<form-property name="remember" type="java.lang.Boolean" />
+			<form-property name="invoiceId" type="java.lang.String" />
+			<form-property name="collectionsId" type="java.lang.String" />
+			<form-property name="licPlateNbr" type="java.lang.String" />
+			<form-property name="licPlateState" type="java.lang.String" />
+			<form-property name="type" type="java.lang.String" />
+		</form-bean>
+		<form-bean name="accountUserForm"
+			type="org.apache.struts.validator.DynaValidatorActionForm">
+			<form-property name="userName" type="java.lang.String" />
+			<form-property name="password" type="java.lang.String" />
+		</form-bean>
+		<!--
+			<form-bean name="violatorForm"
+			type="org.apache.struts.validator.DynaValidatorActionForm">
+			<form-property name="userName" type="java.lang.String"/>
+			<form-property name="password" type="java.lang.String"/>
+			<form-property name="remember" type="java.lang.Boolean"/>
+			<form-property name="invoiceId" type="java.lang.String"/>
+			<form-property name="collectionsId" type="java.lang.String"/>
+			<form-property name="licPlateNbr" type="java.lang.String"/>
+			<form-property name="licPlateState" type="java.lang.String"/>
+			<form-property name="type" type="java.lang.String"/> </form-bean>
+		-->
+		<form-bean name="violatorForm"
+			type="org.apache.struts.validator.DynaValidatorActionForm">
+			<form-property name="invoiceId" type="java.lang.String" />
+			<form-property name="licPlateNbr" type="java.lang.String" />
+			<form-property name="licPlateState" type="java.lang.String" />
+			<form-property name="agencyId" type="java.lang.String" />
+		</form-bean>
+
+		<form-bean name="mailedTagActivationForm"
+			type="org.apache.struts.validator.DynaValidatorActionForm">
+			<form-property name="tagActivationNbr" type="java.lang.String" />
+			<form-property name="driverLicenseNumber" type="java.lang.String" />
+			<form-property name="driverLicenseState" type="java.lang.String" />
+			<form-property name="taxId" type="java.lang.String" />
+		</form-bean>
+
+		<form-bean name="OnlineAccessForm"
+			type="com.etcc.csc.presentation.form.OnlineAccessForm" />
+		<form-bean name="accountReceiptsForm"
+			type="com.etcc.csc.presentation.form.AccountReceiptsForm" />
+
+		<form-bean name="TransactionsForm"
+			type="com.etcc.csc.presentation.form.TransactionsForm">
+			<form-property name="startDate" type="java.lang.String" />
+			<form-property name="endDate" type="java.lang.String" />
+			<!-- QC_11613 start -->
+			<form-property name="dateType" type="java.lang.String" />
+			<!-- QC_11613 end -->
+			<form-property name="agencyId" type="java.lang.String" />
+			<form-property name="tagId" type="java.lang.String" />
+			<form-property name="licensePlate" type="java.lang.String" />
+			<form-property name="transactionType" type="java.lang.String" />
+			<form-property name="reportFormat" type="java.lang.String"
+				initial="HTML" />
+			<form-property name="startIndex" type="java.lang.String" />
+			<form-property name="nickName" type="java.lang.String" />
+		</form-bean>
+
+		<form-bean name="StatementForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="statementMonth" type="java.lang.String" />
+			<form-property name="reportFormat" type="java.lang.String"
+				initial="html" />
+			<form-property name="currentPage" type="java.lang.String" />
+		</form-bean>
+
+		<form-bean name="TollTagForm" type="com.etcc.csc.presentation.form.TollTagForm">
+			<form-property name="firstName" type="java.lang.String" />
+			<form-property name="middleInitial" type="java.lang.String" />
+			<form-property name="lastName" type="java.lang.String" />
+			<form-property name="companyName" type="java.lang.String" />
+			<form-property name="email" type="java.lang.String" />
+			<form-property name="emailVerify" type="java.lang.String" />
+			<form-property name="userId" type="java.lang.String" />
+			<form-property name="securityQuestion" type="java.lang.String" />
+			<form-property name="securityAnswer" type="java.lang.String" />
+			<form-property name="securityAnswerVerify" type="java.lang.String" />
+			<form-property name="address" type="java.lang.String" />
+			<form-property name="addressLine2" type="java.lang.String" />
+			<form-property name="city" type="java.lang.String" />
+			<form-property name="state" type="java.lang.String" />
+			<form-property name="zipcode" type="java.lang.String" />
+			<form-property name="plus4" type="java.lang.String" />
+			<form-property name="homePhoneAreaCode" type="java.lang.String" />
+			<form-property name="homePhoneFirst3" type="java.lang.String" />
+			<form-property name="homePhoneLast4" type="java.lang.String" />
+			<form-property name="workPhoneAreaCode" type="java.lang.String" />
+			<form-property name="workPhoneFirst3" type="java.lang.String" />
+			<form-property name="workPhoneLast4" type="java.lang.String" />
+			<form-property name="workPhoneExt" type="java.lang.String" />
+			<form-property name="driverLicenseNumber" type="java.lang.String" />
+			<form-property name="driverLicenseState" type="java.lang.String" />
+			<form-property name="checkDuplicateDL" type="java.lang.String" />
+			<form-property name="mailStatement" type="java.lang.Boolean" />
+			<form-property name="hearFrom" type="java.lang.String" />
+			<form-property name="billingName" type="java.lang.String" />
+			<form-property name="billingAddress" type="java.lang.String" />
+			<form-property name="billingAddressLine2" type="java.lang.String" />
+			<form-property name="billingCity" type="java.lang.String" />
+			<form-property name="billingState" type="java.lang.String" />
+			<form-property name="billingZipcode" type="java.lang.String" />
+			<form-property name="billingPlus4" type="java.lang.String" />
+			<form-property name="creditCardNumber" type="java.lang.String" />
+			<form-property name="creditCardType" type="java.lang.String" />
+			<form-property name="creditCardExpirationMonth" type="java.lang.String" />
+			<form-property name="creditCardExpirationYear" type="java.lang.String" />
+			<form-property name="licensePlate" type="java.lang.String" />
+			<form-property name="licensePlateState" type="java.lang.String" />
+			<form-property name="tempLicensePlate" type="java.lang.Boolean" />
+			<form-property name="tempLicensePlateExpireDate" type="java.lang.String" />
+			<form-property name="vehicleYear" type="java.lang.String" />
+			<form-property name="vehicleColor" type="java.lang.String" />
+			<form-property name="vehicleMake" type="java.lang.String" />
+			<form-property name="vehicleModel" type="java.lang.String" />
+			<form-property name="vehicleClassCode" type="java.lang.String" />
+			<form-property name="skipDuplicateCheck" type="java.lang.Boolean" />
+			<form-property name="vehicleIndexToModify" type="java.lang.String" />
+			<form-property name="deleteVehicle" type="java.lang.Boolean" />
+		</form-bean>
+
+		<form-bean name="TollTagUserPreferenceForm"
+			type="com.etcc.csc.presentation.form.TollTagUserPreferenceForm" />
+
+		<form-bean name="summaryForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="summaryYear" type="java.lang.String" />
+			<form-property name="reportFormat" type="java.lang.String"
+				initial="html" />
+			<form-property name="printMode" type="java.lang.Boolean"
+				initial="false" />
+		</form-bean>
+
+		<form-bean name="accountForm" type="com.etcc.csc.presentation.form.AccountForm" />
+
+		<form-bean name="paymentForm" type="com.etcc.csc.presentation.form.PaymentForm" />
+
+		<form-bean name="creditCardForm"
+			type="com.etcc.csc.presentation.form.CreditCardForm" />
+
+		<form-bean name="accountTagForm"
+			type="com.etcc.csc.presentation.form.AccountTagForm" />
+
+		<form-bean name="ChangePasswordForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="userId" type="java.lang.String" />
+			<form-property name="oldPassword" type="java.lang.String" />
+			<form-property name="newPassword" type="java.lang.String" />
+			<form-property name="newPassword2" type="java.lang.String" />
+			<form-property name="required" type="java.lang.String" />
+		</form-bean>
+
+		<form-bean name="userPreferenceForm"
+			type="com.etcc.csc.presentation.form.UserPreferenceForm" />
+
+		<form-bean name="tagRequestForm"
+			type="com.etcc.csc.presentation.form.TagRequestForm" />
+
+		<form-bean name="violationNewAccountForm"
+			type="com.etcc.csc.presentation.form.ViolationNewAccountForm" />
+
+		<form-bean name="velcroForm"
+			type="org.apache.struts.validator.DynaValidatorActionForm">
+			<form-property name="name" type="java.lang.String" />
+			<form-property name="acctId" type="java.lang.String" />
+			<form-property name="address1" type="java.lang.String" />
+			<form-property name="address2" type="java.lang.String" />
+			<form-property name="city" type="java.lang.String" />
+			<form-property name="state" type="java.lang.String" />
+			<form-property name="zipCode" type="java.lang.String" />
+			<form-property name="plus4" type="java.lang.String" />
+			<form-property name="activeTolltag" type="java.lang.Integer" />
+			<form-property name="orderQty" type="java.lang.Integer" />
+			<form-property name="editMode" type="java.lang.Boolean"
+				initial="true" />
+			<form-property name="requestDate" type="java.lang.String" />
+			<form-property name="printMode" type="java.lang.Boolean"
+				initial="false" />
+		</form-bean>
+
+		<form-bean name="PaymentDetailForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="payInvoice" type="java.lang.String[]" />
+			<form-property name="payViolation" type="java.lang.String[]" />
+			<form-property name="tagAmount" type="java.lang.String" />
+			<form-property name="acceptVea" type="java.lang.String" />
+		</form-bean>
+
+		<form-bean name="PaymentInfoForm"
+			type="org.apache.struts.validator.DynaValidatorActionForm">
+			<form-property name="billingName" type="java.lang.String" />
+			<form-property name="billingAddress" type="java.lang.String" />
+			<form-property name="billingAddressLine2" type="java.lang.String" />
+			<form-property name="billingCity" type="java.lang.String" />
+			<form-property name="billingState" type="java.lang.String" />
+			<form-property name="billingZipcode" type="java.lang.String" />
+			<form-property name="billingPlus4" type="java.lang.String" />
+			<form-property name="creditCardNumber" type="java.lang.String" />
+			<form-property name="creditCardNumberNew" type="java.lang.String" />
+			<form-property name="creditCardType" type="java.lang.String" />
+			<form-property name="creditCardExpirationMonth" type="java.lang.String" />
+			<form-property name="creditCardExpirationYear" type="java.lang.String" />
+			<form-property name="creditCardSecurityCode" type="java.lang.String" />
+			<form-property name="savePayment" type="java.lang.String" />
+		</form-bean>
+
+		<form-bean name="contactUsForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="replyAddress" type="java.lang.String" />
+			<form-property name="comment" type="java.lang.String" />
+		</form-bean>
+
+		<form-bean name="fileUploadForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="uploadFile" type="org.apache.struts.upload.FormFile" />
+		</form-bean>
+
+		<form-bean name="acctUpdateForm"
+			type="com.etcc.csc.presentation.form.AccountUpdateForm" />
+
+		<form-bean name="selectedInvoiceForm"
+			type="com.etcc.csc.presentation.form.SelectedInvoiceForm" />
+
+		<form-bean name="contactInfoForm"
+			type="com.etcc.csc.presentation.form.ContactInfoForm" />
+
+		<form-bean name="billingInfoForm"
+			type="com.etcc.csc.presentation.form.BillingInfoForm" />
+
+		<form-bean name="preferencesForm"
+			type="com.etcc.csc.presentation.form.AccountPreferenceForm" />
+
+		<form-bean name="veaForm"
+			type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="firstName" type="java.lang.String" />
+			<form-property name="lastName" type="java.lang.String" />
+			<form-property name="licPlateNumber" type="java.lang.String" />
+			<form-property name="licPlateState" type="java.lang.String" />
+			<form-property name="index" type="java.lang.Integer"
+				initial="0" />
+		</form-bean>
+
+	</form-beans>
+
+	<!-- TODO: This should be put back in once dev work is completed -->
+	<global-exceptions>
+		<exception key="error.generic" type="com.etcc.csc.common.EtccSecurityException"
+			path="/invalidAccess.do" />
+		<exception key="error.generic.message" type="com.etcc.csc.common.EtccSysException"
+			path="/globalError.do" />
+		<exception key="error.report.message" type="com.etcc.csc.common.EtccReportException"
+			path="/jsp/common/popupGenericError.jsp" />
+		<exception key="error.generic.message" type="java.lang.Throwable"
+			path="/loggedInError.do" />
+	</global-exceptions>
+	<!-- -->
+
+	<global-forwards>
+		<forward name="invalidAccess" path="/jsp/invalidAccess.jsp" />
+		<forward name="expiredSession" path="/expiredSessionError.do" />
+		<forward name="accountHome" path="/myAccountHome.do" />
+	</global-forwards>
+
+	<action-mappings>
+		<action path="/home" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="home" validate="false">
+		</action>
+
+		<action path="/login" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="login" validate="false">
+		</action>
+
+		<action path="/home/tagReferencesDisplay" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="tagReferences" validate="false">
+		</action>
+
+		<action path="/home/sampleInvoiceDisplay" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="/jsp/includes/violation/help-sample-invoice.jsp"
+			validate="false">
+		</action>
+
+		<action path="/home/violationUptDisplay" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="/jsp/includes/violation/help-violation-upt.jsp"
+			validate="false">
+		</action>
+
+		<action path="/violatorLoginDisplay"
+			type="com.etcc.csc.presentation.action.violation.ViolatorLoginDisplayAction"
+			scope="request" validate="false">
+			<forward name="success" path="violatorLogin" />
+		</action>
+
+		<action path="/violatorLogin"
+			type="com.etcc.csc.presentation.action.violation.ViolatorLoginAction"
+			scope="request" name="violatorForm" validate="true"
+			input="/violatorLoginDisplay.do">
+			<!--
+				TODO: (MB) temporarily short-circuit the response to always show
+				invoice details (TO488 option 1 simplification) <forward
+				name="success" path="violatorSummary"/>
+			-->
+			<forward name="success" path="invoiceDisplay" />
+			<forward name="failure" path="violatorLogin" />
+		</action>
+
+		<!--
+			<action path="/violatorLogin"
+			type="com.etcc.csc.action.security.ViolatorLoginAction"
+			name="violatorForm" scope="request" validate="true"
+			input="/AccountLogin.do"> <forward name="failure"
+			path="/AccountLogin.do"/> <forward name="success"
+			path="violation.startPage"/> </action> <action
+			path="/AuthenticateViolator"
+			type="com.etcc.csc.action.security.AuthenticateUserAction"
+			name="violatorForm" scope="request" validate="true"
+			input="violation.startPage"> <forward name="failure"
+			path="violation.startPage"/> <forward name="success"
+			path="/myAccountHome.do"/> <forward name="changePassword"
+			path="/displayChangePasswordRequired.do"/> </action> <action
+			path="/ViolatorLoginStartPage" forward="violation.startPage"/>
+		-->
+
+		<action path="/invoiceDisplay"
+			type="com.etcc.csc.presentation.action.violation.InvoiceDisplayAction"
+			scope="session" name="selectedInvoiceForm" validate="true">
+			<!--
+				TODO: (MB) temporarily short-circuit the response to always show
+				invoice details (TO488 option 1 simplification) <forward
+				name="accountOptions" path="accountOptions"/> <forward name="login"
+				path="violationLogin"/> <forward name="signup"
+				path="violationSignup"/>
+			-->
+			<forward name="accountOptions" path="invoiceDisplay" />
+			<forward name="login" path="invoiceDisplay" />
+			<forward name="signup" path="invoiceDisplay" />
+			<forward name="success" path="invoiceDisplay" />
+		</action>
+
+		<action path="/mailedTagActivationLogin"
+			type="com.etcc.csc.presentation.action.mailedTag.MailedTagActivationLoginAction"
+			scope="request" name="mailedTagActivationForm" validate="false"
+			input="/mailedTagActivationDisplay.do">
+			<forward name="success" path="mailedTagActivationDetail" />
+			<forward name="failure" path="mailedTagActivation" />
+		</action>
+
+		<!--
+			Not used at this time <action path="/violationLoginDisplay"
+			type="org.apache.struts.actions.ForwardAction" scope="request"
+			parameter="violationLogin" validate="false"> </action>
+		-->
+
+		<action path="/violationLoginAccount"
+			type="com.etcc.csc.presentation.action.violation.ViolationLoginAccountAction"
+			scope="request" name="accountUserForm" validate="true">
+			<forward name="success" path="invoiceDisplay" />
+			<forward name="failure" path="violationLogin" />
+			<forward name="addVehicle" path="violationAddVehicle" />
+		</action>
+
+		<action path="/violationAddVehicle"
+			type="com.etcc.csc.presentation.action.violation.ViolationAddAccountAction"
+			scope="request" name="tagRequestForm" validate="true">
+			<forward name="success" path="invoiceDisplay" />
+			<forward name="failure" path="violationAddVehicle" />
+		</action>
+
+		<!--
+			Not used at this time <action path="/violationSignupDisplay"
+			type="org.apache.struts.actions.ForwardAction" scope="request"
+			validate="false"> </action>
+		-->
+
+		<action path="/violationAddAccount"
+			type="com.etcc.csc.presentation.action.violation.ViolationAddAccountAction"
+			scope="request" name="violationNewAccountForm" validate="true">
+			<forward name="success" path="invoiceDisplay" />
+			<forward name="failure" path="violationSignup" />
+		</action>
+
+		<action path="/violatorSummary"
+			type="com.etcc.csc.presentation.action.violation.SummaryAction"
+			scope="session" name="selectedInvoiceForm" validate="false">
+			<!--
+				TODO: (MB) temporarily short-circuit the response to always show
+				invoice details (TO488 option 1 simplification) <forward
+				name="success" path="violatorSummary"/>
+			-->
+			<forward name="success" path="invoiceDisplay" />
+			<forward name="failure" path="violatorLogin" />
+		</action>
+
+		<!--
+			<action path="/buildVPSReportUrl"
+			type="com.etcc.csc.presentation.action.violation.BuildVPSReportUrlAction"
+			scope="session" name="selectedInvoiceForm" validate="false"> <forward
+			name="success" path="/ProcessReport.do"/> </action>
+		-->
+
+		<action path="/paymentPlan"
+			type="com.etcc.csc.presentation.action.violation.PaymentPlanAction"
+			scope="session" name="selectedInvoiceForm" validate="false">
+			<forward name="success" path="paymentPlan" />
+		</action>
+
+		<action path="/violationPaymentMethod"
+			type="com.etcc.csc.presentation.action.violation.ViolationPaymentMethodAction"
+			scope="session" name="selectedInvoiceForm" validate="true"
+			input="/invoicePaymentDisplay.do">
+			<forward name="success" path="violationConfirmPayment" />
+			<forward name="failure" path="violationPayment" />
+		</action>
+
+		<action path="/selectedInvoice"
+			type="com.etcc.csc.presentation.action.violation.SelectedInvoiceAction"
+			scope="session" name="selectedInvoiceForm" validate="false">
+			<forward name="success" path="selectedInvoice" />
+			<forward name="nopay" path="invoiceDisplay" />
+		</action>
+
+		<action path="/mailedTagActivationDisplay"
+			type="com.etcc.csc.presentation.action.mailedTag.MailedTagActivationDisplayAction"
+			scope="request" validate="false">
+			<forward name="success" path="mailedTagActivation" />
+		</action>
+
+		<action path="/invoicePaymentDisplay"
+			type="com.etcc.csc.presentation.action.violation.InvoicePaymentDisplayAction"
+			scope="session" name="selectedInvoiceForm" validate="false">
+			<forward name="success" path="violationPayment" />
+			<forward name="done" path="violationConfirmPayment" />
+		</action>
+
+		<action path="/returnToInvoicePaymentDisplay"
+			type="com.etcc.csc.presentation.action.violation.InvoicePaymentDisplayAction"
+			scope="session" name="selectedInvoiceForm" validate="false">
+			<forward name="success" path="violationPayment" />
+			<forward name="done" path="violationPayment" />
+		</action>
+
+		<action path="/invoicePayment"
+			type="com.etcc.csc.presentation.action.violation.InvoicePaymentAction"
+			scope="session" name="selectedInvoiceForm" validate="true"
+			input="/violationPaymentMethod.do">
+			<forward name="success" path="invoicePaymentThankYou" />
+			<forward name="failure" path="violationConfirmPayment" />
+		</action>
+
+		<action path="/signup"
+			type="com.etcc.csc.presentation.action.signup.SignupAction" scope="request"
+			validate="false">
+			<forward name="success" path="signup" />
+		</action>
+
+		<action path="/signupAccountInfo"
+			type="com.etcc.csc.presentation.action.signup.SignupAcctInfoAction"
+			scope="session" input="signup" name="OnlineAccessForm">
+			<forward name="success" path="signupContactInfo" />
+			<forward name="failure" path="signup" />
+			<forward name="confirmation" path="/signupConfirmationDisplay.do" />
+		</action>
+
+		<action path="/signupContactInfo"
+			type="com.etcc.csc.presentation.action.signup.SignupContactInfoAction"
+			scope="session" input="signupContactInfo" name="contactInfoForm">
+			<forward name="success" path="signupVehicleInfo" />
+			<forward name="comingBack" path="signupContactInfo" />
+			<!--
+				Lakshmi Harish
+			-->
+			<forward name="confirmation" path="/signupConfirmationDisplay.do" />
+			<forward name="failure" path="signupContactInfo" />
+		</action>
+
+		<action path="/signupContactInformation" type="org.apache.struts.actions.ForwardAction"
+			scope="session" parameter="signupContactInfo" validate="false">
+		</action>
+
+		<action path="/signupContactInformationDisplay"
+			type="com.etcc.csc.presentation.action.signup.SignupContactInformationDisplayAction"
+			scope="session" input="signupContactInformationDisplay" name="contactInfoForm">
+			<forward name="success" path="signupContactInfo" />
+		</action>
+
+		<action path="/updateAuthContacts"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgAuthorizedContactsAction"
+			scope="session" input="authorizedContactsInfo" name="contactInfoForm">
+			<forward name="success" path="accountInformation" />
+			<forward name="managesuccess" path="accountInformation" />
+			<forward name="failure" path="authorizedContactsInfo" />
+			<forward name="managefailure" path="manageauthorizedContactsInfo" />
+			<forward name="securityError" path="authorizedContactsInfo" />
+		</action>
+
+		<action path="/signupContactInfoDisplay"
+			type="com.etcc.csc.presentation.action.signup.SignupContactInfoDisplayAction"
+			scope="request" validate="false">
+			<forward name="success" path="signupContactInfo" />
+		</action>
+
+		<action path="/signupIncompleteAccount"
+			type="com.etcc.csc.presentation.action.signup.SignupIncompleteAccountAction"
+			scope="session" validate="false">
+			<forward name="success" path="signupContactInfo" />
+		</action>
+
+		<action path="/authorizedContactsInfo"
+			type="com.etcc.csc.presentation.action.signup.AddAuthorizedContactAction"
+			scope="session" input="authorizedContactsInfo" name="contactInfoForm">
+			<forward name="success" path="authorizedContactsInfo" />
+			<!--Lakshmi Harish -->
+			<forward name="comingBack" path="signupContactInfo" />
+			<forward name="contact-info-page" path="signupContactInfo" />
+			<forward name="confirm-page" path="signupConfirmation" />
+			<forward name="add-contact" path="authorizedContactsInfo" />
+			<forward name="managesuccess" path="manageauthorizedContactsInfo" />
+			<forward name="managefailure" path="manageauthorizedContactsInfo" />
+			<forward name="signupContactInformationPage" path="/signupContactInformationDisplay.do" />
+			<forward name="signupBillingInfoPage" path="/signupBillingInfo.do" />
+			<forward name="updateAuthContactsPage" path="/updateAuthContacts.do" />
+			<forward name="accountInformationPage" path="/accountInformation.do" />
+		</action>
+
+		<action path="/addAuthorizedContact"
+			type="com.etcc.csc.presentation.action.signup.AddAuthorizedContactAction"
+			scope="session" name="contactInfoForm">
+			<!--
+				<forward name="success"
+				path="/jsp/includes/signup/page-02a-authorized-contacts.jsp"/>
+			-->
+			<forward name="success" path="authorizedContactsInfo" />
+			<!--Lakshmi Harish -->
+			<forward name="comingBack" path="signupContactInfo" />
+			<forward name="contact-info-page" path="signupContactInfo" />
+			<forward name="confirm-page" path="signupConfirmation" />
+			<forward name="add-contact" path="authorizedContactsInfo" />
+			<forward name="managesuccess" path="manageauthorizedContactsInfo" />
+			<forward name="managefailure" path="manageauthorizedContactsInfo" />
+		</action>
+
+		<action path="/addAuthorizedContactChange"
+			type="com.etcc.csc.presentation.action.signup.AddAuthorizedContactAction"
+			scope="session" name="contactInfoForm">
+			<forward name="success" path="accountInformation.changeAuthorizedContacts" />
+			<!--Lakshmi Harish -->
+			<forward name="comingBack" path="signupContactInfo" />
+			<forward name="managesuccess" path="manageauthorizedContactsInfo" />
+			<forward name="managefailure" path="manageauthorizedContactsInfo" />
+		</action>
+
+		<action path="/deleteAuthorizedContact"
+			type="com.etcc.csc.presentation.action.signup.DeleteAuthorizedContactAction"
+			scope="session" name="contactInfoForm">
+			<!--<forward name="success" path="signupContactInfo"-->
+			<forward name="success" path="authorizedContactsInfo" />
+			<forward name="managesuccess" path="manageauthorizedContactsInfo" />
+			<forward name="managefailure" path="manageauthorizedContactsInfo" />
+		</action>
+
+		<action path="/deleteAuthorizedContactChange"
+			type="com.etcc.csc.presentation.action.signup.DeleteAuthorizedContactAction"
+			scope="session" name="contactInfoForm">
+			<forward name="success" path="accountInformation.changeAuthorizedContacts" />
+			<forward name="managesuccess" path="manageauthorizedContactsInfo" />
+			<forward name="managefailure" path="manageauthorizedContactsInfo" />
+		</action>
+
+		<action path="/signupBillingInfo"
+			type="com.etcc.csc.presentation.action.signup.SignupBillingInfoAction"
+			scope="session" input="signupBillingInfo" name="billingInfoForm">
+			<forward name="success" path="/signupConfirmationDisplay.do" />
+			<!--<forward name="success" path="signupPaymentAndDeliveryInfo" />-->
+			<forward name="failure" path="signupBillingInfo" />
+		</action>
+
+
+		<action path="/signupBillingPAN"
+			type="com.etcc.csc.presentation.action.signup.SignupBillingPANAction" scope="session"
+			name="billingInfoForm" input="signupBillingInfo"
+			validate="true">
+			<forward name="success" path="signupBillingInfo"/>
+		</action>
+
+
+		<action path="/signupPaymentAndDelivery" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="signupPaymentAndDeliveryInfo" validate="false">
+		</action>
+
+
+
+		<action path="/signupActivateAccount"
+			type="com.etcc.csc.presentation.action.signup.SignupActivateAccountAction"
+			scope="request" validate="false">
+			<forward name="success" path="signupThankYou" />
+			<!--<forward name="success" path="signupPaymentAndDeliveryInfo"/>-->
+			<forward name="failure" path="/signupConfirmationDisplay.do" />
+		</action>
+
+		<action path="/signupVehicleInfo"
+			type="com.etcc.csc.presentation.action.signup.SignupVehicleInfoAction"
+			name="tagRequestForm" scope="session">
+			<forward name="success" path="signupBillingInfo" />
+			<forward name="confirmation" path="/signupConfirmationDisplay.do" />
+		</action>
+
+		<action path="/signupVehicleInfoDisplay" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="signupVehicleInfo" validate="false">
+		</action>
+
+		<action path="/signupSaveVehicle"
+			type="com.etcc.csc.presentation.action.signup.SaveVehicleAction"
+			name="tagRequestForm" input="signupVehicleInfo" scope="session">
+			<forward name="success" path="signupVehicleInfo" />
+			<forward name="failure" path="signupVehicleInfo" />
+			<forward name="confirmation" path="/signupConfirmationDisplay.do" />
+			<forward name="violationExists" path="signupViolationExists" />
+		</action>
+
+		<action path="/signupSaveVehicleAndContinue"
+			type="com.etcc.csc.presentation.action.signup.SaveVehicleAction"
+			name="tagRequestForm" input="signupVehicleInfo" scope="session">
+			<forward name="success" path="/signupVehicleInfo.do" />
+			<forward name="failure" path="signupVehicleInfo" />
+			<forward name="confirmation" path="/signupConfirmationDisplay.do" />
+			<forward name="violationExists" path="signupViolationExists" />
+		</action>
+
+		<action path="/signupDeleteVehicle"
+			type="com.etcc.csc.presentation.action.signup.SaveVehicleAction"
+			name="tagRequestForm" input="signupVehicleInfo" scope="session">
+			<forward name="success" path="signupVehicleInfo" />
+			<forward name="failure" path="signupVehicleInfo" />
+			<forward name="confirmation" path="/signupConfirmationDisplay.do" />
+			<forward name="violationExists" path="signupViolationExists" />
+		</action>
+
+		<action path="/signupManageAccount"
+			type="com.etcc.csc.presentation.action.signup.SignupManageAccountAction"
+			scope="request" validate="false">
+			<forward name="success" path="/myAccountHome.do" />
+		</action>
+
+		<action path="/signupPreferencesDisplay"
+			type="com.etcc.csc.presentation.action.signup.SignupPreferencesDisplayAction"
+			scope="request" validate="false">
+			<forward name="success" path="signupPreferences" />
+		</action>
+
+		<action path="/signupPreferenceUpdate"
+			type="com.etcc.csc.presentation.action.signup.SignupPreferencesUpdateAction"
+			scope="request" name="preferencesForm" validate="false">
+			<forward name="success" path="signupConfirmation" />
+			<forward name="failure" path="signupPreferences" />
+		</action>
+
+		<action path="/signupBillingInfoDisplay"
+			type="com.etcc.csc.presentation.action.signup.SignupBillingInfoDisplayAction"
+			scope="session" name="billingInfoForm" validate="false">
+			<forward name="success" path="signupBillingInfo" />
+		</action>
+
+		<action path="/signupConfirmationDisplay"
+			type="com.etcc.csc.presentation.action.signup.SignupConfirmationDisplayAction"
+			scope="request" validate="false">
+			<forward name="success" path="signupConfirmation" />
+		</action>
+
+		<action path="/signupBillingInfoBack"
+			type="com.etcc.csc.presentation.action.signup.SignupBillingInfoDisplayAction"
+			scope="request" validate="false">
+			<forward name="success" path="signupBillingInfo" />
+		</action>
+
+		<action path="/signupAgreement" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="signupAgreement" validate="false">
+		</action>
+
+
+		<action path="/agencyInfo" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="agencyInfo" validate="false">
+		</action>
+
+
+
+		<action path="/generatePlateReminder"
+			type="com.etcc.csc.presentation.action.signup.GeneratePlateReminder"
+			name="tagRequestForm" scope="request" input="accountAddVehicle">
+			<forward name="signup" path="signupVehicleInfo" />
+			<forward name="manage" path="accountAddVehicle" />
+		</action>
+
+		<action path="/accountActivityHome" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="/accountTransactions.do" validate="false">
+		</action>
+
+		<action path="/validatePrimaryEmailInfo" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="/accountEmailValidation" validate="false">
+		</action>
+
+
+		<action path="/confirmPrimaryEmail"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoEmailValidationAction"
+			scope="request" name="emailValidForm" validate="false">
+			<forward name="success" path="accountEmailValidation" />
+			<forward name="failure" path="/login.do" />
+		</action>
+
+		<action path="/accountPaymentHome" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="/accountViewOrders.do" validate="false">
+		</action>
+
+		<action path="/accountSummary"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountSummaryAction"
+			scope="request" validate="false">
+			<!--Lakshmi change for email validation-->
+			<forward name="emailValidation" path="confirmPrimaryEmail" />
+			<forward name="signupNotComplete" path="/signupIncompleteAccount.do" />
+			<forward name="success" path="accountSummary" />
+		</action>
+
+		<action path="/addressCleansing"
+			type="com.etcc.csc.presentation.action.accountManagement.AddressCleansingAction"
+			scope="request" validate="false">
+			<forward name="success" path="/myAccountHome.do" />
+			<forward name="mailingInfo" path="/accountInformation/dispChangeMailingAddr.do" />
+		</action>
+
+		<action path="/accountTransactions"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountTransactionsAction"
+			name="TransactionsForm" scope="request" validate="false">
+			<forward name="success" path="accountTransactions" />
+			<forward name="preview" path="accountTransactionsPreview" />
+		</action>
+
+		<action path="/accountTransactionsHAS"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountTransactionsAction"
+			name="TransactionsForm" scope="request" validate="false">
+			<forward name="success" path="accountTransactionsHAS" />
+			<forward name="preview" path="accountTransactionsPreview" />
+			<forward name="pdf" path="/jsp/includes/manage/account-download-PDF.jsp" />
+			<forward name="excel" path="/jsp/includes/manage/account-report_XLS.jsp" />
+		</action>
+
+		<action path="/accountStatements"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountStatementsAction"
+			scope="request" name="StatementForm" validate="false">
+			<forward name="success" path="accountStatements" />
+			<forward name="preview" path="accountStatementsPreview" />
+			<forward name="pdf" path="/jsp/includes/manage/account-download-PDF.jsp" />
+			<forward name="excel" path="/jsp/includes/manage/account-report_XLS.jsp" />
+		</action>
+
+		<action path="/accountYearlySummary"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountYearlySummaryAction"
+			name="summaryForm" scope="request" validate="false">
+			<forward name="success" path="accountYearlySummary" />
+			<forward name="preview" path="accountYearlySummaryPreview" />
+			<forward name="pdf" path="/jsp/includes/manage/account-download-PDF.jsp" />
+			<forward name="excel" path="/jsp/includes/manage/account-report_XLS.jsp" />
+		</action>
+
+		<action path="/accountReceipts"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountReceiptsAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountReceipts" />
+		</action>
+
+		<action path="/accountReceiptsResult"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountReceiptsAction"
+			name="accountReceiptsForm" scope="request" validate="true" input="accountReceipts">
+			<forward name="success" path="accountReceipts" />
+		</action>
+
+		<action path="/accountReceiptsDetail"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountReceiptsDetailAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountReceiptsDetail" />
+			<forward name="pdf" path="/jsp/includes/manage/account-download-PDF.jsp" />
+			<forward name="excel" path="/jsp/includes/manage/account-report_XLS.jsp" />
+		</action>
+
+
+		<action path="/accountMonthlyInvoices"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountMonthlyInvoicesAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountMonthlyInvoices" />
+			<forward name="empty" path="accountMonthlyInvoicesEmpty" />
+			<forward name="pdf" path="/jsp/includes/manage/account-download-PDF.jsp" />
+			<forward name="excel" path="/jsp/includes/manage/account-report_XLS.jsp" />
+		</action>
+
+		<action path="/accountViewOrders"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountViewOrdersAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountViewOrders" />
+		</action>
+
+		<action path="/accountMakePayment"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountMakePaymentAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountMakePayment" />
+		</action>
+
+		<action path="/accountMakePaymentFromConfirmation" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="accountMakePayment" validate="false">
+		</action>
+
+		<action path="/accountInformation"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountInformationAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountInformation" />
+		</action>
+
+		<action path="/accountInformation/dispChangeUserName"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoDispChgUsernameAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountInformation.changeUserName" />
+		</action>
+
+		<action path="/accountInformation/changeUserName"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgUsernameAction"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="accountInformation.changeUserName">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="accountInformation.changeUserName" />
+			<forward name="securityError" path="/failedAccess.do" />
+		</action>
+
+		<action path="/accountInformation/dispChangePassword"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoDispChgPasswordAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountInformation.changePassword" />
+		</action>
+
+		<action path="/accountInformation/changePassword"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgPasswordAction"
+			scope="request" name="OnlineAccessForm" validate="true"
+			input="accountInformation.changePassword">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="accountInformation.changePassword" />
+			<forward name="securityError" path="/failedAccess.do" />
+		</action>
+
+		<action path="/failedAccess" type="com.etcc.csc.action.security.FailedAccessAction"
+			parameter="method">
+			<forward name="success" path="failedAccess" />
+		</action>
+
+		<action path="/accountInformation/dispChangeAuthorizedContacts"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoDispChgAuthorizedContacts"
+			scope="session" name="contactInfoForm" validate="false">
+			<forward name="success" path="accountInformation.changeAuthorizedContacts" />
+		</action>
+
+		<action path="/accountInformation/changeAuthorizedContacts"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgAuthorizedContactsAction"
+			scope="session" name="contactInfoForm" validate="true"
+			input="accountInformation.changeAuthorizedContacts">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="accountInformation.changeAuthorizedContacts" />
+			<forward name="securityError" path="/failedAccess.do" />
+		</action>
+
+		<action path="/accountInformation/dispChangeSecQn"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoDispChgSecQnAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountInformation.changeSecQn" />
+		</action>
+
+		<action path="/accountInformation/changeSecQn"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgSecQnAction"
+			scope="request" name="OnlineAccessForm" validate="true"
+			input="accountInformation.changeSecQn">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="accountInformation.changeSecQn" />
+			<forward name="securityError" path="/failedAccess.do" />
+		</action>
+
+		<action path="/accountInformation/dispChangeContactInfo"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoDispChgContactInfoAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountInformation.changeContactInfo" />
+		</action>
+
+		<action path="/accountInformation/changeContactInfo"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgContactInfoAction"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="accountInformation.changeContactInfo">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="accountInformation.changeContactInfo" />
+		</action>
+
+		<action path="/accountInformation/dispChangeMailingAddr"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoDispChgMailingAddrAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountInformation.changeMailingAddr" />
+		</action>
+
+		<action path="/accountInformation/changeMailingAddr"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgMailingAddrAction"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="accountInformation.changeMailingAddr">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="accountInformation.changeMailingAddr" />
+			<forward name="summary" path="/myAccountHome.do" />
+		</action>
+
+		<action path="/accountInformation/dispChangePaymentMethod"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoDispChgPaymentMethodAction"
+			name="billingInfoForm" scope="request" validate="false">
+			<forward name="successcc" path="accountInformation.changePaymentMethodcc" />
+			<forward name="successeft" path="accountInformation.changePaymentMethodeft" />
+			<forward name="successinv" path="accountInformation.changePaymentMethodinv" />
+		</action>
+
+		<action path="/accountInformation/changePaymentMethodcc"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgPaymentMethodAction"
+			name="billingInfoForm" scope="request" validate="true"
+			input="accountInformation.changePaymentMethodcc">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="summary" path="/myAccountHome.do" />
+			<forward name="failure" path="accountInformation.changePaymentMethodcc" />
+		</action>
+
+		<action path="/accountInformation/changePaymentMethodeft"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgPaymentMethodAction"
+			name="billingInfoForm" scope="request" validate="true"
+			input="accountInformation.changePaymentMethodeft">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="accountInformation.changePaymentMethodeft" />
+		</action>
+
+		<action path="/accountInformation/dispChangeBillingAddress"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoDispChgBillingAddressAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountInformation.changeBillingAddress" />
+		</action>
+
+		<action path="/accountInformation/changeBillingAddress"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgBillingAddressAction"
+			name="billingInfoForm" scope="request" validate="true"
+			input="accountInformation.changeBillingAddress">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="accountInformation.changeBillingAddress" />
+		</action>
+
+		<action path="/accountInformation/dispChangeRebillAmt"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoDispChgRebillAmtAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountInformation.changeRebillAmt" />
+		</action>
+
+		<action path="/accountInformation/changeRebillAmt"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoChgRebillAmtAction"
+			name="accountForm" scope="request" validate="true"
+			input="accountInformation.changeRebillAmt">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="accountInformation.changeRebillAmt" />
+		</action>
+
+		<action path="/accountInformation/preferenceUpdate"
+			type="com.etcc.csc.presentation.action.signup.SignupPreferencesUpdateAction"
+			scope="request" name="preferencesForm" validate="false">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="failure" path="/accountInformation.do" />
+		</action>
+
+		<action path="/accountRequiredUpdate"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountRequiredUpdateAction"
+			scope="request" name="acctUpdateForm" validate="true"
+			input="accountRequiredUpdate">
+			<forward name="success" path="/myAccountHome.do" />
+			<forward name="failure" path="accountRequiredUpdate" />
+		</action>
+
+		<action path="/makePaymentMenuAdjustment"
+			type="com.etcc.csc.presentation.action.accountManagement.MenuAdjustmentAction"
+			scope="request" validate="false">
+			<forward name="success" path="/accountMakePayment.do" />
+		</action>
+
+		<action path="/viewTransactionsMenuAdjustment"
+			type="com.etcc.csc.presentation.action.accountManagement.MenuAdjustmentAction"
+			scope="request" validate="false">
+			<forward name="success" path="/accountTransactions.do" />
+		</action>
+
+		<action path="/viewStatementsMenuAdjustment"
+			type="com.etcc.csc.presentation.action.accountManagement.MenuAdjustmentAction"
+			scope="request" validate="false">
+			<forward name="success" path="/accountStatements.do" />
+		</action>
+
+		<action path="/viewReceiptsMenuAdjustment"
+			type="com.etcc.csc.presentation.action.accountManagement.MenuAdjustmentAction"
+			scope="request" validate="false">
+			<forward name="success" path="/accountReceipts.do" />
+		</action>
+
+		<action path="/accountVehiclesAndTags"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountVehiclesAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountVehiclesAndTags" />
+			<forward name="preview" path="accountVehiclesAndTagsPreview" />
+		</action>
+
+		<action path="/accountVehicleAddDisplay"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountVehiclesAction"
+			scope="request" validate="false">
+			<forward name="success" path="/accountManageVehicleAddDisplay.do" />
+		</action>
+
+		<action path="/accountManageVehicleAddDisplay"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountVehicleAddDisplayAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountAddVehicle" />
+		</action>
+
+		<action path="/accountTempLicDisplay"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountTempLicDisplayAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountEditVehicle" />
+			<forward name="failure" path="/accountVehiclesAndTags.do" />
+		</action>
+
+		<action path="/AccountVehicleAddPbpDisplay"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountVehicleAddPbpDisplayAction"
+			scope="request" validate="false">
+			<forward name="success" path="accountAddPbpVehicle" />
+		</action>
+
+		<action path="/accountSaveVehicle"
+			type="com.etcc.csc.presentation.action.signup.SaveVehicleAction"
+			name="tagRequestForm" scope="request" input="accountAddVehicle">
+			<forward name="success" path="accountAddVehicle" />
+			<forward name="failure" path="accountAddVehicle" />
+			<forward name="confirmation" path="accountPaymentConfirmation" />
+		</action>
+
+		<action path="/accountModifyVehicle"
+			type="com.etcc.csc.presentation.action.signup.SaveVehicleAction"
+			name="tagRequestForm" scope="request" input="accountAddVehicle">
+			<forward name="success" path="accountAddVehicle" />
+			<forward name="failure" path="accountAddVehicle" />
+			<forward name="confirmation" path="accountPaymentConfirmation" />
+		</action>
+
+		<action path="/accountSaveVehicleAndContinue"
+			type="com.etcc.csc.presentation.action.signup.SaveVehicleAction"
+			name="tagRequestForm" scope="request" input="accountAddVehicle">
+			<forward name="success" path="/addTagPaymentDisplay.do" />
+			<forward name="failure" path="accountAddVehicle" />
+			<forward name="confirmation" path="accountPaymentConfirmation" />
+		</action>
+
+		<action path="/violationDisplayFromAddTags"
+			type="com.etcc.csc.presentation.action.accountManagement.ViolationDisplayFromAddTags"
+			name="tagRequestForm" scope="request">
+			<forward name="success"
+				path="/violatorLoginDisplay.do?returnAction=addTagDisplayFromViolation" />
+		</action>
+
+		<action path="/addTagDisplayFromViolation"
+			type="com.etcc.csc.presentation.action.accountManagement.AddTagDisplayFromViolation"
+			name="tagRequestForm" scope="request">
+			<forward name="success" path="accountAddVehicle" />
+		</action>
+
+		<action path="/violationDisplayFromEditTags"
+			type="com.etcc.csc.presentation.action.accountManagement.ViolationDisplayFromAddTags"
+			name="tagRequestForm" scope="request">
+			<forward name="success"
+				path="/violatorLoginDisplay.do?returnAction=editTagDisplayFromViolation" />
+		</action>
+
+		<action path="/editTagDisplayFromViolation"
+			type="com.etcc.csc.presentation.action.accountManagement.AddTagDisplayFromViolation"
+			name="tagRequestForm" scope="request">
+			<forward name="success" path="accountEditVehicle" />
+		</action>
+
+		<action path="/violationDisplayFromAddPbpTags"
+			type="com.etcc.csc.presentation.action.accountManagement.ViolationDisplayFromAddTags"
+			name="tagRequestForm" scope="request">
+			<forward name="success"
+				path="/violatorLoginDisplay.do?returnAction=addPbpTagDisplayFromViolation" />
+		</action>
+
+		<action path="/addPbpTagDisplayFromViolation"
+			type="com.etcc.csc.presentation.action.accountManagement.AddTagDisplayFromViolation"
+			name="tagRequestForm" scope="request">
+			<forward name="success" path="accountAddPbpVehicle" />
+		</action>
+
+		<action path="/accountVehicleEditDisplay"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountVehicleEditDisplayAction"
+			name="tagRequestForm" scope="request" validate="false">
+			<forward name="success" path="accountEditVehicle" />
+			<forward name="changetagstatus" path="/accountEditVehicle.do?statuschange=true" />
+		</action>
+
+		<action path="/accountEditVehicle"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountEditVehicleAction"
+			name="tagRequestForm" scope="request" input="accountEditVehicle">
+			<forward name="success" path="/accountVehiclesAndTags.do" />
+			<forward name="failure" path="accountEditVehicle" />
+			<forward name="upload" path="accountUploadMultipleVehicle" />
+			<forward name="tagStatusFailure" path="/accountVehiclesAndTags.do" />
+			<forward name="accountInformation" path="/accountInformation.do" />
+		</action>
+
+		<action path="/accountInactivateAllVehicles"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountInactivateAllVehiclesAction"
+			name="tagRequestForm" scope="request" input="accountInactivateAllVehicles">
+			<forward name="success" path="/accountInformation.do" />
+			<forward name="summary" path="/myAccountHome.do" />
+			<forward name="failure" path="/accountInformation.do" />
+		</action>
+
+		<action path="/accountAddPbpVehicle"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountAddPbpVehicleAction"
+			name="tagRequestForm" scope="request" input="accountAddPbpVehicle">
+			<forward name="success" path="/accountVehiclesAndTags.do" />
+			<forward name="failure" path="accountAddPbpVehicle" />
+		</action>
+
+		<action path="/accountUploadMultipleVehicle"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountUploadMultipleVehicleAction"
+			name="fileUploadForm" scope="request" validate="false"
+			input="accountUploadMultipleVehicle">
+			<forward name="upload" path="accountUploadMultipleVehicle" />
+			<forward name="success" path="accountUploadMultipleVehicle" />
+			<forward name="download"
+				path="/jsp/includes/manage/download-vehicle-template.jsp" />
+			<forward name="inst"
+				path="/jsp/includes/manage/download-vehicle-template.jsp" />
+			<forward name="pdf" path="/jsp/includes/manage/account-download-PDF.jsp" />
+			<forward name="paymentConfirm" path="/addTagPaymentDisplay.do" />
+			<forward name="vehiclesAndTags" path="/accountVehiclesAndTags.do" />
+		</action>
+
+		<action path="/accountMultipleVehicleReport"
+			type="com.etcc.csc.presentation.action.accountManagement.AccountMultipleVehicleReportAction"
+			name="fileUploadForm" scope="request" validate="false"
+			input="accountMultipleVehicleReport">
+			<forward name="pdf" path="/jsp/includes/manage/account-download-PDF.jsp" />
+			<forward name="success" path="accountMultiplePreview"/>
+		</action>
+
+		<action path="/addTagPaymentDisplay"
+			type="com.etcc.csc.presentation.action.accountManagement.AddTagPaymentDisplayAction"
+			name="tagRequestForm" scope="request">
+			<forward name="billingInfo" path="accountBillingInfo" />
+			<forward name="confirmation" path="accountPaymentConfirmation" />
+		</action>
+
+		<action path="/paymentBillingInfoDisplay"
+			type="com.etcc.csc.presentation.action.accountManagement.PaymentBillingInfoDisplayAction"
+			name="billingInfoForm" scope="request">
+			<forward name="success" path="accountBillingInfo" />
+		</action>
+
+		<action path="/accountPaymentConfirmationDisplay"
+			type="com.etcc.csc.presentation.action.accountManagement.PaymentConfirmationDisplayAction"
+			name="billingInfoForm" validate="true" scope="request" input="accountBillingInfo">
+			<forward name="success" path="accountPaymentConfirmation" />
+			<forward name="failure" path="accountPaymentConfirmationDisplay" />
+		</action>
+
+		<action path="/acctModifyTagFromConfirmation"
+			type="com.etcc.csc.presentation.action.accountManagement.AcctModifyTagFromConfirmationAction"
+			name="tagRequestForm" scope="request">
+			<forward name="success" path="/accountModifyVehicle.do?refresh=false" />
+		</action>
+
+		<action path="/acctPaymentConfirm"
+			type="com.etcc.csc.presentation.action.accountManagement.PaymentConfirmAction"
+			scope="request">
+			<forward name="success" path="accountPaymentComplete" />
+			<forward name="failure" path="accountPaymentConfirmation" />
+		</action>
+
+		<action path="/makeAcctPmtDisplay"
+			type="com.etcc.csc.presentation.action.accountManagement.MakeAcctPmtDisplayAction"
+			name="paymentForm" validate="true" scope="request" input="accountMakePayment">
+			<forward name="billingInfo" path="accountBillingInfo" />
+			<forward name="confirmation" path="accountPaymentConfirmation" />
+		</action>
+
+		<action path="/AccountLogin" type="com.etcc.csc.action.security.AccountLoginAction"
+			name="UserForm" scope="request" validate="false">
+			<forward name="success" path="loginHome" />
+		</action>
+
+
+		<action path="/AuthenticateUser"
+			type="com.etcc.csc.action.security.AuthenticateUserAction" name="accountUserForm"
+			scope="request" validate="true" input="/login.do">
+			<forward name="failure" path="/login.do" />
+			<forward name="success" path="/myAccountHome.do" />
+			<forward name="signupNotComplete" path="/signupIncompleteAccount.do" />
+
+			<!-- REM Oct 08, Idea -->
+			<forward name="changePassword" path="accountRequiredUpdate" />
+			<forward name="completeGetTolltag" path="/GetTollTagContactInfo.do" />
+		</action>
+
+		<action path="/authenticateUserHomepage"
+			type="com.etcc.csc.action.security.AuthenticateUserAction" name="accountUserForm"
+			scope="request" validate="true" input="home">
+			<forward name="failure" path="home" />
+			<forward name="success" path="/myAccountHome.do" />
+			<forward name="changePassword" path="accountRequiredUpdate" />
+			<forward name="completeGetTolltag" path="/GetTollTagContactInfo.do" />
+		</action>
+
+		<!--
+			<action path="/home/updateUrl"
+			type="com.etcc.csc.action.security.UpdateUrlAction" scope="request"
+			validate="false"/>
+		-->
+
+		<action path="/home/displayViolatorLogin"
+			type="com.etcc.csc.action.security.DisplayViolatorLoginAction" name="violatorForm"
+			scope="request" validate="false">
+			<forward name="success" path="/jsp/home/violatorLogin.jsp" />
+		</action>
+
+		<action path="/home/noJavascript" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="loginNoJavascriptTab" validate="false">
+		</action>
+
+		<action path="/home/noCookie" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="loginNoCookieTab" validate="false">
+		</action>
+
+		<action path="/DisplayTransactions"
+			type="com.etcc.csc.presentation.action.DisplayTransactionsAction"
+			name="TransactionsForm" scope="request" validate="false">
+			<forward name="success" path="accountHistory.transactions.newselection" />
+			<forward name="pdfResult" path="/ProcessReport.do" />
+			<forward name="xlsResult" path="/ProcessReport.do?format=xls" />
+		</action>
+
+		<action path="/DisplayPDFTransactions"
+			type="com.etcc.csc.presentation.action.DisplayPDFTransactionsAction"
+			name="TransactionsForm" scope="request" validate="false">
+			<forward name="success" path="accountHistory.transactions.newselection" />
+			<forward name="pdfResult" path="/ProcessReport.do" />
+			<forward name="xlsResult" path="/ProcessReport.do?format=xls" />
+		</action>
+
+		<action path="/DisplayHtmlTransactions"
+			type="com.etcc.csc.presentation.action.DisplayTransactionsAction"
+			name="TransactionsForm" scope="request" validate="false">
+			<forward name="success" path="accountHistory.printerFriendlyTransactions" />
+		</action>
+
+		<action path="/openInvoicePDF"
+			type="com.etcc.csc.presentation.action.InvoicePDFAction" scope="session"
+			name="selectedInvoiceForm" validate="false">
+			<forward name="htmlReport" path="htmlReport" />
+		</action>
+
+		<!--
+			<action path="/emailViolationPaymentReceipt"
+			type="com.etcc.csc.presentation.action.violation.EmailReceiptAction"
+			scope="session" name="selectedInvoiceForm" validate="false"> <forward
+			name="success" path="invoicePaymentThankYou"/> <forward
+			name="failure" path="invoicePaymentThankYou"/> </action>
+		-->
+
+		<action path="/home/onlineAccessAccountInfo"
+			type="com.etcc.csc.presentation.action.onlineAccess.OnlineAccessAccountInfoAction"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="onlineAccess.accountInfo">
+			<forward name="success" path="onlineAccessAccountInfo" />
+		</action>
+
+		<action path="/onlineAccessUserInfo"
+			type="com.etcc.csc.presentation.action.onlineAccess.OnlineAccessUserInfoAction"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="/home/onlineAccessAccountInfo.do">
+			<forward name="success" path="onlineAccessUserInfo" />
+			<forward name="failure" path="/home/onlineAccessAccountInfo.do" />
+		</action>
+
+		<action path="/onlineAccessComplete"
+			type="com.etcc.csc.presentation.action.onlineAccess.OnlineAccessCompleteAction"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="onlineAccessUserInfo">
+			<forward name="success" path="onlineAccess.complete" />
+			<forward name="failure" path="onlineAccessUserInfo" />
+		</action>
+
+		<action path="/MakePayment" forward="makePayment" />
+
+		<action path="/Home" forward="home" />
+
+		<action path="/home/ErrorTest" type="com.etcc.csc.action.ErrorTestAction">
+			<forward name="success" path="display.test.error" />
+		</action>
+
+		<action path="/invalidAccess" type="com.etcc.csc.action.security.InvalidAccessAction"
+			parameter="method">
+			<forward name="success" path="/login.do" />
+		</action>
+
+		<action path="/loggedInError" type="com.etcc.csc.action.security.GlobalErrorAction"
+			parameter="method">
+			<forward name="success" path="loggedIn.exception" />
+			<forward name="notLoggedIn" path="notLoggedIn.exception" />
+		</action>
+
+		<action path="/cssError" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="css.exception" validate="false">
+		</action>
+
+		<action path="/globalError" type="com.etcc.csc.action.security.GlobalErrorAction"
+			parameter="method">
+			<forward name="success" path="global.exception" />
+			<forward name="notLoggedIn" path="notLoggedIn.exception" />
+		</action>
+
+		<action path="/expiredSessionError" type="com.etcc.csc.action.security.GlobalErrorAction"
+			parameter="method">
+			<forward name="success" path="expiredSession.exception" />
+			<forward name="notLoggedIn" path="expiredSession.exception" />
+		</action>
+
+		<action path="/menu" type="com.etcc.csc.action.menu.MenuAction"
+			name="menuForm" scope="request">
+			<forward name="success" path="/jsp/common/menu.jsp" />
+		</action>
+
+		<action path="/executeMenu" type="com.etcc.csc.action.menu.ExecuteMenuAction"
+			name="menuForm" scope="request">
+			<forward name="success" path="/jsp/common/leftNavLoggedIn.jsp" />
+		</action>
+
+		<action path="/home/updateTabMenu" type="com.etcc.csc.action.menu.UpdateTabMenuAction"
+			name="tabMenuForm" scope="request">
+			<forward name="success" path="/jsp/common/tabMenu.jsp" />
+			<forward name="redirectPage" path="/jsp/common/redirect.jsp" />
+			<forward name="home" path="/index.jsp" />
+		</action>
+
+		<!--
+			<action path="/home/displayTabMenu"
+			type="com.etcc.csc.action.menu.DisplayTabMenuAction"
+			name="tabMenuForm" scope="request"> <forward name="success"
+			path="/jsp/common/tabMenu.jsp"/> </action>
+		-->
+
+		<action path="/home/loginDisplayTabMenu"
+			type="com.etcc.csc.action.menu.LoginDisplayTabMenuAction" name="tabMenuForm"
+			scope="request">
+			<forward name="success"
+				path="/jsp/includes/common/common-navigation_public.jsp" />
+		</action>
+
+		<action path="/home/loginDisplayPageMenu"
+			type="com.etcc.csc.action.menu.LoginDisplayPageMenuAction" name="tabMenuForm"
+			scope="request">
+			<forward name="success" path="/jsp/includes/home/page-navigation-home.jsp" />
+		</action>
+
+		<action path="/accountDisplayPageMenu"
+			type="com.etcc.csc.action.menu.LoginDisplayPageMenuAction" name="tabMenuForm"
+			scope="request">
+			<forward name="success" path="/acctMgmtTabMenu.do" />
+		</action>
+
+		<action path="/acctMgmtTabMenu"
+			type="com.etcc.csc.action.menu.DisplayAcctMgmtTabMenuAction" name="tabMenuForm"
+			scope="request">
+			<forward name="success"
+				path="/jsp/includes/manage/page-navigation-manage.jsp" />
+		</action>
+
+		<action path="/updateAcctMgmtTabMenu"
+			type="com.etcc.csc.action.menu.UpdateAcctMgmtTabMenuAction" name="acctMgmtTabMenuForm"
+			scope="request">
+			<forward name="success"
+				path="/jsp/includes/manage/page-navigation-manage.jsp" />
+		</action>
+
+		<action path="/updateTertiaryTabMenu"
+			type="com.etcc.csc.action.menu.UpdateTertiaryTabMenuAction" name="acctMgmtTabMenuForm"
+			scope="request">
+			<forward name="success"
+				path="/jsp/includes/manage/tertiary-navigation-manage-account-activity.jsp" />
+		</action>
+
+		<action path="/home/loginUpdateTabMenu"
+			type="com.etcc.csc.action.menu.LoginUpdateTabMenuAction" name="tabMenuForm"
+			scope="request">
+			<forward name="success" path="/jsp/home/tabMenu.jsp" />
+			<forward name="accountHome" path="/index.jsp" />
+		</action>
+
+		<action path="/GetTollTagDisplayAgreement"
+			type="com.etcc.csc.presentation.action.GetTollTagDisplayAgreementAction"
+			name="TollTagForm" scope="session">
+			<forward name="success" path="getTollTag.agreement" />
+		</action>
+
+		<action path="/GetTollTagLoginInfo"
+			type="com.etcc.csc.presentation.action.GetTollTagLoginInfoAction"
+			name="TollTagUserPreferenceForm" scope="request" validate="false">
+			<forward name="success" path="getTollTag.loginInfo" />
+		</action>
+
+		<action path="/GetTollTagProcessLoginInfo"
+			type="com.etcc.csc.presentation.action.GetTollTagProcessLoginInfoAction"
+			name="TollTagUserPreferenceForm" scope="request" input="/GetTollTagLoginInfo.do"
+			validate="true">
+			<forward name="success" path="/GetTollTagContactInfo.do" />
+			<forward name="failure" path="/GetTollTagLoginInfo.do" />
+		</action>
+
+		<action path="/GetTollTagContactInfo"
+			type="com.etcc.csc.presentation.action.GetTollTagContactInfoAction"
+			name="TollTagForm" scope="session" validate="false">
+			<forward name="success" path="getTollTag.contactInfo" />
+		</action>
+
+		<action path="/GetTollTagProcessContactInfo"
+			type="com.etcc.csc.presentation.action.GetTollTagProcessContactInfoAction"
+			name="TollTagForm" scope="session" input="/GetTollTagContactInfo.do"
+			validate="true">
+			<forward name="success" path="/GetTollTagPaymentInfo.do" />
+			<forward name="failure" path="/GetTollTagContactInfo.do" />
+		</action>
+
+		<action path="/GetTollTagPaymentInfo"
+			type="com.etcc.csc.presentation.action.GetTollTagPaymentInfoAction"
+			name="TollTagForm" scope="session">
+			<forward name="success" path="getTollTag.paymentInfo" />
+		</action>
+
+		<action path="/GetTollTagProcessPaymentInfo"
+			type="com.etcc.csc.presentation.action.GetTollTagProcessPaymentInfoAction"
+			name="TollTagForm" scope="session" input="/GetTollTagPaymentInfo.do"
+			validate="true">
+			<forward name="success" path="/GetTollTagVehicleInfo.do" />
+			<forward name="failure" path="/GetTollTagPaymentInfo.do" />
+		</action>
+
+		<action path="/GetTollTagVehicleInfo"
+			type="com.etcc.csc.presentation.action.GetTollTagVehicleInfoAction"
+			name="TollTagForm" scope="session">
+			<forward name="success" path="getTollTag.vehicleInfo" />
+		</action>
+
+		<action path="/GetTollTagSaveVehicle"
+			type="com.etcc.csc.presentation.action.GetTollTagSaveVehicleAction"
+			name="TollTagForm" scope="session" validate="true"
+			input="/GetTollTagVehicleInfo.do">
+			<forward name="success" path="getTollTag.vehicleInfo" />
+			<forward name="failure" path="getTollTag.vehicleInfo" />
+		</action>
+
+		<action path="/GetTollTagRetrieveVehicle"
+			type="com.etcc.csc.presentation.action.GetTollTagRetrieveVehicleAction"
+			name="TollTagForm" scope="session">
+			<forward name="success" path="getTollTag.vehicleInfo" />
+		</action>
+
+		<action path="/GetTollTagReview"
+			type="com.etcc.csc.presentation.action.GetTollTagReviewAction" name="TollTagForm"
+			scope="session">
+			<forward name="success" path="getTollTag.review" />
+		</action>
+
+		<action path="/GetTollTagProcessReview"
+			type="com.etcc.csc.presentation.action.GetTollTagProcessReviewAction"
+			name="TollTagForm" scope="session">
+			<forward name="success" path="/InitializePayment.do" />
+			<forward name="failure" path="/GetTollTagReview.do" />
+		</action>
+
+		<action path="/GetTollTagDisplayReceipt"
+			type="com.etcc.csc.presentation.action.GetTollTagDisplayReceiptAction"
+			name="TollTagForm" scope="session">
+			<forward name="success" path="getTollTag.receipt" />
+		</action>
+
+		<action path="/logout" type="com.etcc.csc.action.security.LogoutAction">
+			<forward name="success" path="/index.jsp" />
+		</action>
+
+		<action path="/home/resetPassword" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="resetPassword" validate="false">
+		</action>
+
+		<action path="/retrieveEmailAddress"
+			type="com.etcc.csc.presentation.action.EmailRetrievalRetrievePasswordReset"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="/home/resetPassword.do">
+			<forward name="success" path="resetPasswordEmail" />
+			<forward name="failure" path="/home/resetPassword.do" />
+			<forward name="contactcsr" path="passwordRetrieval.contactcsr" />
+		</action>
+
+		<action path="/getSecurityQuestion"
+			type="com.etcc.csc.presentation.action.accountManagement.AccInfoEmailURLValidationAction"
+			name="OnlineAccessForm" scope="request" validate="false"
+			input="passwordRetrieval.step1">
+			<forward name="success" path="passwordRetrieval.step2" />
+			<forward name="failure" path="/home/resetPassword.do" />
+			<forward name="validateSecurityQuestion" path="passwordRetrieval.step3" />
+		</action>
+
+		<action path="/home/resetPassword1" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="resetPassword1" validate="false">
+		</action>
+
+		<action path="/home/displayPasswordRetrieval"
+			type="com.etcc.csc.presentation.action.DisplayPasswordRetrievalAction"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="passwordRetrieval.step1">
+			<forward name="success" path="passwordRetrieval.step1" />
+		</action>
+
+		<action path="/retrieveSecurityQuestion"
+			type="com.etcc.csc.presentation.action.PwdRetrievalRetrieveSecurityQuestion"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="/home/resetPassword1.do">
+			<forward name="success" path="passwordRetrieval.step2" />
+			<forward name="addSecurityQuestion" path="passwordRetrieval.addSecurity" />
+			<forward name="contactcsr" path="passwordRetrieval.contactcsr" />
+			<forward name="failure" path="/home/resetPassword1.do" />
+		</action>
+		<!--
+			<forward name="failure" path="/home/displayPasswordRetrieval.do"/>
+		-->
+
+		<action path="/accountHome" type="org.apache.struts.actions.ForwardAction"
+			parameter="/index.jsp" scope="request" validate="false">
+		</action>
+
+		<action path="/addSecurityQuestionAnswer"
+			type="com.etcc.csc.presentation.action.PwdRetrievalAddSecurityQuestionAnswer"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="passwordRetrieval.addSecurity">
+			<forward name="success" path="passwordRetrieval.complete" />
+			<forward name="failure" path="passwordRetrieval.addSecurity" />
+			<forward name="addEmailAddress" path="passwordRetrieval.addEmail" />
+		</action>
+
+		<action path="/addEmailAddress"
+			type="com.etcc.csc.presentation.action.PwdRetrievalAddEmailAddress"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="passwordRetrieval.addEmail">
+			<forward name="success" path="passwordRetrieval.complete" />
+			<forward name="failure" path="passwordRetrieval.addEmail" />
+		</action>
+
+		<action path="/validateSecurityAnswer"
+			type="com.etcc.csc.presentation.action.PwdRetrievalValidateSecurityAnswer"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="passwordRetrieval.step2">
+			<forward name="success" path="passwordRetrieval.step3" />
+			<forward name="failure" path="passwordRetrieval.step2" />
+			<forward name="addEmailAddress" path="passwordRetrieval.addEmail" />
+		</action>
+
+		<action path="/resetLogin" type="com.etcc.csc.presentation.action.ResetLogin"
+			name="OnlineAccessForm" scope="request" validate="true"
+			input="passwordRetrieval.step3">
+			<forward name="success" path="passwordRetrieval.step4" />
+			<forward name="failure" path="passwordRetrieval.step3" />
+		</action>
+
+		<action path="/testViewTransaction" type="org.apache.struts.actions.ForwardAction"
+			parameter="testViewTransaction" scope="request" validate="false">
+		</action>
+
+		<action path="/testViewStatements"
+			type="com.etcc.csc.presentation.action.ViewStatementAction" name="StatementForm"
+			scope="request">
+			<forward name="htmlResult" path="testViewStatement" />
+		</action>
+
+		<action path="/accountHistoryHome" type="org.apache.struts.actions.ForwardAction"
+			parameter="/DisplayTransactions.do" scope="request" validate="false">
+		</action>
+
+		<action path="/myAccountHome" type="org.apache.struts.actions.ForwardAction"
+			parameter="/accountSummary.do" scope="request" validate="false">
+		</action>
+
+		<action path="/contactUsHome"
+			type="com.etcc.csc.presentation.action.ContactUsDisplayAction" name="contactUsForm"
+			scope="request" validate="false">
+			<forward name="success" path="contactUsHome" />
+		</action>
+		<!--
+			<action path="/displayMyAccountHome"
+			type="com.etcc.csc.presentation.action.account.DisplayAccountHomeAction"
+			scope="request" validate="false"> <forward name="success"
+			path="myAccountHome"/> <forward name="pendingAccount"
+			path="/GetTollTagContactInfo.do"/> </action> <action
+			path="/displayMyAccountHome"
+			type="org.apache.struts.actions.ForwardAction" scope="request"
+			parameter="/personalInfoDisplay.do" validate="false"> </action>
+		-->
+
+
+
+		<action path="/viewStatements"
+			type="com.etcc.csc.presentation.action.ViewStatementAction" name="StatementForm"
+			scope="request">
+			<forward name="htmlResult" path="viewStatement" />
+			<forward name="pdfResult" path="/ProcessReport.do" />
+			<forward name="failure" path="statementNotAvailable" />
+		</action>
+
+		<action path="/viewHtmlStatements"
+			type="com.etcc.csc.presentation.action.ViewStatementAction" name="StatementForm"
+			scope="request">
+			<forward name="htmlResult" path="viewStatementPrinterFriendly" />
+		</action>
+
+		<action path="/viewSummary"
+			type="com.etcc.csc.presentation.action.ViewSummaryAction" name="summaryForm"
+			scope="request">
+			<forward name="htmlResult" path="viewSummary" />
+			<forward name="failure" path="summaryNotAvailable" />
+			<forward name="notAvailable" path="summaryNotAvailable" />
+			<forward name="pdfResult" path="/ProcessReport.do" />
+		</action>
+
+		<action path="/displayViewSummary" type="org.apache.struts.actions.ForwardAction"
+			parameter="displayViewSummary" scope="request">
+		</action>
+
+		<action path="/viewHtmlSummary"
+			type="com.etcc.csc.presentation.action.ViewSummaryAction" name="summaryForm"
+			scope="request">
+			<forward name="htmlResult" path="viewSummaryPrinterFriendly" />
+		</action>
+
+		<action path="/accountInfo" type="com.etcc.csc.action.AccountInfoAction"
+			scope="request">
+			<forward name="success" path="/jsp/includes/manage/status-bar-manage.jsp" />
+		</action>
+
+		<!-- Home Tab Menu Definitions -->
+		<action path="/home/homeTab" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="/jsp/home/homeTab.jsp" validate="false">
+		</action>
+
+		<action path="/home/homeTabContent" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="/jsp/home/homeTabContent.jsp" validate="false">
+		</action>
+
+		<action path="/home/setupOnlineAccessTab" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="loginSetupOnlineAccessTab" validate="false">
+		</action>
+
+		<action path="/home/tollTagTab" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="loginTollTagTab" validate="false">
+		</action>
+
+		<action path="/home/helpTab" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="loginHelpTab" validate="false">
+		</action>
+
+		<action path="/home/contactUsTab" type="org.apache.struts.actions.ForwardAction"
+			scope="request" parameter="loginContactUsTab" validate="false">
+		</action>
+		<!--
+			<action path="/personalInfoDisplay"
+			type="com.etcc.csc.presentation.action.PersonalInfoDisplayAction"
+			scope="request" name="accountForm" validate="false"> <forward
+			name="success" path="account.personalInfo"/> </action>
+		-->
+		<action path="/personalInfoDisplay"
+			type="com.etcc.csc.presentation.action.PersonalInfoDisplayAction"
+			scope="request" name="accountForm" validate="false">
+			<forward name="success" path="personalInfo" />
+		</action>
+		<!--
+			<action path="/personalInfoDisplay"
+			type="org.apache.struts.actions.ForwardAction" scope="request"
+			parameter="personalInfo" validate="false"> </action>
+		-->
+		<action path="/personalInfoEdit"
+			type="com.etcc.csc.presentation.action.PersonalInfoEditAction" scope="request"
+			name="accountForm" validate="true">
+			<forward name="success" path="account.personalInfo" />
+		</action>
+
+		<action path="/personalInfoSave"
+			type="com.etcc.csc.presentation.action.PersonalInfoSaveAction" scope="request"
+			name="accountForm" validate="true" input="account.personalInfo">
+			<forward name="success" path="account.personalInfo" />
+		</action>
+
+		<action path="/creditCardInfoEdit"
+			type="com.etcc.csc.presentation.action.account.CreditCardInfoEditAction"
+			scope="request" name="creditCardForm" validate="false">
+			<forward name="success" path="account.creditCardInfo" />
+		</action>
+
+		<action path="/creditCardInfoUpd"
+			type="com.etcc.csc.presentation.action.account.CreditCardInfoUpdAction"
+			scope="request" name="creditCardForm" validate="true"
+			input="account.creditCardInfo">
+			<forward name="success" path="account.creditCardInfo" />
+		</action>
+
+		<action path="/account/tollTagDisplay"
+			type="com.etcc.csc.presentation.action.AccountTollTagDisplayAction"
+			scope="request" name="accountTagForm" validate="false">
+			<forward name="success" path="account.tollTag" />
+		</action>
+
+		<action path="/account/tollTagEdit"
+			type="com.etcc.csc.presentation.action.AccountTollTagEditAction"
+			scope="request" name="accountTagForm" validate="false">
+			<forward name="success" path="account.tollTag" />
+		</action>
+
+		<action path="/account/tollTagSave"
+			type="com.etcc.csc.presentation.action.AccountTollTagSaveAction"
+			scope="request" name="accountTagForm" validate="false">
+			<forward name="success" path="/account/tollTagDisplay.do" />
+		</action>
+
+		<action path="/account/userPreferenceDisplay"
+			type="com.etcc.csc.presentation.action.AccountUserPreferenceDisplayAction"
+			scope="request" name="userPreferenceForm" validate="false">
+			<forward name="success" path="account.userPreference" />
+		</action>
+
+		<action path="/account/userPreferenceSave"
+			type="com.etcc.csc.presentation.action.AccountUserPreferenceSaveAction"
+			scope="request" name="userPreferenceForm" validate="false">
+			<forward name="success" path="/account/userPreferenceDisplay.do" />
+		</action>
+
+		<action path="/displayChangePassword"
+			type="com.etcc.csc.presentation.action.DisplayChangePasswordAction"
+			scope="request" validate="false">
+			<forward name="success" path="changePassword" />
+		</action>
+
+		<action path="/displayChangePasswordRequired"
+			type="com.etcc.csc.presentation.action.DisplayChangePasswordAction"
+			scope="request" validate="false">
+			<forward name="success" path="changePasswordRequired" />
+		</action>
+
+		<action path="/changePassword"
+			type="com.etcc.csc.presentation.action.ChangePasswordAction" scope="request"
+			name="ChangePasswordForm" validate="true" input="changePassword">
+			<forward name="success" path="changePasswordComplete" />
+			<forward name="failure" path="changePassword" />
+		</action>
+
+		<action path="/changePasswordRequired"
+			type="com.etcc.csc.presentation.action.ChangePasswordAction" scope="request"
+			name="ChangePasswordForm" validate="true" input="changePasswordRequired">
+			<forward name="success" path="changePasswordCompleteRequired" />
+			<forward name="failure" path="changePasswordRequired" />
+		</action>
+
+		<action path="/tagRequest"
+			type="com.etcc.csc.presentation.action.TagRequestDisplayAction"
+			scope="request" name="tagRequestForm" validate="false">
+			<forward name="success" path="accountManagement.addTags" />
+		</action>
+
+		<action path="/tagSave"
+			type="com.etcc.csc.presentation.action.TagRequestSaveAction" scope="request"
+			name="tagRequestForm" validate="true" input="accountManagement.addTags">
+			<forward name="success" path="accountManagement.addTags" />
+		</action>
+
+		<action path="/tagRetrieve"
+			type="com.etcc.csc.presentation.action.TagRequestRetrieveAction"
+			name="tagRequestForm" scope="request">
+			<forward name="success" path="accountManagement.addTags" />
+		</action>
+
+		<action path="/tagPayInfo"
+			type="com.etcc.csc.presentation.action.TagRequestPayInfoAction" name="tagRequestForm"
+			scope="request">
+			<forward name="success" path="accountManagement.addTagsReceipt" />
+			<forward name="failure" path="accountManagement.addTags" />
+			<forward name="payment" path="/InitializePayment.do" />
+		</action>
+
+		<action path="/tagHtmlReceipt"
+			type="com.etcc.csc.presentation.action.TagRequestReceiptAction" name="tagRequestForm"
+			scope="request">
+			<forward name="success" path="/ProcessReport.do?format=html" />
+		</action>
+
+		<action path="/tagPdfReceipt"
+			type="com.etcc.csc.presentation.action.TagRequestReceiptAction" name="tagRequestForm"
+			scope="request">
+			<forward name="success" path="/ProcessReport.do" />
+		</action>
+
+		<action path="/velcroDisplay"
+			type="com.etcc.csc.presentation.action.velcro.VelcroDisplayAction"
+			scope="request" name="velcroForm" validate="false">
+			<forward name="success" path="accountManagement.velcro" />
+		</action>
+
+		<action path="/velcroSubmit"
+			type="com.etcc.csc.presentation.action.velcro.VelcroSubmitAction"
+			scope="request" name="velcroForm" validate="true" input="accountManagement.velcro">
+			<forward name="success" path="accountManagement.velcroReceipt" />
+			<forward name="failure" path="accountManagement.velcro" />
+		</action>
+
+		<action path="/velcroPDFReceipt"
+			type="com.etcc.csc.presentation.action.velcro.VelcroPDFReceiptAction"
+			scope="request" validate="false">
+			<forward name="failure" path="accountManagement.velcro" />
+			<forward name="success" path="/ProcessReport.do" />
+		</action>
+
+		<action path="/velcroHtmlReceipt"
+			type="com.etcc.csc.presentation.action.velcro.VelcroHtmlReceiptAction"
+			scope="request" name="velcroForm" validate="true" input="accountManagement.velcro">
+			<forward name="success" path="accountManagement.velcroHtmlReceipt" />
+		</action>
+
+		<!--
+			<action path="/invoiceSearch"
+			type="com.etcc.csc.presentation.action.violation.ViolationDisplayAction"
+			scope="request" validate="false"> <forward name="success"
+			path="invoiceSearch"/> </action>
+		-->
+
+		<action path="/buildReportUrl"
+			type="com.etcc.csc.presentation.action.BuildReportUrlAction" scope="request"
+			validate="false">
+			<forward name="success" path="/ProcessReport.do" />
+		</action>
+
+		<action path="/InitializePayment"
+			type="com.etcc.csc.presentation.action.payment.InitializePaymentAction"
+			name="PaymentDetailForm">
+			<forward name="success" path="/DisplayPaymentDetail.do" />
+		</action>
+
+		<action path="/DisplayPaymentDetail"
+			type="com.etcc.csc.presentation.action.payment.DisplayPaymentDetailAction"
+			name="PaymentDetailForm" scope="request">
+			<forward name="success" path="payment.detail" />
+		</action>
+
+		<action path="/ProcessPaymentDetail"
+			type="com.etcc.csc.presentation.action.payment.ProcessPaymentDetailAction"
+			name="PaymentDetailForm" scope="request">
+			<forward name="success" path="/acceptVea.do" />
+			<forward name="failure" path="/DisplayPaymentDetail.do" />
+			<forward name="fulfillTag" path="/FulfillTagRequest.do" />
+		</action>
+
+		<action path="/DisplayPaymentInfo"
+			type="com.etcc.csc.presentation.action.payment.DisplayPaymentInfoAction"
+			name="PaymentInfoForm" scope="request">
+			<forward name="success" path="payment.info" />
+		</action>
+
+		<action path="/ProcessPaymentInfo"
+			type="com.etcc.csc.presentation.action.payment.ProcessPaymentInfoAction"
+			name="PaymentInfoForm" scope="request" input="/DisplayPaymentInfo.do?validate=true"
+			validate="true">
+			<forward name="success" path="payment.confirm" />
+		</action>
+
+		<action path="/ConfirmPayment"
+			type="com.etcc.csc.presentation.action.payment.ConfirmPaymentAction"
+			name="PaymentInfoForm" scope="request">
+			<forward name="success" path="payment.confirm" />
+		</action>
+
+		<action path="/FinalizePayment"
+			type="com.etcc.csc.presentation.action.payment.FinalizePaymentAction">
+			<forward name="success" path="payment.receipt" />
+			<forward name="failure" path="payment.confirm" />
+			<forward name="paymentInactive" path="/myAccountHome.do" />
+			<forward name="paymentInactiveViolator" path="/logout.do" />
+		</action>
+
+		<action path="/acceptVea"
+			type="com.etcc.csc.presentation.action.payment.AcceptVeaAction"
+			scope="request" validate="false" name="veaForm">
+			<forward name="success" path="payment.vea" />
+			<forward name="next" path="/DisplayPaymentInfo.do" />
+		</action>
+
+		<action path="/PostViolations"
+			type="com.etcc.csc.presentation.action.payment.PostViolationsAction"
+			name="PaymentDetailForm" scope="request">
+			<forward name="success" path="/myAccountHome.do" />
+			<forward name="fulfillTag" path="/FulfillTagRequest.do" />
+			<forward name="failure" path="/DisplayPaymentDetail.do" />
+		</action>
+
+		<action path="/FulfillTagRequest"
+			type="com.etcc.csc.presentation.action.payment.FulfillTagRequestAction">
+			<forward name="success" path="accountManagement.addTagsReceipt" />
+		</action>
+
+		<action path="/DisplayPaymentReport"
+			type="com.etcc.csc.presentation.action.payment.DisplayPaymentReportAction">
+			<forward name="success" path="/DisplayTransactions.do" />
+		</action>
+
+		<action path="/DisplayVeaDisclaimer" forward="payment.vea.disclaimer" />
+
+		<action path="/home/contactUsPopupDisplay" parameter="contactUsPopup"
+			type="org.apache.struts.actions.ForwardAction" scope="request"
+			validate="false" />
+
+		<action path="/home/contactUsPopupSubmit"
+			type="com.etcc.csc.presentation.action.ContactUsSubmitAction" name="contactUsForm"
+			scope="request" validate="true" input="contactUsPopup">
+			<forward name="success" path="contactUsPopup" />
+			<forward name="failure" path="contactUsPopup" />
+		</action>
+
+		<action path="/home/contactUsTabSubmit"
+			type="com.etcc.csc.presentation.action.ContactUsSubmitAction" name="contactUsForm"
+			scope="request" validate="true" input="loginContactUsTab">
+			<forward name="success" path="loginContactUsTab" />
+			<forward name="failure" path="loginContactUsTab" />
+		</action>
+
+		<action path="/contactUsHomeSubmit"
+			type="com.etcc.csc.presentation.action.ContactUsSubmitAction" name="contactUsForm"
+			scope="request" validate="true" input="contactUsHome">
+			<forward name="success" path="contactUsHome" />
+			<forward name="failure" path="contactUsHome" />
+		</action>
+
+		<action path="/home/helpDisplay"
+			type="com.etcc.csc.presentation.action.HelpDisplayAction" scope="request"
+			validate="false">
+			<forward name="success" path="helpPage" />
+		</action>
+	</action-mappings>
+
+	<message-resources parameter="com.etcc.csc.ApplicationResources" />
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+	</plug-in>
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+</struts-config>

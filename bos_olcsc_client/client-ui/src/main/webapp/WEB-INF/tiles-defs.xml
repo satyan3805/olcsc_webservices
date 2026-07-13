@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+<tiles-definitions>
+    <definition name="tiles-defs"/>
+
+    <definition name="basic.layout" path="/jsp/layout/basicLayout.jsp">
+        <put name="commonNavigation" value="/home/loginDisplayTabMenu.do"></put>
+        <put name="pageNavigation" value="/home/loginDisplayPageMenu.do"></put>
+        <put name="content" value="/jsp/includes/home/home.jsp"></put>
+        <put name="footer" value="/jsp/includes/common/footer.jsp"></put>
+        <put name="bodyClass" value="account-section account-information-section"/>
+        <put name="backAllowed" value="true"></put>
+        <put name="disableenter" value="true"></put>
+        <put name="title" value=""/>
+    </definition>
+
+<!--    <definition name="signup.layout" extends="basic.layout">
+        <put name="pageNavigation" value="/jsp/includes/signup/page-navigation-signup.jsp"></put>
+        <put name="bodyClass" value="account-section sign-up-section account-information-section"/>
+    </definition>
+-->
+
+    <definition name="account.layout" extends="basic.layout">
+        <put name="content" value="/jsp/includes/manage/account-summary.jsp"></put>
+        <put name="pageNavigation" value="/accountDisplayPageMenu.do"></put>
+        <put name="bodyClass" value="account-section manage-section account-summary-section"/>
+    </definition>
+
+    <definition name="popup.layout" path="/jsp/layout/popupLayout.jsp">
+        <put name="content" value="/jsp/includes/signup/page-04z-terms-of-service.jsp"></put>
+        <put name="footer" value="/jsp/includes/common/footer.jsp"></put>
+        <put name="title" value=""/>
+        <put name="bodyClass" value="account-section sign-up-section popup-window"/>
+    </definition>
+
+
+	<definition name="popup.layout" path="/jsp/layout/popupLayout.jsp">
+        <put name="content" value="/jsp/includes/manage/page-agencyinfo.jsp"></put>
+        <put name="footer" value="/jsp/includes/common/footer.jsp"></put>
+        <put name="title" value=""/>
+        <put name="bodyClass" value="account-section sign-up-section popup-window"/>
+    </definition>
+
+
+    <definition name="tagstore.layout" path="/jsp/layout/TagstoreLayout.jsp">
+        <put name="css" value="/jsp/common/Css.jsp"></put>
+    </definition>
+
+    <definition name="loggedIn.layout" path="/jsp/layout/loggedInLayout.jsp">
+        <put name="header" value="/accountInfo.do"/>
+        <put name="tabMenu" value="/home/displayTabMenu.do"/>
+        <put name="menu" value="/menu.do"/>
+        <put name="content" value="/home/displayTabMenu.do"/>
+        <put name="titleKey" value=""/>
+    </definition>
+
+    <definition name="homePage.layout" path="/jsp/layout/homePageLayout.jsp">
+        <put name="commonNavigation" value="/home/loginDisplayTabMenu.do"></put>
+        <put name="pageNavigation" value="/home/loginDisplayPageMenu.do"></put>
+    </definition>
+
+    <definition name="notLoggedIn.layout" path="/jsp/layout/notLoggedInLayout.jsp">
+        <put name="NotLoggedInTitleKey" value="onlineAccessForm.pageTitle.step1"/>
+        <put name="tabTitleKey" value="onlineAccessForm.tabTitle"/>
+        <put name="content" value="/jsp/onlineAccess/accountInfo.jsp"/>
+        <put name="invoiceInfo" value=""/>
+    </definition>
+
+    <definition name="notLoggedInContent.layout" path="/jsp/accountMaintenance/notLoggedInContentLayout.jsp">
+        <put name="contentTD" value="/jsp/accountMaintenance/changePassword.jsp"/>
+    </definition>
+
+    <definition name="loggedInContent.layout" path="/jsp/accountMaintenance/loggedInContentLayout.jsp">
+        <put name="contentTD" value="/jsp/accountMaintenance/changePassword.jsp"/>
+    </definition>
+
+    <definition name="printerFriendly.layout" path="/jsp/layout/printerFriendlyLayout.jsp">
+        <put name="content" value="/jsp/onlineAccess/accountInfo.jsp"/>
+    </definition>
+
+    <definition name="printerFriendly.layout2" path="/jsp/layout/printerFriendlyLayout2.jsp">
+        <put name="content" value="/jsp/onlineAccess/accountInfo.jsp"/>
+    </definition>
+
+    <definition name="tabContent.layout" path="/jsp/layout/tabContentLayout.jsp">
+        <put name="tabContent" value="/jsp/home/homeTab.jsp"/>
+    </definition>
+
+    <!-- global error pages -->
+    <definition name="global.exception" path="/jsp/common/GenericError.jsp"/>
+
+    <definition name="loggedIn.exception" extends="basic.layout">
+        <put name="content" value="/jsp/includes/common/error-common.jsp"/>
+        <put name="bodyClass" value="account-section error-section common-error-section"/>
+    </definition>
+
+    <definition name="css.exception" extends="basic.layout">
+        <put name="content" value="/jsp/includes/common/css-error.jsp"/>
+        <put name="bodyClass" value="account-section error-section common-error-section"/>
+    </definition>
+
+    <definition name="notLoggedIn.exception" extends="basic.layout">
+        <put name="content" value="/jsp/includes/common/error-common.jsp"/>
+         <put name="bodyClass" value="account-section error-section common-error-section"/>
+    </definition>
+
+    <definition name="expiredSession.exception" extends="basic.layout">
+        <put name="content" value="/jsp/includes/common/error-expiredSession.jsp"/>
+        <put name="bodyClass" value="account-section error-section session-expired-section"/>
+    </definition>
+
+    <definition name="failedAccess" extends="basic.layout">
+        <put name="content" value="/jsp/includes/common/failedAccess.jsp"/>
+        <put name="bodyClass" value="account-section error-section session-expired-section"/>
+    </definition>
+
+    <definition name="global.exception.io" path="/jsp/common/GenericIOError.jsp"/>
+
+    <definition name="display.test.error" path="/jsp/common/displayTestError.jsp"/>
+
+    <!-- template definition -->
+    <definition name="accountHolder" extends="tagstore.layout">
+        <putList name="leftBody">
+            <add value="/menu.do"></add>
+        </putList>
+    </definition>
+
+<!--
+    <definition name="nonAccountHolder" extends="tagstore.layout">
+        <putList name="leftBody">
+            <add value="/jsp/common/login.jsp"></add>
+            <add value="/menu.do?method=nonAccount"></add>
+        </putList>
+    </definition>
+-->
+
+    <!-- home pages -->
+    <definition name="home" extends="homePage.layout">
+    </definition>
+
+
+
+    <definition name="login" extends="basic.layout">
+        <put name="content" value="/jsp/includes/login/page-01-login.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section login-section"></put>
+        <put name="title" value="Login"/>
+    </definition>
+
+    <definition name="onlineAccessAccountInfo" extends="basic.layout">
+        <put name="content" value="/jsp/includes/setup-online-access/page-01-account-information.jsp"></put>
+        <put name="bodyClass" value="account-section set-up-your-online-access-section account-information-section"></put>
+        <put name="title" value="Account Information : Set up your online access"/>
+    </definition>
+
+    <definition name="tagReferences" extends="popup.layout">
+        <put name="content" value="/jsp/includes/setup-online-access/page-01z-tag-references.jsp"></put>
+        <put name="bodyClass" value="account-section set-up-your-online-access-section tag-references-section popup-window"></put>
+        <put name="title" value="Tag References"/>
+    </definition>
+
+    <definition name="onlineAccessUserInfo" extends="basic.layout">
+        <put name="content" value="/jsp/includes/setup-online-access/page-02-online-access.jsp"></put>
+        <put name="bodyClass" value="account-section set-up-your-online-access-section user-information-section"></put>
+        <put name="title" value="User Information : Set up your online access"/>
+    </definition>
+
+    <definition name="onlineAccess.complete" extends="basic.layout">
+        <put name="content" value="/jsp/includes/setup-online-access/page-03-confirmation.jsp"></put>
+        <put name="bodyClass" value="account-section set-up-your-online-access-section complete-section"></put>
+        <put name="title" value="Complete : Set up your online access"/>
+    </definition>
+
+    <definition name="violatorLogin" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/page-01-violation-information.jsp"></put>
+        <put name="bodyClass" value="account-section violations-section violation-information-section"></put>
+        <put name="title" value="Violations"/>
+    </definition>
+
+    <definition name="violatorSummary" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/page-01A-violations-summary.jsp"></put>
+        <put name="bodyClass" value="account-section violations-section open-violations-section"></put>
+        <put name="title" value="Violations Summary"/>
+    </definition>
+
+    <definition name="accountOptions" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/page-01B-account-options.jsp"/>
+        <put name="bodyClass" value="account-section violations-section"/>
+        <put name="title" value="Account Payment Options"/>
+    </definition>
+
+    <definition name="violationLogin" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/pay-login.jsp"/>
+        <put name="bodyClass" value="account-section violations-section login-section"/>
+        <put name="title" value="Pay using EZ Account"/>
+    </definition>
+
+    <definition name="violationSignup" extends="basic.layout">
+        <put name="content" value="violationSignupDetail"/>
+        <put name="bodyClass" value="account-section sign-up-section complete-section"/>
+        <put name="title" value="Pay with new EZ Account"/>
+    </definition>
+
+    <definition name="violationAddVehicle" extends="basic.layout">
+        <put name="content" value="violationAddVehicleDetail"/>
+        <put name="bodyClass" value="account-section sign-up-section vehicle-information-section"/>
+        <put name="title" value="Pay using EZ Account : Add Vehicle"/>
+    </definition>
+
+    <definition name="violationSignupDetail" path="/jsp/includes/violation/pay-signup.jsp">
+        <put name="vehicleDetail" value="violationVehicleData"/>
+    </definition>
+
+    <definition name="violationAddVehicleDetail" path="/jsp/includes/violation/add-vehicle.jsp">
+        <put name="vehicleDetail" value="violationVehicleData"/>
+    </definition>
+
+    <definition name="violationVehicleData" path="/jsp/includes/common/common-add-vehicle.jsp">
+        <put name="noteVerbiage" value=""/>
+        <put name="showPbp" value="false"/>
+        <put name="saveAction" value=""/>
+        <put name="delAction" value=""/>
+        <put name="pageTitle" value=""/>
+    </definition>
+
+    <definition name="mailedTagActivation" extends="basic.layout">
+        <put name="content" value="/jsp/includes/mailedTag/page-01-mailed-tag-activation-display.jsp"></put>
+        <put name="bodyClass" value="sign-up-section"></put>
+        <put name="title" value="TAG Activation"/>
+    </definition>
+
+    <definition name="mailedTagActivationDetail" extends="basic.layout">
+        <put name="content" value="/jsp/includes/mailedTag/page-02-mailed-tag-activation-details.jsp"></put>
+        <put name="title" value="Open Mailed TagActivation"/>
+    </definition>
+
+    <definition name="invoiceDisplay" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/page-02-open-violations.jsp"></put>
+        <put name="bodyClass" value="account-section violations-section open-violations-section"></put>
+        <put name="title" value="Open Violations"/>
+    </definition>
+
+    <definition name="tollDisplay" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/page-02t-uninvoiced-violations.jsp"></put>
+        <put name="bodyClass" value="account-section violations-section open-violations-section"></put>
+        <put name="title" value="Uninvoiced Violations"/>
+    </definition>
+
+    <definition name="paymentPlan" path="/jsp/includes/violation/page-02z-payment-plan-details.jsp">
+    </definition>
+
+    <definition name="violationPayment" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/page-04-payment.jsp"></put>
+<!-- TODO: skip payment collection for mini-site
+        <put name="content" value="/jsp/includes/violation/page-05-confirmation.jsp"></put>
+-->
+        <put name="bodyClass" value="account-section violations-section payment-section"></put>
+        <put name="title" value="Payment Information"/>
+    </definition>
+
+    <definition name="selectedInvoice" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/page-03-review.jsp"/>
+        <put name="bodyClass" value="account-section violations-section invoice-confirmation-section"/>
+        <put name="title" value="Payment Confirmation"/>
+    </definition>
+
+    <definition name="violationConfirmPayment" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/page-05-confirmation.jsp"/>
+        <put name="bodyClass" value="account-section violations-section payment-confirmation-section"/>
+        <put name="backAllowed" value="false"></put>
+        <put name="title" value="Payment Confirmation"/>
+    </definition>
+
+    <definition name="invoicePaymentThankYou" extends="basic.layout">
+        <put name="content" value="/jsp/includes/violation/page-06-thank-you.jsp"/>
+        <put name="bodyClass" value="account-section violations-section thank-you-section"/>
+        <put name="backAllowed" value="false"></put>
+        <put name="title" value="Thank You"/>
+    </definition>
+
+    <!-- application page definitions -->
+    <definition name="signup" extends="basic.layout">
+        <put name="content" value="/jsp/includes/signup/page-01-set-up-your-online-access.jsp"></put>
+        <put name="bodyClass" value="account-section sign-up-section set-up-your-online-access-section"/>
+        <put name="title" value="Set up your online access : New EZ Account"/>
+    </definition>
+
+	<definition name="signupPaymentAndDeliveryInfo" extends="basic.layout">
+        <put name="content" value="/jsp/includes/signup/page-06-payment-and-delivery-page.jsp"/>
+        <put name="bodyClass" value="account-section sign-up-section"/>
+        <put name="backAllowed" value="true"></put>
+        <put name="title" value="View Payment and Delivery Information"/>
+    </definition>
+
+    <definition name="signupContactInfo" extends="basic.layout">
+        <put name="content" value="/jsp/includes/signup/page-02-contact-information.jsp"/>
+        <put name="bodyClass" value="account-section sign-up-section contact-information-section"/>
+        <put name="title" value="Contact Information : New EZ Account"/>
+    </definition>
+
+    <!-- By Idea, for WSR2, Sept, 2008, REM -->
+    <definition name="authorizedContactsInfo" extends="basic.layout">
+        <put name="content" value="/jsp/includes/signup/page-02a-authorized-contact.jsp"/>
+        <put name="bodyClass" value="account-section sign-up-section contact-information-section"/>
+        <put name="title" value="Authorized Contacts : Add, change, or delete"/>
+    </definition>
+
+    <definition name="manageauthorizedContactsInfo" extends="account.layout">
+        <put name="content" value="/jsp/includes/signup/page-02a-authorized-contact.jsp"/>
+        <put name="bodyClass" value="account-section manage-section account-information-section authorized-contact-section"/>
+        <put name="title" value="Authorized Contacts : Add, change, or delete"/>
+    </definition>
+
+    <definition name="signupAgreement" path="/jsp/includes/signup/page-04z-terms-of-service.jsp">
+    </definition>
+
+	<definition name="agencyInfo" path="/jsp/includes/manage/page-agencyinfo.jsp">
+    </definition>
+
+    <definition name="signupVehicleInfo" extends="basic.layout">
+        <put name="content" value="signupVehicleDetail"/>
+        <put name="bodyClass" value="account-section sign-up-section vehicle-information-section"/>
+        <put name="title" value="Vehicle Information : New EZ Account"/>
+        <put name="backAllowed" value="false"></put>
+    </definition>
+
+    <definition name="signupVehicleDetail" path="/jsp/includes/signup/page-03-vehicle-information.jsp">
+        <put name="vehicleDetail" value="signupVehicleData"/>
+    </definition>
+
+    <definition name="signupVehicleData" path="/jsp/includes/common/common-add-vehicle.jsp">
+     <!--   <put name="noteVerbiage" value="(or press 'Add Billing Information' if all vehicles have been added)"/>  -->
+        <put name="noteVerbiage" value=""/>
+        <put name="showPbp" value="false"/>
+        <put name="saveAction" value="signupSaveVehicle.do"/>
+        <put name="delAction" value="signupDeleteVehicle.do"/>
+        <put name="pageTitle" value="Vehicle Information"/>
+    </definition>
+
+    <definition name="signupViolationExists" path="/jsp/includes/signup/page-03-violation-exists.jsp">
+        <put name="backAction" value="signupVehicleInfoDisplay.do"/>
+        <put name="entryPoint" value="newAccount"/>
+        <put name="includeHiddenFields" value="false"/>
+    </definition>
+
+    <definition name="signupBillingInfo" extends="basic.layout">
+        <put name="content" value="/jsp/includes/signup/page-04-billing-information.jsp"/>
+        <put name="bodyClass" value="account-section sign-up-section billing-information-section"/>
+        <put name="title" value="Billing Information : New EZ Account"/>
+    </definition>
+
+    <definition name="signupConfirmation" extends="basic.layout">
+        <put name="content" value="/jsp/includes/signup/page-05-confirmation-page.jsp"/>
+        <put name="bodyClass" value="account-section sign-up-section confirmation-section"/>
+        <put name="backAllowed" value="false"></put>
+        <put name="title" value="Is this correct? : New EZ Account"/>
+    </definition>
+
+    <definition name="signupPreferences" extends="basic.layout">
+        <put name="content" value="/jsp/includes/signup/page-05p-preferences.jsp"/>
+        <put name="bodyClass" value="account-section sign-up-section preferences-section"/>
+        <put name="title" value="Preferences : New EZ Account"/>
+    </definition>
+
+    <definition name="signupThankYou" extends="basic.layout">
+        <put name="content" value="/jsp/includes/signup/page-06-thank-you-page.jsp"/>
+        <put name="bodyClass" value="account-section sign-up-section complete-section"/>
+        <put name="title" value="Thank you : New EZ Account"/>
+    </definition>
+
+    <definition name="accountSummary" extends="account.layout">
+        <put name="title" value="Account Summary : EZ Account"/>
+    </definition>
+
+    <definition name="accountRequiredUpdate" extends="basic.layout">
+        <put name="content" value="/jsp/includes/manage/account-required-update.jsp"/>
+        <put name="bodyClass" value="account-section manage-section account-update-required-section"/>
+        <put name="title" value="Account Updates : EZ Account"/>
+    </definition>
+
+	<definition name="accountEmailValidation" extends="basic.layout">
+        <put name="content" value="/jsp/includes/manage/account-confirm-email-address.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-confirm-email-address-section"></put>
+        <put name="title" value="Account Updates : EZ Account"/>
+    </definition>
+
+    <definition name="accountTransactions" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_transactions.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section transactions-section"/>
+        <put name="title" value="Transactions : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountTransactionsHAS" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_transactions.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section has-transactions-section"/>
+    </definition>
+
+    <definition name="accountTransactionsPreview" extends="popup.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_transactions.jsp"></put>
+        <put name="footer" value="/jsp/includes/common/footer.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section transactions-section popup-window"/>
+        <put name="title" value="Transactions : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountStatements" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_statements.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section statements-section"/>
+        <put name="title" value="Statements : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountStatementsPreview" extends="popup.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_statements.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section statements-section popup-window"/>
+        <put name="title" value="Statements : Account Activity : EZ Account"/>
+        <put name="footer" value="/jsp/includes/common/footer.jsp"></put>
+    </definition>
+
+    <definition name="accountYearlySummary" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_yearly-summary.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section yearly-summary-section"/>
+        <put name="title" value="Yearly Summary : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountYearlySummaryPreview" extends="popup.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_yearly-summary.jsp"></put>
+        <put name="footer" value="/jsp/includes/common/footer.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section statements-section popup-window"/>
+        <put name="title" value="Statements : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountReceipts" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_receipts.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section receipts-section"/>
+        <put name="title" value="Receipts : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountReceiptsDetail" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_receipts-detail.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section receipts-section"/>
+        <put name="title" value="Receipt Detail : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountMonthlyInvoices" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_monthly-invoices.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section monthly-invoices-section"/>
+        <put name="title" value="Monthly Invoices : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountMonthlyInvoicesEmpty" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-activity_monthly-invoices-empty.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section monthly-invoices-section"/>
+        <put name="title" value="Monthly Invoices : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountViewOrders" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/payments-and-orders_view-orders.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section payments-and-orders-section view-orders-section"/>
+        <put name="title" value="View Orders : Payments and Orders : EZ Account"/>
+    </definition>
+
+    <definition name="accountMakePayment" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/payments-and-orders_make-payment-page-01.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section payments-and-orders-section make-payment-section payment-amount-section"/>
+        <put name="title" value="Make Payment : Account Activity : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section preferences-section"/>
+        <put name="title" value="Preferences : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changeUserName" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-username.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-user-name-section"/>
+        <put name="title" value="Change User Name : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changePassword" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-password.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-password-section"/>
+        <put name="title" value="Change Password : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changeSecQn" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-security-question.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-sec-qn-section"/>
+        <put name="title" value="Change Security Question : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changeAuthorizedContacts" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-authorized-contacts.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-authorized-contacts"/>
+        <put name="title" value="Change Authorized Contacts : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changeContactInfo" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-contact-info.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-contact-info-section"/>
+        <put name="title" value="Change Contact Information : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changeMailingAddr" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-mailing-address.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-mailing-addr-section"/>
+        <put name="title" value="Change Mailing Address : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changePaymentMethodcc" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-credit-card.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-payment-method-cc-section"/>
+        <put name="title" value="Change Credit Card Information : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changePaymentMethodeft" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-funds-transfer.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-payment-method-eft-section"/>
+        <put name="title" value="Change EFT Account Information : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changePaymentMethodinv" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_select-payment-type.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-payment-method-inv-section"/>
+        <put name="title" value="Change Invoice Payment : Account Information : EZ Account"/>
+    </definition>
+
+
+    <definition name="accountInformation.changeBillingAddress" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-billing-address.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-billing-address-section"/>
+        <put name="title" value="Change Billing Address : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountInformation.changeRebillAmt" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/account-information_edit-replenish-amount.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-information-section change-rebill-amt-section"/>
+        <put name="title" value="Change Rebill Amount : Account Information : EZ Account"/>
+    </definition>
+
+    <definition name="accountVehiclesAndTags" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/vehicles-and-ez-tags.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section vehicles-and-ez-tags-section account-tags-section"/>
+        <put name="title" value="Account Tags : Vehicles and Tags : EZ Account"/>
+    </definition>
+
+    <definition name="accountVehiclesAndTagsPreview" extends="popup.layout">
+        <put name="content" value="/jsp/includes/manage/vehicles-and-ez-tags.jsp"></put>
+        <put name="footer" value="/jsp/includes/common/footer.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section vehicles-and-ez-tags-section account-tags-section popup-window"/>
+        <put name="title" value="Account Tags : Vehicles and Tags : EZ Account"/>
+    </definition>
+
+    <definition name="accountAddVehicle" extends="account.layout">
+        <put name="content" value="accountAddVehicleDetail"></put>
+        <put name="bodyClass" value="account-section manage-section vehicles-and-ez-tags-section add-vehicle-section"/>
+        <put name="title" value="Add Tag : Vehicles and Tags : EZ Account"/>
+        <put name="backAllowed" value="false"></put>
+    </definition>
+
+<!--
+	<definition name="accountManageAddVehicle" extends="account.layout">
+        <put name="content" value="accountManageAddVehicleDetail"></put>
+        <put name="bodyClass" value="account-section manage-section vehicles-and-ez-tags-section add-vehicle-section"/>
+        <put name="title" value="Add Tag : Vehicles and Tags : EZ Account"/>
+        <put name="backAllowed" value="false"></put>
+    </definition>
+
+    <definition name="accountManageAddVehicleDetail" path="/jsp/includes/manage/add-vehicle.jsp">
+        <put name="vehicleDetail" value="accountManageAddVehicleData"/>
+    </definition>
+
+	<definition name="accountManageAddVehicleData" path="/jsp/includes/common/manage-common-add-vehicle.jsp">
+        <put name="noteVerbiage" value=""/>
+        <put name="showPbp" value="true"/>
+        <put name="saveAction" value="accountSaveVehicle.do"/>
+        <put name="delAction" value="accountModifyVehicle.do"/>
+        <put name="pageTitle" value="EZ TAG Vehicle"/>
+    </definition>
+-->
+
+    <definition name="accountAddVehicleDetail" path="/jsp/includes/manage/add-vehicle.jsp">
+        <put name="vehicleDetail" value="accountAddVehicleData"/>
+    </definition>
+
+    <definition name="accountAddVehicleData" path="/jsp/includes/common/common-add-vehicle.jsp">
+        <put name="noteVerbiage" value=""/>
+        <put name="showPbp" value="true"/>
+        <put name="saveAction" value="accountSaveVehicle.do"/>
+        <put name="delAction" value="accountModifyVehicle.do"/>
+        <put name="pageTitle" value="EZ TAG Vehicle"/>
+    </definition>
+
+    <definition name="accountEditVehicle" extends="account.layout">
+        <put name="content" value="accountEditVehicleData"></put>
+        <put name="bodyClass" value="account-section manage-section vehicles-and-ez-tags-section edit-vehicle-section"/>
+        <put name="title" value="Edit Tag : Vehicles and Tags : EZ Account"/>
+    </definition>
+
+    <definition name="accountEditVehicleData" path="/jsp/includes/manage/edit-vehicle.jsp">
+        <put name="alwaysShowPbp" value="false"/>
+        <put name="showDeactivateButton" value="true"/>
+        <put name="saveAction" value="accountEditVehicle.do"/>
+        <put name="licPlateReadOnly" value="true"/>
+        <put name="violationDisplayAction" value="violationDisplayFromEditTags.do"/>
+    </definition>
+
+    <definition name="accountAddPbpVehicle" extends="account.layout">
+        <put name="content" value="accountAddPbpVehicleData"></put>
+        <put name="bodyClass" value="account-section manage-section vehicles-and-ez-tags-section add-pbp-vehicle-section"/>
+        <put name="title" value="Account EZ Plate Tag : Vehicles and Tags : EZ Account"/>
+    </definition>
+
+    <definition name="accountAddPbpVehicleData" path="/jsp/includes/manage/edit-vehicle.jsp">
+        <put name="alwaysShowPbp" value="true"/>
+        <put name="showDeactivateButton" value="false"/>
+        <put name="saveAction" value="accountAddPbpVehicle.do"/>
+        <put name="licPlateReadOnly" value="false"/>
+        <put name="violationDisplayAction" value="violationDisplayFromAddPbpTags.do"/>
+    </definition>
+
+    <definition name="accountUploadMultipleVehicle" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/upload-multiple-vehicle.jsp"/>
+        <put name="bodyClass" value="account-section manage-section vehicles-and-ez-tags-section add-pbp-vehicle-section"/>
+        <put name="title" value="Multiple Vehicle Upload"/>
+    </definition>
+
+    <definition name="accountBillingInfo" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/make-payment-page-02.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section payments-and-orders-section make-payment-section billing-information-section"/>
+        <put name="title" value="Billing Information : Payments and Orders : EZ Account"/>
+    </definition>
+
+    <definition name="accountPaymentConfirmation" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/make-payment-confirmation.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section payments-and-orders-section make-payment-section payment-confirmation-section"/>
+        <put name="title" value="Payment Confirmation : Payments and Orders : EZ Account"/>
+        <put name="backAllowed" value="false"></put>
+    </definition>
+
+    <definition name="accountPaymentComplete" extends="account.layout">
+        <put name="content" value="/jsp/includes/manage/make-payment-complete.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section payments-and-orders-section make-payment-section payment-complete-section"/>
+        <put name="title" value="Payment Complete : Payments and Orders : EZ Account"/>
+    </definition>
+
+    <definition name="personalInfo" extends="basic.layout">
+        <put name="content" value="/jsp/account/personalInfo2.jsp"></put>
+    </definition>
+
+    <definition name="makePayment" extends="accountHolder">
+        <putList name="mainBody">
+            <add value="/jsp/makePayment.jsp"></add>
+        </putList>
+    </definition>
+
+    <definition name="accountHistory.selectStatement" extends="accountHolder">
+        <putList name="mainBody">
+            <add value="/jsp/accountHistory/selectStatement.jsp"></add>
+        </putList>
+    </definition>
+
+    <definition name="accountHistory.statementResult" extends="accountHolder">
+        <putList name="mainBody">
+            <add value="/jsp/accountHistory/statementResult.jsp"></add>
+        </putList>
+    </definition>
+
+    <definition name="accountHistory.summaryCriteria" extends="accountHolder">
+        <putList name="mainBody">
+            <add value="/jsp/accountHistory/summaryCriteria.jsp"></add>
+        </putList>
+    </definition>
+
+    <definition name="wizard.layout" path="/jsp/layout/WizardLayout.jsp"/>
+
+    <!-- password retrieval -->
+      <definition name="resetPassword" extends="basic.layout">
+        <put name="content" value="/jsp/includes/reset-login/page-00-account-information.jsp"></put>
+        <put name="bodyClass" value="account-section  reset-pswd-options-section  account-information-section"/>
+        <put name="title" value="Account Information : Reset Login"/>
+    </definition>
+      <definition name="resetPasswordEmail" extends="basic.layout">
+        <put name="content" value="/jsp/includes/reset-login/email-password-reset-confirmation.jsp"></put>
+        <put name="bodyClass" value="account-section email-password-confirmation-section account-information-section"/>
+        <put name="title" value="Account Information : Reset Login"/>
+    </definition>
+    <definition name="resetPassword1" extends="basic.layout">
+        <put name="content" value="/jsp/includes/reset-login/page-01-account-information.jsp"></put>
+        <put name="bodyClass" value="account-section reset-login-section account-information-section"/>
+        <put name="title" value="Account Information : Reset Login"/>
+    </definition>
+
+    <definition name="passwordRetrieval.step2" extends="basic.layout">
+        <put name="content" value="/jsp/includes/reset-login/page-02-validate-account-identity.jsp"></put>
+        <put name="bodyClass" value="account-section reset-login-section validate-account-section"/>
+        <put name="title" value="Validate Account Identity : Reset Login"/>
+    </definition>
+
+    <definition name="passwordRetrieval.step3" extends="basic.layout">
+        <put name="content" value="/jsp/includes/reset-login/page-03-reset-login.jsp"></put>
+        <put name="bodyClass" value="account-section reset-login-section new-password-section"/>
+        <put name="title" value="New Password : Reset Login"/>
+    </definition>
+
+    <definition name="passwordRetrieval.step4" extends="basic.layout">
+        <put name="content" value="/jsp/includes/reset-login/page-04-confirmation.jsp"></put>
+        <put name="bodyClass" value="account-section reset-login-section confirmation-section"/>
+        <put name="title" value="Password reset successfully : Reset Login"/>
+    </definition>
+
+    <definition name="passwordRetrieval.contactcsr" extends="basic.layout">
+        <put name="content" value="/jsp/includes/reset-login/page-05-contact.jsp"></put>
+        <put name="bodyClass" value="account-section reset-login-section contact-csr-section"/>
+        <put name="title" value="Contact Customer Support : Reset Login"/>
+    </definition>
+
+    <!-- Logged-in Mode Definitions -->
+    <definition name="testViewTransaction" extends="loggedIn.layout">
+        <put name="content" value="/jsp/account/testAccount.jsp"/>
+    </definition>
+
+    <definition name="testViewStatement" extends="loggedIn.layout">
+        <put name="content" value="/jsp/accountHistory/statements.jsp"/>
+    </definition>
+
+    <definition name="viewSummary" extends="loggedIn.layout">
+        <put name="content" value="/jsp/accountHistory/summary.jsp"/>
+        <put name="titleKey" value="viewSummary.title"/>
+    </definition>
+
+    <definition name="displayViewSummary" extends="loggedIn.layout">
+        <put name="content" value="/jsp/accountHistory/viewSummary.jsp"/>
+        <put name="titleKey" value="viewSummary.title"/>
+    </definition>
+
+    <definition name="viewSummaryPrinterFriendly" extends="printerFriendly.layout">
+        <put name="content" value="/jsp/accountHistory/summary.jsp"/>
+    </definition>
+
+    <definition name="summaryNotAvailable" extends="loggedIn.layout">
+        <put name="content" value="/jsp/accountHistory/noSummaryAvailable.jsp"/>
+    </definition>
+
+    <definition name="myAccountHome" extends="loggedIn.layout">
+        <put name="content" value="/jsp/common/myAccountHome.jsp"/>
+        <put name="titleKey" value="app.account.home.title"/>
+    </definition>
+
+    <definition name="accountHistoryHome" extends="loggedIn.layout">
+        <put name="content" value="/jsp/common/accountHistoryHome.jsp"/>
+    </definition>
+
+    <definition name="loginSetupOnlineAccessTab" extends="tabContent.layout">
+        <put name="tabContent" value="/jsp/home/setupOnlineAccessTab.jsp"/>
+    </definition>
+
+    <definition name="loginTollTagTab" extends="tabContent.layout">
+        <put name="tabContent" value="/jsp/home/tollTagTab.jsp"/>
+    </definition>
+
+    <definition name="loginHelpTab" extends="homePage.layout">
+        <put name="tabContent" value="/jsp/home/helpTab.jsp"/>
+    </definition>
+
+    <definition name="loginContactUsTab" extends="tabContent.layout">
+        <put name="tabContent" value="contactUsCommon"/>
+    </definition>
+
+    <definition name="loginHome" extends="homePage.layout">
+        <put name="tabContent" value="/jsp/home/homeTab.jsp"/>
+    </definition>
+
+    <definition name="loginNoJavascriptTab" extends="homePage.layout">
+        <put name="tabContent" value="/jsp/home/disabledJavascript.jsp"/>
+    </definition>
+
+    <definition name="loginNoCookieTab" extends="homePage.layout">
+        <put name="tabContent" value="/jsp/home/disabledCookie.jsp"/>
+    </definition>
+
+    <!-- account management -->
+    <definition name="account.personalInfo" extends="loggedIn.layout">
+        <put name="content" value="/jsp/account/personalInfo.jsp"/>
+        <put name="titleKey" value="accountForm.personalInfo.title"/>
+    </definition>
+
+    <definition name="account.creditCardInfo" extends="loggedIn.layout">
+        <put name="content" value="/jsp/account/creditCardInfo.jsp"/>
+        <put name="titleKey" value="accountForm.creditCardInfo.title"/>
+    </definition>
+
+    <!-- start changePasswordComplete -->
+    <definition name="changePasswordComplete" extends="loggedIn.layout">
+        <put name="content" value="changePasswordCompleteContent"/>
+        <put name="titleKey" value="changePasswordForm.title"/>
+    </definition>
+
+    <definition name="changePasswordCompleteContent" extends="loggedInContent.layout">
+        <put name="contentTD" value="/jsp/accountMaintenance/changePasswordComplete.jsp"/>
+    </definition>
+    <!-- end changePasswordComplete -->
+
+    <definition name="changePasswordRequired" extends="notLoggedIn.layout">
+        <put name="NotLoggedInTitleKey" value="changePasswordForm.title"/>
+        <put name="tabTitleKey" value="changePasswordForm.title"/>
+        <put name="content" value="changePasswordRequiredContent"/>
+    </definition>
+
+    <definition name="changePasswordRequiredContent" extends="notLoggedInContent.layout">
+        <put name="contentTD" value="changePasswordRequiredContentTD"/>
+    </definition>
+
+    <definition name="changePasswordCompleteRequired" extends="notLoggedIn.layout">
+        <put name="content" value="changePasswordCompleteRequiredContent"/>
+        <put name="titleKey" value="changePasswordForm.title"/>
+        <put name="tabTitleKey" value="changePasswordForm.title"/>
+    </definition>
+
+    <definition name="changePasswordCompleteRequiredContent" extends="notLoggedInContent.layout">
+        <put name="contentTD" value="/jsp/accountMaintenance/changePasswordComplete.jsp"/>
+    </definition>
+    <!-- end change password -->
+
+    <!-- account management -->
+    <definition name="account.tollTag" extends="loggedIn.layout">
+        <put name="content" value="/jsp/account/tollTags.jsp"/>
+        <put name="titleKey" value="accountForm.tollTag.title"/>
+    </definition>
+
+    <definition name="accountManagement.addTags" extends="loggedIn.layout">
+        <put name="content" value="/jsp/accountMaintenance/addTags.jsp"/>
+        <put name="titleKey" value="accountForm.tollTag.title"/>
+    </definition>
+
+    <definition name="accountManagement.velcro" extends="loggedIn.layout">
+        <put name="content" value="/jsp/accountMaintenance/velcro.jsp"/>
+        <put name="titleKey" value="accountForm.velcro.title"/>
+    </definition>
+
+    <definition name="accountManagement.velcroReceipt" extends="loggedIn.layout">
+        <put name="content" value="/jsp/accountMaintenance/velcroReceipt.jsp"/>
+        <put name="titleKey" value="accountForm.velcro.title"/>
+    </definition>
+
+    <definition name="accountManagement.velcroHtmlReceipt" extends="printerFriendly.layout">
+        <put name="content" value="/jsp/accountMaintenance/velcroReceipt.jsp"/>
+    </definition>
+
+    <definition name="accountManagement.orderStatus" extends="loggedIn.layout">
+        <put name="content" value="/jsp/accountMaintenance/orderStatus.jsp"/>
+        <put name="titleKey" value="app.orderStatus.title"/>
+    </definition>
+
+    <definition name="account.userPreference" extends="loggedIn.layout">
+        <put name="content" value="/jsp/account/userPreference.jsp"/>
+        <put name="titleKey" value="accountForm.userPreference.title"/>
+    </definition>
+
+    <definition name="invoiceSearch" extends="loggedIn.layout">
+        <put name="content" value="/jsp/violation/invoice.jsp"/>
+        <put name="titleKey" value="app.orderStatus.title"/>
+    </definition>
+
+    <definition name="payment.detail.account" extends="loggedIn.layout">
+      <put name="content" value="payment.detail.body"/>
+    </definition>
+
+    <definition name="payment.confirm.account" extends="loggedIn.layout">
+      <put name="content" value="payment.confirm.workspace"/>
+    </definition>
+
+    <definition name="payment.receipt.account" extends="loggedIn.layout">
+      <put name="content" value="payment.receipt.body"/>
+    </definition>
+
+    <definition name="payment.vea.account" extends="loggedIn.layout">
+      <put name="content" value="payment.vea.body"/>
+    </definition>
+
+    <definition name="accountManagement.addTagsReceipt" extends="loggedIn.layout">
+      <put name="content" value="/jsp/accountMaintenance/addTagsReceipt.jsp"/>
+      <put name="titleKey" value="tagRequestForm.receipt.title"/>
+    </definition>
+
+    <definition name="accountManagement.addTagsHTMLReceipt" extends="printerFriendly.layout">
+        <put name="content" value="/jsp/accountMaintenance/addTagsReceipt.jsp"/>
+    </definition>
+
+    <definition name="helpPage" path="/jsp/common/help.jsp"/>
+
+    <definition name="htmlReport" extends="printerFriendly.layout2">
+        <put name="content" value="/jsp/common/htmlReport.jsp"/>
+    </definition>
+
+    <definition name="accountMultiplePreview" extends="popup.layout">
+        <put name="content" value="/jsp/includes/manage/account-multiple-report.jsp"></put>
+        <put name="footer" value="/jsp/includes/common/footer.jsp"></put>
+        <put name="bodyClass" value="account-section manage-section account-activity-section transactions-section popup-window"/>
+        <put name="title" value="Account Multiple Vehicle"/>
+    </definition>
+
+</tiles-definitions>

@@ -1,0 +1,2658 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+<form-validation>
+  <!-- ========================= Default Formset ========================= -->
+  <formset>
+
+    <form name="/AuthenticateUser">
+      <field property="userName" depends="required">
+        <arg key="UserForm.userName.displayname"/>
+      </field>
+
+      <field property="userName" depends="maxlength">
+        <arg key="UserForm.userName.displayname"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>80</var-value></var>
+      </field>
+
+      <field property="password" depends="required">
+        <arg key="UserForm.password.displayname"/>
+      </field>
+
+      <field property="password" depends="maxlength">
+        <arg key="UserForm.password.displayname"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+    </form>
+
+    <form name="/authenticateUserHomepage">
+      <field property="userName" depends="required">
+        <arg key="UserForm.userName.displayname"/>
+      </field>
+
+      <field property="userName" depends="maxlength">
+        <arg key="UserForm.userName.displayname"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>80</var-value></var>
+      </field>
+
+      <field property="password" depends="required">
+        <arg key="UserForm.password.displayname"/>
+      </field>
+
+      <field property="password" depends="maxlength">
+        <arg key="UserForm.password.displayname"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+
+    </form>
+
+    <form name="/violatorLogin">
+      <field property="licPlateState" depends="required">
+        <arg key="UserForm.licPlateState.displayname"/>
+      </field>
+      <field property="licPlateNbr" depends="required">
+        <arg key="UserForm.licPlateNbr.displayname"/>
+      </field>
+      <field property="invoiceId" depends="required, long">
+        <arg key="UserForm.invoiceId.displayname"/>
+      </field>
+    </form>
+
+    <form name="/invoicePayment">
+       <field property="billingInfoForm.email" depends="email">
+        <arg key="onlineAccessForm.emailAddress"/>
+      </field>
+   </form>
+
+   <form name="/makeAcctPmtDisplay">
+      <field property="payAmount" depends="double,doubleRange">
+        <arg position="0" key="paymentForm.payAmount"/>
+        <arg position="1" name="doubleRange" key="${var:min}" resource="false"/>
+        <arg position="2" name="doubleRange" key="${var:max}" resource="false"/>
+        <msg name="doubleRange" key="paymentForm.payAmount.exceeds" />
+        <var><var-name>min</var-name><var-value>0.01</var-value></var>
+        <var><var-name>max</var-name><var-value>9999999.99</var-value></var>
+      </field>
+
+      <field property="payAmount" depends="validPayAmount">
+        <msg name="validPayAmount" key="paymentForm.payAmount.valid"/>
+        <var><var-name>payAmount</var-name><var-value>payAmount</var-value></var>
+      </field>
+
+<!--
+      <field property="payAmount" depends="double">
+        <arg key="accountForm.payAmount"/>
+      </field>
+
+      <field property="payAmount" depends="maxlength">
+        <msg name="maxlength" key="accountForm.payAmount.exceeds" />
+        <var><var-name>maxlength</var-name><var-value>10</var-value></var>
+      </field>
+      -->
+    </form>
+
+    <form name="/accountPaymentConfirmationDisplay">
+      <field property="nameOnCard" depends="validwhen">
+        <arg0 key="billingInfoForm.nameOnCard"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'credit') and (*this* != null)) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+      <field property="nameOnCard" depends="mask">
+        <msg name="mask" key="billingInfoForm.nameOnCard.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,\.\'\s]*$</var-value></var>
+      </field>
+      <field property="cardType" depends="validwhen">
+        <arg0 key="billingInfoForm.cardType"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'credit') and (*this* != null)) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+
+      <!-- field property="cardNumber" depends="validCreditCardNumberWithType">
+        <msg name="validCreditCardNumberWithType" key="billingInfoForm.cardNumber.valid"/>
+        <var><var-name>creditCardType</var-name><var-value>cardType</var-value></var>
+        <var><var-name>creditCardNumber</var-name><var-value>cardNumber</var-value></var>
+        <var><var-name>type</var-name><var-value>paymentType</var-value></var>
+      </field-->
+      <field property="cardExpirationMonth" depends="validateExpirationYearMonthWithType">
+        <msg name="validateExpirationYearMonthWithType" key="billingInfoForm.cardExpirationMonth.valid"/>
+        <var><var-name>year</var-name><var-value>cardExpirationYear</var-value></var>
+        <var><var-name>month</var-name><var-value>cardExpirationMonth</var-value></var>
+        <var><var-name>type</var-name><var-value>paymentType</var-value></var>
+      </field>
+
+      <field property="cardNumber" depends="validwhen">
+        <arg0 key="billingInfoForm.cardNumber"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'credit') and (*this* != null)) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+
+      <field property="cardExpirationMonth" depends="validwhen">
+        <arg0 key="billingInfoForm.cardExpirationMonth"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((((paymentType == 'credit') and (*this* != null)) and (*this* != '00')) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+      <field property="cardExpirationYear" depends="validwhen">
+        <arg0 key="billingInfoForm.cardExpirationYear"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((((paymentType == 'credit') and (*this* != null)) and (*this* != '00')) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+
+      <field property="bankRoutingNumber" depends="validwhen">
+        <arg0 key="billingInfoForm.bankRoutingNumber"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'eft') and (*this* != null)) or (paymentType == 'credit'))</var-value>
+        </var>
+      </field>
+
+      <field property="bankAcctNumber" depends="validwhen">
+        <arg0 key="billingInfoForm.bankAcctNumber"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'eft') and (*this* != null)) or (paymentType == 'credit'))</var-value>
+        </var>
+    </field>
+
+       <field property="bankRoutingNumber" depends="mask">
+        <msg name="mask" key="billingInfoForm.bankRoutingNumber.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{9}$</var-value></var>
+      </field>
+
+        <field property="bankAcctNumber" depends="mask">
+            <msg name="mask" key="billingInfoForm.bankAcctNumber.mask"/>
+            <var><var-name>mask</var-name><var-value>^[\*0-9]{1,17}$</var-value></var>
+        </field>
+
+      <field property="addressLine1" depends="validwhen">
+        <arg0 key="billingInfoForm.addressLine1"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'credit') and (*this* != null)) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+
+      <field property="city" depends="validwhen">
+        <arg0 key="billingInfoForm.city"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((paymentType == 'eft') or ((paymentType == 'credit') and (((nonUsBillingAddress == 'false') and (*this* != null)) or (nonUsBillingAddress == 'true'))))</var-value>
+        </var>
+      </field>
+      <field property="state" depends="validwhen">
+        <arg0 key="billingInfoForm.state"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((paymentType == 'eft') or ((paymentType == 'credit') and (((nonUsBillingAddress == 'false') and (*this* != null)) or (nonUsBillingAddress == 'true'))))</var-value>
+        </var>
+      </field>
+      <field property="zip" depends="validwhen">
+        <arg0 key="billingInfoForm.zip"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((paymentType == 'eft') or ((paymentType == 'credit') and (((nonUsBillingAddress == 'false') and (*this* != null)) or (nonUsBillingAddress == 'true'))))</var-value>
+        </var>
+      </field>
+
+      <field property="addressLine1" depends="mask">
+            <msg name="mask" key="billingInfoForm.addressLine1.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+        </field>
+      <field property="addressLine2" depends="mask">
+        <msg name="mask" key="billingInfoForm.addressLine2.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+      </field>
+      <field property="addressLine3" depends="mask">
+        <msg name="mask" key="billingInfoForm.addressLine3.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+      </field>
+      <field property="addressLine4" depends="mask">
+        <msg name="mask" key="billingInfoForm.addressLine4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+      </field>
+      <field property="city" depends="mask">
+        <msg name="mask" key="billingInfoForm.city.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\/\.]*$</var-value></var>
+      </field>
+
+       <field property="zip" depends="mask">
+        <msg name="mask" key="billingInfoForm.zip.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{5}$</var-value></var>
+      </field>
+      <field property="plus4" depends="mask">
+        <msg name="mask" key="billingInfoForm.plus4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{4}$</var-value></var>
+      </field>
+
+      <field property="country" depends="validwhen">
+        <arg0 key="billingInfoForm.country"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'credit') and ((nonUsBillingAddress == 'false') or (*this* != null))) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+
+    </form>
+
+    <form name="/violationPaymentMethod">
+      <field property="billingInfoForm.nameOnCard" depends="validwhen">
+        <arg0 key="billingInfoForm.nameOnCard"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'credit') and (*this* != null)) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+      <!-- field property="billingInfoForm.cardNumber" depends="validCreditCardNumberWithType">
+        <msg name="validCreditCardNumberWithType" key="billingInfoForm.cardNumber.valid"/>
+        <var><var-name>creditCardType</var-name><var-value>billingInfoForm.cardType</var-value></var>
+        <var><var-name>creditCardNumber</var-name><var-value>billingInfoForm.cardNumber</var-value></var>
+        <var><var-name>type</var-name><var-value>paymentType</var-value></var>
+      </field-->
+      <field property="billingInfoForm.cardExpirationMonth" depends="validateExpirationYearMonthWithType">
+        <msg name="validateExpirationYearMonthWithType" key="billingInfoForm.cardExpirationMonth.valid"/>
+        <var><var-name>year</var-name><var-value>billingInfoForm.cardExpirationYear</var-value></var>
+        <var><var-name>month</var-name><var-value>billingInfoForm.cardExpirationMonth</var-value></var>
+        <var><var-name>type</var-name><var-value>paymentType</var-value></var>
+      </field>
+
+
+
+      <!-- field property="billingInfoForm.cardNumber" depends="validwhen">
+        <arg0 key="billingInfoForm.cardNumber"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'credit') and (*this* != null)) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field-->
+      <!--
+      <field property="billingInfoForm.cardNumber" depends="creditCard">
+            <msg name="creditCard" key="billingInfoForm.cardNumber.invalid"/>
+      </field>
+      -->
+      <field property="billingInfoForm.cardExpirationMonth" depends="validwhen">
+        <arg0 key="billingInfoForm.cardExpirationMonth"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((((paymentType == 'credit') and (*this* != null)) and (*this* != '00')) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+      <field property="billingInfoForm.cardExpirationYear" depends="validwhen">
+        <arg0 key="billingInfoForm.cardExpirationYear"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((((paymentType == 'credit') and (*this* != null)) and (*this* != '00')) or (paymentType == 'eft'))</var-value>
+        </var>
+      </field>
+
+      <field property="billingInfoForm.bankRoutingNumber" depends="validwhen">
+        <arg0 key="billingInfoForm.bankRoutingNumber"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'eft') and (*this* != null)) or (paymentType == 'credit'))</var-value>
+        </var>
+      </field>
+      <field property="billingInfoForm.bankAcctNumber" depends="validwhen">
+        <arg0 key="billingInfoForm.bankAcctNumber"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((paymentType == 'eft') and (*this* != null)) or (paymentType == 'credit'))</var-value>
+        </var>
+      </field>
+
+       <field property="billingInfoForm.bankRoutingNumber" depends="mask">
+        <msg name="mask" key="billingInfoForm.bankRoutingNumber.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{9}$</var-value></var>
+      </field>
+
+        <field property="billingInfoForm.bankAcctNumber" depends="mask">
+            <msg name="mask" key="billingInfoForm.bankAcctNumber.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9]{1,17}$</var-value></var>
+        </field>
+
+      <field property="billingInfoForm.addressLine1" depends="required">
+        <arg key="billingInfoForm.addressLine1"/>
+      </field>
+      <field property="billingInfoForm.city" depends="validwhen">
+        <arg0 key="billingInfoForm.city"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((billingInfoForm.nonUsBillingAddress == 'false') and (*this* != null)) or (billingInfoForm.nonUsBillingAddress == 'true'))</var-value>
+        </var>
+      </field>
+      <field property="billingInfoForm.state" depends="validwhen">
+        <arg0 key="billingInfoForm.state"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((billingInfoForm.nonUsBillingAddress == 'false') and (*this* != null)) or (billingInfoForm.nonUsBillingAddress == 'true'))</var-value>
+        </var>
+      </field>
+      <field property="billingInfoForm.zip" depends="validwhen">
+        <arg0 key="billingInfoForm.zip"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((billingInfoForm.nonUsBillingAddress == 'false') and (*this* != null)) or (billingInfoForm.nonUsBillingAddress == 'true'))</var-value>
+        </var>
+      </field>
+       <field property="billingInfoForm.zip" depends="mask">
+        <msg name="mask" key="billingInfoForm.zip.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{5}$</var-value></var>
+      </field>
+      <field property="billingInfoForm.plus4" depends="mask">
+        <msg name="mask" key="billingInfoForm.plus4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{4}$</var-value></var>
+      </field>
+      <field property="billingInfoForm.country" depends="validwhen">
+        <arg0 key="billingInfoForm.country"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((billingInfoForm.nonUsBillingAddress == 'true') and (*this* != null)) or (billingInfoForm.nonUsBillingAddress == 'false'))</var-value>
+        </var>
+      </field>
+    </form>
+
+    <form name="/accountReceiptsResult">
+      <field property="startDate" depends="required,date">
+        <msg name="required" key="AccountReceiptsForm.startDate.required"/>
+        <msg name="date" key="AccountReceiptsForm.startDate.format"/>
+        <var>
+          <var-name>datePattern</var-name>
+          <var-value>MM/dd/yyyy</var-value>
+        </var>
+      </field>
+      <field property="endDate" depends="required,date">
+        <msg name="required" key="AccountReceiptsForm.endDate.required"/>
+        <msg name="date" key="AccountReceiptsForm.endDate.format"/>
+        <var>
+          <var-name>datePattern</var-name>
+          <var-value>MM/dd/yyyy</var-value>
+        </var>
+      </field>
+    </form>
+
+    <form name="/resetLogin">
+      <field property="password" depends="required">
+        <arg key="onlineAccessForm.password"/>
+      </field>
+      <field property="password" depends="maxlength">
+        <arg key="onlineAccessForm.password"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+      <field property="confirmPassword" depends="twoFieldsIgnoreCase">
+        <arg position="0" key="onlineAccessForm.confirmPassword"/>
+        <arg position="1" key="onlineAccessForm.password"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>password</var-value>
+        </var>
+      </field>
+      <field property="securityQuestionAnswer" depends="required">
+        <arg key="onlineAccessForm.securityQuestionAnswer"/>
+      </field>
+      <field property="securityQuestionAnswer" depends="mask">
+        <msg name="mask" key="onlineAccessForm.securityQuestionAnswer.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z?\.\,\"\'\s]*$</var-value></var>
+      </field>
+      <field property="securityQuestionAnswer2" depends="twoFieldsIgnoreCase">
+        <arg position="0" key="onlineAccessForm.securityQuestionAnswer2"/>
+        <arg position="1" key="onlineAccessForm.securityQuestionAnswer"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>securityQuestionAnswer</var-value>
+        </var>
+      </field>
+      <field property="password" depends="mask">
+        <msg name="mask" key="onlineAccessForm.password.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\._\-@]*$</var-value></var>
+      </field>
+
+    </form>
+
+    <form name="/signupAccountInfo">
+      <field property="loginId" depends="required">
+        <arg key="onlineAccessForm.loginId"/>
+      </field>
+      <field property="loginId" depends="minlength">
+        <arg key="onlineAccessForm.loginId"/>
+        <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+        <var><var-name>minlength</var-name><var-value>6</var-value></var>
+      </field>
+      <field property="loginId" depends="mask">
+        <msg name="mask" key="onlineAccessForm.loginId.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\._\-@]*$</var-value></var>
+      </field>
+       <field property="loginId" depends="maxlength">
+        <arg key="onlineAccessForm.loginId"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>80</var-value></var>
+      </field>
+      <field property="password" depends="required">
+        <arg key="onlineAccessForm.password"/>
+      </field>
+      <field property="password" depends="minlength">
+        <arg key="onlineAccessForm.password"/>
+        <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+        <var><var-name>minlength</var-name><var-value>8</var-value></var>
+      </field>
+      <field property="password" depends="mask">
+        <msg name="mask" key="onlineAccessForm.password.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\._\-@]*$</var-value></var>
+      </field>
+      <field property="password" depends="maxlength">
+        <arg key="onlineAccessForm.password"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+      <field property="confirmPassword" depends="twoFieldsIgnoreCase">
+        <arg position="0" key="onlineAccessForm.confirmPassword"/>
+        <arg position="1" key="onlineAccessForm.password"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>password</var-value>
+        </var>
+      </field>
+      <field property="emailAddress" depends="required,email">
+        <arg key="onlineAccessForm.emailAddress"/>
+      </field>
+      <field property="emailAddress2" depends="twofields">
+        <arg position="0" key="onlineAccessForm.emailAddress2"/>
+        <arg position="1" key="onlineAccessForm.emailAddress"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>emailAddress</var-value>
+        </var>
+      </field>
+      <!-- qtran - #2378 -->
+      <field property="securityQuestionAnswer" depends="required">
+        <arg key="onlineAccessForm.securityQuestionAnswer"/>
+        <msg name="required" key="onlineAccessForm.securityQuestionAnswer.required"/>
+      </field>
+      <field property="securityQuestionAnswer" depends="mask">
+        <msg name="mask" key="onlineAccessForm.securityQuestionAnswer.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z?\.\,\"\'\s]*$</var-value></var>
+      </field>
+      <field property="alternateEmail" depends="email">
+        <arg key="onlineAccessForm.alternateEmail"/>
+      </field>
+      <field property="confirmAlternateEmail" depends="twofields">
+        <arg position="0" key="onlineAccessForm.confirmAlternateEmail"/>
+        <arg position="1" key="onlineAccessForm.alternateEmail"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>alternateEmail</var-value>
+        </var>
+      </field>
+    </form>
+
+    <form name="/accountInformation/changeUserName">
+      <field property="password" depends="required">
+        <arg key="onlineAccessForm.currentpassword"/>
+      </field>
+      <field property="password" depends="maxlength">
+        <arg key="onlineAccessForm.currentpassword"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+
+      <field property="loginId" depends="required">
+        <arg key="onlineAccessForm.loginId"/>
+      </field>
+      <field property="loginId" depends="minlength">
+        <arg key="onlineAccessForm.loginId"/>
+        <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+        <var><var-name>minlength</var-name><var-value>6</var-value></var>
+      </field>
+
+      <field property="loginId" depends="maxlength">
+        <arg key="onlineAccessForm.loginId"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>80</var-value></var>
+      </field>
+
+      <field property="loginId" depends="mask">
+        <msg name="mask" key="onlineAccessForm.loginId.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\._\-@]*$</var-value></var>
+      </field>
+    </form>
+
+    <form name="/accountInformation/changePassword">
+      <field property="password" depends="required">
+        <arg key="onlineAccessForm.currentpassword"/>
+      </field>
+      <field property="password" depends="maxlength">
+        <arg key="onlineAccessForm.currentpassword"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+
+      <field property="newPassword" depends="required">
+        <arg key="onlineAccessForm.newPassword"/>
+      </field>
+      <field property="newPassword" depends="minlength">
+        <arg key="onlineAccessForm.newPassword"/>
+        <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+        <var><var-name>minlength</var-name><var-value>8</var-value></var>
+      </field>
+
+      <field property="newPassword" depends="maxlength">
+        <arg key="onlineAccessForm.newPassword"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+      <field property="newPassword" depends="mask">
+        <msg name="mask" key="onlineAccessForm.newPassword.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\._\-@]*$</var-value></var>
+      </field>
+
+      <field property="confirmNewPassword" depends="twoFieldsIgnoreCase">
+        <arg position="0" key="onlineAccessForm.confirmNewPassword"/>
+        <arg position="1" key="onlineAccessForm.newPassword"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>newPassword</var-value>
+        </var>
+      </field>
+    </form>
+
+    <form name="/accountInformation/changeSecQn">
+      <field property="password" depends="required">
+        <arg key="onlineAccessForm.currentpassword"/>
+      </field>
+      <field property="password" depends="maxlength">
+        <arg key="onlineAccessForm.currentpassword"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+
+      <field property="securityQuestionAnswer" depends="required">
+        <arg key="onlineAccessForm.securityQuestionAnswer"/>
+      </field>
+      <field property="securityQuestionAnswer" depends="maxlength">
+        <arg key="onlineAccessForm.securityQuestionAnswer"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+      <field property="securityQuestionAnswer2" depends="twoFieldsIgnoreCase">
+        <arg position="0" key="onlineAccessForm.securityQuestionAnswer2"/>
+        <arg position="1" key="onlineAccessForm.securityQuestionAnswer"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>securityQuestionAnswer</var-value>
+        </var>
+      </field>
+
+    </form>
+
+    <form name="/accountInformation/changeContactInfo">
+      <field property="emailAddress" depends="required,email">
+        <arg key="onlineAccessForm.emailAddress"/>
+     </field>
+      <field property="emailAddress" depends="maxlength">
+        <arg key="onlineAccessForm.emailAddress"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>80</var-value></var>
+      </field>
+      <field property="emailAddress2" depends="twofields">
+        <arg position="0" key="onlineAccessForm.emailAddress2"/>
+        <arg position="1" key="onlineAccessForm.emailAddress"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>emailAddress</var-value>
+        </var>
+      </field>
+
+      <field property="alternateEmail" depends="email">
+        <arg key="onlineAccessForm.alternateEmail"/>
+     </field>
+      <field property="alternateEmail" depends="maxlength">
+        <arg key="onlineAccessForm.alternateEmail"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>80</var-value></var>
+      </field>
+      <field property="confirmAlternateEmail" depends="twofields">
+        <arg position="0" key="onlineAccessForm.confirmAlternateEmail"/>
+        <arg position="1" key="onlineAccessForm.alternateEmail"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>alternateEmail</var-value>
+        </var>
+      </field>
+
+     <field property="primaryPhone" depends="required">
+        <arg key="onlineAccessForm.primaryPhone"/>
+      </field>
+       <field property="primaryPhone" depends="mask">
+        <msg name="mask" key="onlineAccessForm.primaryPhone.mask"/>
+        <var><var-name>mask</var-name><var-value>^\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1,}</var-value></var>
+      </field>
+      <field property="primaryPhone" depends="maxlength">
+        <arg key="onlineAccessForm.primaryPhone"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+      <field property="alternatePhone" depends="mask">
+        <msg name="mask" key="onlineAccessForm.alternatePhone.mask"/>
+        <var><var-name>mask</var-name><var-value>^\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1,}</var-value></var>
+      </field>
+      <field property="alternatePhone" depends="maxlength">
+        <arg key="onlineAccessForm.alternatePhone"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+      <field property="alternatePhoneExt" depends="mask">
+        <msg name="mask" key="onlineAccessForm.alternatePhoneExt.mask"/>
+        <var><var-name>mask</var-name><var-value>^\d+$</var-value></var>
+      </field>
+      <field property="alternatePhoneExt" depends="maxlength">
+        <arg key="onlineAccessForm.alternatePhoneExt"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>6</var-value></var>
+      </field>
+   </form>
+
+    <form name="/accountInformation/changeMailingAddr">
+       <field property="address1" depends="required">
+        <arg key="onlineAccessForm.address1"/>
+      </field>
+      <field property="address1" depends="maxlength">
+        <arg key="onlineAccessForm.address1"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+      <field property="address2" depends="maxlength">
+        <arg key="onlineAccessForm.address2"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+      <field property="address3" depends="maxlength">
+        <arg key="onlineAccessForm.address3"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+      <field property="address4" depends="maxlength">
+        <arg key="onlineAccessForm.address4"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+
+      <field property="city" depends="validwhen">
+        <arg0 key="onlineAccessForm.city"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((nonUSAddress == 'false') and (*this* != null)) or (nonUSAddress == 'true'))</var-value>
+        </var>
+      </field>
+      <field property="city" depends="maxlength">
+        <arg key="onlineAccessForm.city"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+
+      <field property="state" depends="validwhen">
+        <arg0 key="onlineAccessForm.state"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((nonUSAddress == 'false') and (*this* != '-')) or (nonUSAddress == 'true'))</var-value>
+        </var>
+      </field>
+      <field property="zip" depends="validwhen">
+        <arg0 key="onlineAccessForm.zip"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((nonUSAddress == 'false') and (*this* != null)) or (nonUSAddress == 'true'))</var-value>
+        </var>
+      </field>
+      <field property="zip" depends="mask">
+        <msg name="mask" key="onlineAccessForm.zip.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{5}$</var-value></var>
+      </field>
+      <field property="plus4" depends="mask">
+        <msg name="mask" key="onlineAccessForm.plus4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{4}$</var-value></var>
+      </field>
+    </form>
+
+    <form name="/accountInformation/changeBillingAddress">
+        <field property="addressLine1" depends="validwhen">
+            <arg key="billingInfoForm.addressLine1"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (diffBillingAddress == 'false'))</var-value>
+            </var>
+        </field>
+
+       <field property="addressLine1" depends="maxlength">
+        <arg key="billingInfoForm.addressLine1"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+      <field property="addressLine2" depends="maxlength">
+        <arg key="billingInfoForm.addressLine2"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+      <field property="addressLine3" depends="maxlength">
+        <arg key="billingInfoForm.addressLine3"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+      <field property="addressLine4" depends="maxlength">
+        <arg key="billingInfoForm.addressLine4"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+
+        <field property="city" depends="validwhen">
+            <arg key="billingInfoForm.city"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or (diffBillingAddress == 'false'))</var-value>
+            </var>
+        </field>
+      <field property="city" depends="maxlength">
+        <arg key="billingInfoForm.city"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+        <field property="state" depends="validwhen">
+            <arg key="billingInfoForm.state"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != '-') or (nonUsBillingAddress == 'true')) or (diffBillingAddress == 'false'))</var-value>
+            </var>
+        </field>
+        <field property="zip" depends="validwhen">
+            <arg key="billingInfoForm.zip"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or (diffBillingAddress == 'false'))</var-value>
+            </var>
+        </field>
+
+      <field property="zip" depends="mask">
+        <msg name="mask" key="billingInfoForm.zip.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{5}$</var-value></var>
+      </field>
+      <field property="plus4" depends="mask">
+        <msg name="mask" key="billingInfoForm.plus4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{4}$</var-value></var>
+      </field>
+        <field property="country" depends="validwhen">
+            <arg key="billingInfoForm.country"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress=='false')) or (diffBillingAddress == 'false'))</var-value>
+            </var>
+        </field>
+    </form>
+
+
+    <form name="/accountInformation/changePaymentMethodcc">
+         <field property="nameOnCard" depends="required">
+            <arg key="billingInfoForm.nameOnCard"/>
+         </field>
+      <field property="nameOnCard" depends="maxlength">
+        <arg key="onlineAccessForm.nameOnCard"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>80</var-value></var>
+      </field>
+          <field property="cardType" depends="required">
+            <arg key="billingInfoForm.cardType"/>
+         </field>
+      <field property="cardNumber" depends="required,validCreditCardNumberWithType">
+        <msg name="required" key="billingInfoForm.cardNumber.required"/>
+        <msg name="validCreditCardNumberWithType" key="billingInfoForm.cardNumber.valid"/>
+        <!--    <msg name="creditCard" key="billingInfoForm.cardNumber.valid1"/>    -->
+        <var><var-name>creditCardType</var-name><var-value>cardType</var-value></var>
+        <var><var-name>creditCardNumber</var-name><var-value>cardNumber</var-value></var>
+        <var><var-name>type</var-name><var-value>paymentType</var-value></var>
+      </field>
+      <field property="cardExpirationMonth" depends="required,validateExpirationYearMonthWithType">
+        <msg name="required" key="billingInfoForm.cardExpirationMonth.required"/>
+        <msg name="validateExpirationYearMonthWithType" key="billingInfoForm.cardExpirationMonth.valid"/>
+        <var><var-name>year</var-name><var-value>cardExpirationYear</var-value></var>
+        <var><var-name>month</var-name><var-value>cardExpirationMonth</var-value></var>
+        <var><var-name>type</var-name><var-value>paymentType</var-value></var>
+      </field>
+
+          <!--
+          <field property="cardNumber" depends="required">
+            <arg key="billingInfoForm.cardNumber"/>
+         </field>
+          <field property="cardExpirationMonth" depends="required">
+            <arg key="billingInfoForm.cardExpirationMonth"/>
+         </field>
+         -->
+          <field property="cardExpirationYear" depends="required">
+            <arg key="billingInfoForm.cardExpirationYear"/>
+         </field>
+         <field property="nameOnReserveCard" depends="validwhen">
+            <arg key="billingInfoForm.nameOnReserveCard"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+<field property="nameOnReserveCard" depends="maxlength">
+    <arg key="billingInfoForm.nameOnReserveCard"/>
+    <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+    <var><var-name>maxlength</var-name><var-value>80</var-value></var>
+</field>
+
+        <field property="reserveCardType" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardType"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardNumber" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+<field property="reserveCardNumber" depends="validCreditCardNumberWithType">
+    <msg name="validCreditCardNumberWithType" key="billingInfoForm.reserveCardNumber.valid"/>
+    <var><var-name>creditCardType</var-name><var-value>reserveCardType</var-value></var>
+    <var><var-name>creditCardNumber</var-name><var-value>reserveCardNumber</var-value></var>
+    <var><var-name>type</var-name><var-value>paymentType</var-value></var>
+</field>
+
+        <field property="reserveCardExpirationMonth" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardExpirationMonth"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardExpirationYear" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardExpirationYear"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+<field property="reserveCardExpirationMonth" depends="validateExpirationYearMonthWithType">
+    <msg name="validateExpirationYearMonthWithType" key="billingInfoForm.reserveCardExpirationMonth.invalid"/>
+    <var><var-name>year</var-name><var-value>reserveCardExpirationYear</var-value></var>
+    <var><var-name>month</var-name><var-value>reserveCardExpirationMonth</var-value></var>
+    <var><var-name>type</var-name><var-value>paymentType</var-value></var>
+</field>
+
+      <field property="addressLine1" depends="maxlength">
+        <arg key="billingInfoForm.addressLine1"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+      <field property="addressLine2" depends="maxlength">
+        <arg key="billingInfoForm.addressLine2"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+      <field property="addressLine3" depends="maxlength">
+        <arg key="billingInfoForm.addressLine3"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+      <field property="addressLine4" depends="maxlength">
+        <arg key="billingInfoForm.addressLine4"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>100</var-value></var>
+      </field>
+
+        <field property="addressLine1" depends="validwhen">
+            <arg key="billingInfoForm.addressLine1"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="city" depends="validwhen">
+            <arg key="billingInfoForm.city"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+      <field property="city" depends="maxlength">
+        <arg key="billingInfoForm.city"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+
+        <field property="state" depends="validwhen">
+            <arg key="billingInfoForm.state"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != '-') or (nonUsBillingAddress == 'true')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+        <field property="zip" depends="validwhen">
+            <arg key="billingInfoForm.zip"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+      <field property="zip" depends="mask">
+        <msg name="mask" key="billingInfoForm.zip.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{5}$</var-value></var>
+      </field>
+      <field property="plus4" depends="mask">
+        <msg name="mask" key="billingInfoForm.plus4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{4}$</var-value></var>
+      </field>
+
+        <field property="country" depends="validwhen">
+            <arg key="billingInfoForm.country"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress=='false')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+    </form>
+
+    <form name="/accountInformation/changePaymentMethodeft">
+        <field property="bankRoutingNumber" depends="validwhen">
+            <arg key="billingInfoForm.bankRoutingNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'eft'))</var-value>
+            </var>
+        </field>
+      <field property="bankRoutingNumber" depends="maxlength">
+        <arg key="billingInfoForm.bankRoutingNumber"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>12</var-value></var>
+      </field>
+      <field property="bankRoutingNumber" depends="mask">
+        <msg name="mask" key="billingInfoForm.bankRoutingNumber.mask"/>
+        <var><var-name>mask</var-name><var-value>[0-9]{9}</var-value></var>
+      </field>
+
+        <field property="bankAcctNumber" depends="validwhen">
+            <arg key="billingInfoForm.bankAcctNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'eft'))</var-value>
+            </var>
+        </field>
+      <field property="bankAcctNumber" depends="maxlength">
+        <arg key="billingInfoForm.bankAcctNumber"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>17</var-value></var>
+      </field>
+      <field property="bankAcctNumber" depends="mask">
+        <msg name="mask" key="billingInfoForm.bankAcctNumber.mask"/>
+        <var><var-name>mask</var-name><var-value>[0-9]+</var-value></var>
+      </field>
+
+    </form>
+
+    <form name="/accountInformation/changeRebillAmt">
+      <field property="rebillAmt" depends="double,doubleRange">
+        <arg position="0" key="accountForm.rebillAmt"/>
+        <arg position="1" name="doubleRange" key="${var:min}" resource="false"/>
+        <arg position="2" name="doubleRange" key="${var:max}" resource="false"/>
+        <msg name="doubleRange" key="accountForm.rebillAmt.exceeds" />
+        <var><var-name>min</var-name><var-value>0.01</var-value></var>
+        <var><var-name>max</var-name><var-value>4800.00</var-value></var>
+      </field>
+
+      <field property="rebillAmt" depends="validRebillAmt">
+        <msg name="validRebillAmt" key="accountForm.rebillAmt.valid"/>
+        <var><var-name>rebillAmt</var-name><var-value>rebillAmt</var-value></var>
+        <var><var-name>reqMinRebillAmt</var-name><var-value>reqMinRebillAmt</var-value></var>
+      </field>
+
+      <!--
+      <field property="rebillAmt" depends="double">
+        <arg key="accountForm.rebillAmt"/>
+      </field>
+
+      <field property="rebillAmt" depends="maxlength">
+        <msg name="maxlength" key="accountForm.rebillAmt.exceeds" />
+        <var><var-name>maxlength</var-name><var-value>10</var-value></var>
+      </field>
+      -->
+    </form>
+
+    <form name="/signupContactInfo">
+ <!--     <field property="companyName" depends="validwhen">
+        <arg key="contactInfoForm.companyName"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((*this* != null) and (accountType == 'business')) or (accountType=='personal') )</var-value>
+        </var>
+      </field>
+-->
+      <field property="firstName" depends="required">
+        <arg key="contactInfoForm.firstName"/>
+      </field>
+      <field property="firstName" depends="mask">
+        <msg name="mask" key="contactInfoForm.firstName.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,\.\'\s]*$</var-value></var>
+      </field>
+      <field property="lastName" depends="required">
+        <arg key="contactInfoForm.lastName"/>
+      </field>
+      <field property="lastName" depends="mask">
+        <msg name="mask" key="contactInfoForm.lastName.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,\.\'\s]*$</var-value></var>
+      </field>
+      <field property="companyName" depends="mask">
+        <msg name="mask" key="contactInfoForm.companyName.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,\.\'\s]*$</var-value></var>
+      </field>
+      <field property="primaryPhone" depends="required">
+        <arg key="contactInfoForm.primaryPhone"/>
+      </field>
+      <field property="primaryPhone" depends="mask">
+        <msg name="mask" key="contactInfoForm.primaryPhone.mask"/>
+        <var><var-name>mask</var-name><var-value>^\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1,}</var-value></var>
+      </field>
+      <field property="alternatePhone" depends="mask">
+        <msg name="mask" key="contactInfoForm.alternatePhone.mask"/>
+        <var><var-name>mask</var-name><var-value>^\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1}[-]?\d{1,}</var-value></var>
+      </field>
+      <field property="altPhoneExt" depends="mask">
+        <msg name="mask" key="contactInfoForm.altPhoneExt.mask"/>
+        <var><var-name>mask</var-name><var-value>^\d+$</var-value></var>
+      </field>
+
+<!--       <field property="taxId" depends="long,minlength,maxlength">
+            <arg key="contactInfoForm.taxId"/>
+            <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+            <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+            <var><var-name>minlength</var-name><var-value>9</var-value></var>
+            <var><var-name>maxlength</var-name><var-value>11</var-value></var>
+      </field>-->
+
+      <field property="taxId" depends="mask">
+        <msg name="mask" key="contactInfoForm.taxId.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d|-]{9,11}$</var-value></var>
+      </field>
+
+      <field property="driversLicState" depends="required">
+        <arg key="contactInfoForm.driversLicState"/>
+      </field>
+      <field property="driversLic" depends="validwhen">
+        <arg key="contactInfoForm.driversLic"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>(((*this* != null) and (accountType == 'personal')) or (accountType=='business') )</var-value>
+        </var>
+      </field>
+      <field property="driversLic" depends="validwhen">
+        <arg key="contactInfoForm.driversLicOrTaxId"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((((taxId != null) or (*this* != null)) and (accountType == 'business')) or (accountType=='personal') )</var-value>
+        </var>
+      </field>
+      <field property="addressLine1" depends="required">
+        <arg key="contactInfoForm.addressLine1"/>
+      </field>
+      <field property="addressLine1" depends="mask">
+        <msg name="mask" key="contactInfoForm.addressLine1.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+      </field>
+      <field property="addressLine2" depends="mask">
+        <msg name="mask" key="contactInfoForm.addressLine2.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+      </field>
+      <field property="addressLine3" depends="mask">
+        <msg name="mask" key="contactInfoForm.addressLine3.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+      </field>
+      <field property="addressLine4" depends="mask">
+        <msg name="mask" key="contactInfoForm.addressLine4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+      </field>
+      <field property="city" depends="mask">
+        <msg name="mask" key="contactInfoForm.city.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\/\.]*$</var-value></var>
+      </field>
+      <field property="zip" depends="mask">
+        <msg name="mask" key="contactInfoForm.zip.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{5}$</var-value></var>
+      </field>
+      <field property="plus4" depends="mask">
+        <msg name="mask" key="contactInfoForm.plus4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9]{4}$</var-value></var>
+      </field>
+<!-- -->
+      <field property="city" depends="validwhen">
+        <arg key="contactInfoForm.city"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value> ((nonUSAddress == 'true') or (*this* != null))</var-value>
+        </var>
+      </field>
+      <field property="state" depends="validwhen">
+        <arg key="contactInfoForm.state"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value> ((nonUSAddress == 'true') or (*this* != null))</var-value>
+        </var>
+      </field>
+      <field property="zip" depends="validwhen">
+        <arg key="contactInfoForm.zip"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value> ((nonUSAddress == 'true') or (*this* != null))</var-value>
+        </var>
+      </field>
+      <field property="country" depends="validwhen">
+        <arg key="contactInfoForm.country"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value> ((nonUSAddress == 'false') or (*this* != null))</var-value>
+        </var>
+      </field>
+<!--
+ -->
+    </form>
+
+    <form name="/signupBillingInfo">
+        <field property="nameOnCard" depends="validwhen">
+            <arg key="billingInfoForm.nameOnCard"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <field property="nameOnCard" depends="mask">
+            <msg name="mask" key="billingInfoForm.nameOnCard.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,\.\'\s]*$</var-value></var>
+        </field>
+        <field property="cardType" depends="validwhen">
+            <arg key="billingInfoForm.cardType"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <field property="cardNumber" depends="validwhen">
+            <arg key="billingInfoForm.cardNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <field property="cardNumber" depends="validCreditCardNumber">
+            <msg name="creditCard" key="billingInfoForm.cardNumber.valid"/>
+            <var><var-name>creditCardType</var-name><var-value>cardType</var-value></var>
+            <var><var-name>creditCardNumber</var-name><var-value>cardNumber</var-value></var>
+        </field>
+        <field property="cardExpirationMonth" depends="validwhen">
+            <arg key="billingInfoForm.cardExpirationMonth"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <field property="cardExpirationYear" depends="validwhen">
+            <arg key="billingInfoForm.cardExpirationYear"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <field property="cardExpirationMonth" depends="validateExpirationYearMonth">
+            <msg name="validateExpirationYearMonth" key="billingInfoForm.cardExpirationMonth.valid"/>
+            <var><var-name>year</var-name><var-value>cardExpirationYear</var-value></var>
+            <var><var-name>month</var-name><var-value>cardExpirationMonth</var-value></var>
+        </field>
+        <field property="nameOnReserveCard" depends="validwhen">
+            <arg key="billingInfoForm.nameOnReserveCard"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="nameOnReserveCard" depends="mask">
+            <msg name="mask" key="billingInfoForm.nameOnReserveCard.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,\.\'\s]*$</var-value></var>
+        </field>
+        <field property="reserveCardType" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardType"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardNumber" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardExpirationMonth" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardExpirationMonth"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardExpirationYear" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardExpirationYear"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardExpirationMonth" depends="validateExpirationYearMonth">
+            <msg name="validateExpirationYearMonth" key="billingInfoForm.reserveCardExpirationMonth.valid"/>
+            <var><var-name>year</var-name><var-value>reserveCardExpirationYear</var-value></var>
+            <var><var-name>month</var-name><var-value>reserveCardExpirationMonth</var-value></var>
+        </field>
+        <field property="addressLine1" depends="validwhen">
+            <arg key="billingInfoForm.addressLine1"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="addressLine1" depends="mask">
+            <msg name="mask" key="billingInfoForm.addressLine1.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+        </field>
+          <field property="addressLine2" depends="mask">
+            <msg name="mask" key="billingInfoForm.addressLine2.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+          </field>
+          <field property="addressLine3" depends="mask">
+            <msg name="mask" key="billingInfoForm.addressLine3.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+          </field>
+          <field property="addressLine4" depends="mask">
+            <msg name="mask" key="billingInfoForm.addressLine4.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+          </field>
+          <field property="city" depends="mask">
+            <msg name="mask" key="billingInfoForm.city.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\/\.]*$</var-value></var>
+          </field>
+          <field property="zip" depends="mask">
+            <msg name="mask" key="billingInfoForm.zip.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9]{5}$</var-value></var>
+          </field>
+          <field property="plus4" depends="mask">
+            <msg name="mask" key="billingInfoForm.plus4.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9]{4}$</var-value></var>
+          </field>
+        <field property="city" depends="validwhen">
+            <arg key="billingInfoForm.city"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+        <field property="state" depends="validwhen">
+            <arg key="billingInfoForm.state"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+        <field property="zip" depends="validwhen">
+            <arg key="billingInfoForm.zip"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+        <field property="country" depends="validwhen">
+            <arg key="billingInfoForm.country"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'false')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+        <field property="bankRoutingNumber" depends="validwhen">
+            <arg key="billingInfoForm.bankRoutingNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'eft'))</var-value>
+            </var>
+        </field>
+
+        <field property="bankRoutingNumber" depends="mask">
+            <msg name="mask" key="billingInfoForm.bankRoutingNumber.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9]{9}$</var-value></var>
+        </field>
+
+        <field property="bankAcctNumber" depends="validwhen">
+            <arg key="billingInfoForm.bankAcctNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'eft'))</var-value>
+            </var>
+        </field>
+
+        <field property="bankAcctNumber" depends="mask">
+            <msg name="mask" key="billingInfoForm.bankAcctNumber.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9]{1,17}$</var-value></var>
+        </field>
+    </form>
+
+
+    <form name="/signupBillingPAN">
+        <field property="nameOnCard" depends="validwhen">
+            <arg key="billingInfoForm.nameOnCard"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <field property="nameOnCard" depends="mask">
+            <msg name="mask" key="billingInfoForm.nameOnCard.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,\.\'\s]*$</var-value></var>
+        </field>
+        <field property="cardType" depends="validwhen">
+            <arg key="billingInfoForm.cardType"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <field property="cardNumber" depends="validwhen">
+            <arg key="billingInfoForm.cardNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <!-- field property="cardNumber" depends="validCreditCardNumber">
+            <msg name="creditCard" key="billingInfoForm.cardNumber.valid"/>
+            <var><var-name>creditCardType</var-name><var-value>cardType</var-value></var>
+            <var><var-name>creditCardNumber</var-name><var-value>cardNumber</var-value></var>
+        </field-->
+        <field property="cardExpirationMonth" depends="validwhen">
+            <arg key="billingInfoForm.cardExpirationMonth"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <field property="cardExpirationYear" depends="validwhen">
+            <arg key="billingInfoForm.cardExpirationYear"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'credit'))</var-value>
+            </var>
+        </field>
+        <field property="cardExpirationMonth" depends="validateExpirationYearMonth">
+            <msg name="validateExpirationYearMonth" key="billingInfoForm.cardExpirationMonth.valid"/>
+            <var><var-name>year</var-name><var-value>cardExpirationYear</var-value></var>
+            <var><var-name>month</var-name><var-value>cardExpirationMonth</var-value></var>
+        </field>
+        <field property="nameOnReserveCard" depends="validwhen">
+            <arg key="billingInfoForm.nameOnReserveCard"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="nameOnReserveCard" depends="mask">
+            <msg name="mask" key="billingInfoForm.nameOnReserveCard.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,\.\'\s]*$</var-value></var>
+        </field>
+        <field property="reserveCardType" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardType"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardNumber" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardExpirationMonth" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardExpirationMonth"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardExpirationYear" depends="validwhen">
+            <arg key="billingInfoForm.reserveCardExpirationYear"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (reserveCard == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="reserveCardExpirationMonth" depends="validateExpirationYearMonth">
+            <msg name="validateExpirationYearMonth" key="billingInfoForm.reserveCardExpirationMonth.valid"/>
+            <var><var-name>year</var-name><var-value>reserveCardExpirationYear</var-value></var>
+            <var><var-name>month</var-name><var-value>reserveCardExpirationMonth</var-value></var>
+        </field>
+        <field property="addressLine1" depends="validwhen">
+            <arg key="billingInfoForm.addressLine1"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+        <field property="addressLine1" depends="mask">
+            <msg name="mask" key="billingInfoForm.addressLine1.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+        </field>
+          <field property="addressLine2" depends="mask">
+            <msg name="mask" key="billingInfoForm.addressLine2.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+          </field>
+          <field property="addressLine3" depends="mask">
+            <msg name="mask" key="billingInfoForm.addressLine3.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+          </field>
+          <field property="addressLine4" depends="mask">
+            <msg name="mask" key="billingInfoForm.addressLine4.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\-\,#\.\:\'\s/]*$</var-value></var>
+          </field>
+          <field property="city" depends="mask">
+            <msg name="mask" key="billingInfoForm.city.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\/\.]*$</var-value></var>
+          </field>
+          <field property="zip" depends="mask">
+            <msg name="mask" key="billingInfoForm.zip.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9]{5}$</var-value></var>
+          </field>
+          <field property="plus4" depends="mask">
+            <msg name="mask" key="billingInfoForm.plus4.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9]{4}$</var-value></var>
+          </field>
+        <field property="city" depends="validwhen">
+            <arg key="billingInfoForm.city"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+        <field property="state" depends="validwhen">
+            <arg key="billingInfoForm.state"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+        <field property="zip" depends="validwhen">
+            <arg key="billingInfoForm.zip"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'true')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+        <field property="country" depends="validwhen">
+            <arg key="billingInfoForm.country"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> (((*this* != null) or (nonUsBillingAddress == 'false')) or ((paymentType != 'credit') or (diffBillingAddress == 'false')))</var-value>
+            </var>
+        </field>
+
+        <field property="bankRoutingNumber" depends="validwhen">
+            <arg key="billingInfoForm.bankRoutingNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'eft'))</var-value>
+            </var>
+        </field>
+
+        <field property="bankRoutingNumber" depends="mask">
+            <msg name="mask" key="billingInfoForm.bankRoutingNumber.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9]{9}$</var-value></var>
+        </field>
+
+        <field property="bankAcctNumber" depends="validwhen">
+            <arg key="billingInfoForm.bankAcctNumber"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (paymentType != 'eft'))</var-value>
+            </var>
+        </field>
+
+        <field property="bankAcctNumber" depends="mask">
+            <msg name="mask" key="billingInfoForm.bankAcctNumber.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9]{1,17}$</var-value></var>
+        </field>
+    </form>
+
+    <form name="/accountRequiredUpdate">
+        <field property="password" depends="validwhen">
+            <arg key="acctUpdateForm.password"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((requiredUpdate == 2) or ((requiredUpdate == 4) or (requiredUpdate == 6))))</var-value>
+            </var>
+        </field>
+        <field property="newPassword" depends="validwhen">
+            <arg key="acctUpdateForm.newPassword"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((requiredUpdate == 2) or ((requiredUpdate == 4) or (requiredUpdate == 6))))</var-value>
+            </var>
+        </field>
+        <field property="newPassword" depends="mask">
+            <msg name="mask" key="acctUpdateForm.newPassword.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\._\-@]*$</var-value></var>
+        </field>
+        <field property="newPassword" depends="minlength">
+            <arg key="onlineAccessForm.newPassword"/>
+            <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+            <var><var-name>minlength</var-name><var-value>8</var-value></var>
+          </field>
+        <field property="confirmNewPassword" depends="validwhen">
+            <arg key="acctUpdateForm.confirmNewPassword"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((requiredUpdate == 2) or ((requiredUpdate == 4) or (requiredUpdate == 6))))</var-value>
+            </var>
+        </field>
+        <field property="confirmNewPassword" depends="twoFieldsIgnoreCase">
+            <arg position="0" key="acctUpdateForm.confirmNewPassword"/>
+            <arg position="1" key="acctUpdateForm.newPassword"/>
+            <var>
+              <var-name>secondProperty</var-name>
+              <var-value>newPassword</var-value>
+            </var>
+          </field>
+        <field property="emailAddress" depends="validwhen">
+            <arg key="acctUpdateForm.emailAddress"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((requiredUpdate == 1) or ((requiredUpdate == 4) or (requiredUpdate == 5))))</var-value>
+            </var>
+        </field>
+        <field property="emailAddress" depends="email">
+            <arg key="acctUpdateForm.emailAddress"/>
+        </field>
+        <field property="emailAddress2" depends="validwhen">
+            <arg key="acctUpdateForm.emailAddress2"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((requiredUpdate == 1) or ((requiredUpdate == 4) or (requiredUpdate == 5))))</var-value>
+            </var>
+        </field>
+        <field property="emailAddress2" depends="twofields">
+            <arg position="0" key="acctUpdateForm.emailAddress2"/>
+            <arg position="1" key="acctUpdateForm.emailAddress"/>
+            <var>
+              <var-name>secondProperty</var-name>
+              <var-value>emailAddress</var-value>
+            </var>
+          </field>
+
+        <field property="securityQuestionAnswer" depends="validwhen">
+            <arg key="acctUpdateForm.securityQuestionAnswer"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((requiredUpdate == 1) or ((requiredUpdate == 2) or (requiredUpdate == 3))))</var-value>
+            </var>
+        </field>
+        <field property="securityQuestionAnswer" depends="mask">
+            <msg name="mask" key="onlineAccessForm.securityQuestionAnswer.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z?\.\,\"\'\s]*$</var-value></var>
+        </field>
+        <field property="securityQuestionAnswer2" depends="validwhen">
+            <arg key="acctUpdateForm.securityQuestionAnswer2"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or ((requiredUpdate == 1) or ((requiredUpdate == 2) or (requiredUpdate == 3))))</var-value>
+            </var>
+        </field>
+        <field property="securityQuestionAnswer2" depends="twoFieldsIgnoreCase">
+            <arg position="0" key="acctUpdateForm.securityQuestionAnswer2"/>
+            <arg position="1" key="acctUpdateForm.securityQuestionAnswer"/>
+            <var>
+              <var-name>secondProperty</var-name>
+              <var-value>securityQuestionAnswer</var-value>
+            </var>
+        </field>
+    </form>
+
+    <form name="TransactionsForm">
+
+      <field property="endDate" depends="required,date">
+        <msg name="required" key="TransactionsForm.endDate.required"/>
+        <msg name="date" key="TransactionsForm.endDate.format"/>
+        <var>
+          <var-name>datePattern</var-name>
+          <var-value>MM/dd/yyyy</var-value>
+        </var>
+      </field>
+
+      <field property="startDate" depends="required,date">
+        <msg name="required" key="TransactionsForm.startDate.required"/>
+        <msg name="date" key="TransactionsForm.startDate.format"/>
+        <var>
+          <var-name>datePattern</var-name>
+          <var-value>MM/dd/yyyy</var-value>
+        </var>
+      </field>
+
+      <field property="agencyId" depends="requiredif">
+        <msg name="requiredif" key="TransactionsForm.agencyId.required"/>
+        <var>
+          <var-name>field[0]</var-name>
+          <var-value>tagId</var-value>
+        </var>
+        <var>
+          <var-name>fieldTest[0]</var-name>
+          <var-value>NOTNULL</var-value>
+        </var>
+      </field>
+
+      <field property="tagId" depends="requiredif">
+        <msg name="requiredif"  key="TransactionsForm.tagId.required"/>
+        <var>
+          <var-name>field[0]</var-name>
+          <var-value>agencyId</var-value>
+        </var>
+        <var>
+          <var-name>fieldTest[0]</var-name>
+          <var-value>NOTNULL</var-value>
+        </var>
+      </field>
+
+    </form>
+
+    <form name="/onlineAccessUserInfo">
+       <field property="acctId" depends="long">
+        <arg key="onlineAccessForm.acctId"/>
+      </field>
+      <field property="tagId" depends="long">
+        <arg key="onlineAccessForm.tagId"/>
+      </field>
+
+     <field property="acctId" depends="validwhen">
+        <arg key="onlineAccessForm.acctId.error"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((*this* != null) or (tagId != null))</var-value>
+        </var>
+      </field>
+
+      <field property="driverLicNbr" depends="validwhen">
+        <arg key="onlineAccessForm.driverLicNbr.error"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((companyTaxId != null) or (*this* != null))</var-value>
+        </var>
+      </field>
+      <field property="driverLicNbr" depends="mask">
+            <arg key="onlineAccessForm.driverLicNbr"/>
+            <msg name="mask" key="onlineAccessForm.driverLicNbr.invalid"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z]*$</var-value></var>
+      </field>
+
+      <field property="companyTaxId" depends="long,minlength,maxlength">
+            <arg key="onlineAccessForm.companyTaxId"/>
+            <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+            <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+            <msg name="mask" key="onlineAccessForm.companyTaxId.error"/>
+            <var><var-name>minlength</var-name><var-value>9</var-value></var>
+            <var><var-name>maxlength</var-name><var-value>11</var-value></var>
+      </field>
+    </form>
+
+    <form name="/onlineAccessComplete">
+      <field property="loginId" depends="required">
+        <arg key="onlineAccessForm.loginId"/>
+      </field>
+      <field property="loginId" depends="minlength">
+        <arg key="onlineAccessForm.loginId"/>
+        <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+        <var><var-name>minlength</var-name><var-value>6</var-value></var>
+      </field>
+      <field property="loginId" depends="mask">
+        <msg name="mask" key="onlineAccessForm.loginId.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\._\-@]*$</var-value></var>
+      </field>
+      <field property="loginId" depends="maxlength">
+        <arg key="onlineAccessForm.loginId"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>80</var-value></var>
+      </field>
+
+      <field property="password" depends="required">
+        <arg key="onlineAccessForm.password"/>
+      </field>
+      <field property="password" depends="minlength">
+        <arg key="onlineAccessForm.password"/>
+        <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+        <var><var-name>minlength</var-name><var-value>8</var-value></var>
+      </field>
+      <field property="password" depends="maxlength">
+        <arg key="onlineAccessForm.password"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+      <field property="confirmPassword" depends="twoFieldsIgnoreCase">
+        <arg position="0" key="onlineAccessForm.confirmPassword"/>
+        <arg position="1" key="onlineAccessForm.password"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>password</var-value>
+        </var>
+      </field>
+
+      <field property="emailAddress" depends="required,email">
+        <arg key="onlineAccessForm.emailAddress"/>
+      </field>
+      <field property="emailAddress2" depends="twofields">
+        <arg position="0" key="onlineAccessForm.emailAddress2"/>
+        <arg position="1" key="onlineAccessForm.emailAddress"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>emailAddress</var-value>
+        </var>
+      </field>
+
+      <field property="securityQuestionAnswer" depends="required">
+        <arg key="onlineAccessForm.securityQuestionAnswer"/>
+      </field>
+      <field property="securityQuestionAnswer2" depends="twoFieldsIgnoreCase">
+        <arg position="0" key="onlineAccessForm.securityQuestionAnswer2"/>
+        <arg position="1" key="onlineAccessForm.securityQuestionAnswer"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>securityQuestionAnswer</var-value>
+        </var>
+      </field>
+
+      <field property="alternateEmail" depends="email">
+        <arg key="onlineAccessForm.alternateEmail"/>
+      </field>
+      <field property="confirmAlternateEmail" depends="twofields">
+        <arg position="0" key="onlineAccessForm.confirmAlternateEmail"/>
+        <arg position="1" key="onlineAccessForm.alternateEmail"/>
+        <var>
+          <var-name>secondProperty</var-name>
+          <var-value>alternateEmail</var-value>
+        </var>
+      </field>
+
+    </form>
+
+    <form name="/retrieveEmailAddress">
+       <field property="emailAddress" depends="required,email">
+        <arg key="onlineAccessForm.emailAddress"/>
+      </field>
+    </form>
+
+    <form name="/retrieveSecurityQuestion">
+      <field property="acctId" depends="long">
+        <arg key="onlineAccessForm.acctId"/>
+      </field>
+      <field property="tagId" depends="long">
+        <arg key="onlineAccessForm.tagId"/>
+      </field>
+
+      <field property="acctId" depends="validwhen">
+        <arg key="onlineAccessForm.acctId.error"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((tagId != null) or (*this* != null))</var-value>
+        </var>
+      </field>
+      <field property="driverLicNbr" depends="validwhen">
+        <arg key="onlineAccessForm.driverLicNbr.error"/>
+        <var>
+            <var-name>test</var-name>
+            <var-value>((companyTaxId != null) or (*this* != null))</var-value>
+        </var>
+      </field>
+
+      <field property="driverLicNbr" depends="mask">
+            <arg key="onlineAccessForm.driverLicNbr"/>
+            <msg name="mask" key="onlineAccessForm.driverLicNbr.invalid"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z]*$</var-value></var>
+      </field>
+
+      <field property="companyTaxId" depends="long,minlength,maxlength">
+            <arg key="onlineAccessForm.companyTaxId"/>
+            <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+            <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+            <msg name="mask" key="onlineAccessForm.companyTaxId.error"/>
+            <var><var-name>minlength</var-name><var-value>9</var-value></var>
+            <var><var-name>maxlength</var-name><var-value>11</var-value></var>
+      </field>
+
+    </form>
+
+    <form name="/addSecurityQuestionAnswer">
+      <field property="securityQuestion" depends="required">
+        <arg key="onlineAccessForm.securityQuestion"/>
+      </field>
+      <field property="securityQuestionAnswer" depends="required">
+        <arg key="onlineAccessForm.securityQuestionAnswer"/>
+      </field>
+      <field property="securityQuestionAnswer2" depends="required,twofields">
+          <arg position="0" key="onlineAccessForm.securityQuestionAnswer2"/>
+          <arg position="1" key="onlineAccessForm.securityQuestionAnswer"/>
+          <var>
+             <var-name>secondProperty</var-name>
+             <var-value>securityQuestionAnswer</var-value>
+          </var>
+      </field>
+    </form>
+
+    <form name="/addEmailAddress">
+      <field property="emailAddress" depends="required,email">
+        <arg key="onlineAccessForm.emailAddress"/>
+      </field>
+      <field property="emailAddress2" depends="required,twofields">
+          <arg position="0" key="onlineAccessForm.emailAddress2"/>
+          <arg position="1" key="onlineAccessForm.emailAddress"/>
+          <var>
+             <var-name>secondProperty</var-name>
+             <var-value>emailAddress</var-value>
+          </var>
+      </field>
+    </form>
+
+    <form name="/validateSecurityAnswer">
+      <field property="securityQuestionAnswer" depends="required">
+        <arg key="onlineAccessForm.securityQuestionAnswer"/>
+      </field>
+    </form>
+
+    <form name="/personalInfoSave">
+      <field property="address1" depends="required">
+        <arg key="accountForm.address1"/>
+      </field>
+      <field property="city" depends="required">
+        <arg key="accountForm.city"/>
+      </field>
+      <field property="zipCode" depends="required">
+        <arg key="accountForm.zipCode"/>
+      </field>
+      <field property="state" depends="required">
+        <arg key="accountForm.state"/>
+      </field>
+      <field property="homePhoNbr" depends="required,mask">
+        <arg key="accountForm.homePhoNbr"/>
+        <msg name="mask" key="accountForm.phone.error"/>
+        <var><var-name>mask</var-name><var-value>^\d{10}$</var-value></var>
+      </field>
+      <field property="workPhoNbr" depends="mask">
+        <arg key="accountForm.workPhoNbr"/>
+        <msg name="mask" key="accountForm.phone.error"/>
+        <var><var-name>mask</var-name><var-value>^\d{10}$</var-value></var>
+      </field>
+      <field property="mobilePhoNbr" depends="mask">
+        <arg key="accountForm.mobilePhoNbr"/>
+        <msg name="mask" key="accountForm.phone.error"/>
+        <var><var-name>mask</var-name><var-value>^\d{10}$</var-value></var>
+      </field>
+      <field property="emailAddress" depends="required, email">
+        <arg key="accountForm.emailAddress"/>
+      </field>
+      <field property="emailAddress2" depends="email">
+        <arg key="accountForm.emailAddress2"/>
+      </field>
+      <field property="emailAddress3" depends="email">
+        <arg key="accountForm.emailAddress3"/>
+      </field>
+    </form>
+
+    <form name="/creditCardInfoUpd">
+      <field property="nameOnCard" depends="required">
+        <arg key="creditCardForm.nameOnCard"/>
+      </field>
+      <field property="cardCode" depends="required">
+        <arg key="creditCardForm.cardCode"/>
+      </field>
+      <field property="cardNbr" depends="required">
+        <arg key="creditCardForm.cardNbr"/>
+      </field>
+      <field property="cardNbrNew" depends="creditCard">
+        <msg name="creditCard" key="creditCardForm.cardNbr.invalid"/>
+      </field>
+      <field property="yearExp" depends="required">
+        <arg key="creditCardForm.yearExp"/>
+      </field>
+      <field property="address1" depends="required">
+        <arg key="creditCardForm.address1"/>
+      </field>
+      <field property="city" depends="required">
+        <arg key="creditCardForm.city"/>
+      </field>
+      <field property="zipCode" depends="required,long,minlength">
+        <arg key="creditCardForm.zipCode"/>
+        <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+        <var>
+            <var-name>minlength</var-name>
+            <var-value>5</var-value>
+        </var>
+      </field>
+      <field property="plus4" depends="long,minlength">
+        <arg key="creditCardForm.zipCode"/>
+        <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+        <var>
+            <var-name>minlength</var-name>
+            <var-value>4</var-value>
+        </var>
+      </field>
+<!--      <field property="securityCode" depends="required,long,minlength">
+        <arg key="creditCardForm.securityCode"/>
+        <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+        <var>
+            <var-name>minlength</var-name>
+            <var-value>3</var-value>
+        </var>
+      </field>
+-->
+    </form>
+
+    <form name="/GetTollTagProcessLoginInfo">
+
+      <field property="firstName" depends="required,mask">
+        <msg name="required" key="TollTagForm.firstName.required"/>
+        <msg name="mask" key="TollTagForm.firstName.mask"/>
+        <var><var-name>mask</var-name><var-value>^[a-zA-Z ,.-]*$</var-value></var>
+      </field>
+
+      <field property="middleInitial" depends="mask">
+        <msg name="mask" key="TollTagForm.middleInitial.mask"/>
+        <var><var-name>mask</var-name><var-value>^[a-zA-Z]*$</var-value></var>
+      </field>
+
+      <field property="lastName" depends="required,mask">
+        <msg name="required" key="TollTagForm.lastName.required"/>
+        <msg name="mask" key="TollTagForm.lastName.mask"/>
+        <var><var-name>mask</var-name><var-value>^[a-zA-Z ,.-]*$</var-value></var>
+      </field>
+
+      <field property="email" depends="required,email">
+        <msg name="required" key="TollTagForm.email.required"/>
+        <msg name="email" key="TollTagForm.email.valid"/>
+      </field>
+
+      <field property="emailVerify" depends="required,twofields">
+        <msg name="required" key="TollTagForm.emailVerify.required"/>
+        <msg name="twofields" key="TollTagForm.emailVerify.identical"/>
+        <var><var-name>secondProperty</var-name><var-value>email</var-value></var>
+      </field>
+
+      <field property="userId" depends="required,mask">
+        <msg name="required" key="TollTagForm.userId.required"/>
+        <msg name="mask" key="TollTagForm.userId.mask"/>
+        <var><var-name>mask</var-name><var-value>^\w{6,30}$</var-value></var>
+      </field>
+
+      <field property="securityAnswer" depends="required">
+        <msg name="required" key="TollTagForm.securityAnswer.required"/>
+      </field>
+
+      <field property="securityAnswerVerify" depends="required,twofields">
+        <msg name="required" key="TollTagForm.securityAnswerVerify.required"/>
+        <msg name="twofields" key="TollTagForm.securityAnswerVerify.identical"/>
+        <var><var-name>secondProperty</var-name><var-value>securityAnswer</var-value></var>
+      </field>
+
+    </form>
+
+    <form name="/GetTollTagProcessContactInfo">
+
+      <field property="address" depends="required,mask">
+        <msg name="required" key="TollTagForm.address.required"/>
+        <msg name="mask" key="TollTagForm.address.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z ,#.-]*$</var-value></var>
+      </field>
+
+      <field property="addressLine2" depends="mask">
+        <msg name="mask" key="TollTagForm.addressLine2.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z ,#.-]*$</var-value></var>
+      </field>
+
+      <field property="city" depends="required,mask">
+        <msg name="required" key="TollTagForm.city.required"/>
+        <msg name="mask" key="TollTagForm.city.mask"/>
+        <var><var-name>mask</var-name><var-value>^[a-zA-Z ,._-]*$</var-value></var>
+      </field>
+
+      <field property="zipcode" depends="required,mask,minlength">
+        <msg name="required" key="TollTagForm.zipcode.required"/>
+        <msg name="mask" key="TollTagForm.zipcode.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+        <msg name="minlength" key="TollTagForm.zipcode.minlength"/>
+        <var><var-name>minlength</var-name><var-value>5</var-value></var>
+      </field>
+
+      <field property="plus4" depends="mask,minlength">
+        <msg name="mask" key="TollTagForm.plus4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+        <msg name="minlength" key="TollTagForm.plus4.minlength"/>
+        <var><var-name>minlength</var-name><var-value>4</var-value></var>
+      </field>
+
+      <field property="homePhoneAreaCode" depends="required,mask">
+        <msg name="required" key="TollTagForm.homePhoneAreaCode.required"/>
+        <msg name="mask" key="TollTagForm.homePhoneAreaCode.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+      </field>
+
+      <field property="homePhoneFirst3" depends="required,mask">
+        <msg name="required" key="TollTagForm.homePhoneFirst3.required"/>
+        <msg name="mask" key="TollTagForm.homePhoneFirst3.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+      </field>
+
+      <field property="homePhoneLast4" depends="required,mask">
+        <msg name="required" key="TollTagForm.homePhoneLast4.required"/>
+        <msg name="mask" key="TollTagForm.homePhoneLast4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+      </field>
+
+      <field property="workPhoneAreaCode" depends="mask">
+        <msg name="mask" key="TollTagForm.workPhoneAreaCode.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+      </field>
+
+      <field property="workPhoneFirst3" depends="mask">
+        <msg name="mask" key="TollTagForm.workPhoneFirst3.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+      </field>
+
+      <field property="workPhoneLast4" depends="mask">
+        <msg name="mask" key="TollTagForm.workPhoneLast4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+      </field>
+
+      <field property="workPhoneExt" depends="mask">
+        <msg name="mask" key="TollTagForm.workPhoneExt.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+      </field>
+
+      <field property="driverLicenseNumber" depends="required,mask">
+        <msg name="required" key="TollTagForm.driverLicenseNumber.required"/>
+        <msg name="mask" key="TollTagForm.driverLicenseNumber.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z]*$</var-value></var>
+      </field>
+
+      <field property="hearFrom" depends="required">
+        <msg name="required" key="TollTagForm.hearFrom.required"/>
+      </field>
+
+    </form>
+
+    <form name="/GetTollTagProcessPaymentInfo">
+
+      <field property="billingName" depends="required,mask">
+        <msg name="required" key="TollTagForm.billingName.required"/>
+        <msg name="mask" key="TollTagForm.billingName.mask"/>
+        <var><var-name>mask</var-name><var-value>^[a-zA-Z ,.-]*$</var-value></var>
+      </field>
+
+      <field property="billingAddress" depends="required,mask">
+        <msg name="required" key="TollTagForm.billingAddress.required"/>
+        <msg name="mask" key="TollTagForm.billingAddress.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z ,#.-]*$</var-value></var>
+      </field>
+
+      <field property="billingAddressLine2" depends="mask">
+        <msg name="mask" key="TollTagForm.billingAddressLine2.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z ,#.-]*$</var-value></var>
+      </field>
+
+      <field property="billingCity" depends="required,mask">
+        <msg name="required" key="TollTagForm.billingCity.required"/>
+        <msg name="mask" key="TollTagForm.billingCity.mask"/>
+        <var><var-name>mask</var-name><var-value>^[a-zA-Z ,._-]*$</var-value></var>
+      </field>
+
+     <field property="billingZipcode" depends="required,mask">
+        <msg name="required" key="TollTagForm.billingZipcode.required"/>
+        <msg name="mask" key="TollTagForm.billingZipcode.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+      </field>
+
+      <field property="billingPlus4" depends="mask">
+        <msg name="mask" key="TollTagForm.billingPlus4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+      </field>
+
+      <field property="creditCardNumber" depends="required,validCreditCardNumber,creditCard">
+        <msg name="required" key="TollTagForm.creditCardNumber.required"/>
+        <msg name="validCreditCardNumber" key="TollTagForm.creditCardNumber.valid"/>
+        <msg name="creditCard" key="TollTagForm.creditCardNumber.valid"/>
+        <var><var-name>creditCardType</var-name><var-value>creditCardType</var-value></var>
+        <var><var-name>creditCardNumber</var-name><var-value>creditCardNumber</var-value></var>
+      </field>
+
+      <field property="creditCardExpirationMonth" depends="required,validateExpirationYearMonth">
+        <msg name="required" key="TollTagForm.creditCardExpirationMonth.required"/>
+        <msg name="validateExpirationYearMonth" key="TollTagForm.creditCardExpirationMonth.valid"/>
+        <var><var-name>year</var-name><var-value>creditCardExpirationYear</var-value></var>
+        <var><var-name>month</var-name><var-value>creditCardExpirationMonth</var-value></var>
+      </field>
+
+      <field property="creditCardExpirationYear" depends="required">
+        <msg name="required" key="TollTagForm.creditCardExpirationYear.required"/>
+      </field>
+
+    </form>
+
+    <form name="ChangePasswordForm">
+        <field property="userId" depends="required">
+            <arg key="changePasswordForm.userId"/>
+        </field>
+        <field property="oldPassword" depends="required">
+            <arg key="changePasswordForm.oldPassword"/>
+        </field>
+        <field property="newPassword" depends="required,mask">
+            <arg key="changePasswordForm.newPassword"/>
+            <msg name="mask" key="changePasswordForm.newPassword.mask"/>
+            <var><var-name>mask</var-name><var-value>^[\w]{6,16}$</var-value></var>
+        </field>
+        <field property="newPassword" depends="twoFieldsNotEqual">
+            <arg position="0" key="changePasswordForm.newPassword"/>
+            <arg position="1" key="changePasswordForm.oldPassword"/>
+            <var>
+                <var-name>secondProperty</var-name>
+                <var-value>oldPassword</var-value>
+            </var>
+        </field>
+        <field property="newPassword2" depends="required,twofields">
+            <arg position="0" key="changePasswordForm.reenterNewPassword"/>
+            <arg position="1" key="changePasswordForm.newPassword"/>
+            <var>
+                <var-name>secondProperty</var-name>
+                <var-value>newPassword</var-value>
+            </var>
+        </field>
+    </form>
+
+    <form name="/signupSaveVehicle">
+        <field property="state" depends="required">
+            <arg key="tagRequestForm.state"/>
+        </field>
+
+        <field property="licensePlate" depends="mask">
+            <msg name="mask" key="tagRequestForm.licensePlate.mask"/>
+            <var><var-name>mask</var-name><var-value>^[a-zA-Z0-9]{1,15}$</var-value></var>
+        </field>
+
+        <field property="tempLicense" depends="validwhen">
+            <arg key="tagRequestForm.licensePlate"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (licensePlate != null))</var-value>
+            </var>
+       </field>
+
+        <field property="year" depends="required, mask">
+            <arg key="tagRequestForm.year"/>
+            <msg name="mask" key="tagRequestForm.year.mask"/>
+            <var><var-name>mask</var-name><var-value>^[\d]{4}$</var-value></var>
+        </field>
+        <field property="color" depends="required">
+            <arg key="tagRequestForm.color"/>
+        </field>
+       <field property="color" depends="maxlength">
+        <arg key="tagRequestForm.color"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+
+        <field property="make" depends="required, mask">
+            <arg key="tagRequestForm.make"/>
+            <msg name="mask" key="tagRequestForm.make.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+        <field property="model" depends="required, mask">
+            <arg key="tagRequestForm.model"/>
+            <msg name="mask" key="tagRequestForm.model.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+       <field property="model" depends="maxlength">
+        <arg key="tagRequestForm.model"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+
+       <field property="nickname" depends="maxlength,mask">
+            <arg key="tagRequestForm.nickname"/>
+            <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+            <msg name="mask" key="tagRequestForm.nickname.mask"/>
+            <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-\']*$</var-value></var>
+      </field>
+    </form>
+
+    <form name="/signupSaveVehicleAndContinue">
+        <field property="state" depends="required">
+            <arg key="tagRequestForm.state"/>
+        </field>
+
+        <field property="licensePlate" depends="mask">
+            <msg name="mask" key="tagRequestForm.licensePlate.mask"/>
+            <var><var-name>mask</var-name><var-value>^[a-zA-Z0-9]{1,15}$</var-value></var>
+        </field>
+
+        <field property="tempLicense" depends="validwhen">
+            <arg key="tagRequestForm.licensePlate"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (licensePlate != null))</var-value>
+            </var>
+       </field>
+
+        <field property="year" depends="required, mask">
+            <arg key="tagRequestForm.year"/>
+            <msg name="mask" key="tagRequestForm.year.mask"/>
+            <var><var-name>mask</var-name><var-value>^[\d]{4}$</var-value></var>
+        </field>
+        <field property="color" depends="required">
+            <arg key="tagRequestForm.color"/>
+        </field>
+       <field property="color" depends="maxlength">
+        <arg key="tagRequestForm.color"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+        <field property="make" depends="required, mask">
+            <arg key="tagRequestForm.make"/>
+            <msg name="mask" key="tagRequestForm.make.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+        <field property="model" depends="required, mask">
+            <arg key="tagRequestForm.model"/>
+            <msg name="mask" key="tagRequestForm.model.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+       <field property="model" depends="maxlength">
+        <arg key="tagRequestForm.model"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+
+       <field property="nickname" depends="maxlength,mask">
+            <arg key="tagRequestForm.nickname"/>
+            <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+            <msg name="mask" key="tagRequestForm.nickname.mask"/>
+            <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-\']*$</var-value></var>
+      </field>
+    </form>
+
+    <form name="/accountSaveVehicle">
+        <field property="state" depends="required">
+            <arg key="tagRequestForm.state"/>
+        </field>
+
+        <field property="licensePlate" depends="mask">
+            <msg name="mask" key="tagRequestForm.licensePlate.mask"/>
+            <var><var-name>mask</var-name><var-value>^[a-zA-Z0-9]{1,15}$</var-value></var>
+        </field>
+
+        <field property="tempLicense" depends="validwhen">
+            <arg key="tagRequestForm.licensePlate"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (licensePlate != null))</var-value>
+            </var>
+       </field>
+
+        <field property="year" depends="required, mask">
+            <arg key="tagRequestForm.year"/>
+            <msg name="mask" key="tagRequestForm.year.mask"/>
+            <var><var-name>mask</var-name><var-value>^[\d]{4}$</var-value></var>
+        </field>
+        <field property="color" depends="required">
+            <arg key="tagRequestForm.color"/>
+        </field>
+       <field property="color" depends="maxlength">
+        <arg key="tagRequestForm.color"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+        <field property="make" depends="required, mask">
+            <arg key="tagRequestForm.make"/>
+            <msg name="mask" key="tagRequestForm.make.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+        <field property="model" depends="required, mask">
+            <arg key="tagRequestForm.model"/>
+            <msg name="mask" key="tagRequestForm.model.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+       <field property="model" depends="maxlength">
+        <arg key="tagRequestForm.model"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+        <field property="nickname" depends="maxlength,mask">
+            <arg key="tagRequestForm.nickname"/>
+            <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+            <msg name="mask" key="tagRequestForm.nickname.mask"/>
+            <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-\']*$</var-value></var>
+       </field>
+    </form>
+
+
+    <form name="/accountSaveVehicleAndContinue">
+         <field property="state" depends="required">
+            <arg key="tagRequestForm.state"/>
+        </field>
+
+        <field property="licensePlate" depends="mask">
+            <msg name="mask" key="tagRequestForm.licensePlate.mask"/>
+            <var><var-name>mask</var-name><var-value>^[a-zA-Z0-9]{1,15}$</var-value></var>
+        </field>
+
+        <field property="tempLicense" depends="validwhen">
+            <arg key="tagRequestForm.licensePlate"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (licensePlate != null))</var-value>
+            </var>
+       </field>
+
+
+        <field property="year" depends="required, mask">
+            <arg key="tagRequestForm.year"/>
+            <msg name="mask" key="tagRequestForm.year.mask"/>
+            <var><var-name>mask</var-name><var-value>^[\d]{4}$</var-value></var>
+        </field>
+        <field property="color" depends="required">
+            <arg key="tagRequestForm.color"/>
+        </field>
+      <field property="color" depends="maxlength">
+        <arg key="tagRequestForm.color"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+        <field property="make" depends="required, mask">
+            <arg key="tagRequestForm.make"/>
+            <msg name="mask" key="tagRequestForm.make.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+        <field property="model" depends="required, mask">
+            <arg key="tagRequestForm.model"/>
+            <msg name="mask" key="tagRequestForm.model.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+      <field property="model" depends="maxlength">
+        <arg key="tagRequestForm.model"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+        <field property="nickname" depends="maxlength, mask">
+            <arg key="tagRequestForm.nickname"/>
+            <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+            <msg name="mask" key="tagRequestForm.nickname.mask"/>
+            <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-\']*$</var-value></var>
+       </field>
+    </form>
+
+
+
+
+    <form name="/accountEditVehicle">
+        <field property="state" depends="required">
+            <arg key="tagRequestForm.state"/>
+        </field>
+
+        <field property="licensePlate" depends="mask">
+            <msg name="mask" key="tagRequestForm.licensePlate.mask"/>
+            <var><var-name>mask</var-name><var-value>^[a-zA-Z0-9]{1,15}$</var-value></var>
+        </field>
+
+        <field property="tempLicense" depends="validwhen">
+            <arg key="tagRequestForm.licensePlate"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (licensePlate != null))</var-value>
+            </var>
+       </field>
+
+        <field property="year" depends="required, mask">
+            <arg key="tagRequestForm.year"/>
+            <msg name="mask" key="tagRequestForm.year.mask"/>
+            <var><var-name>mask</var-name><var-value>^[\d]{4}$</var-value></var>
+        </field>
+        <field property="color" depends="required">
+            <arg key="tagRequestForm.color"/>
+        </field>
+      <field property="color" depends="maxlength">
+        <arg key="tagRequestForm.color"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+        <field property="make" depends="required, mask">
+            <arg key="tagRequestForm.make"/>
+            <msg name="mask" key="tagRequestForm.make.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+        <field property="model" depends="required, mask">
+            <arg key="tagRequestForm.model"/>
+            <msg name="mask" key="tagRequestForm.model.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-]*$</var-value></var>
+        </field>
+      <field property="model" depends="maxlength">
+        <arg key="tagRequestForm.model"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+        <field property="nickname" depends="maxlength, mask">
+            <arg key="tagRequestForm.nickname"/>
+            <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+            <msg name="mask" key="tagRequestForm.nickname.mask"/>
+            <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-\']*$</var-value></var>
+       </field>
+
+        <field property="pbpStart" depends="validwhen">
+            <arg key="tagRequestForm.pbpStart"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (pbpTag == 'false'))</var-value>
+            </var>
+        </field>
+    </form>
+
+    <form name="/accountAddPbpVehicle">
+        <field property="state" depends="required">
+            <arg key="tagRequestForm.state"/>
+        </field>
+
+
+        <field property="licensePlate" depends="mask">
+            <msg name="mask" key="tagRequestForm.licensePlate.mask"/>
+            <var><var-name>mask</var-name><var-value>^[a-zA-Z0-9]{1,15}$</var-value></var>
+        </field>
+
+        <field property="tempLicense" depends="validwhen">
+            <arg key="tagRequestForm.licensePlate"/>
+            <var>
+                <var-name>test</var-name>
+                <var-value> ((*this* != null) or (licensePlate != null))</var-value>
+            </var>
+       </field>
+
+        <field property="year" depends="required, mask">
+            <arg key="tagRequestForm.year"/>
+            <msg name="mask" key="tagRequestForm.year.mask"/>
+            <var><var-name>mask</var-name><var-value>^[\d]{4}$</var-value></var>
+        </field>
+        <field property="color" depends="required">
+            <arg key="tagRequestForm.color"/>
+        </field>
+       <field property="color" depends="maxlength">
+        <arg key="tagRequestForm.color"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>20</var-value></var>
+      </field>
+
+        <field property="make" depends="required, mask">
+            <arg key="tagRequestForm.make"/>
+            <msg name="mask" key="tagRequestForm.make.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-\']*$</var-value></var>
+        </field>
+        <field property="model" depends="required, mask">
+            <arg key="tagRequestForm.model"/>
+            <msg name="mask" key="tagRequestForm.model.mask"/>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-\']*$</var-value></var>
+        </field>
+       <field property="model" depends="maxlength">
+        <arg key="tagRequestForm.model"/>
+        <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+        <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+      </field>
+
+        <field property="nickname" depends="maxlength, mask">
+            <arg key="tagRequestForm.nickname"/>
+            <arg1 name="maxlength" key="${var:maxlength}" resource="false"/>
+            <msg name="mask" key="tagRequestForm.nickname.mask"/>
+            <var><var-name>maxlength</var-name><var-value>30</var-value></var>
+            <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z\s\,#\.\-\']*$</var-value></var>
+       </field>
+
+        <field property="pbpStart" depends="required">
+            <arg key="tagRequestForm.pbpStart"/>
+        </field>
+    </form>
+
+    <form name="/velcroSubmit">
+        <field property="orderQty" depends="validwhen">
+            <msg name="validwhen" key="velcroForm.orderQty.greaterThanZero"/>
+            <var>
+              <var-name>test</var-name>
+              <var-value>((*this* != null) and (*this* > 0))</var-value>
+            </var>
+        </field>
+        <field property="orderQty" depends="validwhen">
+            <msg name="validwhen" key="velcroForm.orderQty.invalid"/>
+            <var>
+              <var-name>test</var-name>
+              <var-value>
+                (activeTolltag >= *this*)
+              </var-value>
+         </var>
+        </field>
+    </form>
+
+    <form name="/ProcessPaymentInfo">
+
+      <field property="billingName" depends="required,mask">
+        <msg name="required" key="PaymentInfoForm.billingName.required"/>
+        <msg name="mask" key="PaymentInfoForm.billingName.mask"/>
+        <var><var-name>mask</var-name><var-value>^[a-zA-Z ,.-]*$</var-value></var>
+      </field>
+
+      <field property="billingAddress" depends="required,mask">
+        <msg name="required" key="PaymentInfoForm.billingAddress.required"/>
+        <msg name="mask" key="PaymentInfoForm.billingAddress.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z ,#.-]*$</var-value></var>
+      </field>
+
+      <field property="billingAddressLine2" depends="mask">
+        <msg name="mask" key="PaymentInfoForm.billingAddressLine2.mask"/>
+        <var><var-name>mask</var-name><var-value>^[0-9a-zA-Z ,#.-]*$</var-value></var>
+      </field>
+
+      <field property="billingCity" depends="required,mask">
+        <msg name="required" key="PaymentInfoForm.billingCity.required"/>
+        <msg name="mask" key="PaymentInfoForm.billingCity.mask"/>
+        <var><var-name>mask</var-name><var-value>^[a-zA-Z ,._-]*$</var-value></var>
+      </field>
+
+     <field property="billingZipcode" depends="required,mask,minlength">
+        <msg name="required" key="PaymentInfoForm.billingZipcode.required"/>
+        <msg name="mask" key="PaymentInfoForm.billingZipcode.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+        <msg name="minlength" key="PaymentInfoForm.billingZipcode.minlength"/>
+        <var><var-name>minlength</var-name><var-value>5</var-value></var>
+      </field>
+
+      <field property="billingPlus4" depends="mask,minlength">
+        <msg name="mask" key="PaymentInfoForm.billingPlus4.mask"/>
+        <var><var-name>mask</var-name><var-value>^[\d]*$</var-value></var>
+        <msg name="minlength" key="PaymentInfoForm.billingPlus4.minlength"/>
+        <var><var-name>minlength</var-name><var-value>4</var-value></var>
+      </field>
+<!--
+      <field property="creditCardNumber" depends="required,validCreditCardNumber">
+        <msg name="required" key="PaymentInfoForm.creditCardNumber.required"/>
+        <msg name="validCreditCardNumber" key="PaymentInfoForm.creditCardNumber.valid"/>
+        <var><var-name>creditCardType</var-name><var-value>creditCardType</var-value></var>
+        <var><var-name>creditCardNumber</var-name><var-value>creditCardNumber</var-value></var>
+      </field>
+-->
+      <field property="creditCardNumber" depends="required">
+        <msg name="required" key="PaymentInfoForm.creditCardNumber.required"/>
+      </field>
+
+      <field property="creditCardNumberNew" depends="validCreditCardNumber,creditCard">
+        <msg name="required" key="PaymentInfoForm.creditCardNumber.required"/>
+        <msg name="validCreditCardNumber" key="PaymentInfoForm.creditCardNumber.valid"/>
+        <msg name="creditCard" key="PaymentInfoForm.creditCardNumber.valid"/>
+        <var><var-name>creditCardType</var-name><var-value>creditCardType</var-value></var>
+        <var><var-name>creditCardNumber</var-name><var-value>creditCardNumberNew</var-value></var>
+      </field>
+
+      <field property="creditCardExpirationMonth" depends="required, validateExpirationYearMonth">
+        <msg name="required" key="PaymentInfoForm.creditCardExpirationMonth.required"/>
+        <msg name="validateExpirationYearMonth" key="PaymentInfoForm.creditCardExpirationMonth.valid"/>
+        <var><var-name>year</var-name><var-value>creditCardExpirationYear</var-value></var>
+        <var><var-name>month</var-name><var-value>creditCardExpirationMonth</var-value></var>
+      </field>
+
+      <field property="creditCardExpirationYear" depends="required">
+        <msg name="required" key="PaymentInfoForm.creditCardExpirationYear.required"/>
+      </field>
+
+    </form>
+
+    <form name="contactUsForm">
+        <field property="replyAddress" depends="required,email">
+            <arg key="contactUsForm.replyAddress"/>
+        </field>
+        <field property="comment" depends="required">
+            <arg key="contactUsForm.comment"/>
+        </field>
+    </form>
+<!--
+    <form name="fileUploadForm">
+
+    </form>
+     -->
+  </formset>
+</form-validation>

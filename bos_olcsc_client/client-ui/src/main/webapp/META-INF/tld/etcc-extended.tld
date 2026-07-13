@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+  <tlib-version>1.2</tlib-version>
+  <jsp-version>1.1</jsp-version>
+  <short-name>etcc-extended</short-name>
+
+  <tag>
+    <name>autocompleteOffForm</name>
+    <tag-class>com.etcc.csc.presentation.taglib.AutocompleteOffFormTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>action</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>acceptCharset</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>disabled</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>enctype</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>focus</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>focusIndex</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>method</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>onreset</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>onsubmit</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>readonly</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>scriptLanguage</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>style</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>styleClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>styleId</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>target</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>format</name>
+    <tag-class>com.etcc.csc.presentation.taglib.FormatTag</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      <name>address</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>com.etcc.csc.dto.Address</type>
+      <description>The address to format.</description>
+    </attribute>
+    <attribute>
+      <name>addressContainer</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>com.etcc.csc.dto.AddressContainer</type>
+      <description>The container with an address to format.</description>
+    </attribute>
+    <attribute>
+      <name>billingInfo</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>com.etcc.csc.dto.BillingInfo</type>
+      <description>The billing info to format.</description>
+    </attribute>
+    <attribute>
+      <name>accountName</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>com.etcc.csc.dto.AccountName</type>
+      <description>The account name to format.</description>
+    </attribute>
+    <attribute>
+      <name>vehicle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>com.etcc.csc.dto.TagDTO</type>
+      <description>The vehicle tag to format.</description>
+    </attribute>
+    <attribute>
+      <name>delimiter</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>The delimiter to use.  Defaults to HTML BR tag.</description>
+    </attribute>
+    <attribute>
+      <name>mask</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <description>
+        Specifies which values to mask.
+        Only used with billing info and defaults to "ALL".
+        Valid values: "NONE", "ACCOUNT", "DATE", "ALL".
+      </description>
+    </attribute>
+    <attribute>
+      <name>displayName</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>boolean</type>
+      <description>Boolean flag specifying whether to display the name.  Defaults to true.</description>
+    </attribute>
+    <attribute>
+      <name>primaryOnly</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>boolean</type>
+      <description>Boolean flag indicating to only display the primary billing info.  Defaults to true.</description>
+    </attribute>
+    <attribute>
+      <name>maxNameLength</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>int</type>
+      <description>Int value specifying the length to limit the account name components.  Defaults to 0 (no limits).</description>
+    </attribute>
+  </tag>
+
+</taglib>
