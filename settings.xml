@@ -1,0 +1,43 @@
+<settings>
+
+    <!--<localRepository></localRepository>-->
+
+    <servers>
+        <server>
+            <id>releaseDeploymentRepo</id>
+            <username>NEXUS_UN_PLACEHOLDER</username>
+            <password>NEXUS_PW_PLACEHOLDER</password>
+        </server>
+        <server>
+            <id>snapshotDeploymentRepo</id>
+            <username>NEXUS_UN_PLACEHOLDER</username>
+            <password>NEXUS_PW_PLACEHOLDER</password>
+        </server>
+        <server>
+            <id>nexusDockerRegistry</id>
+            <username>NEXUS_UN_PLACEHOLDER</username>
+            <password>NEXUS_PW_PLACEHOLDER</password>
+            <configuration>
+                <email>jenkins_worker@etcc.com</email>
+            </configuration>
+        </server>
+    </servers>
+	
+	<mirrors>
+        <mirror>
+            <id>mirror-central</id>
+            <url>https://nexus01.etcc.com/repository/maven-apache/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+    <!-- .................................................................... -->
+
+    <!--<mirrors>
+        <mirror>
+            <id>mirror-example</id>
+            <url>https://nexus01.etcc.com/repository/maven-example/</url>
+            <mirrorOf>example</mirrorOf>
+        </mirror>
+    </mirrors>-->
+
+</settings>

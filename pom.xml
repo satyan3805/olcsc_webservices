@@ -1,0 +1,123 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.etcc.olcsc</groupId>
+    <artifactId>hctra-olcsc</artifactId>
+    <description>The Webservices and backend tiers for HCTRA</description>
+    <!--Clearcase builds :: When doing a release, be sure to use the -PRelease profile to build the Release Profile -->
+    <version>3.9.24-a463cbce</version>
+	<name>HCTRA - OLCSC :: ROOT</name>
+    <url>http://www.etcc.com</url>
+    <packaging>pom</packaging>
+	<modules>
+		<module>bos_olcsc_client</module>
+	</modules>
+    <profiles>
+		<profile>
+			<id>nexusRelease</id>
+			<properties>
+				<docker.push.registry>nexus01.etcc.com:18445</docker.push.registry>
+			</properties>
+			<distributionManagement>
+				<repository>
+					<id>releaseDeploymentRepo</id>
+					<name>releaseRepo</name>
+					<url>https://nexus01.etcc.com/repository/maven-releases/</url>
+				</repository>
+			</distributionManagement>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-deploy-plugin</artifactId>
+						<configuration>
+							<!--<skip>true</skip> -->
+							<serverId>releaseRepo</serverId>
+							<nexusUrl>https://nexus01.etcc.com/</nexusUrl>
+						</configuration>
+					</plugin>
+					<!--plugin> <groupId>org.sonatype.plugins</groupId> <artifactId>nexus-staging-maven-plugin</artifactId> 
+						<version>1.6.7</version> <executions> <execution> <id>default-deploy</id> 
+						<phase>deploy</phase> <goals> <goal>deploy</goal> </goals> </execution> </executions> 
+						<configuration> <serverId>releaseRepo</serverId> <nexusUrl>https://nexus01.etcc.com/</nexusUrl> 
+						<skipStaging>true</skipStaging> </configuration> </plugin -->
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>nexusSnapshot</id>
+			<properties>
+				<docker.push.registry>nexus01.etcc.com:18444</docker.push.registry>
+			</properties>
+			<distributionManagement>
+				<repository>
+					<id>snapshotDeploymentRepo</id>
+					<name>snapshotRepo</name>
+					<url>https://nexus01.etcc.com/repository/maven-snapshot-builds/</url>
+				</repository>
+			</distributionManagement>
+			<build>
+				<plugins>
+					<!--<plugin> <groupId>org.sonatype.plugins</groupId> <artifactId>nexus-staging-maven-plugin</artifactId> 
+						<version>1.6.7</version> <executions> <execution> <id>default-deploy</id> 
+						<phase>deploy</phase> <goals> <goal>deploy</goal> </goals> </execution> </executions> 
+						<configuration> <serverId>snapshotRepo</serverId> <nexusUrl>https://nexus01.etcc.com/</nexusUrl> 
+						<skipStaging>true</skipStaging> </configuration> </plugin> -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-deploy-plugin</artifactId>
+						<configuration>
+							<!--<skip>true</skip> -->
+							<serverId>snapshotRepo</serverId>
+							<nexusUrl>https://nexus01.etcc.com/</nexusUrl>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+    </profiles>  
+	<repositories>
+	    <repository>
+			<id>Nexus repository -- maven-crystalreports-license</id>
+            <url>https://nexus01.etcc.com/repository/maven-crystalreports-license/</url>
+		</repository> 
+		<repository>
+			<id>Nexus repository -- maven-central</id>
+			<url>https://nexus01.etcc.com/repository/maven-central/</url>
+		</repository>	
+		<repository>
+			<id>Nexus repository -- maven-releases</id>
+			<url>https://nexus01.etcc.com/repository/maven-releases/</url>
+		</repository>	
+		<repository>
+			<id>Nexus repository -- maven-snapshot-builds</id>
+			<url>https://nexus01.etcc.com/repository/maven-snapshot-builds/</url>
+		</repository>		
+		<repository>
+			<id>Nexus repository -- maven-thirdparty</id>
+			<url>https://nexus01.etcc.com/repository/maven-thirdparty/</url>
+		</repository>		
+		<repository>
+			<id>Nexus repository -- maven-rite</id>
+			<url>https://nexus01.etcc.com/repository/maven-rite/</url>
+		</repository>		
+		<repository>
+			<id>Nexus repository -- maven-rite-internal</id>
+			<url>https://nexus01.etcc.com/repository/maven-rite-internal/</url>
+		</repository>		
+		<repository>
+			<id>Nexus repository -- maven-proprietary</id>
+			<url>https://nexus01.etcc.com/repository/maven-proprietary/</url>
+		</repository>
+		<repository>
+            <id>central</id>
+            <url>https://nexus01.etcc.com/repository/maven-apache/</url>
+		</repository>
+	</repositories>	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>https://nexus01.etcc.com/repository/maven-apache/</url>
+		</pluginRepository>
+	</pluginRepositories>
+</project>
