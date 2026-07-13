@@ -1,0 +1,1547 @@
+body
+{
+	font-size: 75%; /* Base font size */
+}
+
+/* This sets the font-types */
+body, td, p, li, dt, dd, input, select, textarea
+{
+	font-family: "Trebuchet MS", Verdana, "Bitstream Vera Sans", Arial, sans-serif;
+}
+
+/* Some headers get slightly different properties */
+h1,
+	h2 em,
+	div.outstanding-tolls-content h1,
+	div.outstanding-tolls-content h2,
+	div.outstanding-tolls-content h3,
+	body.account-section h3,
+	h4
+{
+	font-family: Arial, sans-serif;
+}
+
+/* Some meta (non-content) page elements
+	also get slightly different properties */
+	
+ul#primary-navigation li
+{
+	font-family: Verdana, "Bitstream Vera Sans", Arial, sans-serif;
+}
+	
+p.progress-bar,
+	p.status-bar,
+	div#common-navigation ul li,
+	ul#secondary-navigation li
+{
+	font-family: "Trebuchet MS",Arial, sans-serif;
+}
+
+/* Font properties for form elements */
+form input,
+	form select,
+	form textarea
+{
+	font-family: Arial, sans-serif;
+
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+/* Make font-size smaller for items with long line length */
+form select#security-question,
+	form select#country
+{
+	font-size: 0.92em;
+}
+
+/* Font properties for faq-answers */
+div#secondary-content dl.faq dd *
+{
+	font-family: Arial, sans-serif;
+}
+
+h2, h3, h5, h6,
+	form fieldset dl dt,
+	form fieldset dl dd,
+	ul#tertiary-navigation,
+	ul#page-controls
+{
+	font-family: "Trebuchet MS", Verdana, "Bitstream Vera Sans", Arial, sans-serif;
+}
+
+fieldset.legal h2
+{
+	font-family: "Garamond", serif;
+}
+
+/* The first selector is tied to the license plate number,
+	while the second is for mailing labels */
+div.outstanding-tolls-content p strong,
+	div#content-container div.section address.mailing-label
+{
+	font-family: "Bistream Vera Sans Mono", "Lucida Console", "Lucida Grande", monospace;
+}
+
+/* ============================ Layout Container Elements ================================= */
+
+/* "Loading... Please Wait" message */
+div#loading 
+{
+	text-align: center;
+}
+
+	div#loading p
+	{
+		font-size: 1.8em;
+		line-height: 1.5;
+		
+		margin: 1.0em;
+	}
+
+/* =================================== Link Properties =================================== */
+
+a:link,
+	a:visited,
+	a:active
+{
+	text-decoration: underline;
+}
+
+a:hover
+{
+	text-decoration: none;
+}
+
+
+/* =================================== Common Navigation =================================== */
+
+/* The common-navigation holds links that appear on every page */
+
+div#page div#common-navigation
+{}
+
+	div#common-navigation ul
+	{}
+
+		div#common-navigation ul li
+		{
+			font-size: 0.9em;
+		}
+
+
+	div#page div#common-navigation a
+	{
+		text-decoration: none;
+	}
+
+	div#page div#common-navigation a:hover
+	{
+		text-decoration: underline;
+	}
+
+/* =================================== Primary Navigation =================================== */
+
+div#masthead ul#primary-navigation
+{}
+
+	ul#primary-navigation li
+	{
+		font-size: 0.9em;
+	}
+
+		ul#primary-navigation li a
+		{
+			text-decoration: none;
+		}
+
+		ul#primary-navigation li a:hover
+		{
+			text-decoration: underline;
+		}
+
+/* =================================== Secondary Navigation =================================== */
+
+div#masthead ul#secondary-navigation
+{
+	font-size: 0.9em;
+}
+
+	ul#secondary-navigation li a
+	{
+		text-decoration: none;
+	}
+
+	ul#secondary-navigation li a:hover
+	{
+		text-decoration: underline;
+	}
+
+/* =========================== Tertiary Navigation and Page Controls ============================= */
+
+/*
+	The tertiary navigation mostly appears within the Manage section, specifically the Account Activity area.
+	There's no reason it couldn't also be used elsewhere, though.
+
+	The ul#page-controls element holds meta page functions, such as "print preview", "download PDF"
+	and "download Excel"
+*/
+
+ul#tertiary-navigation li
+{
+	font-size: 0.92em;
+}
+
+ul#page-controls li
+{
+	font-size: 0.8em;
+}
+
+	div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li a,
+		div#tertiary-navigation-and-or-page-controls ul#page-controls li a
+	{
+		text-decoration: none;
+	}
+	
+		div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li a
+		{
+			padding-top: 0.25em;
+			padding-bottom: 0.20em; /* make sure we don't see the bottom border */
+		}
+
+		div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li a:hover,
+			div#tertiary-navigation-and-or-page-controls ul#page-controls li a:hover
+		{
+			text-decoration: underline;
+		}
+
+			/* Properties for a currently-selected section */
+			body.transactions-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#transactions-tertiary-navigation a,
+				body.statements-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#statements-tertiary-navigation a,
+				body.yearly-summary-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#yearly-summary-tertiary-navigation a,
+				body.receipts-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#receipts-tertiary-navigation a,
+				body.receipt-detail-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#receipt-detail-tertiary-navigation a,
+				body.monthly-invoices-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#monthly-invoices-tertiary-navigation a,
+
+				body.view-orders-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#view-orders-tertiary-navigation a,
+				body.make-payment-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#make-payment-tertiary-navigation a,
+				body.order-ez-tag-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#order-ez-tag-tertiary-navigation a,
+
+				body.lane-types-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#lane-types-tertiary-navigation a,
+				body.regulations-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#regulations-tertiary-navigation a,
+				body.roadside-assistance-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#roadside-assistance-tertiary-navigation a,
+				body.advisories-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#advisories-tertiary-navigation a,
+				body.enforcement-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#enforcement-tertiary-navigation a,
+
+				body.hardy-north-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#hardy-north-tertiary-navigation a,
+				body.hardy-south-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#hardy-south-tertiary-navigation a,
+				body.sht-north-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#sht-north-tertiary-navigation a,
+				body.sht-south-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#sht-south-tertiary-navigation a,
+				body.westpark-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#westpark-tertiary-navigation a,
+				body.sht-southwest-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#sht-southwest-tertiary-navigation a,
+				body.sht-southeast-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#sht-southeast-tertiary-navigation a,
+				body.sht-east-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#sht-east-tertiary-navigation a,
+
+				body.introduction-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#introduction-tertiary-navigation a,
+				body.current-projects-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#current-projects-tertiary-navigation a,
+				body.open-contract-bids-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#open-contract-bids-tertiary-navigation a,
+				body.bid-tabulations-section div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li#bid-tabulations-tertiary-navigation a
+			{				
+					font-weight: bold;
+					padding-bottom: 0.25em; /* make sure we don't see the bottom border */
+			}
+					
+
+/* ===================================== Headers ======================================== */
+
+/* Header directory:
+	H1: Page title
+	H2: Mid-page headers, such as address separators (on the sign-in side)
+		and running-balance headers (on the manage side)
+	H3:
+		Sign-in area: Confirmation subheaders (such as "Account Information for")
+		Manage-area: subheaders (such as "Vehicles covered by")
+	H4: Headers within the confirmation page
+	H5: Legend-like form-prefacing remarks (such as "If you forget your password...")
+	H6: Headers within the secondary-content area
+*/
+
+
+/* General header reset */
+h1, h2, h3, h4, h5, h6
+{
+	font-size: 1.0em;
+
+	margin: 0em;
+	padding: 0em;
+}
+
+/* Additional properties for some of the headers */
+h3, h5, h6
+{
+	font-weight: normal;
+}
+
+	/* Page title */
+	h1
+	{
+		font-size: 1.7em;
+		letter-spacing: -0.03em;
+
+		margin-bottom: 0.35em;
+	}
+		/* This is used for sub-titles, such as
+			"Please review everything to make sure it is accurate." */
+		div#content-container h1 em
+		{
+			font-style: normal;
+			font-size: 0.5em;
+		}
+
+		div.outstanding-tolls-content h1
+		{
+			margin-bottom: 0.4em;
+		}
+
+		/* Headers within the login area on the home page */
+		body.home div#primary-content form#login h1,
+			body.home div#primary-content div#logged-in h1
+		{
+			font-size: 1.4em;
+			text-transform: uppercase;
+			font-style: italic;
+
+			margin-bottom: 0.6em;
+		}
+
+	/* H2: Mid-page headers, such as address separators (on the sign-in side)
+		and running-balance headers (on the manage side) */
+	h2
+	{
+		font-size: 1.25em;
+		margin-bottom: 0.6em;
+	}
+
+		/* This can be used to provide auxilliary text to the header,
+			such as details on the axle info */
+		h2 em
+		{
+			font-weight: normal;
+			font-size: 0.75em;
+		}
+
+		/* "If you choose to purchase an EZ TAG for this vehicle,
+			you must pay all current outstanding tolls and fees."
+			(within the Outstanding Tolls lightbox jobbie) */
+		div.outstanding-tolls-content h2.if-you-choose-to-purchase-a-ez-tag
+		{
+			font-size: 1.3em;
+			margin-bottom: 1.5em;
+		}
+
+		/* H2 elements within a legal section */
+		fieldset.legal h2
+		{
+			font-size: 1.2em;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+		}
+
+		/* h2 element properties for the home page -- which
+			are pretty much different from regular h2 elements */
+		body.home div#secondary-content h2
+		{
+			/* to override the image replacement defaults */
+			margin-bottom: 0.8em !important;
+		}
+			
+		/* incorporates tab like images around the h2s on this page */
+		body.account-summary-section h2
+		{
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+	
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		
+			body.account-summary-section h2 strong,
+				body.account-summary-section h2 strong span
+			{
+				padding-top: 0.5em;
+				padding-bottom: 0.4em;
+			}
+		
+		
+			body.account-summary-section h2#you-can
+			{
+				margin-top: 2em;
+			}
+
+	h3
+	{}
+
+		/* H3:
+				Sign-in area: Confirmation subheaders (such as "Account Information for") */
+		body.account-section h3
+		{
+			/* These bits are similar in many ways to H1 elements */
+			font-size: 1.5em;
+			margin-bottom: 1.0em;
+		}
+
+		/* This targets the username on the confirmation page */
+		body.account-section h3 em
+		{
+			font-style: normal;
+
+			padding-left: 0.15em;
+			padding-right: 0.15em;
+
+			padding-top: 0.1em;
+			padding-bottom: 0.2em;
+		}
+		
+		/* for headers that are dates, particularly in the news section */
+		h3.date 
+		{
+			margin-top:2.5em;
+		}	
+			
+			/* when they are in an individual article page. */
+			h3.date-single
+			{
+				margin-top: 0em;
+				margin-bottom: 1em;
+			}
+
+	/* H4: Headers within the confirmation page	*/
+	h4
+	{
+		font-size: 1.5em;
+		margin-bottom: 0.4em;
+	}
+
+		div.primary-section-content h4,
+			div.secondary-section-content h4
+		{
+			/* The bottom margin isn't needed in these cases
+				(where there're h4 elements inside primary-section-content
+				or secondary-section-content) since the line-height
+				in that vicinity takes care of the desired effect */
+			margin-bottom: 0em;
+		}
+
+	/* Legend-like form-prefacing remarks (such as "If you forget your password...") */
+	h5
+	{
+		font-style: italic;
+		font-size: 0.9em;
+		margin-bottom: 1.3em;
+	}
+
+		/* H5 elements get slightly different propertes
+			in the context of the confirmation page */
+		body.confirmation-section h5
+		{
+			font-size: 1.2em;
+			margin-bottom: 0.4em;
+		}
+
+
+	/* Headers within the secondary-content area */
+	h6
+	{}
+	
+		div#secondary-content h6
+		{
+			font-size: 1.2em;
+			font-weight: bold;
+			
+			margin-bottom: 0.75em;
+			padding-bottom: 0.3em;
+			
+			text-transform: none;
+		}
+
+/* ============================== Secondary-Content bits ============================ */
+
+/* Introductory text for the secondary-content area */
+div#secondary-content p.introduction
+{
+	font-style: italic;
+
+	margin-bottom: 1.5em;
+}
+
+/* FAQ questions and general headers in the secondary-content area */
+div#secondary-content dl.faq dt
+{
+	font-size: 0.9em;
+	letter-spacing: 0.02em;
+
+	text-transform: uppercase;
+	font-weight: bold;
+
+	padding-bottom: 0.3em;
+}
+
+
+
+/* FAQ answers */
+div#secondary-content dl.faq dd
+{
+	padding-bottom: 1.0em;
+}
+
+	/* Unordered lists within FAQ answers */
+
+	div#secondary-content dl.faq dd ul
+	{
+		margin-bottom: 0.8em;
+	}
+
+	/* Text properties for paragraphs within the secondary content area,
+		whether part of a definition list or alone */
+
+	div#secondary-content p
+	{
+		font-size: 0.9em;
+		line-height: 1.6;
+
+		margin-bottom: 1.0em;
+	}
+
+		body.home div#secondary-content p
+		{
+			font-size: 1.0em;
+		}
+
+
+	/* Link properties within the secondary-content area on the home page */
+
+	body.home div#secondary-content a,
+		body.home div#secondary-content div#news-and-information-section ul li a:hover
+	{
+		text-decoration: none;
+	}
+	
+		body.home div#secondary-content a:hover,
+			body.home div#secondary-content div#news-and-information-section ul li a
+		{
+			text-decoration: underline;
+		}
+		
+			body.home div#secondary-content div#news-and-information-section ul li a
+			{
+				font-size: 1.11em;
+			}
+	
+	
+/* different ways of being contacted */
+div#secondary-content dl.ways-of-contact dt
+{			
+	font-size: 0.92em;
+}
+
+	div#secondary-content dl.ways-of-contact dd p strong span
+	{
+		font-weight: normal;
+	}
+	
+/* hcards in the secondary content
+	http://microformats.org/wiki/hcard */
+
+div#secondary-content div.vcard p
+{
+	margin-bottom: 0em;
+}
+
+	div#secondary-content div.vcard p.organization-unit
+	{
+		font-weight: bold;
+	}
+
+
+/* ================================= Progress Bar Bits =================================== */
+
+/* Properties for the text within the progress-bar area */
+div#content-container p.progress-bar
+{
+	font-size: 1.6em;
+}
+
+/* ================================= Status Bar Bits =================================== */
+
+div#content-container p.status-bar
+{
+	font-size: 0.9em;
+}
+
+	div#content-container p.status-bar a
+	{
+		text-decoration: none;
+	}
+
+		/* The first selector below, the one ending in
+			"p.status-bar:hover", helps ensure that the
+			entire status bar gets underlined when
+			someone hovers over it.
+		*/
+		div#content-container p.status-bar:hover,
+			div#content-container p.status-bar a:hover
+		{
+			text-decoration: underline;
+		}
+		
+			body.contact-us-section div#content-container p.status-bar:hover,
+				body.contact-us-section div#content-container p.status-bar a:hover
+			{
+				text-decoration: none;
+			}
+		
+
+		/* "Name / Company Name" section of the Status Bar */
+		div#content-container p.status-bar a strong
+		{
+			font-size: 1.3em;
+		}
+
+		/* Emphasis tags enclose the account number
+			and the account balance */
+		div#content-container p.status-bar em
+		{
+			font-style: normal;
+		}
+
+			/* "Account Balance" section of the Status Bar */
+			div#content-container p.status-bar em.balance
+			{
+				padding-left: 1.1em;
+			}
+
+			div#content-container p.status-bar em strong
+			{
+				font-size: 1.0em;
+			}
+
+/* ============================== Form properties ============================ */
+
+/* General form properties */
+input.textfield,
+	input.zemText, /* for textpattern generated contact form */
+	select,
+	textarea
+{
+	border-width: 1px;
+	border-style: solid;
+}
+
+/* Properties for optional form fields */
+form fieldset dl dt.optional
+{
+	font-style: italic;
+}
+
+/* show the fieldset border and label to group and seperate these items */
+div#content-container fieldset.if-applicable legend
+{
+	font-style: italic;
+}
+
+/* Definition lists within a fieldset typically hold
+	a group of form labels & fields */
+div#content-container fieldset dl
+{
+	margin-bottom: 1.2em;
+}
+
+	/* 
+		This applies to explanatory text along with regular paragraphs
+		within a definition-description  
+		
+		FWIW, here were the original selectors, though they were later
+		trimmed a bit to lessen their specificity:
+		
+			div#content-container div#primary-content dl dd p,
+			div#content-container div#content dl dd p
+	*/
+	div#primary-content dl dd p,
+		div#content dl dd p
+	{
+		font-size: 0.9em;
+
+		padding-top: 0.2em;
+		margin-bottom: 0em; /* Just to be sure */
+	}
+
+		/* The "add more" paragraph/link, such as for the
+			"Authorized Agents" section  */
+		div#content-container dl dd p.add-more
+		{
+			padding-top: 0em;
+			margin-bottom: 1.0em;
+		}
+	
+	/* additional fields that the need different properties
+		see the make a payment page in the my ez tag section */	
+	div#content-container fieldset.add-to-ez-account-fields dl dd
+	{
+		text-align: right;
+	}
+	
+		div#content-container fieldset.add-to-ez-account-fields dl dd input#how-much-will-you-pay
+		{
+			text-align: right;
+		}
+		
+/* layout slightly different in the contact us page */		
+div#content-container fieldset#contact-message-fields dl dt label
+{
+	margin-bottom: 0.5em;
+}
+
+div#content-container fieldset#contact-message-fields dl dd select
+{
+	margin-bottom: 1.2em;
+}
+
+/* This is used for form error messages */
+div#content-container dl.errors
+{
+/*	font-style: italic; */
+}
+
+	div#content-container dl.errors dt,
+		div#content-container dl.success dt
+	{
+		margin-bottom: 1.0em;
+	}
+
+/* Properties for the legal-summary within the Billing section */
+div#content-container fieldset.legal ul li
+{
+	margin-bottom: 1.0em;
+}
+
+/* ========== Form actions ============= */
+
+/* The form-actions list holds a set of form submit button(s) */
+
+div#content-container ul.form-actions
+{
+	margin-bottom: 0em; /* Just to be sure */
+}
+
+/* ========================= Primary-and-Secondary Content: Home Page =========================== */
+
+/* ============= Login form & mini-account properties ================== */
+
+	/* This holds the form elements */
+	body.home div#primary-content form#login dl
+	{
+		margin-bottom: 0.3em;
+	}
+
+		body.home div#primary-content form#login dd
+		{
+			margin-bottom: 0.6em;
+		}
+		
+	/* This holds the "Forget your password?" / "First time to login?"
+		links on the home page */
+	body.home div#primary-content form#login ul li
+	{
+		font-size: 0.9em;
+		margin-bottom: 0.2em;
+	}
+	
+/* mini account summary once logged in */
+body.home div#primary-content div#logged-in
+{
+	padding-top: 20px;
+	padding-bottom: 2.0em;
+}
+
+	body.home div#primary-content div#logged-in div#logged-in-info
+	{
+		padding-top: 10px;
+	}
+
+		body.home div#primary-content div#logged-in div#logged-in-info dl dt
+		{
+			font-size: 1.08em; 
+			font-weight: bold;
+			margin-bottom: 0.35em;
+		}
+
+			body.home div#primary-content div#logged-in div#logged-in-info dl dd
+			{
+				font-size: 0.92em;
+				margin-bottom: 0.35em;
+			}	
+
+/* ================ Secondary Content bits ================== */
+
+body.home div#secondary-content ul li
+{
+	font-size: 0.9em;
+}
+
+/* secondary marketing */
+body.home div#secondary-content div#promo div#secondary-marketing
+{
+	margin-bottom: 0.8em !important;
+}
+
+	body.home div#secondary-content div#promo div#secondary-marketing div
+	{
+		padding-bottom: 5px;	
+	}				
+
+		body.home div#secondary-content div#promo div#secondary-marketing div h2
+		{			
+			font-weight: normal;
+			margin-bottom:0em !important;
+		}
+
+			body.home div#secondary-content div#promo div#secondary-marketing div h2 a
+			{
+				padding-top: 5px;
+			}
+
+/* ============================== General Content bits ============================ */
+
+/* Default properties for hcards - http://microformats.org/wiki/hcard */
+
+div.vcard
+{
+	margin-bottom: 1.0em;
+}
+
+	div.vcard p
+	{
+		margin-bottom: 0em;
+	}
+	
+		/* except when you want an external link to google maps to have margins */
+		div.vcard p.map-link
+		{
+			margin-top: 1em;
+			margin-bottom: 1em;
+		}
+
+/* Default reset-properties for definition lists */
+
+dl dt,
+	dl dd
+{
+	margin-left: 0em;
+	margin-right: 0em;
+
+	padding-left: 0em;
+	padding-right: 0em;
+}
+
+	div.section dl dt
+	{
+		margin-bottom: 1.2em; /* The same as regular paragraphs */
+	}
+
+		/* Properties for the definition-terms on the preferences page */
+		body.preferences-section div.section dl dt
+		{
+			font-weight: bold;
+		}
+
+	/* Disable the default-margins on definition lists which aren't
+		direct children of a div.section */
+	div.section * dl dt
+	{
+		margin-bottom: 0em; /* The same as regular paragraphs */
+	}
+	
+/* Account summary page in the account management section */		
+body.account-summary-section div.primary-section-content ul
+{
+	font-size: 0.92em;
+}
+
+		body.account-summary-section div.primary-section-content ul li em
+		{
+			font-style: normal;
+			font-weight: bold;
+		}
+
+		body.account-summary-section div.primary-section-content ul li strong
+		{
+			font-size: 1.2em;
+		}
+
+body.account-summary-section div.secondary-section-content p
+{
+	margin-top: 2.5em;
+}
+
+	body.account-summary-section div.secondary-section-content p em
+	{
+		font-size: 0.9em;
+		font-style: normal;
+	}
+
+	body.account-summary-section div.secondary-section-content p strong
+	{
+		font-size: 1.2em;
+		margin-bottom: 0.5em;
+	}
+
+	body.account-summary-section div.secondary-section-content p span
+	{
+		font-size: 0.9em;
+		line-height: 1.1;
+	}
+
+ul.account-summary-actions li
+{
+	padding-bottom: 0.5em; /* so the icons don't get cut off */
+}
+
+/* username in preferences settings */
+body.manage-section div#content-container p#account-information-for
+{
+	font-size: 1.33em;
+	margin-top: 0.92em;
+	margin-bottom: 0em;
+	padding-bottom: 0.92em;
+}
+
+/* total payment in make-payment-section that needs
+	to align with tables and other content on page */
+div#content-container div#payment-totals ul
+{
+	text-align: right;
+}
+		
+	div#content-container div#payment-totals ul li
+	{
+		margin-bottom: 0.25em;
+	}
+	
+div#content-container p.total-payment,
+	div#content-container div#payment-totals ul li.total-payment
+{
+	font-family: 'Trebuchet MS', Verdana, 'Bitstream Vera Sans', Arial, sans-serif; 
+	font-size: 1.25em; 
+	font-weight: bold;
+	text-align: right;
+}
+
+	div#content-container div#payment-totals ul li.total-payment
+	{
+		border-top-width: 1px;
+		border-top-style: solid;
+		font-family: Verdana, "Bitstream Vera Sans", Arial, sans-serif;
+		font-size: 1.0em;
+	}
+
+/* Explanatory text associated with form fields */
+div#content-container fieldset p.help
+{
+	font-size: 0.9em;
+	font-style: italic;
+}
+
+/* This fieldset contains the text & options regarding
+	monthly statements and charges */
+div#content-container div.section.common fieldset#monthly-statements-charge
+{
+	margin-top: 3.5em; /* This makes use of margin collapsing */
+}
+
+/* A "choices" definition-list presents	the user with a question
+	followed by a list of choices */
+div#content-container dl.choices
+{}
+
+	/* The choice-question */
+	div#content-container dl.choices dt
+	{
+		font-weight: bold;
+		font-style: italic;
+
+		margin-bottom: 1.0em;
+	}
+
+	/* The choice-answers */
+	div#content-container dl.choices dd
+	{
+		padding-bottom: 1.05em;
+
+		font-style: italic;
+	}
+
+		/* Links within the choice-answers */
+		div#content-container dl.choices dd a
+		{
+			font-style: normal;
+		}
+
+	body.popup-window div#content p.date
+	{
+		font-size: 0.9em;
+		margin-bottom: 2.0em;
+	}
+
+	/* info about the data-table, specifically the vehicle
+		listing in the manage section, that is not really
+		appropriate as a caption element */
+	div#content-container ul.table-info
+	{
+		margin-bottom: 0.5em;
+	}
+
+/* link back to previous page as seen in the manage section */
+div#content-container p.return-to
+{
+	margin-bottom: 1.5em;
+	padding-bottom: 1.0em;
+}
+
+	body.manage-section.vehicles-and-ez-tags-section div#content-container p.return-to
+	{
+		margin-bottom: 1.0em;
+		padding-bottom: 0em;
+	}
+
+	div#content-container p.return-to a
+	{
+		text-decoration: none;
+	}
+		div#content-container p.return-to a:hover
+		{
+			text-decoration: underline;
+		}
+
+/* for use on the item detailing the information on the page.
+	Used in the magage-section on the receipt detail and Monthly
+	invoices pages */
+dl.page-detail
+{
+	text-align: right;
+}
+
+/* targated to the amount due currency number */
+body.monthly-invoices-section div#content-container div.section p em
+{
+	font-size: 1.5em;
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* floated lists of pdf files */
+	div#content-container ul.pdf-list
+	{
+		font-size: 0.92em;
+		margin-top: 1em;
+	}
+	
+	div#content-container ul.pdf-list li
+	{
+		border-bottom-width: 1px;
+		border-bottom-style: dotted;
+		margin-bottom: 0.25em;
+		padding-bottom: 0.5em;
+	}
+
+/* ========== FAQ Definition Lists ====== */
+
+div#primary-content dl.projectHistory
+{
+	margin-bottom: 2.5em;
+}
+
+/* These are used on pages such as the FAQ within the About Us section */
+div#content dl.faq dt,
+	div#primary-content dl.faq dt,
+	div#primary-content dl.projectHistory dt
+{
+	/* These properties are very similar to h2 properties */
+	font-size: 1.1em;
+	margin-bottom: 0.6em;
+	
+	margin-top: 2.0em; /* This makes use of margin collapsing */
+}
+
+	body.project-history-section h3
+	{
+		margin-top: 2.5em;
+	}
+
+	div#primary-content dl.projectHistory dt
+	{
+		margin-top: 0em;
+	}
+
+	div#content dl.faq dd p,
+		div#primary-content dl.faq dd p,
+		div#primary-content dl.projectHistory dd p
+	{
+		/* This resets the default font-size for 
+			paragraphs within a definition list
+			(which is otherwise smaller than this)
+		*/
+		font-size: 1.0em;
+		
+		padding: 0em;
+		
+		margin-bottom: 1.2em; /* Default paragraph margins too */
+	}
+
+/* ======= Vehicle listings ======== */
+
+div#content-container ul.vehicles
+{}
+
+	/* Additional explanatory text */
+	div#content-container ul.vehicles li p em
+	{
+		display: block;
+
+		font-size: 0.8em;
+	}
+
+		/* A fee-summary list summarizes the fees and information
+			for an already-entered vehicle */
+		div#content-container ul.vehicles li.summary dl dt
+		{
+			/* margin-bottom: 1.0em; */
+		}
+
+
+/* =========== Legal Agreements ========= */
+
+
+/* This is mostly used for the license agreement
+	at the moment */
+
+		div#content ol.agreement
+		{}
+
+		ol.agreement li
+		{
+			list-style-type: decimal;
+
+			/* These two declarations make use of margin-collapsing */
+			margin-top: 1.0em;
+			margin-bottom: 1.0em;
+		}
+
+		ol.agreement li ul li
+		{
+			list-style-type: disc;
+		}
+
+
+		ol.agreement li ol li
+		{
+			list-style-type: upper-alpha;
+		}
+
+
+
+		ol.agreement li ol li ol li
+		{
+			list-style-type: decimal;
+		}
+
+		ol.agreement li ol li ol li ol li
+		{
+			list-style-type: lower-roman;
+		}
+
+		.agreement em 
+		{
+			font-style: normal; 
+			font-weight: bold;
+		}
+		
+		ol.agreement li 
+		{
+			font-weight: bold;
+		}
+		
+		ol.agreement li ol li, 
+		ol.agreement li p 
+		{
+			font-weight: normal;
+		}
+		
+		.underline 
+		{
+			text-decoration: underline;
+		}
+
+/* ================= Data Tables ===================== */
+
+
+/* These are properties for tabular data */
+
+div#content-container table.data-table
+{
+	width: 100%;
+}
+
+	body.current-projects-section div#content-container table.data-table
+	{
+		font-size: 0.92em;
+		width: 72%;
+	}
+
+	/* General cell properties */
+	div#content-container table.data-table thead tr th,
+		div#content-container table.data-table thead tr td,
+		div#content-container table.data-table tbody tr th,
+		div#content-container table.data-table tbody tr td,
+		div#content-container table.data-table tfoot tr th,
+		div#content-container table.data-table tfoot tr td
+	{
+		padding-right: 0.8em;
+	}
+
+		table.data-table thead tr th,
+			table.data-table thead tr td,
+			table.data-table tfoot tr th,
+			table.data-table tfoot tr td
+		{
+			padding-top: 0.4em;
+			padding-bottom: 0.4em;
+		}
+
+		table.data-table tbody tr th,
+			table.data-table tbody tr td
+			{
+				padding-top: 0.6em;
+				padding-bottom: 0.6em;
+			}
+			
+			/* remove margin from textpattern inserted p tag */
+			body.contracts-section table.data-table tbody tr td p
+			{
+				margin-bottom: 0em;
+			}
+
+	div#content-container table.data-table thead tr th,
+		div#content-container table.data-table thead tr td
+	{
+		font-weight: bold;
+	}
+
+	div#content-container table.data-table tfoot tr th,
+		div#content-container table.data-table tfoot tr td
+	{
+		font-weight: bold;
+	}
+
+		/* Properties for cells containing currency */
+		div#content-container table.data-table tbody tr th.currency,
+			div#content-container table.data-table tbody tr td.currency,
+			div#content-container table.data-table tbody tr th.currency input.textfield,
+			div#content-container table.data-table tbody tr td.currency input.textfield,
+			div#content-container table.data-table tfoot tr th.currency,
+			div#content-container table.data-table tfoot tr td.currency,
+			div#content-container table.data-table tbody tr th.quantity,
+			div#content-container table.data-table tbody tr td.quantity,
+			div#content-container table.data-table tfoot tr td.quantity
+		{
+			text-align: right;
+		}
+
+		/* Properties for header cells whose scope contains currency */
+		div#content-container table.data-table thead tr th.currency-header,
+			div#content-container table.data-table tfoot tr th.currency-header,
+			div#content-container table.data-table thead tr th.quantity-header
+		{
+			text-align: right;
+		}
+
+		/* Properties for the first cell in a given tfoot row */
+		div#content-container table.data-table tfoot tr th.first-child,
+			div#content-container table.data-table tfoot tr td.first-child
+		{
+			text-align: right;
+		}
+
+	div#content-container table.data-table tfoot tr.final-sum th,
+		div#content-container table.data-table tfoot tr.final-sum td
+	{
+		padding-top: 1.0em;
+		font-size: 1.1em;
+	}
+	
+	/* hide info that is the same in its row group */ 
+	div#content-container table.data-table tbody tr th.duplicate-info,
+		div#content-container table.data-table tbody tr td.duplicate-info
+	{
+		font-style: italic;
+		text-indent: -5000px;
+	}
+
+	/* ======= Payments/violations table ============ */
+
+			table.payments tbody tr td.pay-all-invoices,
+				table.payments tbody tr td.administrative-fee,
+				table.payments tbody tr td.amount-paid,
+				table.payments tbody tr td.sub-total,
+				table.payments tbody tr td.total-amount-due-detail,
+				table.payments tbody tr td.payment-pending
+			{
+				text-align: right;
+			}
+
+					table.payments tbody tr td.total-amount-due-detail
+					{
+						padding-bottom: 2.0em;
+					}
+
+					table.data-table.payments tbody tr th a{
+						text-decoration: none;
+					}
+
+							table.payments tbody tr th.nested-table-header,
+								table.payments tbody tr.invoice-details-row th,
+								table.payments tbody tr.invoice-details-row td
+							{
+								border-bottom-width: 1px;
+								border-bottom-style: solid;
+							}
+
+								table.payments tbody tr.invoice-details-row td.nth-child-1,
+									table.payments tbody tr.invoice-details-row td.nth-child-5
+								{
+									border-bottom: none;
+								}
+
+								table.payments tbody tr.totals td.sub-total,
+									table.payments tbody tr.totals td.total-amount-due-detail,
+									table.payments tbody tr.totals td.currency
+								{
+									border-top-width: 1px;
+									border-top-style: solid;
+								}
+
+							table.payments tbody tr td a.pdf
+							{
+								font-size: 0.9em;
+							}
+
+				table.data-table.payments tfoot,
+					table.data-table.payments tfoot tr td
+				{
+					border: none;
+				}
+
+					div#content-container table.data-table.payments tfoot tr th
+					{
+						border-top-width: 1px;
+						border-top-style: solid;
+						font-weight: normal;
+					}
+
+			div#content-container ul.table-controls
+			{
+				margin-bottom: 0.5em;
+			}
+
+			/* ============== Unpaid tolls confirmation table(s) ============== */
+
+		 	 table.data-table.payment-confirmation thead tr th.pay-now-header,
+				 table.data-table.payment-confirmation tbody tr td.pay-now-content,
+				 div#content-container table.data-table.payment-confirmation tfoot tr th.pay-now-header-foot,
+				 div#content-container table.data-table.payment-confirmation tfoot tr th.totals-row-header,
+				 div#content-container table.data-table.payment-confirmation tfoot tr td.pay-now-content
+			{
+				font-weight: bold;
+			}
+
+			 div#content-container table.data-table.payment-confirmation tfoot tr th,
+				 div#content-container table.data-table.payment-confirmation tfoot tr td
+			{
+				font-weight: normal;
+				text-align: right;
+			}
+
+div#content-container table.data-table.payment-confirmation tfoot tr.header th.first-child {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+	/* ============== Interoperability-selections table(s) ============== */
+
+	/* (Interoperability-selections refer to the checkmark-preferences
+		table(s) such as on the Sign Up -> Preferences page) */
+
+	div#content-container table.data-table.interoperability
+	{
+		width: auto;
+
+		margin-bottom: 2.0em;
+	}
+
+		div#content-container table.data-table.interoperability thead th
+		{
+			text-align: center;
+		}
+
+		div#content-container table.data-table.interoperability tbody td
+		{
+			text-align: center;
+		}
+
+
+	/* ============== Account Activity - transactions table(s) ============== */
+
+	table.data-table tbody tr.transaction-type-rebill th,
+		table.data-table tbody tr.transaction-type-rebill td,
+		table.data-table tbody tr.starting-balance th,
+		table.data-table tbody tr.starting-balance td,
+		table.data-table tbody tr.ending-balance th,
+		table.data-table tbody tr.ending-balance td
+	{
+		font-weight: bold;
+	}
+
+		table.data-table.transactions.sorted-by-date tbody tr th
+		{
+			font-style: italic;
+			text-indent: -5000px;
+		}
+
+			table.data-table.transactions tbody tr.first-in-group th
+			{
+				text-indent: 0px;
+			}
+
+		/*	parking transaction type gets an unordered list of items instead of
+			seperate rows because each row has a group of items per transaction */
+		table.data-table tbody tr.transaction-type-parking th ul,
+			table.data-table tbody tr.transaction-type-parking td ul
+		{
+			margin-bottom: 0em;
+		}
+
+	/* ============== Forms ============== */
+
+	/* for the forms that deal with how table data is shown,
+		i.e. the manage section */
+	div#content-container form#data-actions fieldset dl dt
+	{
+		padding-bottom: 0.5em;
+	}
+
+		body.monthly-invoices-section div#content-container form#data-actions fieldset
+		{
+			margin-bottom: 1.2em;
+		}
+
+/* =============== primary-section-content / secondary-section-content bits ================== */
+
+/* This is primarily used for the data on the confirmation page */
+div.primary-section-content dl dt,
+	div.secondary-section-content dl dt
+{
+	font-weight: bold;
+}
+
+div.primary-section-content dl dd,
+		div.secondary-section-content dl dd
+	{
+		line-height: 1.5;
+	}
+
+
+/* ============================= Outstanding Tolls box =========================== */
+
+/* These bits make use of classes to avoid weirdness associated
+	with duplicate IDs (which is what would happen normally
+	as soon as the iBox duplicates the ID) */
+
+div.outstanding-tolls-content
+{}
+
+	div.outstanding-tolls-content p,
+		div.outstanding-tolls-content label
+	{
+		font-size: 0.9em;
+	}
+
+	div.outstanding-tolls-content p
+	{
+		margin-bottom: 2.1em;
+	}
+
+		/* This is tied to the license plate number */
+		div.outstanding-tolls-content p strong
+		{
+			font-weight: normal;
+			font-size: 2.2em;
+			letter-spacing: 2px;
+		}
+		
+			div.outstanding-tolls-content li p strong
+			{
+				font-size: 1.0em;
+				font-weight: bold;
+				letter-spacing: 0px;
+			}
+
+	div.outstanding-tolls-content h2 em
+	{
+		font-style: normal;
+	}
+
+/* ============================= Footer =========================== */
+
+/* In-development footer (currently	provided in
+	part by server-side	includes) */
+div#page div#footer p,
+	div#page div#footer ul
+{
+	font-size: 0.92em;
+}
+
+div#page div#footer ul
+{
+	margin-bottom: 0.25em;
+}
+
+/* hcards in the footer
+	http://microformats.org/wiki/hcard */
+div#footer div.vcard p
+{
+	margin-bottom: 0.25em;
+}
+
+	div#page div#footer div.vcard p.copyright
+	{
+		font-size: 0.84em;
+	}
+
+	div#footer div.vcard p em
+	{
+		font-style: normal;
+	}
+	
+		
+/* =============== miscllaneous all-purpose styles ==================== */
+em.content-type-info
+{
+	font-style: normal;
+}
+div#content-container p.link
+{
+	font-size: 1.25em;
+	font-weight: bold;
+	margin-bottom: 0em;
+}

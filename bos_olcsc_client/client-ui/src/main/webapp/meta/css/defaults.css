@@ -1,0 +1,98 @@
+
+/* undohtml by Tantek Celik -- resets the properties
+	among elements for a more consisten default rendering
+	across browsers */
+@import url(undohtml.css);
+
+
+html,body
+{
+	margin: 0em;
+	padding: 0em;
+}
+
+
+/* ===================== Other Default Settings ============================ */
+
+/*
+	These default settings are designed to be appropriate for most sites. For instance,
+	border-collapse:collapse is almost always used. All the same, some values
+	might need some slight adjustments from one site to the next, such as the
+	margin-bottom value on paragraphs (and other elements in that selector)
+	or, similarly, the line-height which is also set below.
+*/
+
+
+/* Ordinary paragraphs, lists, and addresses */
+p, ul, ol, dl, address
+{
+	font-style: normal;
+	margin-top: 0em;
+	padding-top: 0em;
+
+	margin-bottom: 1.2em;
+	padding-bottom: 0em;
+
+	font-size: 1.0em;
+}
+
+/* Line height settings */
+p, li, dt
+{
+	line-height: 1.4;
+}
+
+	/* Superscript items within paragraphs and list items */
+	p sup,
+		li sup
+	{
+		font-size: 0.9em;
+	}
+
+
+img
+{
+	/* This turns off borders around images */
+	border-width: 0em;
+}
+
+
+/* General table properties */
+table
+{
+	border-collapse: collapse; /* cells meet */
+	border-spacing: 0em;
+
+	font-size: 1.0em; /* This shouldn't be necessary but IE 5.x becomes confused without it */
+	margin-bottom: 1.0em; /* This matches the margin-bottom on regular paragraphs */
+}
+
+	table td, table th
+	{
+		vertical-align: top;
+
+		/* This prevents any browser defaults for th getting in the way */
+		font-weight: normal;
+		text-align: left;
+	}
+
+/* This can be used to hide text from regular browsers while allowing it appear for text readers.
+	It's the Aural Text Class from Standards Schmandards:
+	http://www.standards-schmandards.com/index.php?2004/10/08/1-the-aural-text-class */
+p.accessibility, ul.accessibility, li.accessibility, label.accessibility, span.accessibility
+{
+	position: absolute;
+	font-size: 0;
+	left: -1000px;
+}
+
+acronym, abbr
+{
+	border-bottom-width: 0px;
+	cursor: help;
+}
+
+acronym:hover, abbr:hover
+{
+	border-bottom: 1px dotted rgb(71,71,71); /* A dark gray */
+}

@@ -1,0 +1,4092 @@
+body
+{
+	/* This ensures that even pages within a common-navigation at least have the
+		background image that goes with it */
+	background-image: url(../media/common-navigation/common-navigation-background.gif);
+	background-repeat: repeat-x;
+
+	text-align: center; /* for IE 5.x problem with auto left/right margins */
+}
+
+	body.popup-window
+	{
+		background-image: none;
+	}
+
+/* ==================================== Omniture Fixing ===================================== */
+
+/* Omniture likes to insert an image element right at the beginning of the document. Great. */
+
+img
+{
+	/* Take the Omniture-image out of flow */
+	position: absolute;
+}
+
+body * img
+{
+	/* For all other images, set them back 
+		to the default positioning */
+	position: static;
+}
+
+
+/* ======================================= IE Bug Fixing ======================================= */
+
+/* 
+	This helps avoid the problem where IE6 sometimes renders an element too 
+	widely if it contains italics: http://www.positioniseverything.net/explorer/italicbug-ie.html
+	
+	Assuming this fix wasn't in place, this would be visible on pages such as the Account
+	Information page (EZ Account -> Account Information).
+*/
+* html div.section p
+{
+	overflow: visible;
+	width: 100%;
+}
+
+/* ==================================== General Link Properties ===================================== */
+
+a
+{
+	/* IE sometimes forgets to use the right cursor,
+		especially on image-replaced headers */
+	cursor: pointer;
+}
+
+/* Some extra cursor properties can be helpful in these
+	areas as well */
+label,
+	button,
+	input.submit-button
+{
+	cursor: pointer;
+}
+
+/* Used for labels superimposed on "blank" buttons */
+span.button-label {
+    cursor:pointer;
+    padding: 7px 0px;
+    text-align:center;
+    vertical-align:middle;
+    font-weight:bold;
+    font-size:16px;
+    white-space:nowrap;
+    background-image:url(../media/buttons/blank_center.gif);
+    background-repeat:repeat-x;
+    background-position:center;
+    background-color:inherit;
+    display: inline-block;
+}
+span.button-label:before {
+    content: "";
+    padding: 7px;
+    font-size: 20px;
+    background-image: url(../media/buttons/blank_left.gif);
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-color:inherit;
+}
+span.button-label:after {
+    content: "»";
+    padding: 7px;
+    font-size: 20px;
+    background-image: url(../media/buttons/blank_right.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-color:inherit;
+}
+
+/* ============================ Layout Container Elements ================================= */
+
+/* "Loading... Please Wait" message */
+div#loading 
+{
+	position: absolute;
+
+	top: 50%;
+	left: 50%;
+
+	width: 20.0em;
+	height: 10.0em;
+
+	margin-left: -10.0em; /* Exactly half the width-value, for centering */
+	margin-top: -5.0em; /* Exactly half the height-value, for centering */
+	
+	/* This makes really sure that this is above 
+		all other page elements :) */
+	z-index: 999;
+}
+
+
+div#page
+{
+	width: 760px;
+	padding-top: 20.1em;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	text-align: left;  /* for IE 5.x problem with auto left/right margins */
+
+	/* This allows other elements to be absolutely positioned with respect to this */
+	position: relative;
+
+
+	/* (no tagline defined by default) */
+
+	background-repeat: no-repeat;
+
+	/* This ends up placing the tagline between the masthead and the content-container */
+	background-position: 100% 14.7em;
+}
+
+	/* Tagline for the "Signup" pages */
+	body.sign-up-section div#page
+	{
+		background-image: url(../media/headers/tagline-signup.gif);
+	}
+
+	/* Tagline for the "Login" and "Set Up Your Online Access" pages */
+	body.login-section div#page,
+		body.set-up-your-online-access-section div#page
+	{
+		background-image: url(../media/headers/tagline-online-access.gif);
+	}
+
+	/* Tagline for the "Reset Login" */
+	body.reset-login-section div#page
+	{
+		background-image: url(../media/headers/tagline-reset-login.gif);
+	}
+
+	/* Properties for popup-windows */
+	body.popup-window div#page
+	{
+		width: auto;
+		padding-top: 1.0em;
+	}
+
+	/* Properties for the home page */
+	body.home div#page
+	{
+		padding-top: 13.6em;
+	}
+
+	div#page div#content-container
+	{
+		padding-top: 20px;
+
+		background-image: url('../media/common/content-background.gif');
+		background-repeat: no-repeat;
+
+		/* This allows other elements to be absolutely positioned with respect to this */
+		position: relative;
+	}
+
+		/* Using the TripSwitch to trigger hasLayout in IE
+			http://www.tanfa.co.uk/css/examples/haslayout/tripswitch-demo.asp */
+		div#page div#content-container {display: inline-block;} /* trigger haslayout for IE>5.0 */
+		div#page div#content-container {display: block;} /* put it back to what it should be in separate rule */
+		/* end TripSwitch */
+
+		body.popup-window div#page div#content-container
+		{
+			padding-top: 1.0em;
+			
+			background-image: none;
+		}
+
+		/* Properties for the home page */
+		body.home div#page div#content-container
+		{
+			background-image: none;
+			margin: 0em;
+			padding: 0em;
+		}
+
+		div#content-container div#content,
+			div#content-container div#primary-and-secondary-content
+		{
+			margin-left: 25px;
+			margin-right: 25px;
+			padding-bottom: 2.0em;
+
+			/* This allows other elements to be absolutely positioned with respect
+				to this */
+			position: relative;
+		}
+
+			body.home div#content-container div#primary-and-secondary-content
+			{
+				margin-left: 0px;
+				margin-right: 0px;
+			}
+
+			/* Using the TripSwitch to trigger hasLayout in IE
+				http://www.tanfa.co.uk/css/examples/haslayout/tripswitch-demo.asp */
+			div#content-container div#content,
+				div#content-container div#primary-and-secondary-content
+			{display: inline-block;} /* trigger haslayout for IE>5.0 */
+
+			div#content-container div#content,
+				div#content-container div#primary-and-secondary-content
+			{display: block;} /* put it back to what it should be in separate rule */
+			/* end TripSwitch */
+
+/* =================================== Common Navigation =================================== */
+
+/* The common-navigation holds links that appear on every page */
+
+/* The helper-element ensures that the background for the common navigation
+	scales as the user's font size is scaled */
+div#common-navigation-helper-element,
+	div#page div#common-navigation
+{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+	width: 100%;
+
+	height: 2.5em;
+}
+
+div#common-navigation-helper-element
+{
+	/* This background-image is also set on the body element so that even
+		pages within the common-navigation will at least have its background image */
+	background-image: url(../media/common-navigation/common-navigation-background.gif);
+	background-position: bottom left;
+	background-repeat: repeat-x;
+}
+
+	div#common-navigation ul
+	{
+		margin: 0em;
+		padding: 0em;
+
+		margin-top: 0.55em;
+		padding-bottom: 0.5em; /* Helps the anchor background-images in IE */
+
+		text-align: right;
+
+		position: relative; /* to be able to make use of z-index */
+		z-index: 1; /* for Safari */
+
+		/* This element's width is set around line 53, where all the other
+			general-widhts are set */
+	}
+
+		div#common-navigation ul li
+		{
+			display: inline;
+			list-style-type: none;
+		}
+
+		/* These elements feature both regular text and a link */
+		div#common-navigation ul li#logged-in-common-navigation,
+			div#common-navigation ul li#logged-out-common-navigation
+		{
+			padding-left: 0.7em;
+		}
+
+			/* These elements feature both regular text and a link */
+
+			div#common-navigation ul li#logged-in-common-navigation a
+			{
+				padding-left: 0.5em;
+			}
+
+			div#common-navigation ul li#logged-out-common-navigation a
+			{
+				padding-left: 0.2em;
+			}
+
+			/* For the logged-in item, the icon is tied to the emphasis tag */
+			div#common-navigation ul li#logged-in-common-navigation  em,
+				div#common-navigation ul li#logged-out-common-navigation a
+			{
+				/* Allows the background image to extend below the letter-height */
+				padding-bottom: 0.5em;
+
+				background-position: top right;
+				background-repeat: no-repeat;
+				padding-right: 22px; /* Leave room for the background image */
+			}
+
+			/* "Logged in" name, via the an emphasis element  */
+			div#common-navigation ul li#logged-in-common-navigation em
+			{
+				font-style: normal;
+				background-image: url(../media/icons/lock.gif);
+			}
+
+			/* "Logged out" common navigation anchor */
+			div#common-navigation ul li#logged-out-common-navigation a
+			{
+				background-image: url(../media/icons/lock_go.gif);
+			}
+
+			div#common-navigation ul li a
+			{
+				padding-left: 0.7em;
+				padding-right: 0.4em;
+			}
+
+	/* Site logo */
+	div#page a#logo img
+	{
+		/* This is positioned absolutely within the common-navigation */
+		position: absolute;
+
+		top: 4em;
+		left: 0px;
+
+		width: 487px;
+		height: 47px;
+
+		display: block;
+
+		z-index: 10; /* for Safari */
+	}
+
+		/* Smaller site logo to be used on reports/receipts/etc. This is used
+			in addition to the regular logo, but in the middle of the page */
+		div#page img.nested-logo
+		{
+			width: 196px;
+			height: 37px;
+
+			display: block;
+		}
+
+
+		body.popup-window div#page a#logo img
+		{
+			display: none;
+		}
+
+/* ======================================== Masthead ========================================= */
+
+/* The helper-element ensures that the background for the masthead
+	spans the full width of the browser window, even though the masthead itself
+	doesn't do so. */
+
+div#masthead-helper-element
+{
+	position: absolute;
+
+	top: 2.5em; /* This is equal to the height of the common-navigation,
+					so that the two elements are vertically flush */
+	left: 0px;
+
+	width: 100%;
+	height: 10.67em;
+
+	background-image: url(../media/common/masthead-background.gif);
+	background-repeat: repeat-x;
+	background-position: bottom left;
+
+}
+
+	/* The home page gets special properties for its masthead-helper-element */
+	body.home div#masthead-helper-element
+	{
+		background-image: url(../media/common/masthead-background-home.gif);
+	}
+
+div#page div#masthead
+{
+	position: absolute;
+
+	/* This em-based measurement allows this element
+	to "slide" gracefully when the user resizes
+	his/her font size */
+	top: 2.5em;
+	right: 0px;
+
+	width: 100%;
+	height: 9.5em; /* (9.5em is equivalent to 114px at the default font size) */
+}
+
+	body.popup-window div#page div#masthead
+	{
+		display: none;
+	}
+
+	/* ================== Search fields ==================== */
+
+	/* The fieldset within the masthead holds the search fields */
+	div#masthead fieldset
+	{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+
+		padding-right: 0.7em; /* Leaves room for the right-side background-image */
+
+		background-image: url(../media/search/search-right-side.gif);
+		background-repeat: no-repeat;
+		background-position: bottom right;
+	}
+
+		/* This guy is necessary just for the cornering effects */
+		div#masthead fieldset div#fieldset-interior
+		{
+			/* These two values are defined in px intentionally, as they
+				don't need to grow for text-resizing to still work. AAMOF,
+				if they don't grow -- which is how they're currently
+				coded -- the page remains more aesthetically pleasing at
+				larger text sizes. */
+			padding-top: 4px;
+			padding-bottom: 5px;
+
+			padding-left: 0.6em; /* Leaves room for the left-side background-image */
+
+			background-image: url(../media/search/search-left-side.gif);
+			background-repeat: no-repeat;
+			background-position: bottom left;
+		}
+
+			/* Only IE6 sees this */
+			* html div#masthead fieldset div#fieldset-interior
+			{
+				padding-bottom: 7px;
+			}
+
+			/* Only IE7 sees this */
+			* + html div#masthead fieldset div#fieldset-interior
+			{
+				padding-bottom: 7px;
+			}
+
+
+			div#masthead fieldset div#fieldset-interior input
+			{
+				vertical-align: middle;
+			}
+
+			/* This hides the text from regular browsers while allowing it appear for text readers. */
+			div#masthead fieldset div#fieldset-interior label
+			{
+				position: absolute;
+				text-indent: -1000px;
+				width: 100px; /* for IE7 */
+			}
+
+/* =================================== Primary Navigation =================================== */
+
+/* This helper element creates the bar that spans across the viewport */
+div#masthead-helper-element div#primary-navigation-helper-element
+{
+	position: absolute;
+
+	bottom: 14px; /* Leaves room for the gradient-bits incorporated into 
+					the masthead-helper-element */
+	left: 0px;
+
+	width: 100%;
+	height: 2.25em;
+
+	background-image: url(../media/primary-navigation/primary-navigation-background.gif);
+	background-repeat: repeat-x;
+	background-position: bottom left;
+}
+
+div#masthead ul#primary-navigation
+{
+	position: absolute;
+
+	bottom: 0px;
+	left: 12.5%;
+
+	margin: 0em;
+	padding: 0em;
+
+	/* This ensures that the masthead (and the primary navigation in particular)
+		remain on top of other elements (such as the logo) in case the
+		text is resized. */
+	z-index: 100;
+}
+
+	ul#primary-navigation li
+	{
+		float: left;
+		display: inline; /* This helps IE deal with floated elements */
+
+		margin: 0em;
+		padding: 0em;
+		
+		/* This image (currently) resembles a vertical pipe, acting as a divider
+			between the primary-navigation list-items */
+		background-image: url(../media/primary-navigation/primary-navigation-divider.gif);
+		background-position: 0em 0.7em;
+		background-repeat: no-repeat;
+	}
+	
+		/* This turns off the background-divider image for the 
+		 	adjacent items (for example, when "Home" is selected, 
+			the [left] divider for "My EZ Account" isn't active) */
+		body.home ul#primary-navigation li#my-ez-tag-primary-navigation,
+			body.manage-section ul#primary-navigation li#unpaid-tolls-primary-navigation,
+			body.violations-section ul#primary-navigation li#toll-road-info-primary-navigation,
+			body.toll-road-info-section ul#primary-navigation li#about-primary-navigation
+		{
+			background-image: none;
+		}
+	
+		/* The first item in the primary-navigation list gets no divider */
+		ul#primary-navigation li.first-child
+		{
+			background-image: none;
+		}
+
+		ul#primary-navigation li a
+		{
+			float: left;
+			display: inline; /* This helps IE deal with floated elements */
+
+			/* 
+				These properties are specified in px since there's little benefit
+				to having these values increase in size as the text size is increased 
+			*/
+			padding-left: 20px; /* Equivalent to 1.9em at the default font size */
+			padding-right: 20px; /* Equivalent to 1.9em at the default font size */
+		}
+		
+			/* This holds the current-section indidcator, when that's applied to the
+				current section */
+			ul#primary-navigation li a span
+			{
+				display: block;
+				
+				padding-top: 0.6em;
+				padding-bottom: 0.53em;
+			}
+			
+			/* Highlight effects for the current section */
+			body.home ul#primary-navigation li#home-primary-navigation a,
+				body.manage-section ul#primary-navigation li#my-ez-tag-primary-navigation a,
+				body.violations-section ul#primary-navigation li#unpaid-tolls-primary-navigation a,
+				body.toll-road-info-section ul#primary-navigation li#toll-road-info-primary-navigation a,
+				body.about-section ul#primary-navigation li#about-primary-navigation a
+			{
+				background-image: url(../media/primary-navigation/primary-navigation-current-section-background.gif);
+				background-position: 0% 50%;
+			}
+			
+			/* Indicator/pointer for the current section (this is the jobbie that 
+					currently resembles a small triangle)*/
+			body.home ul#primary-navigation li#home-primary-navigation a span,
+				body.manage-section ul#primary-navigation li#my-ez-tag-primary-navigation a span, 
+				body.violations-section ul#primary-navigation li#unpaid-tolls-primary-navigation a span,
+				body.toll-road-info-section ul#primary-navigation li#toll-road-info-primary-navigation a span,
+				body.about-section ul#primary-navigation li#about-primary-navigation a span
+			{
+				background-image: url(../media/primary-navigation/primary-navigation-current-section-indicator.gif);
+				background-position: bottom center;
+				background-repeat: no-repeat;
+			}
+
+/* =================================== Secondary Navigation =================================== */
+
+div#masthead ul#secondary-navigation
+{
+	position: absolute;
+
+	top: 17.1em;
+
+	/* This is specified in px since there's little benefit to
+		having this value grow if the text size is increased */
+	right: 20px;
+
+	margin: 0em;
+	padding: 0em;
+
+	height: 1.8em;
+}
+
+	/* Only IE6 sees this */
+	* html div#masthead ul#secondary-navigation
+	{
+		top: 17.2em;
+	}
+
+	/* Only IE7 sees this */
+	* + html div#masthead ul#secondary-navigation
+	{
+		top: 17.2em;
+	}
+
+	ul#secondary-navigation li
+	{
+		margin: 0em;
+		padding: 0em;
+
+		float: left;
+		display: inline; /* This helps IE deal with floated elements */
+		
+		margin-left: 0.2em; /* Equivalent to 2px at the default font size */
+	}
+
+		/* Certain tabs in the secondary nav appear on the far left */
+		ul#secondary-navigation li#account-summary-secondary-navigation,
+			ul#secondary-navigation li#introduction-secondary-navigation,
+			ul#secondary-navigation li#toll-road-info-overview-secondary-navigation
+		{
+			position: absolute;
+
+			/* Because the secondary-navigation itself is positioned with
+				respect to the right edge, this needs to be as well
+				(since the left-side of the secondary-navigation only
+				juts out as far as the length of the secondary-navigation)
+			*/
+			right: 580px;
+
+			padding-left: 10px; /* so the rounded corner can show */
+			width: 11.5em;
+		}
+
+		ul#secondary-navigation li a
+		{
+			float: left;
+			display: inline; /* Helps IE with floated elements */
+
+			padding-top: 0.5em;
+			padding-bottom: 0.5em;
+
+			padding-left: 1.0em;
+			padding-right: 1.0em;
+		}
+		
+			ul#secondary-navigation li#account-summary-secondary-navigation a,
+				ul#secondary-navigation li#introduction-secondary-navigation a,
+				ul#secondary-navigation li#toll-road-info-overview-secondary-navigation a
+			{
+				padding-left: 1px; /* so the rounded corner can show */
+			}
+		
+			/* Properties for left-most secondary-navigation items (off state) */
+			body.manage-section ul#secondary-navigation li#account-summary-secondary-navigation,
+				body.manage-section ul#secondary-navigation li#account-activity-secondary-navigation a,
+				
+				body.toll-road-info-section ul#secondary-navigation li#toll-road-info-overview-secondary-navigation,
+				body.toll-road-info-section ul#secondary-navigation li#map-secondary-navigation a,
+				
+				body.about-section ul#secondary-navigation li#introduction-secondary-navigation,
+				body.about-section ul#secondary-navigation li#construction-and-engineering-secondary-navigation a
+			{
+				background-image: url(../media/secondary-navigation/secondary-navigation-left_off.gif);
+				background-position: top left;
+				background-repeat: no-repeat;
+			}
+
+				/* This is primarily for the left-most item in the secondary navigation list. Naturally, the selector below would
+					need to be updated if another item became the left-most one. */
+				body.manage-section.account-summary-section ul#secondary-navigation li#account-summary-secondary-navigation,
+					body.manage-section.account-activity-section ul#secondary-navigation li#account-activity-secondary-navigation a,
+					
+					body.toll-road-info-section.overview-section ul#secondary-navigation li#toll-road-info-overview-secondary-navigation,
+					body.toll-road-info-section.map-section ul#secondary-navigation li#map-secondary-navigation a,
+					
+					body.about-section.introduction-section ul#secondary-navigation li#introduction-secondary-navigation,
+					body.about-section.construction-and-engineering-section ul#secondary-navigation li#construction-and-engineering-secondary-navigation a
+				{
+					background-image: url(../media/secondary-navigation/secondary-navigation-left_on.gif);
+				}
+
+			/* Properties for right-most secondary-navigation items (off state) */
+			body.manage-section ul#secondary-navigation li#account-summary-secondary-navigation a,
+				body.manage-section ul#secondary-navigation li#payments-and-orders-secondary-navigation a,
+				
+				body.toll-road-info-section ul#secondary-navigation li#toll-road-info-overview-secondary-navigation a,
+				body.toll-road-info-section ul#secondary-navigation li#about-ez-tag-secondary-navigation a,
+				
+				body.about-section ul#secondary-navigation li#introduction-secondary-navigation a,
+				body.about-section ul#secondary-navigation li#contact-us-secondary-navigation a
+			{
+				background-image: url(../media/secondary-navigation/secondary-navigation-right_off.gif);
+				background-position: top right;
+				background-repeat: no-repeat;
+			}
+
+				/* This is primarily for the right-most item in the secondary navigation list. Naturally, the selector below would 
+					need to be updated if another item became the right-most one. */
+				body.manage-section.account-summary-section ul#secondary-navigation li#account-summary-secondary-navigation a,
+					body.manage-section.payments-and-orders-section ul#secondary-navigation li#payments-and-orders-secondary-navigation a,
+					
+					body.toll-road-info-section.overview-section ul#secondary-navigation li#toll-road-info-overview-secondary-navigation a,
+					body.toll-road-info-section.about-ez-tag-section ul#secondary-navigation li#about-ez-tag-secondary-navigation a,
+					
+					body.about-section.introduction-section ul#secondary-navigation li#introduction-secondary-navigation a,
+					body.about-section.contact-us-section ul#secondary-navigation li#contact-us-secondary-navigation a
+				{
+					background-image: url(../media/secondary-navigation/secondary-navigation-right_on.gif);
+				}
+
+/* =========================== Tertiary Navigation and Page Meta Links ============================= */
+
+/*
+	The tertiary navigation mostly appears within the Manage section, specifically the Account Activity area.
+	There's no reason it couldn't also be used elsewhere, though.
+
+	The ul#page-controls holds meta page functions, such as "print preview", "download PDF"
+	and "download Excel".
+	
+	Also, for pages that have a tertiary-navigation, don't forget to add them to the
+		selector corresponding to the tertiary-navigation variant for H1 elements,
+		around line 1348.
+*/
+
+div#content-container div#tertiary-navigation-and-or-page-controls
+{
+	background-image: url(../media/tertiary-navigation/tertiary-navigation-container-background.gif);
+    background-repeat: repeat-x;
+ 	background-position: bottom;
+
+	display: inline;
+	float: left;
+	
+	position: absolute;
+
+	top: 2.3em;
+	left: 0em;
+}
+
+	/* This variation is for pages with just a content section (as opposed to primary-and-secondary content) */
+	div#content div#tertiary-navigation-and-or-page-controls
+	{
+		width: 100%;
+	}
+
+	/* This variation is for pages with a primary-and-secondary-content arrangement */
+	div#primary-and-secondary-content div#tertiary-navigation-and-or-page-controls
+	{
+		/* This guy's width is set on approximately line 830, to have it align
+			with the width of the primary-content element */
+	}
+
+
+div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation,
+	div#tertiary-navigation-and-or-page-controls ul#page-controls
+{
+	margin-left: 0em;
+	margin-right: 0em;
+
+	padding-left: 0em;
+	padding-right: 0em;
+}
+
+	ul#tertiary-navigation li,
+		ul#page-controls li
+	{
+		display: inline;
+		float: left;
+
+		margin-left: 0em;
+		margin-right: 0em;
+
+		padding-left: 0em;
+		padding-right: 0em;
+
+		/* This homogenizes the list-item height for the tertiary-navigation
+			and the page-controls across Firefox & IE */
+		line-height: 1.5em;
+	}
+	
+	/* Properties for a currently-selected section */
+	body.account-activity-section.transactions-section ul#tertiary-navigation li#transactions-tertiary-navigation,
+		body.account-activity-section.statements-section ul#tertiary-navigation li#statements-tertiary-navigation,
+		body.account-activity-section.yearly-summary-section ul#tertiary-navigation li#yearly-summary-tertiary-navigation,
+		body.account-activity-section.receipts-section ul#tertiary-navigation li#receipts-tertiary-navigation,
+		body.account-activity-section.receipt-detail-section ul#tertiary-navigation li#receipt-detail-tertiary-navigation,
+		body.account-activity-section.monthly-invoices-section ul#tertiary-navigation li#monthly-invoices-tertiary-navigation,
+
+		body.payments-and-orders-section.view-orders-section ul#tertiary-navigation li#view-orders-tertiary-navigation,
+		body.payments-and-orders-section.make-payment-section ul#tertiary-navigation li#make-payment-tertiary-navigation,
+		body.payments-and-orders-section.order-ez-tag-section ul#tertiary-navigation li#order-ez-tag-tertiary-navigation,
+
+		body.overview-section.lane-types-section ul#tertiary-navigation li#lane-types-tertiary-navigation,
+		body.overview-section.regulations-section ul#tertiary-navigation li#regulations-tertiary-navigation,
+		body.overview-section.roadside-assistance-section ul#tertiary-navigation li#roadside-assistance-tertiary-navigation,
+		body.overview-section.advisories-section ul#tertiary-navigation li#advisories-tertiary-navigation,
+		body.overview-section.enforcement-section ul#tertiary-navigation li#enforcement-tertiary-navigation,
+
+		body.map-section.hardy-north-section ul#tertiary-navigation li#hardy-north-tertiary-navigation,
+		body.map-section.hardy-south-section ul#tertiary-navigation li#hardy-south-tertiary-navigation,
+		body.map-section.sht-north-section ul#tertiary-navigation li#sht-north-tertiary-navigation,
+		body.map-section.sht-south-section ul#tertiary-navigation li#sht-south-tertiary-navigation,
+		body.map-section.westpark-section ul#tertiary-navigation li#westpark-tertiary-navigation,
+		body.map-section.sht-southwest-section ul#tertiary-navigation li#sht-southwest-tertiary-navigation,
+		body.map-section.sht-southeast-section ul#tertiary-navigation li#sht-southeast-tertiary-navigation,
+		body.map-section.sht-east-section ul#tertiary-navigation li#sht-east-tertiary-navigation,
+		
+		body.rates-section.sam-houston-tollway-section ul#tertiary-navigation li#sam-houston-tollway-tertiary-navigation,
+		body.rates-section.hardy-toll-road-section ul#tertiary-navigation li#hardy-toll-road-tertiary-navigation,
+		body.rates-section.westpark-tollway-section ul#tertiary-navigation li#westpark-tollway-tertiary-navigation,
+
+		body.construction-and-engineering-section.introduction-section ul#tertiary-navigation li#introduction-tertiary-navigation,
+		body.construction-and-engineering-section.current-projects-section ul#tertiary-navigation li#current-projects-tertiary-navigation,
+		body.construction-and-engineering-section.open-contract-bids-section ul#tertiary-navigation li#open-contract-bids-tertiary-navigation,
+		body.construction-and-engineering-section.bid-tabulations-section ul#tertiary-navigation li#bid-tabulations-tertiary-navigation,
+		body.construction-and-engineering-section.contracts-section ul#tertiary-navigation li#contracts-tertiary-navigation,
+
+		
+		body.about-section.email-section ul#tertiary-navigation li#email-tertiary-navigation,
+		body.about-section.locations-section ul#tertiary-navigation li#locations-tertiary-navigation,
+		body.about-section.forms-section ul#tertiary-navigation li#forms-tertiary-navigation
+		
+	{
+		background-image: url(../media/tertiary-navigation/tertiary-navigation-background-right_on.gif);
+	    background-repeat: no-repeat;
+	 	background-position: right top;
+	}
+	
+		/* Properties for a currently-selected tertiary-navigation section */
+		body.account-activity-section.transactions-section ul#tertiary-navigation li#transactions-tertiary-navigation a,
+			body.account-activity-section.statements-section ul#tertiary-navigation li#statements-tertiary-navigation a,
+			body.account-activity-section.yearly-summary-section ul#tertiary-navigation li#yearly-summary-tertiary-navigation a,
+			body.account-activity-section.receipts-section ul#tertiary-navigation li#receipts-tertiary-navigation a,
+			body.account-activity-section.receipt-detail-section ul#tertiary-navigation li#receipt-detail-tertiary-navigation a,
+			body.account-activity-section.monthly-invoices-section ul#tertiary-navigation li#monthly-invoices-tertiary-navigation a,
+
+			body.payments-and-orders-section.view-orders-section ul#tertiary-navigation li#view-orders-tertiary-navigation a,
+			body.payments-and-orders-section.make-payment-section ul#tertiary-navigation li#make-payment-tertiary-navigation a,
+			body.payments-and-orders-section.order-ez-tag-section ul#tertiary-navigation li#order-ez-tag-tertiary-navigation a,
+
+			body.overview-section.lane-types-section ul#tertiary-navigation li#lane-types-tertiary-navigation a,
+			body.overview-section.regulations-section ul#tertiary-navigation li#regulations-tertiary-navigation a,
+			body.overview-section.roadside-assistance-section ul#tertiary-navigation li#roadside-assistance-tertiary-navigation a,
+			body.overview-section.advisories-section ul#tertiary-navigation li#advisories-tertiary-navigation a,
+			body.overview-section.enforcement-section ul#tertiary-navigation li#enforcement-tertiary-navigation a,
+
+			body.map-section.hardy-north-section ul#tertiary-navigation li#hardy-north-tertiary-navigation a,
+			body.map-section.hardy-south-section ul#tertiary-navigation li#hardy-south-tertiary-navigation a,
+			body.map-section.sht-north-section ul#tertiary-navigation li#sht-north-tertiary-navigation a,
+			body.map-section.sht-south-section ul#tertiary-navigation li#sht-south-tertiary-navigation a,
+			body.map-section.westpark-section ul#tertiary-navigation li#westpark-tertiary-navigation a,
+			body.map-section.sht-southwest-section ul#tertiary-navigation li#sht-southwest-tertiary-navigation a,
+			body.map-section.sht-southeast-section ul#tertiary-navigation li#sht-southeast-tertiary-navigation a,
+			body.map-section.sht-east-section ul#tertiary-navigation li#sht-east-tertiary-navigation a,
+			
+			body.rates-section.sam-houston-tollway-section ul#tertiary-navigation li#sam-houston-tollway-tertiary-navigation a,
+			body.rates-section.hardy-toll-road-section ul#tertiary-navigation li#hardy-toll-road-tertiary-navigation a,
+			body.rates-section.westpark-tollway-section ul#tertiary-navigation li#westpark-tollway-tertiary-navigation a,
+
+			body.construction-and-engineering-section.introduction-section ul#tertiary-navigation li#introduction-tertiary-navigation a,
+			body.construction-and-engineering-section.current-projects-section ul#tertiary-navigation li#current-projects-tertiary-navigation a,
+			body.construction-and-engineering-section.open-contract-bids-section ul#tertiary-navigation li#open-contract-bids-tertiary-navigation a,
+			body.construction-and-engineering-section.bid-tabulations-section ul#tertiary-navigation li#bid-tabulations-tertiary-navigation a,
+			body.construction-and-engineering-section.contracts-section ul#tertiary-navigation li#contracts-tertiary-navigation a,
+
+			body.about-section.email-section ul#tertiary-navigation li#email-tertiary-navigation a,
+			body.about-section.locations-section ul#tertiary-navigation li#locations-tertiary-navigation a,
+			body.about-section.forms-section ul#tertiary-navigation li#forms-tertiary-navigation a
+
+		{				
+				background-image: url(../media/tertiary-navigation/tertiary-navigation-background-left_on.gif);
+			    background-repeat: no-repeat;
+			 	background-position: left top;
+			
+				font-weight: bold;
+				padding-bottom: 0.25em; /* make sure we don't see the bottom border */
+		}
+
+
+/* ======== Tertiary-navigation specific properties ========= */
+
+div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li a
+{
+	display: block;
+	padding-right: 0.75em;
+	padding-left: 0.75em;
+	
+	padding-top: 0.25em;
+	padding-bottom: 0.20em; /* make sure we don't see the bottom border */
+}
+
+/* ======== Page-Controls specific properties ========= */
+
+div#tertiary-navigation-and-or-page-controls ul#page-controls
+{
+	position: absolute;
+	top: 2.5em;
+	right: 0;
+	
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+	div#tertiary-navigation-and-or-page-controls ul#page-controls li
+	{
+		display: inline;
+		float: left;
+		margin-right: 0.75em;
+	}
+
+
+/* ================================= Primary-and-Secondary Content ==================================== */
+
+
+/* This makes use of auto float clearing:
+	http://www.positioniseverything.net/easyclearing.html */
+
+
+div#content-container div#primary-and-secondary-content:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+div#content-container div#primary-and-secondary-content {
+	display: inline-block;
+}
+
+/* Holly Hack Targets IE Win only \*/
+* html div#content-container div#primary-and-secondary-content {
+	height: 1%;
+}
+
+div#content-container div#primary-and-secondary-content {
+	display: block;
+}
+/* End Holly Hack */
+
+	div#primary-and-secondary-content div#primary-content,
+		div#primary-and-secondary-content div#tertiary-navigation-and-or-page-controls
+	{
+		float: left;
+		display: inline; /* This helps IE with floated elements */
+
+		width: 62%; /* 430/695 = 62% */
+	}
+
+	div#primary-and-secondary-content div#secondary-content
+	{
+		float: right;
+		display: inline; /* This helps IE with floated elements */
+
+		width: 35.2%; /* 245/695 = 62% */
+
+		/* This nudges the secondary content, vertically, below
+			the h1 element in the primary-content area */
+		padding-top: 2.0em;
+	}
+
+		/* This is primarily implemented to avoid scenarios
+			involving "certain browsers'" incorrect interpretation
+			of the box model */
+		div#secondary-content div#secondary-content-interior
+		{
+			background-image: url('../media/common/secondary-content-background.gif');
+			background-repeat: no-repeat;
+
+			/* These bits push the content out of the
+				way of the background image */
+			padding-top: 1.1em;
+			padding-bottom: 1.0em;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+		/* The home page gets slightly different properties */
+		body.home div#secondary-content div#secondary-content-interior
+		{
+			background-image: none;
+			padding: 0em;
+		}
+		
+			body.error-section	div#secondary-content div#secondary-content-interior ul
+			{
+				padding-left: 0em;
+			}
+		
+				body.error-section	div#secondary-content div#secondary-content-interior ul li
+				{
+					margin-bottom: 0.5em;
+				}
+
+/* ========================= Primary-and-Secondary Content: Home Page =========================== */
+
+
+/* The home page has a fairly distinct layout, so it gets its own set of rules
+	for these elements */
+
+body.home div#primary-and-secondary-content div#primary-content,
+	body.home div#primary-and-secondary-content div#secondary-content
+{
+	float: none;
+	width: auto;
+	display: block;
+
+	padding: 0em;
+}
+
+/* These elements make use of auto float clearing:
+	http://www.positioniseverything.net/easyclearing.html */
+
+body.home div#page div#primary-content:after,
+	body.home div#page div#secondary-content:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+body.home div#page div#primary-content,
+	body.home div#page div#secondary-content {
+	display: inline-block;
+}
+
+/* Holly Hack Targets IE Win only \*/
+* html body.home div#page div#primary-content,
+* html body.home div#page div#secondary-content {
+	height: 1%;
+}
+
+body.home div#page div#primary-content,
+body.home div#page div#secondary-content {
+	display: block;
+}
+/* End Holly Hack */
+
+
+/* This element has no effect on non-home pages */
+body div#primary-content-helper-element
+{
+	display: none
+}
+
+body.home div#primary-content-helper-element
+{
+	display: block; /* Undo the default display:none */
+
+	position: absolute;
+
+	top: 12.0em;
+	left: 0em;
+
+	width: 100%;
+	height: 19em;
+
+	background-image: url(../media/home/primary-content-background.gif);
+	background-repeat: repeat-x;
+	background-position: bottom left;
+}
+
+/* ============= Login form properties & logged in mini-account area ================== */
+
+body.home div#primary-content form#login,
+	body.home div#primary-content div#logged-in
+{
+	background-image: url(../media/home/login-area-background.gif);
+	background-repeat: no-repeat;
+
+	float: left;
+	display: inline; /* This helps IE deal with floated elements */
+
+	width: 264px;
+}
+
+	body.home div#primary-content form#login fieldset
+	{
+		margin: 0em;
+
+		padding-left: 22px;
+		padding-right: 20px;
+
+		padding-top: 20px;
+
+		/* It's this property that allows the login-form to
+			bleed into the secondary-content area */
+		padding-bottom: 3.0em;
+	}
+
+		body.home div#primary-content form#login fieldset input.textfield
+		{
+			/* IE, at times, has trouble with 100% widths in situations
+				like these */
+			width: 99%;
+		}
+
+	/* This holds the "Forget your password?" / "First time to login?"
+		links on the home page */
+	body.home div#primary-content form#login ul,
+		body.home div#primary-content form#login ul li
+	{
+		margin-left: 0em;
+		margin-right: 0em;
+
+		padding-left: 0em;
+		padding-right: 0em;
+	}
+
+	body.home div#primary-content form#login input.submit-button
+	{
+		float: right;
+		display: inline; /* This helps IE with floated elements */
+
+		margin-right: 0em; /* IE needs this for some reason */
+		margin-top: 0.3em;
+	}
+	
+/* mini account summary once logged in */
+body.home div#primary-content div#logged-in div#logged-in-info
+{
+	background-image: url(../media/home/logged-in-info-background.gif);
+	background-repeat: no-repeat;
+
+	margin-right: 17px; 
+	margin-left: 17px;
+}
+
+	body.home div#primary-content div#logged-in div#logged-in-info dl
+	{
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+
+
+/* ============= Homepage Primary Marketing area ================== */
+
+body.home div#primary-content h1#primary-marketing
+{
+	float: right;
+	display: inline; /* This helps IE with floated elements*/
+
+	border-width: 6px;
+	border-style: solid; 
+}
+
+	body.home div#primary-content h1#primary-marketing a
+	{
+		display: block;
+		height: 186px;
+	}
+	
+		/* Only IE6 sees this. (IE 7 and other browsers are fine without it) */
+		* html body.home div#primary-content h1#primary-marketing a
+		{
+			display: inline-block;
+		}
+
+
+/* ============= News & Information / Secondary Marketing / Quick Links ================== */
+
+/* General list properties */
+body.home div#secondary-content ul,
+	body.home div#secondary-content ul li
+{
+	margin-left: 0em;
+	margin-right: 0em;
+
+	padding-left: 0em;
+	padding-right: 0em;
+}
+
+body.home div#secondary-content div#news-and-information-section,
+	body.home div#secondary-content div#promo,
+	body.home div#secondary-content div#quick-links-section
+{
+	float: left;
+	display: inline; /* This helps IE with floated elements */
+}
+
+/* News & Information Section */
+body.home div#secondary-content div#news-and-information-section
+{
+	/* (Naturally, the parent element isn't actually 800px
+		wide -- that's just how the comp, erm, depicts it.) */
+	width: 31.8%; /* 255 / 800 = 31.8% */
+}
+
+/* General secondary marketing area */
+body.home div#secondary-content div#promo
+{
+	width: 40.7%; /* 310 / 760 = 40.7% */
+	margin-left: 2.5%;
+}
+
+/* General secondary marketing area headings */
+body.home div#secondary-content div.home-secondary-heading
+{
+	background-image: url(../media/home/h2-heading-home-bl.gif);
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	display: inline; /* for IE float problems */
+	float: left;
+}
+
+	body.home div#secondary-content div.home-secondary-heading div
+	{
+		background-image: url(../media/home/h2-heading-home-br.gif);
+		background-position: right bottom;
+		background-repeat: no-repeat;
+		display: inline; /* for IE float problems */
+		float: left;	
+	}				
+
+		body.home div#secondary-content div.home-secondary-heading div h2
+		{				
+			background-image: url(../media/home/h2-heading-home-tr.gif);
+			background-position: right top;
+			background-repeat: no-repeat;
+			display: inline; /* for IE float problems */
+			float: left;
+		}
+
+			body.home div#secondary-content div.home-secondary-heading div h2 a,
+				body.home div#secondary-content div#quick-links-section h2 span
+			{
+				background-image: url(../media/home/h2-heading-home-tl.gif);
+				background-position: left top;
+				background-repeat: no-repeat;
+				display: block;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			
+				body.home div#secondary-content div#news-and-information-section div.home-secondary-heading div h2 a#news-and-information
+				{
+					padding-right: 28px;
+				}
+			
+			body.home div#secondary-content div#promo p,
+				body.home div#secondary-content div#quick-links-section ul,
+				body.home div#secondary-content div#news-and-information-section ul
+			{
+				clear: both;
+			}
+
+/* Quick Links section */
+body.home div#secondary-content div#quick-links-section
+{
+	/* (Naturally, the parent element isn't actually 800px
+		wide -- that's just how the comp, erm, depicts it.) */
+	width: 23.0%; /* 180 / 800 = 22.5% */
+	margin-left: 2.0%;
+}
+
+/* ================== Secondary Content: Home - lists =============== */
+
+body.home div#secondary-content ul li a
+{
+	display: block; /* Allows for a wider click-area */
+}
+
+/* Using the TripSwitch to trigger hasLayout in IE
+	http://www.tanfa.co.uk/css/examples/haslayout/tripswitch-demo.asp */
+body.home div#secondary-content ul li a {display: inline-block;} /* trigger haslayout for IE>5.0 */
+body.home div#secondary-content ul li a {display: block;} /* put it back to what it should be in separate rule */
+/* end TripSwitch */
+
+	/* Lists within the News & Information section */
+
+	body.home div#secondary-content div#news-and-information-section ul li
+	{
+		margin-bottom: 0.2em;
+	}
+
+		body.home div#secondary-content div#news-and-information-section ul li a,
+			body.home div#secondary-content div#news-and-information-section ul li span /* for when no news is available */
+		{	
+			padding-left: 41px; /* Leaves room for the background image */
+
+			background-position: 12px 0.5em;
+			background-repeat: no-repeat;
+
+			padding-top: 0.4em;
+			padding-bottom: 6px; /*leaves room for background image*/
+			padding-right: 0.5em;
+		}
+		
+			body.home div#secondary-content div#news-and-information-section ul li span /* for when no news is available */
+			{
+				padding-left: 0.5em;
+			}
+			
+		body.home div#secondary-content div#news-and-information-section ul li p
+		{	
+			margin-top: -6px; /*closes gap between second line and anchor*/
+			margin-right: 0.5em;
+			margin-left: 41px; 
+			
+			padding-bottom: 0.4em;
+		}
+
+			body.home div#secondary-content div#news-and-information-section ul li.advisory a
+			{
+				background-image: url(../media/icons/alert.gif);
+			}
+
+		body.home div#secondary-content div#news-and-information-section ul li.news a,
+			body.home div#secondary-content div#news-and-information-section ul li.press-release a
+		{
+			background-image: url(../media/icons/info.gif);
+		}
+
+		/* These elements represent the dates on a given entry */
+		body.home div#secondary-content div#news-and-information-section ul li a strong
+		{
+			display: block;
+			margin-bottom: 0.1em;
+		}
+
+	/* Lists within the Quick Links section */
+
+	body.home div#secondary-content div#quick-links-section ul li
+	{
+		padding-left: 23px; /* Leaves room for the background image */
+
+		padding-top: 0.25em;
+		padding-bottom: 0.25em;
+
+		background-image: url(../media/home/quick-links-list-item.gif);
+		background-repeat: no-repeat;
+	}
+
+		body.home div#secondary-content div#quick-links-section ul li.alert
+		{
+			background-image: url(../media/home/quick-links-list-item_alert.gif);
+		}
+
+			body.home div#secondary-content div#quick-links-section ul li.alert a
+			{
+				background-image: url(../media/home/quick-links-endcap.gif);
+				background-position: center right;
+				background-repeat: no-repeat;
+			}
+
+		body.home div#secondary-content div#quick-links-section ul li a
+		{
+			padding-top: 0.2em;
+			padding-bottom: 0.2em;
+
+			padding-left: 0.2em;
+		}
+
+/* ================ Secondary Content: Home - promo area ============= */
+
+/* Properties for the promo area, which currently says
+	"You can now use your EZ TAG to	park at any HAS airport" */
+body.home div#secondary-content div#promo p
+{
+	border-width: 5px;
+	border-style: solid;
+}
+
+	body.home div#secondary-content div#promo p a
+	{
+		display: block;
+		height: 157px;
+	}
+
+/* ========================= Secondary-Content bits (for pages other than the home page) ====================== */
+
+/* FAQ answers */
+div#secondary-content dl.faq,
+	div#secondary-content dl.faq dd
+{
+	padding-left: 0em;
+	padding-right: 0em;
+
+	margin-left: 0em;
+	margin-right: 0em;
+}
+
+
+	/* Unordered lists within FAQ answers */
+
+	div#secondary-content dl.faq dd ul
+	{
+		margin-left: 0em;
+		margin-right: 0em;
+
+		padding-left: 0em;
+		padding-right: 0em;
+	}
+
+
+	div#secondary-content dl.faq dd ul li
+	{
+		background-image: url(../media/common/checkmark.gif);
+		background-repeat: no-repeat;
+		background-position: 8px 0.15em;
+
+		margin-left: 0em; /* Just to be sure */
+		margin-right: 0em;
+
+		padding-left: 32px; /* Leave room for the background image */
+		padding-right: 0em;
+
+		padding-bottom: 0.7em;
+	}
+
+/* different ways of being contacted */
+div#secondary-content dl.ways-of-contact dd{
+	margin-left: 20px;
+}
+
+div#secondary-content dl.ways-of-contact dd p strong
+{
+	display: block;
+}
+
+/* ================================= Progress Bar Bits =================================== */
+
+/* The "Progress Bar" is primarily used for the Sign-Up sequence */
+
+div#content-container p.progress-bar
+{
+	position: absolute;
+	top: -4.0em;
+	left: 15px;
+}
+
+	/* This makes use of revised Phark image replacement:
+		http://www.mezzoblue.com/tests/revised-image-replacement/#phark2 */
+
+	/* (The "em" holds the image-replaced bits while the other
+		bits within the progress-bar paragraph are regular text) */
+	div#content-container p.progress-bar em
+	{
+		display: block;
+
+		text-indent: -5000px;
+		/* The background-image is defined in each of the steps,
+			since there are many variations */
+		background-repeat: no-repeat;
+
+		width: 180px;
+		height: 30px;
+	}
+div#content-container p.progress-bar-checkmark em
+	{
+		display: block;
+
+		text-indent: -5000px;
+		/* The background-image is defined in each of the steps,
+			since there are many variations */
+		background-repeat: no-repeat;
+
+		width: 210px;
+		height: 30px;
+	}
+
+
+		/* Properties for a 2-step progress */
+		div#content-container p#step-1-of-2.progress-bar em,
+			div#content-container p#step-2-of-2.progress-bar em,
+			div#content-container p#step-3-of-2.progress-bar em
+		{
+			background-image: url(../media/progress-bars/progress-bar-2-3.gif);
+		}
+
+		/* Properties for a 3-step progress */
+		div#content-container p#step-1-of-3.progress-bar em,
+			div#content-container p#step-2-of-3.progress-bar em,
+			div#content-container p#step-3-of-3.progress-bar em,
+			div#content-container p#step-4-of-3.progress-bar em
+		{
+			background-image: url(../media/progress-bars/progress-bar-3-4.gif);
+		}
+
+		/* Properties for a 4-step progress */
+		div#content-container p#step-1-of-4.progress-bar em,
+			div#content-container p#step-2-of-4.progress-bar em,
+			div#content-container p#step-3-of-4.progress-bar em,
+			div#content-container p#step-4-of-4.progress-bar em,
+			div#content-container p#step-5-of-4.progress-bar em
+		{
+			background-image: url(../media/progress-bars/progress-bar-4-5.gif);
+		}
+
+		/* Step 1 of ## */
+		div#content-container p#step-1-of-2.progress-bar em,
+			div#content-container p#step-1-of-3.progress-bar em,
+			div#content-container p#step-1-of-4.progress-bar em
+		{
+			background-position: 0px 0px;
+		}
+
+		/* Step 2 of ## */
+		div#content-container p#step-2-of-2.progress-bar em,
+			div#content-container p#step-2-of-3.progress-bar em,
+			div#content-container p#step-2-of-4.progress-bar em
+		{
+			background-position: 0px -30px;
+		}
+
+		/* Step 3 of ## */
+		div#content-container p#step-3-of-2.progress-bar em,
+			div#content-container p#step-3-of-3.progress-bar em,
+			div#content-container p#step-3-of-4.progress-bar em
+		{
+			background-position: 0px -60px;
+		}
+
+		/* Step 4 of ## */
+		div#content-container p#step-4-of-3.progress-bar em,
+			div#content-container p#step-4-of-4.progress-bar em
+		{
+			background-position: 0px -90px;
+		}
+
+		/* Step 5 of ## */
+		div#content-container p#step-5-of-4.progress-bar em
+		{
+			background-position: 0px -120px;
+		}
+
+
+		/* Implementing the 6 Step Progress Lakshmi Harish */
+
+
+		div#content-container p#step-1-of-6.progress-bar em,
+			div#content-container p#step-2-of-6.progress-bar em,
+			div#content-container p#step-3-of-6.progress-bar em,
+			div#content-container p#step-4-of-6.progress-bar em,
+			div#content-container p#step-5-of-6.progress-bar em,
+			div#content-container p#step-6-of-6.progress-bar em
+                        
+		{
+			/* background-image: url(../media/progress-bars/progress-bar-4-5.gif);*/
+			background-image: url(../media/progress-bars/progress-bar-full.gif);
+		}
+
+		/* Step 1 of ## */
+		div#content-container p#step-1-of-2.progress-bar em,
+			div#content-container p#step-1-of-3.progress-bar em,
+			div#content-container p#step-1-of-4.progress-bar em
+			div#content-container p#step-1-of-6.progress-bar em
+		{
+			background-position: 0px 0px;
+		}
+
+		/* Step 2 of ## */
+		div#content-container p#step-2-of-2.progress-bar em,
+			div#content-container p#step-2-of-3.progress-bar em,
+			div#content-container p#step-2-of-4.progress-bar em,
+			div#content-container p#step-2-of-6.progress-bar em
+		{
+			background-position: 0px -30px;
+		}
+
+		/* Step 3 of ## */
+		div#content-container p#step-3-of-2.progress-bar em,
+			div#content-container p#step-3-of-3.progress-bar em,
+			div#content-container p#step-3-of-4.progress-bar em,
+			div#content-container p#step-3-of-6.progress-bar em
+		{
+			background-position: 0px -60px;
+		}
+
+		/* Step 4 of ## */
+		div#content-container p#step-4-of-3.progress-bar em,
+			div#content-container p#step-4-of-4.progress-bar em,
+			div#content-container p#step-4-of-6.progress-bar em
+		{
+			background-position: 0px -90px;
+		}
+
+		/* Step 5 of ## */
+		div#content-container p#step-5-of-4.progress-bar em,
+		div#content-container p#step-5-of-6.progress-bar em
+		{
+			background-position: 0px -120px;
+		}
+		/* Step 5 of ## */
+		/*div#content-container p#step-5-of-4.progress-bar em*/
+		div#content-container p#step-6-of-6.progress-bar em
+		{
+			background-position: 0px -150px;
+		}
+                div#content-container p#step-1-of-7.progress-bar em,
+			div#content-container p#step-2-of-7.progress-bar em,
+			div#content-container p#step-3-of-7.progress-bar em,
+			div#content-container p#step-4-of-7.progress-bar em,
+			div#content-container p#step-5-of-7.progress-bar em,
+			div#content-container p#step-6-of-7.progress-bar em,
+                        div#content-container p#step-7-of-7.progress-bar em
+                        
+		{
+			/* background-image: url(../media/progress-bars/progress-bar-4-5.gif);*/
+			background-image: url(../media/progress-bars/progress-bar-full.gif);
+		}
+div#content-container p#step-7-of-7.progress-bar em
+		{
+                        width: 210px;
+		        height: 30px;
+			background-position: 0px -180px;
+		}
+
+		/* End of Implementing the 6 Step Progress Lakshmi Harish*/
+
+/* ================================= Status Bar Bits =================================== */
+
+/* The "Status Bar" is primarily used in the Manage area
+	(it shares some properties in common with the Progress Bar) */
+
+div#content-container p.status-bar
+{
+	position: absolute;
+	top: -6.8em;
+	left: 15px;
+}
+
+	/* shown when user is logged in while visiting the contact page */
+	body.contact-us-section div#content-container p.status-bar
+	{
+		position: static;
+		top: 0em;
+		left: 0px;
+	}
+
+/* Using the TripSwitch to trigger hasLayout in IE
+	http://www.tanfa.co.uk/css/examples/haslayout/tripswitch-demo.asp */
+div#content-container p.status-bar a {display: inline-block;} /* trigger haslayout for IE>5.0 */
+div#content-container p.status-bar a {display: block;} /* put it back to what it should be in separate rule */
+/* end TripSwitch */
+
+	/* "Name / Company Name" section of the Status Bar */
+	div#content-container p.status-bar a strong
+	{
+		display: block;
+	}
+
+		div#content-container p.status-bar em strong
+		{
+			display: inline;
+		}
+
+/* ===================================== Headers ======================================== */
+
+/* Header directory:
+	H1: Page title
+	H2: Mid-page headers, such as address separators (on the sign-in side)
+		and running-balance headers (on the manage side)
+	H3:
+		Sign-in area: Confirmation subheaders (such as "Account Information for")
+		Manage-area: subheaders (such as "Vehicles covered by")
+	H4: Headers within the confirmation page
+	H5: Legend-like form-prefacing remarks (such as "If you forget your password...")
+	H6: Headers within the secondary-content area
+*/
+
+/* H1: Page title */
+div#content-container h1
+{
+	margin-bottom: 2.0em;
+}
+
+	/* This version leaves room for the tertiary navigation and/or page-controls */
+	body.manage-section.account-activity-section div#content-container h1,
+		body.manage-section.payments-and-orders-section div#content-container h1,
+		body.toll-road-info-section.overview-section div#content-container h1,
+		body.toll-road-info-section.rates-section div#content-container h1,
+		body.about-section.construction-and-engineering-section div#content-container h1,
+		body.about-section.contact-us-section div#content-container h1
+	{
+		margin-bottom: 3.5em;
+	}
+
+	/* This is used for sub-titles, such as
+			"Please review everything to make sure it is accurate." */
+	div#content-container h1 em
+	{
+		display: block;
+	}
+
+	/* H1 elements on the home page get slightly different properties */
+	body.home div#content-container h1
+	{
+		border-bottom-width: 0px;
+	}
+
+h2{}
+
+		/* This can be used to provide auxilliary text to the header,
+			such as details on the axle info */
+		h2 em
+		{
+			display: block;
+		}
+		
+		/* incorporates tab like images around the h2s on this page */
+		body.account-summary-section h2
+		{
+		}
+		
+			/* This makes use of auto float clearing:
+				http://www.positioniseverything.net/easyclearing.html */
+			body.account-summary-section h2:after
+			{
+				content: ".";
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden;
+			}
+
+			body.account-summary-section h2 {display: inline-block;}
+
+			/* Hides from IE-mac \*/
+			* html body.account-summary-section h2 {height: 1%;}
+			body.account-summary-section h2 {display: block;}
+			/* End hide from IE-mac */
+		
+
+			body.account-summary-section h2 strong
+			{
+				background-image: url(../media/headers/h2-background_left.gif);
+				background-position: top left;
+				background-repeat: no-repeat;
+
+				/* The ems her allow the tab to be resized proportionately if the user
+					changes his/her text size */
+				padding-left: 1.0em;
+				
+				position: relative;
+				top: 0.4em;
+				
+				float: left;
+				display: inline; /* This helps IE with floated elements */
+			}
+			
+				body.account-summary-section h2 strong span
+				{
+					background-image: url(../media/headers/h2-background_right.gif);
+					background-position: top right;
+					background-repeat: no-repeat;
+
+					/* The ems her allow the tab to be resized proportionately if the user
+						changes his/her text size */
+					padding-right: 1.0em;
+				}
+			
+h3
+{}
+
+	/* This targets the submit button next to the username
+		on the confirmation page */
+	body.account-section h3 input
+	{
+		margin-left: 0.3em;
+	}
+
+/* H4: Headers within the confirmation page	*/
+h4
+{
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+}
+
+h5
+{}
+
+	/* Legend-like form-prefacing remarks (such as "If you forget your password...") */
+	form h5
+	{
+		/* if it is in a form make sure to clear or it
+		 	might end up floating beside fieldsets */
+		clear: both;
+	}
+
+/* ============================ Image Replacement ==================================== */
+
+/* Some elements make use of Gilder/Levin image replacement:
+	http://levin.grundeis.net/files/20030809/alternatefir.html */
+
+
+div#content-container table.interoperability thead a,
+	body.home div#secondary-content div#news-and-information-section h2 a.rss
+{
+	position:relative;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+
+	/* hide overflow:hidden from IE5/Mac */
+	/* \*/
+	overflow: hidden;
+	/* */
+}
+
+div#content-container table.interoperability thead a span,
+	body.home div#secondary-content div#news-and-information-section h2 a.rss span
+{
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1; /*for Opera 5 and 6*/
+}
+
+	/* "News & Information" */
+	body.home div#secondary-content div#news-and-information-section h2
+	{
+		position: relative; /* This allows other elements to be absolutely
+								positioned with respect to this */
+	}
+
+		/* "News & Information" [RSS icon] */
+		body.home div#secondary-content div#news-and-information-section h2 a.rss,
+			body.home div#secondary-content div#news-and-information-section h2 a.rss span
+		{
+			position: absolute;
+			top: 0px;
+			right: 0px;
+
+			width: 13px;
+			height: 13px;
+			background-image: url(../media/headers/rss-endcap.gif);
+		}
+		
+			body.home div#secondary-content div#news-and-information-section h2 a.rss 
+			{
+				top: 0.6em; /* push the image down a bit */
+				right: 8px;
+			}
+
+	/* (Interoperability-selections refer to the checkmark-preferences
+		table(s) such as on the Sign Up -> Preferences page) */
+
+	/* "HAS" */
+	div#content-container table.interoperability thead a#houston-airport-system,
+		div#content-container table.interoperability thead a#houston-airport-system span
+	{
+		width: 138px;
+		height: 41px;
+		background-image: url(../media/logos/houston-airport-system.png);
+	}
+
+	/* "NTTA" */
+	div#content-container table.interoperability thead a#ntta,
+		div#content-container table.interoperability thead a#ntta span
+	{
+		width: 119px;
+		height: 41px;
+		background-image: url(../media/logos/ntta.png);
+	}
+
+	/* "TX DOT" */
+	div#content-container table.interoperability thead a#tx-dot,
+		div#content-container table.interoperability thead a#tx-dot span
+	{
+		width: 49px;
+		height: 41px;
+		background-image: url(../media/logos/tx-dot.png);
+	}
+
+
+	/* "CTRMA" */
+	div#content-container table.interoperability thead a#ctrma,
+		div#content-container table.interoperability thead a#ctrma span
+	{
+		width: 90px;
+		height: 66px;
+		background-image: url(../media/logos/ctrma.gif);
+	}
+	
+	
+	/* "METRO" */
+	div#content-container table.interoperability thead a#metro,
+		div#content-container table.interoperability thead a#metro span
+	{
+		width: 125px;
+		height: 59px;
+		background-image: url(../media/logos/metro.png);
+	}
+	
+
+	/* "FBGPTRA" */
+	div#content-container table.interoperability thead a#fbgptra,
+		div#content-container table.interoperability thead a#fbgptra span
+	{
+		width: 70px;
+		height: 75px;
+		background-image: url(../media/logos/FBCTRA.gif);
+	} 
+	
+	
+	/* Other elements, those that require transparency as part of the
+		imakes, make use of revised Phark image replacement:
+		http://www.mezzoblue.com/tests/revised-image-replacement/#phark2 */
+
+	body.home div#primary-content h1#login-to-my-ez-tag,
+		body.home div#primary-content div#logged-in h1
+	{
+		display: block;
+
+		text-indent: -5000px;
+		/* The background-image is defined in each of the steps,
+			since there are many variations */
+		background-repeat: no-repeat;
+	}
+
+		/* "Login to My EZ TAG */
+		body.home div#primary-content h1#login-to-my-ez-tag
+		{
+			width: 211px;
+			height: 15px;
+
+			background-image: url(../media/headers/login-to-my-ez-tag.gif);
+		}
+		
+		body.home div#primary-content div#logged-in h1
+		{
+			margin-left: 22px;
+			margin-right: 20px;
+			
+			width: 128px;
+			height: 13px;
+
+			background-image: url(../media/headers/my-ez-account.gif);
+		}
+
+/* ======================================== Map ==================================== */
+
+/* This holds the Flash-based/image-based map on the Toll Road Info -> Map page */
+div#content div#map
+{
+	border-width: 5px;
+	border-style: solid;
+	/* border-color set in colors.css */
+	
+	padding: 5px; 
+	width: 670px;
+}
+
+	/* This applies to the static image fall-through if Flash
+		isn't available */
+	div#map img
+	{
+		width: 670px;
+		height: 500px;
+	}
+
+/* ============================== Form Properties ====================================== */
+
+
+/* General alignment for form elements */
+form input,
+	form select
+{
+	vertical-align: middle;
+}
+
+	form input.radio-button
+	{
+		vertical-align: text-bottom;
+	}
+
+	/* Only IE6 / IE7 sees this: */
+	* html form input.radio-button,
+		* + html form input.radio-button
+	{
+		vertical-align: middle;
+	}
+
+	form input.textfield,
+		form input.zemText /* for textpattern generated contact form */
+	{
+		width: 90%
+	}
+	
+	form input.textfield2
+	{
+		width: 90%;
+		border: 3px solid red;
+		background-color: white;
+	}
+	
+		/* for the send copy to textfield */
+		form input#this-email
+		{
+			width: auto;
+		}
+
+		form input.textfield.with-adjacent-form-field
+		{
+			width: 55%;
+		}
+        form input.textfield.firstElement
+        {
+                width: 44%;
+        }
+        
+        form input.textfield.secondElement
+        {
+                width: 18%;
+        }
+
+div#content-container form fieldset
+{
+	border-style: none;
+}
+
+	/* show the fieldset border and label to group and seperate these items */
+	div#content-container fieldset.if-applicable
+	{
+		border-width: 1px;
+		border-style: solid;
+	}
+	
+		div#content-container fieldset.if-applicable legend
+		{
+			margin-left: 5px;
+		}
+
+	/* Properties for unordered lists within forms/fieldsets */
+
+	div#content-container form fieldset ul
+	{
+		margin-left: 0em;
+		margin-right: 0em;
+
+		padding-left: 0em;
+		padding-right: 0em;
+	}
+
+		div#content-container form fieldset ul li
+		{
+			margin-left: 0em;
+			margin-right: 0em;
+
+			padding-left: 0em;
+			padding-right: 0em;
+
+			list-style-type: none;
+		}
+
+			/* Unordered lists within a definition description are used,
+				for instance, for the list of Authorized Contacts */
+			div#content-container form fieldset dl dd ul
+			{
+				margin-bottom: 0em;
+			}
+
+				div#content-container form fieldset dl dd ul li
+				{
+					padding-bottom: 0.3em;
+				}
+
+/* Definition lists within a fieldset typically hold
+	a group of form labels & fields */
+div#content-container fieldset dl,
+	div#content-container ul.vehicles
+{
+	margin-left: 0em;
+	margin-right: 0em;
+
+	padding-left: 0em;
+	padding-right: 0em;
+}
+
+/* This makes use of auto float clearing:
+	http://www.positioniseverything.net/easyclearing.html */
+div#content-container fieldset dl:after,
+	div#content-container ul.vehicles li:after
+{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+div#content-container fieldset dl, div#content-container ul.vehicles li {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html div#content-container fieldset dl, * html div#content-container ul.vehicles li {height: 1%;}
+div#content-container fieldset dl, div#content-container ul.vehicles li {display: block;}
+/* End hide from IE-mac */
+
+        p.authorized-contact-separator {
+		padding-bottom: 0.7em;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+            
+        }
+
+	/* Table-like display via a definition list:
+		http://www.maxdesign.com.au/presentation/definition/dl-table-display.htm */
+	div#content-container fieldset dl dt,
+        div#content-container fieldset dl dd
+	{
+		float: left;
+		display: inline; /* Helps IE with floated elements */
+
+		margin: 0em;
+
+		padding-top: 0.7em;
+		padding-bottom: 0.7em;
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+
+		border-top-width: 1px;
+		border-top-style: solid;
+	}
+	
+		/* additional fields that the need different properties
+			see the make a payment page in the my ez tag section */
+		div#content-container fieldset.add-to-ez-account-fields dl
+		{
+			float: right;
+			width: 55%;
+		}
+
+			div#content-container fieldset.add-to-ez-account-fields dl dt
+			{
+				width: 50%;
+			}
+
+			div#content-container fieldset.add-to-ez-account-fields dl dd
+			{
+				float: right;
+				padding-right: 0em;
+				width: 40%;
+			}
+
+				div#content-container fieldset.add-to-ez-account-fields dl dd input#how--much-will-you-pay
+				{
+					text-align: right;
+				}
+		
+		/* layout slightly different in the contact us page */
+		div#content-container fieldset#contact-message-fields dl dt,
+			div#content-container fieldset#contact-message-fields dl dd
+		{
+			float: none;
+			margin-left: 0px;
+			padding-left: 0px;
+		}
+
+			div#content-container fieldset#contact-message-fields dl dt.first-dt-dd-pair
+			{
+				padding-right: 0px;
+			}
+		
+		div#content-container fieldset#contact-message-fields dl dt label
+		{
+			display: block;
+		}
+
+		div#content-container fieldset#contact-message-fields dl dd textarea
+		{
+			width: 90%;
+			height: 12em;
+		}
+
+
+
+		/* The home page gets slightly different properties */
+		body.home div#content-container fieldset dl dt,
+			body.home div#content-container fieldset dl dd
+		{
+			float: none;
+			border-top-width: 0px;
+
+			padding: 0em;
+		}
+
+		body.home div#content-container fieldset dl dd
+		{
+			display: block;
+		}
+		
+		/* as does the contact us page */
+		body.contact-us-section div#content-container fieldset dl dt,
+			body.contact-us-section div#content-container fieldset dl dd
+		{
+			border-top-width: 0px;
+		}
+
+	/* for the forms that deal with how table data is shown,
+		i.e. the manage section */
+	body.monthly-invoices-section div#content-container form#data-actions fieldset
+	{
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+	}
+
+	div#content-container form#data-actions fieldset input.textfield.date
+	{
+		width: 6.0em;
+		vertical-align: top;
+	}
+
+	/* In some cases, an unordered list is employed with a nested
+		definition list; this is used on some pages where there's
+		a set of form elements along with a submit button
+		which are all aligned along the same horizontal area */
+
+	div#content-container form#data-actions fieldset dl dt,
+		div#content-container form#data-actions fieldset dl dd,
+		div#content-container form#data-actions fieldset ul li,
+		div#content-container form#data-actions fieldset ul li dl
+	{
+		border-width: 0px;
+		float: none;
+		display: inline;
+		padding-left: 0em;
+		width: auto;
+	}
+
+		div#content-container form#data-actions fieldset ul li dl dd
+		{
+			margin-right: 0.5em;
+		}
+
+		body.manage-section.vehicles-and-ez-tags-section div#content-container form#data-actions fieldset dl dt
+		{
+			display: block;
+		}
+
+	/* In business mode, the Drivers License Number item gets slightly
+		different properties since it's paired in a combo with Tax ID */
+	div#content-container fieldset dl dt.drivers-license-number-item.in-business-mode,
+		div#content-container fieldset dl dd.drivers-license-number-item.in-business-mode
+	{
+		border-top-width: 0px;
+	}
+
+	/*
+		Some instances within the site feature a combo of two fields with an -or-
+		choice between them.
+
+		In those cases, the first dt-dd-pair gets
+		"combo-field-first-dt-dd-pair"
+
+		... while the second dt-dd-pair gets
+		"combo-field-second-dt-dd-pair"
+	*/
+	div#content-container fieldset dl dt.combo-field-second-dt-dd-pair,
+		div#content-container fieldset dl dd.combo-field-second-dt-dd-pair
+	{
+		border-top-width: 0px;
+	}
+
+	div#content-container fieldset dl dt
+	{
+		width: 38%; /* 165 / 440 = 38% */
+		clear: both;
+	}
+	
+		/* 
+			There are slight differences for definition lists in a fieldset 
+			when they're inside a primary-and-secondary-content area 
+			or inside a section.
+			
+			These are most pertinent with forms which include a country-list
+			(as those are pretty long).
+		*/
+		
+		div#content-container div.section fieldset dl dt
+		{
+			width: 34%; /* Normally 38% */
+		}
+			
+		div#content-container div#primary-and-secondary-content fieldset dl dt
+		{
+			width: 32%; /* Normally 38% */
+		}
+	
+		body.home div#content-container fieldset dl dt
+		{
+			width: auto;
+		}
+
+		/* Properties for lone submit buttons, those which
+			are inside a fieldset but not in a form-actions container */
+		div#content-container fieldset p input.submit-button
+		{
+			margin-left: 40.5%;
+		}
+
+		/* This is used for dividing-words, such as "or", like
+			between "Tax ID" and "Drivers License Number" */
+		div#content-container fieldset dl dt em
+		{
+			display: block;
+			font-style: normal;
+			margin-top: 1.0em;
+			margin-left: 1.0em;
+		}
+
+		/* This is mostly necessary for IE's sake -- for
+			some reason, it goofs up the floated bits
+			with the Tax ID number (which ends up being
+			extra-tall since it has the "or" bit in there) */
+		div#content-container fieldset dl dd.tax-id-number-item
+		{
+			margin-bottom: 2.1em;
+		}
+
+	div#content-container fieldset dl dd
+	{
+		width: 50%;
+	}
+	
+		/* 
+			There are slight differences for definition lists in a fieldset 
+			when they're inside a primary-and-secondary-content area 
+			or inside a section.
+		
+			These are most pertinent with forms which include a country-list
+			(as those are pretty long).
+		*/
+			
+		div#content-container div.section fieldset dl dd
+		{
+			width: 58%; /* Normally 50% */
+		}
+			
+		div#content-container div#primary-and-secondary-content fieldset dl dd	
+		{
+			width: 61%; /* Normally 50% */
+		}
+
+		body.home div#content-container div#primary-and-secondary-content fieldset dl dd
+		{
+			width: auto;
+		}
+
+	/* The first dt/dd pair gets slightly different properties */
+	div#content-container fieldset dl dt.first-dt-dd-pair,
+		div#content-container fieldset dl dd.first-dt-dd-pair
+	{
+		border-top-width: 0px;
+	}
+
+		/* This is mostly used for radio buttons within a dd element */
+		div#content-container fieldset dl dd label
+		{
+			margin-right: 1.0em;
+		}
+
+/* This is used for form error and alert messages */
+div#content-container dl.errors,
+	div#content-container dl.alerts,
+	div#content-container dl.success,
+	div#content-container ul.zemError
+{
+	border-width: 3px 1px 1px 1px;
+	border-style: solid;
+	padding: 5px 10px 10px 10px;
+}
+
+/* Using the TripSwitch to trigger hasLayout in IE
+	http://www.tanfa.co.uk/css/examples/haslayout/tripswitch-demo.asp */
+	div#content-container dl.errors, 
+		div#content-container dl.alerts, 
+		div#content-container dl.success, 
+		div#content-container ul.zemError {display: inline-block;} /* trigger haslayout for IE>5.0 */
+	div#content-container dl.errors, 
+		div#content-container dl.alerts, 
+		div#content-container dl.success, 
+		div#content-container ul.zemError {display: block;} /* put it back to what it should be in separate rule */
+/* end TripSwitch */
+
+	div#content-container dl.errors dd,
+		div#content-container dl.alerts dd,
+		div#content-container dl.success dd,
+		div#content-container ul.zemError li
+	{
+		background-image: url("../media/common/error-bullet.gif");
+		background-repeat: no-repeat;
+		
+		padding-left: 1.5em;
+		padding-right: 1.0em;
+		padding-top: 0.2em;
+		padding-bottom: 0.5em;
+
+		margin-left: 1.0em;
+	}
+	
+		div#content-container dl.success dd
+		{
+			background-image: url("../media/common/checkmark.gif");
+		}
+
+	div#content-container fieldset dl dd.error,
+		div#content-container fieldset dl dd.errorElement
+	{
+		background-image: url(../media/common/field-error-background.gif);
+		background-repeat: no-repeat;
+	}
+
+/* Properties for the legal-summary within the Billing section */
+div#content-container fieldset.legal ul li
+{
+	list-style-type: disc;
+	margin-left: 2.0em;
+}
+
+div#content-container form input.image-based.submit-button
+{
+	/* This allows for spacing between consecutive image-based submit-buttons */
+	margin-right: 1.0em;
+}
+
+/* ========== Form actions ============= */
+
+/* The form-actions list holds a set of form submit button(s) */
+
+div#content-container ul.form-actions
+{
+	border-top-width: 1px;
+	border-top-style: solid;
+	padding: 10px;
+
+	margin-left: 0em; /* Just to be sure */
+	margin-right: 0em; /* Just to be sure */
+}
+
+	body.contact-us-section div#content-container ul.form-actions
+	{
+		border-top-width: 0px;
+	}
+	
+	/* if a user is logged in and on the contact page */
+	body.contact-us-section.logged-in div#content-container ul.form-actions
+	{
+		padding-top: 0px;
+		padding-left: 0px;
+	}
+	
+	body.contact-us-section.logged-in div#content-container ul.form-actions li.first-child
+	{
+		padding-top: 8px;
+	}
+	
+	
+
+	/* This makes use of auto float clearing:
+			http://www.positioniseverything.net/easyclearing.html */
+
+	div#content-container ul.form-actions:after {
+	    content: ".";
+	    display: block;
+	    height: 0;
+	    clear: both;
+	    visibility: hidden;
+	}
+
+	div#content-container ul.form-actions {
+		display: inline-block;
+	}
+
+	/* Holly Hack Targets IE Win only \*/
+	* html div#content-container ul.form-actions {
+		height: 1%;
+	}
+
+	div#content-container ul.form-actions {
+		display: block;
+	}
+	/* End Holly Hack */
+
+		ul.form-actions li
+		{
+			 list-style-type: none;
+		}
+
+			/* This combination sets the button
+				to float:right if it's the only child
+				or the last child, and float:left
+				if it's the first child */
+
+			ul.form-actions li.first-child
+			{
+				 float: left;
+				 display: inline; /* This helps IE with floated elements */
+			}
+
+			ul.form-actions li.last-child
+			{
+				 float: right;
+				 display: inline; /* This helps IE with floated elements */
+			}
+
+/* ============================== General Content bits ============================ */
+
+
+/* This is mutually exclusive to a primary-content / secondary-content scenario */
+
+div#content div.section
+{
+	margin-right: 35%;
+}
+
+div#content div.wide-section
+{
+	margin-right: 10%;
+}
+/* Using the TripSwitch to trigger hasLayout in IE
+	http://www.tanfa.co.uk/css/examples/haslayout/tripswitch-demo.asp */
+div#content div.section {display: inline-block;} /* trigger haslayout for IE>5.0 */
+div#content div.section {display: block;} /* put it back to what it should be in separate rule */
+/* end TripSwitch */
+
+	/* Properties for the preferences page */
+	body.preferences-section div#content div.section
+	{
+		margin-right: 0%;
+	}
+	
+	body.introduction-section div#primary-and-secondary-content div.section
+	{
+		clear: both;
+		padding-top: 2em;
+	}
+	
+		body.introduction-section div#primary-and-secondary-content div.section img
+		{
+			display: block;
+			margin-top: 20px;
+			margin-bottom: 50px;
+		}
+
+/* username in preferences settings */
+body.manage-section div#content-container p#account-information-for
+{
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+	/* Some pages make use of sub-divisions within a section */
+	div#content div.section.with-primary-and-secondary-content
+	{
+		margin-left: 0px;
+		margin-right: 0px;
+
+		padding-left: 10px;
+		padding-right: 10px;
+
+		border-top-width: 2px;
+		border-bottom-width: 3px;
+
+		border-left-width: 2px;
+		border-right-width: 3px;
+
+		border-style: solid;
+
+		/* no longer gets a background, just solid color */
+		/*background-image: url('../media/common/section-with-primary-and-secondary-background.gif');
+		background-repeat:  repeat-x;*/
+
+		margin-bottom: 1.2em; /* The same as regular paragraphs */
+	}
+
+		/* The confirmation page and manage account section has a variation on the typical section.with-primary-and-secondary-content
+			look-and-feel */
+		body.account-section.confirmation-section div#content div.section.with-primary-and-secondary-content,
+			body.manage-section div#content div.section.with-primary-and-secondary-content,
+			body.popup-window div#content div.section.with-primary-and-secondary-content
+		{
+			background-image: none;
+			border-width: 0px;
+
+			padding: 0px;
+		}
+
+		div.section.with-primary-and-secondary-content div.section-with-primary-and-secondary-content-interior
+		{
+			/* These bits aren't in typography.css since they're
+				only applicable in the context of the rest of
+				the layout for this element. */
+			padding-top: 1.0em;
+			padding-bottom: 1.0em;
+
+			background-image: url('../media/sign-up-process/mailing-address-background.gif');
+			background-repeat: no-repeat;
+			background-position: bottom right;
+		}
+
+		/* Both of these make use of auto float clearing:
+			http://www.positioniseverything.net/easyclearing.html */
+
+		div#content div.section.with-primary-and-secondary-content:after,
+			div#content div.section-with-primary-and-secondary-content-interior:after {
+		    content: ".";
+		    display: block;
+		    height: 0;
+		    clear: both;
+		    visibility: hidden;
+		}
+
+		div#content div.section.with-primary-and-secondary-content,
+			div.section-with-primary-and-secondary-content-interior {
+			display: inline-block;
+		}
+
+/* Holly Hack Targets IE Win only \*/
+* html div#content div.section.with-primary-and-secondary-content,
+* html div#content div.section-with-primary-and-secondary-content-interior {
+    height: 1%;
+}
+
+div#content div.section.with-primary-and-secondary-content,
+div#content div.section-with-primary-and-secondary-content-interior {
+    display: block;
+}
+/* End Holly Hack */
+
+
+		div#content div.section.with-primary-and-secondary-content div.primary-section-content
+		{
+			float: left;
+			display: inline; /* This helps IE with floated elements */
+			width: 47%;
+		}
+
+			/* The last child in a primary-section-content area or secondary-section-content
+				area have lower margins, for better alignment within the box */
+			div#content div.section.with-primary-and-secondary-content ul.last-child,
+				div#content div.section.with-primary-and-secondary-content dl.last-child,
+				div#content div.section.with-primary-and-secondary-content p.last-child
+			{
+				margin-bottom: 0em;
+			}
+
+		div#content div.section.with-primary-and-secondary-content div.secondary-section-content
+		{
+			float: right;
+			display: inline; /* This helps IE with floated elements */
+
+			width: 47%;
+		}
+
+/* Account summary page in the account management section */
+body.account-summary-section div.primary-section-content ul
+{
+	margin-left: 10px;
+	padding-left: 0px;
+}
+
+	body.account-summary-section div.primary-section-content ul li
+	{
+		display: inline;
+		float: left;
+		margin-right: 24px;
+	}
+		body.account-summary-section div.primary-section-content ul li.last-child
+		{
+			margin-right: 0px;
+		}
+
+		body.account-summary-section div.primary-section-content ul li strong,
+			body.account-summary-section div.secondary-section-content p em,
+			body.account-summary-section div.secondary-section-content p strong,
+			body.account-summary-section div.secondary-section-content p span
+		{
+			display: block;
+		}
+
+body.account-summary-section div.secondary-section-content p img
+{
+	display: inline;
+	float: left;
+	margin-top: -1.0em;
+	margin-right: 20px;
+}
+
+body.account-summary-section ul.account-summary-actions,
+	body.home ul.account-summary-actions
+{
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+	body.home ul.account-summary-actions
+	{
+		background-image: url(../media/home/logged-in-info-bottom-background.gif);
+		background-position: left bottom;
+		background-repeat: no-repeat;
+		
+		padding-right: 10px;
+		padding-left: 10px;
+		
+		margin-bottom: 0em;
+		padding-bottom: 10px;
+	}
+
+	ul.account-summary-actions li
+	{
+		background-position: 0em 0.25em;
+		background-repeat: no-repeat;
+
+		margin-left: 5px;
+
+		padding-left: 22px; /* Pushes the content out of the way
+								of the background image */
+
+		/* padding-bottom is covered in typography.css */
+	}
+	
+	/* Using the TripSwitch to trigger hasLayout in IE
+		http://www.tanfa.co.uk/css/examples/haslayout/tripswitch-demo.asp */
+	div#page ul.account-summary-actions li {display: inline-block;} /* trigger haslayout for IE>5.0 */
+	div#page ul.account-summary-actions li {display: block;} /* put it back to what it should be in separate rule */
+	/* end TripSwitch */
+	
+		ul.account-summary-actions li.change-info
+		{
+			background-image: url(../media/icons/calculator_edit.gif);
+		}
+	
+		ul.account-summary-actions li.print
+		{
+			background-image: url(../media/icons/printer.gif);
+		}
+		
+		ul.account-summary-actions li.add-ez-tag
+		{
+			background-image: url(../media/icons/car_add.gif);
+		}
+		
+		ul.account-summary-actions li.remove-ez-tag
+		{
+			background-image: url(../media/icons/car_delete.gif);
+		}
+		
+		ul.account-summary-actions li.make-payment
+		{
+			background-image: url(../media/icons/money.gif);
+		}
+		
+		ul.account-summary-actions li.manage-account
+		{
+			background-image: url(../media/icons/right_arrow.gif);
+			background-position: 4px 0.25em;
+		}
+		
+/* floated lists of pdf files */
+	div#content-container ul.pdf-list
+	{
+		padding-left: 0;
+	}
+	
+		body.current-projects-section div#content-container ul.pdf-list
+		{
+			width: 420px;
+		}
+	
+	div#content-container ul.pdf-list li
+	{
+		display: inline;
+		float: left;
+		padding-left: 30px;
+	}
+	
+	/* This makes use of auto float clearing:
+		http://www.positioniseverything.net/easyclearing.html */
+	div#content-container ul.pdf-list:after
+	{
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+
+		div#content-container ul.pdf-list {display: inline-block;}
+
+		/* Hides from IE-mac \*/
+		* html div#content-container ul.pdf-list {height: 1%;}
+		div#content-container ul.pdf-list {display: block;}
+		/* End hide from IE-mac */
+
+
+/* A "choices" definition-list presents	the user with a question
+	followed by a list of choices */
+div#content-container dl.choices
+{}
+
+	/* The choice-question */
+	div#content-container dl.choices dt
+	{
+		/* These properties are covered in typography.css */
+	}
+
+	/* The choice-answers */
+	div#content-container dl.choices dd
+	{
+		background-image: url(../media/common/choice-bullet.gif);
+		background-position: 0em 0.25em;
+		background-repeat: no-repeat;
+
+		margin-left: 10px;
+
+		padding-left: 22px; /* Pushes the content out of the way
+								of the background image */
+
+		/* padding-bottom is covered in typography.css */
+	}
+
+/* This is used as an introductory text on pages such as popup-windows,
+	legal documents, and others */
+
+body.account-section div#content dl.introduction
+{
+	font-size: 0.9em;
+}
+
+		/* This makes use of auto float clearing:
+			http://www.positioniseverything.net/easyclearing.html */
+
+		body.account-section div#content dl.introduction:after {
+		    content: ".";
+		    display: block;
+		    height: 0;
+		    clear: both;
+		    visibility: hidden;
+		}
+
+		body.account-section div#content dl.introduction {
+			display: inline-block;
+		}
+
+		/* Holly Hack Targets IE Win only \*/
+		* html body.account-section div#content dl.introduction {
+			height: 1%;
+		}
+
+		body.account-section div#content dl.introduction {
+			display: block;
+		}
+		/* End Holly Hack */
+
+		body.account-section div#content dl.introduction dt
+		{
+			margin-bottom: 0.5em;
+		}
+
+		body.account-section div#content dl.introduction dd
+		{
+			float: left;
+			display: inline; /* This helps IE with floated elements */
+
+			/* Just to be sure */
+			margin-left: 0em;
+			padding-left: 0em;
+
+			margin-right: 2.0em;
+		}
+
+			body.account-section div#content dl.introduction dd.last-child
+			{
+				margin-right: 0em; /* no need for right margin with last item in list */
+			}
+
+	/* This is used for simulated mailing-address labels,
+		such as on teh Billing Information page */
+	div#content-container div.section address.mailing-label
+	{
+		border-width: 1px;
+		border-style: solid;
+		padding: 0.5em;
+	}
+
+
+/* This contains various legal messages */
+div#content-container fieldset.legal
+{
+	border-width: 1px;
+	border-style: solid;
+
+	padding: 10px;
+}
+
+
+/* A diagrams list holds a set of diagrams,
+	such as a set of images representing
+	EZ TAGs */
+div#content-container ul.diagrams
+{
+	margin-left: 0em;
+	margin-right: 0em;
+
+	padding-left: 0em;
+	padding-right: 0em;
+}
+
+	/* This makes use of auto float clearing:
+	http://www.positioniseverything.net/easyclearing.html */
+
+	div#content-container ul.diagrams:after {
+	    content: ".";
+	    display: block;
+	    height: 0;
+	    clear: both;
+	    visibility: hidden;
+	}
+
+	div#content-container ul.diagrams {
+		display: inline-block;
+	}
+
+	/* Holly Hack Targets IE Win only \*/
+	* html div#content-container ul.diagrams {
+		height: 1%;
+	}
+
+	div#content-container ul.diagrams {
+		display: block;
+	}
+	/* End Holly Hack */
+
+	div#content-container ul.diagrams li
+	{
+		float: left;
+		
+		padding-left: 0em;
+		padding-right: 0em;
+
+		margin-left: 0em;
+		margin-right: 3.0em;
+	}
+
+		div#content-container ul.diagrams li.last-child
+		{
+			margin-right: 0em;
+		}
+
+		div#content-container ul.diagrams li dl,
+			div#content-container ul.diagrams li dl dt
+			div#content-container ul.diagrams li dl dd
+		{
+			padding-left: 0em;
+			padding-right: 0em;
+
+			margin-left: 0em;
+			margin-right: 0.0em;
+		}
+		
+/* An image-with-copy section contains an image along with
+	some associated copy, such as the Signs bits on the
+	Toll Road Overview page */
+div#content div.image-with-copy
+{}
+
+	/* This makes use of auto float clearing:
+	http://www.positioniseverything.net/easyclearing.html */
+
+	div#content div.image-with-copy:after {
+	    content: ".";
+	    display: block;
+	    height: 0;
+	    clear: both;
+	    visibility: hidden;
+	}
+
+	div#content div.image-with-copy {
+		display: inline-block;
+	}
+
+	/* Holly Hack Targets IE Win only \*/
+	* html div#content div.image-with-copy {
+		height: 1%;
+	}
+
+	div#content div.image-with-copy {
+		display: block;
+	}
+	/* End Holly Hack */	
+	
+	div.image-with-copy img
+	{
+		float: left;
+		display: inline; /* This helps IE deal with floated elements*/
+	}
+	
+		/* These next two rules are for the Toll Road Information
+			variant (aka the Signs page) */
+	
+		div.image-with-copy.signs img
+		{
+			width: 260px;
+			height: 100px;
+		}
+	
+		div.image-with-copy.signs div.copy
+		{
+			/* This keeps the text out of the way of the image */
+			margin-left: 275px;
+		}
+		
+/* This can be applied to images which are related to a a set of content. */
+div#content img.related-image
+{
+	float: right;
+	display: inline; /* Helps IE with floated elements */
+	
+	padding-left: 10px;
+}
+
+/* ========== FAQ Definition Lists ====== */
+
+/* These are used on pages such as the FAQ within the About Us section */
+
+div#content dl.faq,
+	div#primary-content dl.faq,
+	div#primary-content dl.projectHistory
+{
+	padding-left: 0em;
+	padding-right: 0em;
+
+	margin-left: 0em;
+	margin-right: 0em;
+}
+
+	div#content dl.faq dd,
+		div#primary-content dl.faq dd
+	{
+		margin-left: 2.0em;
+	}
+	
+	/* 
+		From an accessibility point of view, it's necessary to 
+		give focus to the dd elements after they've been displayed;
+		however, the client may object to the focus-border which then
+		appears. So, this turns that off. 
+		(http://sonspring.com/journal/removing-dotted-links)
+	*/
+	div#content dl.faq dd:focus,
+		div#primary-content dl.faq dd:focus
+	{
+		outline: none;
+	}
+		
+
+/* ================== Iconography ======================= */
+
+/* General icon-link properties */
+div#content-container ul#page-controls a.excel,
+	body.account-section div#content dl.introduction dd.print,
+	div#content-container ul#page-controls a.print,
+	div#content-container ul#page-controls a.print-preview,
+        div#content-container ul#page-controls a.print-all,
+	body.account-section div#content dl.introduction dd.pdf,
+	body.account-section div#content ul.table-controls li.pdf,
+	body.account-section div#content table.payments a.pdf,
+	div#content-container .pdf,
+	div#content-container ul.pdf-form-list li a,
+	div#content-container ul#page-controls a.pdf,
+	div#content-container .link,
+	body.account-section div#content dl.introduction dd.email,
+	div#content-container ul.table-info li.add-item,
+	div#content-container .alert,
+	div#content-container .map,
+	div#secondary-content dl dt.call,
+	div#secondary-content dl dt.visit,
+	div#secondary-content dl dt.write
+{
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 20px; /* Leave room for the background image */
+	
+	/* These bits help ensure that the top & bottom of the 
+		background image doesn't get cut off in 
+		standards-compliant browsers */
+	padding-top: 3px;
+	padding-bottom: 3px;  
+	
+	/* These bits help ensure that the top & bottom of the 
+		background image doesn't get cut off in IE */	
+	line-height: 2.1;
+}
+
+	div#content-container ul.pdf-form-list li
+	{
+		padding-bottom: 6px;
+	}
+
+div#content-container ul#page-controls a.excel
+{
+	background-image: url(../media/icons/excel.gif);
+}
+
+body.account-section div#content dl.introduction dd.print,
+	div#content-container ul#page-controls a.print,
+	div#content-container ul#page-controls a.print-preview,
+        div#content-container ul#page-controls a.print-all
+{
+	background-image: url(../media/icons/printer.gif);
+}
+
+body.account-section div#content dl.introduction dd.pdf,
+	body.account-section div#content ul.table-controls li.pdf,
+	body.account-section div#content table.payments a.pdf,
+	div#content-container ul#page-controls a.pdf,
+	div#content-container .pdf,
+	div#content-container ul.pdf-form-list li a
+{
+	background-image: url(../media/icons/pdf.gif);
+}
+
+div#content-container .link
+{
+	background-image: url(../media/icons/link.gif);
+}
+
+body.account-section div#content dl.introduction dd.email
+{
+	background-image: url(../media/icons/email.gif);
+}
+
+div#content-container ul.table-info li.add-item
+{
+	background-image: url(../media/icons/page_add.gif);
+}
+
+div#content-container .alert
+{
+	background-image: url(../media/icons/error.gif);
+}
+
+div#content-container .map
+{
+	background-image: url(../media/icons/map.gif);
+}
+
+div#secondary-content dl dt.call
+{
+	background-image: url(../media/icons/telephone.gif);	
+}
+
+div#secondary-content dl dt.visit
+{
+	background-image: url(../media/icons/car.gif);
+}
+
+div#secondary-content dl dt.write
+{
+	background-image: url(../media/icons/email_edit.gif);
+}
+
+
+/* info about the data-table, specifically the vehicle
+	listing in the manage section, that is not really
+	appropriate as a caption element */
+div#content-container ul.table-info
+{
+	padding-left: 0px;
+}
+
+	div#content-container ul.table-info li
+	{
+		border-right-width: 1px;
+		border-right-style: solid;
+		display: inline;
+		margin-right: 5px;
+		padding-right: 7px;
+	}
+
+		div#content-container ul.table-info li.last-child
+		{
+			border-right-width: 0px;
+			display: inline;
+			margin-right: 5px;
+			padding-right: 5px;
+		}
+
+/* link back to previous page as seen in the manage section */
+div#content-container p.return-to
+{
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+	body.manage-section.vehicles-and-ez-tags-section div#content-container p.return-to
+	{
+		border-bottom-width: 0px;
+	}
+
+	div#content-container p.return-to a
+	{
+		background-image: url(../media/common/return-bullet.gif);
+		background-repeat: no-repeat;
+		background-position: 0 3px;
+
+		padding-left: 18px;
+	}
+
+
+
+/* ======= Vehicle listings ======== */
+
+div#content-container ul.vehicles
+{
+	padding-left: 0px;
+	padding-right: 0px;
+
+	margin-left: 0px;
+	margin-right: 0px;
+
+}
+
+	/* An entry within a vehicle listing */
+	div#content-container ul.vehicles li
+	{
+		clear: both;
+		
+		padding-right: 0px;
+
+		margin-left: 0px;
+		margin-right: 0px;
+
+		background-image: url(../media/sign-up-process/car-bullet-listing.gif);
+
+		/* The negative bits here came about from making use of the same
+			image dimensions for both car-bullet-listing.gif and
+			car-bullet-editing.gif; however, the former doesn't
+			need as much spacing around it since it doesn't have
+			the built-in borders that the latter does */
+		background-position: 0em -2px;
+		background-repeat: no-repeat;
+
+		/* (If you change this value, be sure to also update
+			the value for "div#content-container ul.vehicles li.summary dl"
+			since that selector's padding-left value depends on this one) */
+		padding-left: 72px; /* Leaves room for the background image */
+	}
+	
+		div#content-container ul.vehicles li.summary p
+		{
+			float: left;
+			display: inline; /* Helps IE with floated elements */
+
+			/*
+			 	For this selector: 	div#content-container ul.vehicles li p
+
+				Paragraphs within definition-descriptions (dd elements) are typically used 
+				for help text, though that's not the case this time; here, the paragraphs
+				are used for fee-information for a vehicle.
+			*/
+			font-size: 1.0em;
+
+			margin: 0em;
+
+			/* The padding-top value is slightly different from the padding-bottom
+				value to coutneract the optical illusion created by descenders */
+			padding-top: 0.6em;
+			padding-bottom: 0.5em;
+		
+			border-top-width: 1px;
+			border-top-style: solid;
+		}
+	
+		
+			/* This represents the paragraph containing the text (such as the car 
+				stats), rather than the buttons which are used in some cases (such as 
+				"Edit" and/or "Delete" buttons) */
+			div#content-container ul.vehicles li.summary p.first-child
+			{
+				width: 67%;
+				clear: both;
+			}
+			
+				/* If the paragraph is a first-child /and/ an only-child (such as on
+					the Thank You page, which doesn't have buttons), there's 
+					no need to float this guy and limit his width */
+				div#content-container ul.vehicles li.summary p.first-child.only-child
+				{
+					float: none;
+					display: block; /* Counteracts display:none which is typically set on floated elements */
+					
+					width: 85%;
+				}
+	
+		/* 
+			These two selectors do similar things, though in different circumstances:
+			
+			div#content-container ul.vehicles li.first-child p
+			
+				In the case of Confirmation and Thank-You pages, the
+				vehicle information bits don't have a separate line for fines, 
+				only a single line for the name of the car, info about the car, 
+				and (in the	case of the Confirmation page) "Edit" &* "Delete" buttons.
+					
+				In this variant, paragraphs in the first row don't get a top 
+				border in order to create the effect that the horizontal 
+				lines appear only /between/ rows
+			
+			div#content-container ul.vehicles li dl dd p
+				
+				On pages where users are entering vehicle information, 
+				there's also information about the fees as they add up.	This second 
+				line with the fees also has a button for reviewing those fees. In 
+				this scenario, the car-info vs the car-fees is 	structured as 
+				a definition list. And, for this, the code below prevents the 
+				paragraphs within the "second row" (the dd elements) of the list from 
+				sprouting borders.
+		 */
+		div#content-container ul.vehicles li.first-child p,
+			div#content-container ul.vehicles li.summary dl dd p
+		{
+			border-top-width: 0px;
+		}
+	
+		/* A definition list within a "summary" list-item is used to list 
+			the fees and information for an already-entered vehicle */
+		div#content-container ul.vehicles li.summary dl 
+		{
+			margin: 0em;
+			padding: 0em;
+			
+			/* The following padding-left value is the difference 
+				between the padding-left on regular list-items within 
+				ul.vehicles and the padding-left on editing-versions 
+				of list items.
+				
+				For example:
+					li.edit is currently set to padding-left: 84px;
+					li.summary is currently set to padding-left: 72px;
+					
+					84 - 72 = 12
+			*/
+			padding-left: 12px;
+		}
+	
+			div#content-container ul.vehicles li.summary dl dt,
+				div#content-container ul.vehicles li.summary dl dd
+			{
+				margin-left: 0em;
+				margin-right: 0em;
+
+				padding-left: 0em;
+				padding-right: 0em;
+			}
+			
+				/* The dt element within a definition list in a vehicle-list 
+					holds car info (name, model, license plate), but not the fees */
+				div#content-container ul.vehicles li.summary dl dt p
+				{
+					padding-bottom: 0.2em;
+				}
+
+				/* The dd element within a definition list in a vehicle-list 
+					holds car fees, but not other car info such as name & license plate */
+				div#content-container ul.vehicles li.summary dl dd p
+				{
+					padding-top: 0.2em;
+				}
+			
+		/* A currently editable-entry within a vehicle listing */
+		div#content-container ul.vehicles li.edit
+		{
+			background-image: url(../media/sign-up-process/car-bullet-editing.gif);
+			background-position: top left;
+
+			border-top-width: 1px;
+			border-top-style: solid;
+
+			padding-top: 0.35em;
+			
+			/* (If you change this value, be sure to also update
+				the value for "div#content-container ul.vehicles li.summary dl"
+				since that selector's padding-left value depends on this one) */
+			padding-left: 84px;
+		}
+
+		/* Nested unordered lists within a vehicles-list
+			don't get the properties of the parent */
+		div#content-container ul.vehicles li ul li
+		{
+			background-image: none;
+			border-top-width: 0px;
+			padding-left: 0px;
+		}
+
+/* ================= Data Tables ===================== */
+
+
+/* These are properties for tabular data */
+
+table.data-table
+{
+	border-width: 1px;
+	border-style: solid;
+}
+
+	table.data-table td,
+		table.data-table th
+	{
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+	}
+
+	table.data-table .header th,
+	table.data-table thead tr th
+	{
+		vertical-align: bottom;
+	}
+
+		table.data-table tbody tr th,
+			table.data-table tbody tr td
+		{
+			border-bottom-width: 1px;
+			border-bottom-style: dotted;
+		}
+
+		/* Currency-signs (such as "$") get special treatment
+			within data tables */
+		table.data-table tbody th.currency span,
+			table.data-table tbody td.currency span,
+			table.data-table tfoot th.currency span,
+			table.data-table tfoot td.currency span
+		{
+			float: left;
+			display: inline; /* This helps IE with floated elements */
+			white-space:nowrap;
+		}
+
+		/* The first selector (ending in "thead") is for standards-compliant
+			browsers, while the last two (ending in "th" and "td", respectively)
+			are for IE */
+		table.data-table thead,
+			table.data-table thead tr.first-child th,
+			table.data-table thead tr.first-child td
+		{
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
+
+		/* The first selector (ending in "tfoot") is for standards-compliant
+		browsers, while the last two (ending in "th" and "td", respectively)
+		are for IE */
+		table.data-table tfoot,
+			table.data-table tfoot tr.first-child th,
+			table.data-table tfoot tr.first-child td
+		{
+			border-top-width: 1px;
+			border-top-style: solid;
+		}
+
+		/* Properties for currency cells within data tables */
+		table.data-table tbody td.currency
+		{
+			width: 6.0em;
+		}
+
+		table.data-table.payments tbody td.currency
+		{
+			width: 10%;
+		}
+
+		/*
+			Only IE6 sees this
+			(and, yes, I tried combining it with the next
+			rule, but IE6 didn't play nicely with that)
+		*/
+		* html table.data-table tbody td.currency
+		{
+			width: 7.6em;
+		}
+
+			* html table.data-table.payments tbody td.currency
+			{
+				width: auto;
+			}
+
+		/* Only  IE7 sees this */
+		* + html table.data-table tbody td.currency
+		{
+			width: 7.6em;
+		}
+
+			* + html table.data-table.payments tbody td.currency
+			{
+				width: auto;
+			}
+
+		/* ======= Payments/violations table ============ */
+
+
+		div#content-container table.data-table.payments thead tr td
+		{
+			padding-right:  0px;
+			padding-left:  0px;
+			width: 1%;  /* keeps this cell from moving when table is expanded */
+		}
+
+		table.payments thead tr th
+		{
+			vertical-align: bottom;
+		}
+
+			table.payments thead tr th#invoice-header
+			{
+				width: 20%; /* to keep the date in the details from wrapping */
+			}
+
+			table.payments thead tr th#invoice-date-header,
+				table.payments thead tr th#due-date-header
+			{
+				width: 18%; /* again, keeps these cells from moving when table is expanded */
+			}
+
+			table.payments thead tr th#pay-all-invoices-header
+			{
+				width: 15%; /* to keep the date in the details from wrapping */
+			}
+
+		table.data-table.payments tbody.collapsed,
+			table.data-table.payments tbody tr th a
+		{
+			cursor: s-resize;
+		}
+
+		table.data-table.payments tbody.expanded,
+			table.data-table.payments tbody.expanded tr th a
+		{
+			cursor: n-resize;
+		}
+		
+			/* when the table is expanded don't show the dotted bottom border
+				it makes it confusing to relate the details to the row */
+			table.payments tbody.expanded tr th,
+				table.payments tbody.expanded tr td
+			{
+				border-bottom-width: 0px;
+			}
+							
+				/* allow the bottom border to show on specific rows */				
+				table.payments tbody.expanded tr th.nested-table-header,
+					table.payments tbody.expanded tr.invoice-details-row th,
+						table.payments tbody.expanded tr.invoice-details-row td
+				{				
+					border-bottom-width: 1px;
+				}
+				
+			
+				table.data-table.payments tbody.collapsed tr td.control,
+					table.data-table.payments tbody.expanded tr td.control
+				{
+					background-image: url(../media/buttons/expand.gif);
+					background-repeat: no-repeat;
+					background-position: 50% 8px;
+
+					/* This makes use of revised Phark image replacement:
+						http://www.mezzoblue.com/tests/revised-image-replacement/#phark2 */
+					text-indent: -5000px;
+					height: 9px;
+				}
+
+					table.data-table.payments tbody.expanded tr td.control
+					{
+						background-image: url(../media/buttons/collapse.gif);
+					}
+
+					table.payments tbody tr td label
+					{
+						display: none;
+					}
+
+					table.payments tbody tr td input
+					{
+						width: 80%; /* to keep IE from going out of the table */
+					}
+
+			div#content-container table.data-table.payments tfoot tr th
+			{
+				vertical-align: bottom;
+			}
+
+		div#content-container ul.table-controls
+		{
+			padding-left: 0px;
+		}
+
+			div#content-container ul.table-controls li
+			{
+				background-repeat: no-repeat;
+				background-position: 0px 4px;
+				display: inline;
+				float: left;
+			}
+
+				div#content-container ul.table-controls li.pdf
+				{
+					float: right;
+				}
+
+				div#content-container ul.table-controls li.expand-control
+				{
+					background-image: url(../media/buttons/expand.gif);
+				}
+
+				div#content-container ul.table-controls li.collapse-control
+				{
+					background-image: url(../media/buttons/collapse.gif);
+				}
+
+				div#content-container ul.table-controls li a
+				{
+					display: block;
+					margin-right: 20px;
+					padding-left: 15px;
+				}
+
+				div#content-container ul.table-controls li.pdf a
+				{
+					margin-right: 0px;
+					padding-left: 0px;
+				}
+
+			/* This makes use of auto float clearing:
+				http://www.positioniseverything.net/easyclearing.html */
+			div#content-container ul.table-controls:after
+			{
+				content: ".";
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden;
+			}
+
+			div#content-container ul.table-controls {display: inline-block;}
+
+			/* Hides from IE-mac \*/
+			* html div#content-container ul.table-controls {height: 1%;}
+			div#content-container ul.table-controls {display: block;}
+			/* End hide from IE-mac */
+
+	/* ============== Unpaid tolls confirmaion table(s) ============== */
+
+
+	 div#content-container table.data-table.payment-confirmation tfoot tr th,
+	 div#content-container table.data-table.payment-confirmation tfoot tr td
+	{
+		border-right-style: solid;
+		border-right-width: 1px;
+
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+
+		 div#content-container table.data-table.payment-confirmation tfoot tr th.totals-row-header,
+			 div#content-container table.data-table.payment-confirmation tfoot tr td.empty-cell
+		{
+			border-bottom: none;
+		}
+
+		 div#content-container table.data-table.payment-confirmation tfoot tr.last-child td.empty-cell
+			{
+				border-right: none;
+			}
+
+	/* This makes use of auto float clearing:
+	http://www.positioniseverything.net/easyclearing.html */
+
+	div#content-container div#payment-totals:after {
+	    content: ".";
+	    display: block;
+	    height: 0;
+	    clear: both;
+	    visibility: hidden;
+	}
+
+	div#content-container div#payment-totals {
+		display: inline-block;
+	}
+
+	/* Holly Hack Targets IE Win only \*/
+	* html div#content-container div#payment-totals {
+		height: 1%;
+	}
+
+	div#content-container div#payment-totals {
+		display: block;
+	}
+	/* End Holly Hack */
+
+
+	div#content-container div#payment-totals ul
+	{
+		display: inline;
+		float: right;
+
+		/* This margin is so the totals line up with the currency in
+			the payment confirmation table. See make a payment section */
+		margin-right: 105px;
+	}
+
+		div#content-container div#payment-totals ul li strong
+		{
+			margin-left: 5px;
+		}
+
+
+
+	/* ============== Interoperability-selections table(s) ============== */
+
+	/* (Interoperability-selections refer to the checkmark-preferences
+		table(s) such as on the Sign Up -> Preferences page) */
+
+	div#content-container table.data-table.interoperability thead th *
+	{
+		/* This centers the elements within the interoperability-table thead cells */
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	div#content-container table.data-table.interoperability tbody td
+	{
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+
+		width: 100px;
+	}
+
+	div#content-container table.data-table.interoperability tbody th
+	{
+		width: auto;
+	}
+	
+	/* ==================== rates tables =========================== */
+	
+	/* These are primarily used within the Toll Road section to list
+		rates for various roads. */
+	
+	table.data-table.rates tbody tr.first-child th,
+		table.data-table.rates tbody tr.first-child td
+	{
+		padding-top: 1.5em;
+	}
+		
+	table.data-table.rates tbody tr.last-child th,
+		table.data-table.rates tbody tr.last-child td
+	{
+		padding-bottom: 1.5em;
+	}
+	
+		/* Properties for Toll-Plaza rows such as, for instance,
+		 	"Sam Houston North Plaza" */
+		table.data-table.rates tr.toll-plaza th
+		{
+			font-weight: bold;
+		}
+
+
+	/* ============== sortable table(s) ============== */
+		table.data-table.sortable thead tr th
+		{
+			border-right-width: 1px;
+			border-right-style: solid;
+			cursor: pointer;
+		}
+
+			table.data-table.sortable thead tr th.last-child
+			{
+				border-right-width: 0px;
+			}
+
+		table.data-table thead tr th.sorted-by-this-column
+		{
+			background-position: 95% 50%;
+			background-repeat: no-repeat;
+
+			padding-right: 5px;
+		}
+
+			table.data-table.ascending thead tr th.sorted-by-this-column
+			{
+				background-image: url(../media/icons/sortable_ascending.gif);
+			}
+
+			table.data-table.descending thead tr th.sorted-by-this-column
+			{
+				background-image: url(../media/icons/sortable_descending.gif);
+			}
+
+
+	/* ============== Account Activity - transactions table(s) ============== */
+
+		table.data-table.transactions tbody tr th,
+			table.data-table.transactions tbody tr td,
+			table.data-table tbody tr.first-in-group th,
+			table.data-table tbody tr.first-in-group td
+		{
+			border-bottom-width: 0;
+		}
+
+		table.data-table tbody tr.last-in-group th,
+			table.data-table tbody tr.last-in-group td
+		{
+			border-bottom-width: 1px;
+		}
+
+		/* parking transaction type gets an unordered list of items instead of
+			seperate rows because each row has a group of items per transaction */
+		table.data-table tbody tr.transaction-type-parking th ul,
+			table.data-table tbody tr.transaction-type-parking td ul
+		{
+			margin-left: 0px;
+			padding-left: 0px;
+		}
+
+
+/* =============== primary-section-content / secondary-section-content bits ================== */
+
+/* This is primarily used for the data on the confirmation page */
+
+div.primary-section-content.with-multiple-definition-lists dl,
+	div.secondary-section-content.with-multiple-definition-lists dl
+{
+	border-top-width: 1px;
+	border-top-style: solid;
+
+	padding-top: 0.3em;
+}
+
+	div.primary-section-content.with-multiple-definition-lists dl.immediately-following-an-h4,
+		div.secondary-section-content.with-multiple-definition-lists dl.immediately-following-an-h4
+	{
+		/* These guys get no border since the h4 element
+			immediately preceding it already has one */
+		border-top-width: 0px;
+	}
+
+	div.primary-section-content dl dd,
+		div.secondary-section-content dl dd
+	{
+		padding-left: 0em;
+		margin-left: 0em;
+	}
+
+	div.primary-section-content dl.selections dt,
+		div.secondary-section-content dl.selections dt
+	{
+		margin-bottom: 0.3em;
+	}
+
+	div.primary-section-content dl.selections dd,
+		div.secondary-section-content dl.selections dd
+	{
+		background-image: url(../media/common/checkmark-for-confirmation.gif);
+		background-repeat: no-repeat;
+		background-position: 0em 0.2em;
+
+		margin-left: 0.5em;
+		padding-left: 17px; /* Leaves room for the background image */
+	}
+
+/* ===================== Uncheck image for user preferences ===================*/
+
+	div.primary-section-content dl.not-selections dt,
+		div.secondary-section-content dl.not-selections dt
+	{
+		margin-bottom: 0.3em;
+	}
+
+	div.primary-section-content dl.not-selections dd,
+		div.secondary-section-content dl.not-selections dd
+	{
+		background-image: url(../media/common/delete.png);
+		background-repeat: no-repeat;
+		background-position: 0em 0.2em;
+
+		margin-left: 0.5em;
+		padding-left: 17px; /* Leaves room for the background image */
+	}
+
+	/* =======================User Preferences Uncheck ============================*/
+
+
+
+
+
+/* ============================= Outstanding Tolls box =========================== */
+
+/* The lightbox on the "Vehicle Information" section has
+	no visible footer */
+body.vehicle-information-section div#ibox div#ibox_footer_wrapper
+{
+	display: none;
+}
+
+/* These bits make use of classes to avoid weirdness associated
+	with duplicate IDs (which is what would happen normally
+	as soon as the iBox duplicates the ID) */
+
+div.outstanding-tolls-content
+{
+	padding-left: 24px;
+	padding-right: 17px;
+	padding-top: 24px;
+	padding-bottom: 15px;
+}
+
+	div.outstanding-tolls-content h2 em
+	{
+		display: inline;
+	}
+
+	div.outstanding-tolls-content ul.form-actions,
+		div.outstanding-tolls-content ul.form-actions li
+	{
+		margin-left: 0px;
+		margin-right: 0px;
+
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+
+
+	/* This makes use of auto float clearing:
+	http://www.positioniseverything.net/easyclearing.html */
+
+	div.outstanding-tolls-content ul.form-actions:after {
+	    content: ".";
+	    display: block;
+	    height: 0;
+	    clear: both;
+	    visibility: hidden;
+	}
+
+	div.outstanding-tolls-content ul.form-actions {
+		display: inline-block;
+	}
+
+	/* Holly Hack Targets IE Win only \*/
+	* html div.outstanding-tolls-content ul.form-actions {
+		height: 1%;
+	}
+
+	div.outstanding-tolls-content ul.form-actions {
+		display: block;
+	}
+	/* End Holly Hack */
+
+
+	div.outstanding-tolls-content ul.form-actions li.first-child
+	{
+		float: left;
+		display: inline; /* This helps IE with floated elements */
+	}
+
+	div.outstanding-tolls-content ul.form-actions li.last-child
+	{
+		float: right;
+		display: inline; /* This helps IE with floated elements */
+	}
+
+		/* Indeed (at least) one of the submit buttons has a label
+			associated with it */
+		div.outstanding-tolls-content ul.form-actions li label
+		{
+			display: block;
+			margin-bottom: 0.1em;
+		}
+
+/* ============================= Footer =========================== */
+
+/* In-development footer (currently	provided in
+	part by server-side	includes) */
+
+div#page div#footer
+{
+	background-image: url(../media/common/footer-top-background.gif);
+	background-position: top left;
+	background-repeat: no-repeat;
+	
+	padding-top: 30px;
+	padding-left: 10px;
+}
+
+	/* Neither the Homepage nor the popup-windows get the footer background */
+	body.home div#page div#footer,
+		body.popup-window div#page div#footer
+	{
+		background-image: none;
+		
+		padding-top: 1em;
+	}
+
+div#page div#footer ul
+{
+	margin-left: 0em;
+	margin-right: 0em;
+
+	padding-left: 0em;
+	padding-right: 0em;
+}
+
+	div#page div#footer ul li
+	{
+		display: inline;
+		list-style-type: none; /* Just to be sure */
+
+		background-image: url(../media/footer/footer-divider.png);
+		background-position: 0em 0.2em;
+		background-repeat: no-repeat;
+
+		margin-left: 0em;
+		margin-right: 0em;
+
+		padding-left: 1.1em;
+		padding-right: 0.3em;
+	}
+
+		div#page div#footer ul li.first-child
+		{
+			padding-left: 0em;
+
+			/* The first element in the list gets no background image */
+			background-image: none;
+		}
+		
+				
+/* =============== miscllaneous all-purpose styles ==================== */
+img.inlineImage,
+	img.inlineImageNegativeTop
+{	
+	float: right; 
+	margin: 0 0 15px 15px;
+}
+
+	img.inlineImageNegativeTop
+	{	
+		margin-top: -30px;
+	}
+	
+body.press-releases-section div#content ol li,
+	body.advisory-section div#content ol li,
+	body.news-section div#content ol li
+{
+	list-style-type: decimal;
+}
+
+div.visibility-hide {visibility:hidden}
+
+
+	div#content-container dl.alerts-inactive-tag dd
+        {
+		background-image: url("../media/common/error-bullet.gif");
+		background-repeat: no-repeat;
+		
+		padding-left: 1.5em;
+		padding-right: 1.0em;
+		padding-top: 0.2em;
+		padding-bottom: 0.5em;
+		margin-left: 1.0em;
+
+
+		position:absolute;
+		visibility:visible;
+		left:220px; top:170px; 
+		width:400px; 
+		height:108px;
+		text-align:left ;
+		font-family:Arial;
+		color:FF00FF
+	}

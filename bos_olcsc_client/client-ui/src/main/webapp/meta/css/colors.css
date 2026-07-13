@@ -1,1 +1,922 @@
+body
+{
+	color: rgb(51,51,51); /* Dark gray */
+	background-color: rgb(231,231,231); /* Very light gray */
+}
 
+	/* The home page gets slightly different properties */
+	body.home
+	{
+		color: white;
+		background-color: rgb(54,54,54); /* Very dark gray */
+	}
+
+
+/* ============================ Layout Container Elements ================================= */
+
+/* "Loading... Please Wait" message */
+div#loading 
+{
+	background-color: rgb(192,192,192); /* Medium gray */
+}
+
+
+div#content-container
+{
+	background-color: white;
+}
+
+	body.home div#content-container
+	{
+		background-color: transparent;
+	}
+
+/* ===================================== Headers ======================================== */
+
+/* Header directory:
+	H1: Page title
+	H2: Mid-page headers, such as address separators (on the sign-in side)
+		and running-balance headers (on the manage side)
+	H3:
+		Sign-in area: Confirmation subheaders (such as "Account Information for")
+		Manage-area: subheaders (such as "Vehicles covered by")
+	H4: Headers within the confirmation page
+	H5: Legend-like form-prefacing remarks (such as "If you forget your password...")
+	H6: Headers within the secondary-content area
+*/
+
+h1, h2, h3, h4, h5
+{
+	color: rgb(0,102,0); /* Forrest green */
+}
+
+/* H1: Page title */
+h1
+{
+	border-color: rgb(204,204,204); /* Very light gray */
+}
+
+	/* This is used for sub-titles, such as
+			"Please review everything to make sure it is accurate." */
+	div#content-container h1 em
+	{
+		color: rgb(51,51,51); /* Dark gray -- the regular text color */
+	}
+
+	/* Headers within the login area on the home page */
+	body.home div#primary-content form#login h1,
+		body.home div#primary-content div#logged-in h1
+	{
+		/* This is mostly a fall-through property in case something
+				goes awry with the image-replacement */
+
+		color: rgb(250,215,55); /* Custard yellow */
+	}
+
+h2
+{}
+		/* This can be used to provide auxilliary text to the header,
+			such as details on the axle info */
+		h2 em
+		{
+			color: rgb(51,51,51); /* Dark gray -- the regular text color */
+		}
+
+		/* Headers within the secondary-content area on the home page */
+		body.home div#secondary-content h2,
+			body.home div#secondary-content h2 a
+		{
+			/* These are mostly fall-through properties in case something
+				goes awry with the image-replacement */
+
+			color: white;
+			background-color: rgb(60,140,60); /* Highway-sign green */
+		}
+		
+		/* incorporates tab like images around the h2s on this page */
+		body.account-summary-section h2
+		{
+			border-bottom-color: rgb(224,224,224); /* light grey */
+		}
+
+h3
+{}
+
+		/* H3:
+				Sign-in area: Confirmation subheaders (such as "Account Information for") */
+		body.account-section h3
+		{
+			color: rgb(102,102,102); /* Mediumn gray */
+		}
+
+		/* This targets the username on the confirmation page */
+		body.account-section h3 em
+		{
+			background-color: rgb(255,255,153); /* Very light yellow */
+		}
+
+/* Headers within the secondary-content area  */
+h6
+{}
+
+	div#secondary-content h6
+	{
+		color: rgb(50,113,23); /* dark green */
+	}
+	
+/* =================================== Common Navigation =================================== */
+
+/* The common-navigation holds links that appear on every page */
+
+div#common-navigation-helper-element
+{
+	background-color: rgb(41,41,41); /* Dark gray */
+}
+
+div#page div#common-navigation,
+	div#page div#common-navigation a
+{
+	color: rgb(204, 204, 204); /* Light gray */
+}
+	
+	/* Properties for the login/logout item */
+
+	div#common-navigation ul li#logged-out-common-navigation,
+		div#common-navigation ul li#logged-out-common-navigation a,
+		
+		div#common-navigation ul li#logged-in-common-navigation,
+		div#common-navigation ul li#logged-in-common-navigation a
+	{
+		color: white;
+	}
+
+	/* "Logged in" name, via the an emphasis element  */
+	div#common-navigation ul li#logged-in-common-navigation em
+	{
+		color: rgb(250,222,87); /* Ripe-banana color */
+	}
+
+/* ======================================== Masthead ========================================= */
+
+/* The helper-element ensures that the background for the masthead
+	spans the full width of the browser window, even though the masthead itself
+	doesn't do so. */
+
+div#masthead-helper-element
+{
+	background-color: white;
+}
+
+	/* ================== Search fields ==================== */
+
+	/* The fieldset within the masthead holds the search fields */
+	div#masthead fieldset
+	{
+		background-color: rgb(227,227,227); /* Very light gray */
+	}
+
+/* =================================== Primary Navigation =================================== */
+
+div#masthead ul#primary-navigation
+{}
+
+	ul#primary-navigation li a
+	{
+		color: rgb(75,75,75); /* Dark gray */
+	}
+
+	/* Properties for primary navigation items when inside
+		that section */
+	body.home ul#primary-navigation li#home-primary-navigation a,
+		body.my-ez-tag-section ul#primary-navigation li#my-ez-tag-primary-navigation a,
+		body.toll-road-info-section ul#primary-navigation li#toll-road-info-primary-navigation a,
+		body.about-section ul#primary-navigation li#about-primary-navigation a,
+		body.violations-section ul#primary-navigation li#unpaid-tolls-primary-navigation a,
+		body.manage-section ul#primary-navigation li#my-ez-tag-primary-navigation a
+
+	{
+		color: black;
+		background-color: rgb(247,213,98); /* School-bus yellow -- a fall-back 
+											in case something goes awry with the image  */
+	}
+
+/* =================================== Secondary Navigation =================================== */
+
+div#masthead ul#secondary-navigation
+{}
+
+	ul#secondary-navigation li a
+	{
+		background-color: rgb(154,154,154); /* Medium gray */
+		color: white; /* Dark gray */
+
+		/* A background color could specified for
+			non-selected secondary-navigation elements */
+	}
+
+	body.introduction-section ul#secondary-navigation li#introduction-secondary-navigation a,
+		body.project-history-section ul#secondary-navigation li#project-history-secondary-navigation a,
+		body.press-releases-section ul#secondary-navigation li#press-releases-secondary-navigation a,
+		body.employment-section ul#secondary-navigation li#employment-secondary-navigation a,
+		body.financial-reports-section ul#secondary-navigation li#financial-reports-secondary-navigation a,
+		body.faq-section ul#secondary-navigation li#faq-secondary-navigation a,
+		body.contact-us-section ul#secondary-navigation li#contact-us-secondary-navigation a,
+
+		body.account-summary-section ul#secondary-navigation li#account-summary-secondary-navigation a,
+		body.account-activity-section ul#secondary-navigation li#account-activity-secondary-navigation a,
+		body.account-information-section ul#secondary-navigation li#account-information-secondary-navigation a,
+		body.vehicles-and-ez-tags-section ul#secondary-navigation li#vehicles-and-ez-tags-secondary-navigation a,
+		body.payments-and-orders-section ul#secondary-navigation li#payments-and-orders-secondary-navigation a,
+		
+		body.overview-section ul#secondary-navigation li#toll-road-info-overview-secondary-navigation a,
+		body.map-section ul#secondary-navigation li#map-secondary-navigation a,
+		body.advisories-section ul#secondary-navigation li#advisories-secondary-navigation a,
+		body.rates-section ul#secondary-navigation li#rates-secondary-navigation a,
+		body.about-ez-tag-section ul#secondary-navigation li#about-ez-tag-secondary-navigation a,
+		body.construction-and-engineering-section ul#secondary-navigation li#construction-and-engineering-secondary-navigation a
+
+	{
+		background-color: white;
+		color: rgb(75,75,75); /* Dark gray */
+	}
+
+/* =========================== Tertiary Navigation and Page Controls ============================= */
+
+/*
+	The tertiary navigation mostly appears within the Manage section, specifically the Account Activity area.
+	There's no reason it couldn't also be used elsewhere, though.
+
+	The ul#page-controls element holds meta page functions, such as "print preview", "download PDF"
+	and "download Excel"
+*/
+
+
+/* ======== Tertiary-navigation specific properties ========= */
+
+div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li
+{
+	color: rgb(153,153,153); /* Light gray */
+}
+
+	div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation li a
+	{
+		color: rgb(51,51,51); /* Dark gray */
+	}
+
+/* ======== Page-Controls specific properties ========= */
+
+	div#tertiary-navigation-and-or-page-controls ul#page-controls li a
+	{
+		color: rgb(86,86,86); /* medium gray */
+	}
+
+/* ============================== Secondary-Content bits ============================ */
+
+div#secondary-content div#secondary-content-interior
+{
+	background-color: white;
+}
+
+div#secondary-content p.introduction
+{
+	color: rgb(153,102,153); /* Grape-soda purple */
+}
+
+/* FAQ questions in the secondary-content area */
+div#secondary-content dl.faq dt
+{
+	color: rgb(51,102,153); /* Deep blue */
+}
+
+/* FAQ answers */
+div#secondary-content dl.faq dd
+{
+	color: rgb(102,102,102); /* Medium gray */
+}
+
+/* ================================= Progress Bar Bits =================================== */
+
+/* Properties for the text within the progress-bar area */
+div#content-container p.progress-bar
+{
+	color: rgb(124,100,160); /* Grape-soda purple */
+}
+
+/* ================================= Status Bar Bits =================================== */
+
+/* Properties for the text within the progress-bar area */
+div#content-container p.status-bar a
+{
+	color: rgb(102,102,102); /* Medium gray */
+}
+
+	/* "Name / Company Name" section of the Status Bar */
+	div#content-container p.status-bar strong
+	{
+		color: black;
+	}
+
+
+/* ======================= Primary-and-Secondary Content: Home Page ===================== */
+
+body.home div#primary-content a:link,
+	body.home div#secondary-content a:link,
+	body.home div#footer a:link
+{
+	color: white;
+}
+
+	body.home div#secondary-content div#news-and-information-section ul li p,
+		body.home div#secondary-content div#news-and-information-section ul li a:link
+	{
+		color: rgb(204,204,204); /* medium gray */
+	}
+	
+		body.home div#secondary-content div#news-and-information-section ul li a strong
+		{
+			color: white;
+		}
+
+	body.home div#primary-content div#logged-in a:link,
+		body.home div#primary-content div#logged-in a:visited
+	{
+		color: blue;
+	}
+
+body.home div#primary-content a:visited,
+	body.home div#secondary-content a:visited,
+	body.home div#footer a:visited
+{
+	color: rgb(234,234,234); /* Very light gray */
+}
+
+/* mini account summary once logged in */
+body.home div#primary-content div#logged-in div#logged-in-info
+{
+	background-color: white; 
+	color: black;
+}
+
+	body.home div#primary-content div#logged-in div#logged-in-info dl
+	{
+		color: rgb(51,51,51); /* dark grey */
+	}
+
+
+/* ============= Get an EZ TAG ================== */
+
+body.home div#primary-content h1#primary-marketing
+{
+	border-color: rgb(54,54,54); /* Dark gray */
+	background-color: black;
+}
+
+/* ================== Secondary Content - lists =============== */
+
+/* Lists within the News & Information section */
+
+/* Background-colors for odd list-items within the News & Information list */
+body.home div#secondary-content div#news-and-information-section ul li.nth-child-odd
+{
+	background-color: rgb(33,33,33); /* Extra-dark gray */
+}
+
+/* Background-colors for odd list-items within the News & Information list */
+body.home div#secondary-content div#news-and-information-section ul li.nth-child-even
+{
+	/* A background-color for even rows could be applied here, if desired */
+}
+
+/* Lists within the Quick Links section */
+
+body.home div#secondary-content div#quick-links-section ul li.alert a
+{
+	background-color: rgb(33,33,33); /* Extra-dark gray */
+}
+
+/* ================== Secondary Content: Home - promo area =============== */
+
+/* Properties for the secondary marketing promo area */
+body.home div#secondary-content div#promo p
+{
+	border-color: white;
+}		
+	/* secondary marketing */
+	body.home div#secondary-content div.home-secondary-heading div h2
+	{		
+		background-color: rgb(87,158,92); /* lime green */
+	}
+
+		body.home div#secondary-content div.home-secondary-heading div h2 a,
+			body.home div#secondary-content div#quick-links-section h2 span
+		{
+			background-color: transparent;
+		}
+
+/* ======================================== Map ==================================== */
+
+/* This holds the Flash-based/image-based map on the Toll Road Info -> Map page */
+div#content div#map
+{
+	border-color: rgb(220,220,220); /* Light gray */
+}
+
+/* ============================== General Content bits ============================ */
+
+div#content div.section
+{}
+
+	/* Some pages make use of sub-divisions within a section */
+	div#content div.section.with-primary-and-secondary-content
+	{
+		background-color: rgb(241,241,241); /* super light gray */
+		
+		border-top-color: rgb(249,249,249); /* gray almost white */
+		border-bottom-color: rgb(220,220,220); /* Very light gray */
+
+		border-left-color: rgb(249,249,249); /* gray almost white */
+		border-right-color: rgb(220,220,220); /* Very light gray */
+	}
+		
+		/* The confirmation page and manage account section has a variation on the typical section.with-primary-and-secondary-content
+			look-and-feel */
+		body.account-section.confirmation-section div#content div.section.with-primary-and-secondary-content,
+		body.manage-section div#content div.section.with-primary-and-secondary-content,
+		body.popup-window div#content div.section.with-primary-and-secondary-content
+		{
+			background-color: transparent;
+		}
+
+/* username in preferences settings */
+body.manage-section div#content-container p#account-information-for
+{
+	border-bottom-color: rgb(153, 153, 153); /* Light gray */
+}
+
+/* Explanatory text associated with form fields */
+div#content-container dl dd p.help
+{
+	color: rgb(85,85,85); /* Darkish gray */
+}
+
+/* A "choices" definition-list presents	the user with a question
+	followed by a list of choices */
+div#content-container dl.choices
+{}
+
+	/* The choice-answers */
+	div#content-container dl.choices dd
+	{
+		color: rgb(102,102,102); /* Medium gray */
+	}
+	
+/* show the fieldset border and label to group and seperate these items */
+div#content-container fieldset.if-applicable
+{
+	border-color: rgb(204,204,204); /* more grey of the lighter shade */
+}
+
+	div#content-container fieldset.if-applicable legend
+	{
+		color: rgb(88,88,88); /* dark grey */
+	}
+
+
+/* Definition lists within a fieldset typically hold
+	a group of form labels & fields */
+div#content-container fieldset dl
+{}
+
+	div#content-container fieldset dl dt,
+        div#content-container fieldset dl dd,
+	div#content-container ul.vehicles li.summary p
+	{
+		border-top-color: rgb(204,204,204); /* Very light gray */
+	}
+
+        p.authorized-contact-separator
+	{
+		border-bottom-color: rgb(204,204,204); /* Very light gray */
+	}
+
+
+/* This is used for simulated mailing-address labels,
+	such as on the Billing Information page */
+div#content-container div.section address.mailing-label
+{
+	background-color: white;
+	border-color: rgb(220,220,220);  /* Very light gray */
+}
+
+/* This contains various legal messages */
+div#content-container fieldset.legal
+{
+	border-color: rgb(220,220,220);  /* Very light gray */
+	background-color: white;
+}
+
+/* info about the data-table, specifically the vehicle
+	listing in the manage section, that is not really
+	appropriate as a caption element */
+div#content-container ul.table-info li
+{
+	border-right-color: rgb(102, 102, 102); /* dark grey */
+}
+
+/* link back to previous page as seen in the manage section */
+div#content-container p.return-to
+{
+	border-bottom-color: rgb(218,218,218); /* fluffy cloud grey */
+}
+
+	div#content-container p.return-to a
+	{
+		color: rgb(90,90,90); /* medium grey */
+	}
+	
+/* total payment in make-payment-section that needs
+	to align with tables and other content on page */
+div#content-container p.total-payment,
+	div#content-container div#payment-totals ul li.total-payment
+{
+	color: rgb(051, 115, 024); /* Dark Green */
+}
+
+	div#content-container div#payment-totals ul li.total-payment
+	{
+		border-top-color: rgb(204,204,204); /* Very light gray */
+	}
+	
+/* floated lists of pdf files */
+	div#content-container ul.pdf-list li
+	{
+		border-bottom-color: rgb(204,204,204); /* medium grey */
+	}
+
+/* ========== FAQ Definition Lists ====== */
+
+/* These are used on pages such as the FAQ within the About Us section */
+div#content dl.faq dt,
+	div#primary-content dl.faq dt
+{
+	/* This is the same color as the major headers */
+	color: rgb(0,102,0); /* Forrest green */
+	
+	font-weight: bold;
+}
+
+	div#content dl.faq dd p.related-categories,
+		div#primary-content dl.faq dd p.related-categories,
+		div#content dl.faq dd div.verbose-answer p,
+		div#primary-content div.verbose-answer p
+	{
+		color: rgb(120,120,120); /* light gray */
+	}
+	
+/* emulate the style of clickable links */
+div#primary-content dl.projectHistory dt
+{
+	color: rgb(0,0,238); /* blue */
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+/* ======= Vehicle listings ======== */
+
+div#content-container ul.vehicles
+{}
+
+	/* Additional explanatory text */
+	div#content-container ul.vehicles li p em
+	{
+		color: rgb(153,153,153); /* Light gray */
+	}
+
+	/* An currently editable-entry within a vehicle listing */
+	div#content-container ul.vehicles li.edit
+	{
+		border-top-color: rgb(158,154,160); /* Medium gray */
+	}
+
+	div#content-container div.vcard span.hours
+	{
+		color: rgb(86,86,86); /* medium grey */
+	}
+
+/* ================= Data Tables ===================== */
+
+table.data-table
+{
+	border-color: rgb(202,202,202); /* light grey */
+}
+
+	table.data-table tbody tr th,
+		table.data-table tbody tr td
+	{
+		border-bottom-color: rgb(202,202,202); /* light grey */
+	}
+
+		table.data-table tbody tr.even th,
+			table.data-table tbody tr.nth-child-even th,
+			table.data-table tbody tr.even td,
+			table.data-table tbody tr.nth-child-even td
+		{
+			background-color: #f7f7f7; /* very light grey */
+		}
+
+		table.data-table tbody tr.odd th,
+			table.data-table tbody tr.nth-child-odd th,
+			table.data-table tbody tr.odd td,
+			table.data-table tbody tr.nth-child-odd td
+		{
+			background-color: white;
+		}
+
+	/* The first selector (ending in "thead") is for standards-compliant
+		browsers, while the last two (ending in "th" and "td", respectively)
+		are for IE */
+	table.data-table thead,
+		table.data-table thead tr.first-child th,
+		table.data-table thead tr.first-child td,
+		table.data-table .header
+	{
+		background-color: rgb(202,202,202); /* light grey */
+		border-bottom-color: rgb(192,192,192); /* Medium gray */
+	}
+
+	/* The first selector (ending in "tfoot") is for standards-compliant
+		browsers, while the last two (ending in "th" and "td", respectively)
+		are for IE */
+	table.data-table tfoot,
+		table.data-table tfoot tr.first-child th,
+		table.data-table tfoot tr.first-child td
+	{
+		border-top-color: rgb(192,192,192); /* Medium gray */
+	}
+
+	/* ======= Payments/violations table ============ */
+
+				table.payments thead tr th
+				{
+					border-bottom-color: rgb(192,192,192); /* Medium gray */
+				}
+
+				table.payments tbody tr td.administrative-fee,
+					table.payments tbody tr td.amount-paid,
+					table.payments tbody tr td.sub-total,
+					table.payments tbody tr td.total-amount-due-detail,
+					table.payments tbody tr td.payment-pending,
+					table.payments tfoot tr th#total-amount-due-header
+				{
+					color: rgb(127,127,127); /* light gray */
+				}
+
+				table.data-table.payments tbody.nth-child-odd tr th,
+					table.data-table.payments tbody.nth-child-odd tr td
+				{
+					background-color: transparent; /* to override the default data-table alternate row coloring */
+				}
+
+				table.data-table.payments tbody.nth-child-even tr th,
+					table.data-table.payments tbody.nth-child-even tr td
+				{
+					background-color: #f7f7f7; /* very light grey */
+				}
+
+							table.payments tbody.expanded tr th.nested-table-header
+							{
+								color: rgb(127,127,127); /* light gray */
+								border-bottom-color: rgb(192,192,192); /* Medium gray */
+							}
+										
+
+							table.payments tbody tr.invoice-details-row th,
+								table.payments tbody tr.invoice-details-row td
+							{
+								border-bottom-color: rgb(192,192,192); /* Medium gray */
+								color: inherit;
+							}
+
+								table.payments tbody tr th.nested-table-header.nth-child-2
+								{
+									color: black;
+								}
+
+								table.payments tbody tr.totals td.sub-total,
+									table.payments tbody tr.totals td.total-amount-due-detail,
+									table.payments tbody tr.totals td.currency
+								{
+									border-top-color: rgb(044,044,044); /* Dark gray */
+								}
+
+					div#content-container table.data-table.payments tfoot tr th
+					{
+						border-top-color: rgb(192,192,192); /* Medium gray */
+					}
+
+
+	/* ============== Unpaid tolls confirmaion table(s) ============== */
+
+	 div#content-container table.data-table.payment-confirmation tfoot tr th,
+		 div#content-container table.data-table.payment-confirmation tfoot tr td
+	{
+		border-right-color: rgb(192,192,192); /* Medium gray */
+		border-bottom-color: rgb(192,192,192); /* Medium gray */
+	}
+
+	/* ============ Interoperability-selections table(s) =========== */
+
+	/* (Interoperability-selections refer to the checkmark-preferences
+		table(s) such as on the Sign Up -> Preferences page) */
+
+	div#content-container table.data-table.interoperability thead th
+	{
+		background-color: white;
+	}
+
+	div#content-container table.data-table.interoperability tbody td
+	{
+		border-bottom-color: rgb(220,220,220); /* Very light gray */
+	}
+
+	/* ============== sortable table(s) ============== */
+
+		table.data-table.sortable thead tr th
+		{
+			border-right-color: rgb(153, 153, 153); /* Light gray */
+		}
+
+		table.data-table thead tr th.sorted-by-this-column
+		{
+			background-color: rgb(235, 235, 235); /* very light gray */
+		}
+
+
+	/* ============== Account Activity - transactions table(s) ============== */
+
+	table.data-table tbody tr.transaction-type-rebill th,
+		table.data-table tbody tr.transaction-type-rebill td
+	{
+		background-color: rgb(241,255,240); /* pale green */
+		color: rgb(61,137,74); /* medium green */
+	}
+
+	table.data-table tbody tr.transaction-type-parking th,
+		table.data-table tbody tr.transaction-type-parking td,
+		table.data-table tbody tr.starting-balance th,
+		table.data-table tbody tr.starting-balance td,
+		table.data-table tbody tr.ending-balance th,
+		table.data-table tbody tr.ending-balance td
+	{
+		background-color: rgb(249,238,255); /* lilac */
+		color: rgb(102,054,128); /* dark purple */
+	}
+
+/* =============== primary-section-content / secondary-section-content bits ================== */
+
+/* This is primarily used for the data on the confirmation page */
+
+div.primary-section-content dl,
+	div.secondary-section-content dl
+{
+	border-top-color: rgb(158,154,160); /* Light gray */
+}
+
+
+/* ============================== Form properties ============================ */
+
+/* General form properties */
+input.textfield,
+	input.zemText, /* for textpattern generated contact form */
+	form input.zemSubmit, /* for textpattern generated contact form */
+	input.submit-button,
+	select,
+	textarea
+{
+	border-top-color: rgb(132,132,132); /* Medium gray */
+	border-left-color: rgb(187,187,187); /* Light gray */
+	border-right-color: rgb(187,187,187); /* Light gray */
+	border-bottom-color: rgb(206,206,206); /* Very light gray */
+}
+
+/* Used for labels superimposed on "blank" buttons */
+span.button-label {
+    color:white;
+}
+
+	/* Properties for disabled text fields - this
+		ensures consistency between Real Browsers
+		and That Other Browser */
+	input.textfield.disabled
+	{
+		background-color: rgb(212,208,200); /* Light gray */
+	}
+
+
+/* This is used for form error messages */
+div#content-container dl.errors,
+	div#content-container dl.alerts,
+	div#content-container dl.success,
+	div#content-container ul.zemError
+{
+	/* A color could be specified here if desired */
+	border-color: white;
+	background-color: white;
+}
+
+	div#content-container dl.alerts
+	{
+		background-color: rgb(252,252,225); /* light orange */
+		border-top-color: rgb(255,165,0); /* orange */
+	}
+
+	div#content-container dl.errors,
+		div#content-container ul.zemError
+	{
+		border-top-color: red;
+		background-color: rgb(255,243,243); /* strawbery milk */
+	}
+	
+	div#content-container dl.success
+	{
+		border-top-color: green;
+		background-color: rgb(242,255,244); /* key lime pie */
+	}
+
+	div#content-container dl.errors dt,
+		div#content-container dl.alerts dt,
+		div#content-container dl.success dt
+	{
+		font-weight: bold;
+	}
+
+	div#content-container dl.errors dd,
+		div#content-container ul.zemError li
+	{
+		border-top-color: red;
+		border-bottom-color: red;
+		border-left-color: red;
+		border-right-color: red;
+	}
+
+	div#content-container fieldset dl dt.error,
+		div#content-container fieldset dl dt.errorElement,
+		div#content-container ul.form-actions li input.zemText.errorElement,
+		div#content-container dl dd.errorElement select
+	{
+		color: red;
+	}
+	
+		div#content-container ul.form-actions li input.zemText.errorElement,
+			div#content-container dl dd.errorElement select
+		{
+			background-color: rgb(255,243,243); /* strawbery milk */
+		}
+
+	body.monthly-invoices-section div#content-container form#data-actions fieldset
+	{
+		border-bottom-color: rgb(212, 212, 212);
+	}
+
+/* ========== Form actions ============= */
+
+
+/* The form-actions list holds a set of form submit button(s) */
+
+div#content-container ul.form-actions
+{
+	border-top-color: rgb(107,61,129); /* Dark purple */
+}
+
+/* ====================== Footer ========================== */
+
+/* hcards in the footer
+	http://microformats.org/wiki/hcard */
+div#footer div.vcard p.copyright,
+	div#footer div.vcard p em,
+	div#footer div.vcard p em a
+{
+	color: rgb(86,86,86); /* medium grey */
+}
+
+	/* slightly different homepage property */
+	body.home div#footer div.vcard p.copyright,
+		body.home div#footer div.vcard p em,
+		body.home div#footer div.vcard p em a
+	{
+		color: rgb(229, 229, 229); /* off-white */
+	}
+	
+/* =============== miscllaneous all-purpose styles ==================== */
+em.content-type-info
+{
+	color: rgb(153,153,153); /* light Grey */
+}
+
+/* ============== EZ Agreement ================== */
+
+.agreement em 
+{
+	color: red;
+}

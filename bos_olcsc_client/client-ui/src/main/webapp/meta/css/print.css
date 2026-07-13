@@ -1,0 +1,433 @@
+
+/* Properties for printers -- for the most part, this removes page
+	elements which aren't useful for the printed page */
+
+
+body
+{
+	background-image: none;
+	
+	/* 
+		Both of these are normally 0em and, indeed, it is a bit odd to 
+		add margins to the printed versions of pages. However, it was 
+		nonetheless requested to make the print-preview views look
+		prettier for bug 224. 
+	*/
+	margin-left: 1.0em;
+	margin-right: 1.0em;
+}
+
+
+/* ============================ Layout Container Elements ================================= */
+
+div#page
+{
+	width: auto; /* Normally 760px */
+	padding-top: 1.0em; /* Normally 131px */
+	
+	background-image: none !important; /* This ensures that the taglines don't end up on the printed page */
+	
+	/* IE tends not to behave well with position:relative when printing. More specifically, when
+		an absolutely positioned element in positioned with respect to another element
+		and if that relatively positioned element spans two pages, IE might position
+		that absolutely positioned element with respect to a page that isn't the first page. */
+	position: static; /* Normally position: relative */
+	
+}
+
+	div#page div#content-container
+	{
+		padding-top: 0em; /* Normally 85px */
+
+		background-image: none;
+		
+		/* IE tends not to behave well with position:relative when printing. More specifically, when
+			an absolutely positioned element in positioned with respect to another element
+			and if that relatively positioned element spans two pages, IE might position
+			that absolutely positioned element with respect to a page that isn't the first page. */
+		position: static; /* Normally position: relative */
+	}
+
+	div#content-container div#content,
+		div#content-container div#primary-and-secondary-content
+	{
+		margin-left: 0px; /* Normally 25px */
+		margin-right: 0px; /* Normally 25px */
+	}
+
+		/* Variant for the Manage pages */
+		body.manage-section div#page div#content-container div#content,
+			body.manage-section div#content-container div#primary-and-secondary-content
+		{
+			/* Leave room for the status bar (the info-line with the username, company name, and so on) */
+			padding-top: 5.0em;
+		}
+
+	/* Site logo */
+	div#page a#logo img
+	{
+		display: none;
+	}
+	
+	div#page div#footer{
+		background-image: none;
+	}
+
+/* =================================== Common Navigation =================================== */
+
+/* The common-navigation holds links that appear on every page */
+
+/* The helper-element ensures that the background for the common navigation
+	scales as the user's font size is scaled */
+div#common-navigation-helper-element,
+	div#page div#common-navigation
+{
+	display: none;
+}
+
+/* ======================================== Masthead ========================================= */
+
+/* The helper-element ensures that the background for the masthead
+	spans the full width of the browser window, even though the masthead itself
+	doesn't do so. */
+
+div#masthead-helper-element
+{
+	display: none;
+}
+
+div#page div#masthead
+{
+	display: none;
+}
+
+/* =========================== Tertiary Navigation and Page Meta Links ============================= */
+
+
+div#content-container div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation,
+	div#content div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation,
+	div#primary-and-secondary-content div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation,
+	div#tertiary-navigation-and-or-page-controls ul#tertiary-navigation
+{
+	/* 
+		The tertiary navigation and the page controls 
+		(like "print" or "print preview") aren't relevant 
+		on the printed page, so they're suppressd 
+	*/
+	display: none;
+}
+
+
+/* ================================= Progress Bar Bits =================================== */
+
+div#content-container p.progress-bar
+{
+	position: static;
+    display: none;
+}
+
+	/* This makes use of revised Phark image replacement:
+		http://www.mezzoblue.com/tests/revised-image-replacement/#phark2 */
+
+	/* (The "em" holds the image-replaced bits while the other
+		bits within the progress-bar paragraph are regular text) */
+	div#content-container p.progress-bar em
+	{
+
+		text-indent: 0px; /* Normally -5000px, for the image replacement */
+		/* The background-image is defined in each of the steps,
+			since there are many variations */
+		background-image: none !important;
+
+		width: auto; /* Normally 200px */
+		height: auto; /* Normally 40px */
+	}
+
+
+/* ================================= Status Bar Bits =================================== */
+
+/* The "Status Bar" is primarily used in the Manage area
+	(it shares some properties in common with the Progress Bar) */
+
+div#content-container p.status-bar
+{
+	/* Normally, this guy is just hidden when printing */
+	display: none;
+}
+
+	/* However, it's shown on pages in these two categories */
+	body.contact-us-section div#content-container p.status-bar,
+		body.manage-section div#content-container p.status-bar
+	{
+		display: block;
+	}
+
+	/* Then, the status bar gets more specific properties in the Manage section */
+	body.manage-section div#content-container p.status-bar
+	{
+		position: absolute;
+		top: 1.0em; /* Normally -6.8em; */
+		
+		/* 
+			This value matches the margin-left value of the body element
+		 	in this file (print.css).
+		
+			Normally, one would simply set div#page to position:relative, 
+			allowing the margin-left to apply to both div#page and this 
+			guy (since this element	would be positioned relative to 
+			div#page). However, IE balks at that idea. Pshaw!
+		*/
+		left: 1.0em; /* Normally 15px; */
+	}
+
+/* ===================================== Headers ======================================== */
+
+/* H1: Page title */
+div#content-container h1
+{
+	margin-left: 0px; /* Normally -25px */
+	padding-left: 0px; /* Normally 25px */
+
+	background-image: none;
+	
+	margin-bottom: 1.0em; /* Normally 2.0em */
+}
+
+/* The main header on the confirmation page,
+	("Is this correct?") */
+body.account-section.confirmation-section h1
+{
+	display: none;
+}
+
+/* ============================ Image Replacement ==================================== */
+
+/* Some elements make use of Gilder/Levin image replacement:
+	http://levin.grundeis.net/files/20030809/alternatefir.html */
+
+/* (Interoperability-selections refer to the checkmark-preferences
+		table(s) such as on the Sign Up -> Preferences page) */
+
+div#content-container table.interoperability thead a span
+{
+	display: none;
+}
+
+	div#content-container table.interoperability thead a#houston-airport-system,
+		div#content-container table.interoperability thead a#houston-airport-system span,
+		div#content-container table.interoperability thead a#ntta,
+		div#content-container table.interoperability thead a#ntta span,
+		div#content-container table.interoperability thead a#tx-dot,
+		div#content-container table.interoperability thead a#tx-dot span
+		div#content-container table.interoperability thead a#ctrma,
+		div#content-container table.interoperability thead a#ctrma span
+		div#content-container table.interoperability thead a#metro,
+		div#content-container table.interoperability thead a#metro span
+		div#content-container table.interoperability thead a#fbgptra,
+		div#content-container table.interoperability thead a#fbgptra span 
+	{
+		background-image: none;
+
+		width: auto;
+		height: auto;
+	}
+
+/* ================================= Primary-and-Secondary Content ==================================== */
+
+
+/* 
+	This counteracts an obscure Firefox bug whereby floated elements -- if they span
+	multiple pages -- sometimes aren't fully cleared by auto-float-clearing: 
+	https://bugzilla.mozilla.org/show_bug.cgi?id=377204 
+*/
+
+div#content-container div#primary-and-secondary-content:after 
+{
+	line-height: 0.01em;
+    height: auto;
+}
+
+/* ========================= Primary-and-Secondary Content: Home Page =========================== */
+
+/* 
+	This counteracts an obscure Firefox bug whereby floated elements -- if they span
+	multiple pages -- sometimes aren't fully cleared by auto-float-clearing: 
+	https://bugzilla.mozilla.org/show_bug.cgi?id=377204 
+*/
+
+body.home div#page div#primary-content:after,
+	body.home div#page div#secondary-content:after 
+{
+	line-height: 0.01em;
+    height: auto;
+}
+
+/* ============================== Form Properties ====================================== */
+
+/* 
+	This counteracts an obscure Firefox bug whereby floated elements -- if they span
+	multiple pages -- sometimes aren't fully cleared by auto-float-clearing: 
+	https://bugzilla.mozilla.org/show_bug.cgi?id=377204 
+*/
+
+div#content-container fieldset dl:after,
+	div#content-container ul.vehicles li:after
+{
+	line-height: 0.01em;
+    height: auto;
+}
+
+body.account-section.confirmation-section input.image-based
+{
+	/* Hide image-based submit-buttons on the confirmation page */
+	display: none;
+}
+
+/* ========== Form actions ============= */
+
+/* The form-actions list holds a set of form submit button(s) */
+
+div#content-container ul.form-actions
+{
+	display: none;
+}
+
+
+/* ============================== General Content bits ============================ */
+
+/* This is mutually exclusive to a primary-content / secondary-content scenario */
+
+div#content div.section
+{
+	margin-right: 15%; /* Normally 35% */
+}
+
+	/* Some pages make use of sub-divisions within a section */
+	div#content div.section.with-primary-and-secondary-content
+	{
+		margin-right: 0px;
+	}
+
+	/* 
+		This counteracts an obscure Firefox bug whereby floated elements -- if they span
+		multiple pages -- sometimes aren't fully cleared by auto-float-clearing: 
+		https://bugzilla.mozilla.org/show_bug.cgi?id=377204 
+	*/
+	div#content div.section.with-primary-and-secondary-content:after,
+		div#content div.section-with-primary-and-secondary-content-interior:after 
+	{
+		line-height: 0.01em;
+	    height: auto;
+	}
+	
+	/* A diagrams list holds a set of diagrams,
+		such as a set of images representing
+		EZ TAGs */
+	
+	/* Ditto this guy re: Firefox printing work-around */
+	div#content-container ul.diagrams:after 
+	{
+		line-height: 0.01em;
+	    height: auto;
+	}
+	
+	/* An image-with-copy section contains an image along with
+		some associated copy, such as the Signs bits on the
+		Toll Road Overview page */
+		
+	div#content div.image-with-copy:after 
+	{
+		line-height: 0.01em;
+	    height: auto;
+	}
+	
+
+/* ================== Iconography ======================= */
+
+/* General icon-link properties */
+div#content-container ul#page-controls a.print-preview
+{
+	/* If desired, this could be reset to 0px if there wasn't going
+		to be an icon for print-preview when in print-mode */
+	/* padding-left: 0px; */
+}
+
+/* The print-preview links get a background image corresponding to an "X" when this
+	media="print" stylesheet is active (in other words, in printing mode).
+	That way, during manual print-previews (which really just rejiggers the "media"
+	types on-the-fly), the printer icon appears only on the "print" icon and no longer on
+	the print-preview icon */
+div#content-container ul#page-controls a.print-preview
+{
+	background-image: url(../media/icons/x.gif);
+}
+
+/* ======= Vehicle listings ======== */
+
+div#content-container ul.vehicles
+{
+}
+
+	/* An entry within a vehicle listing */
+	div#content-container ul.vehicles li
+	{
+		background-image: none;
+
+		padding-left: 0px; /* Normally 70px, to leave room for the background image */
+	}
+
+/* ================= Data Tables ===================== */
+
+/* 
+	This counteracts an obscure Firefox bug whereby floated elements -- if they span
+	multiple pages -- sometimes aren't fully cleared by auto-float-clearing: 
+	https://bugzilla.mozilla.org/show_bug.cgi?id=377204 
+*/
+
+/* This makes use of auto float clearing:
+	http://www.positioniseverything.net/easyclearing.html */
+div#content-container div#payment-totals:after 
+{
+	line-height: 0.01em;
+    height: auto;
+}
+
+
+
+/* =============== primary-section-content / secondary-section-content bits ================== */
+
+
+/* This is primarily used for the data on the confirmation page */
+
+div.primary-section-content dl,
+	div.secondary-section-content dl
+{
+}
+
+	div.primary-section-content dl.selections dd,
+		div.secondary-section-content dl.selections dd
+	{
+		/* this allows for setting a list-style-type, which,
+			in itself is done since browsers don't print
+			background images by default */
+		display: list-item;
+
+		list-style-type: disc;
+
+		background-image: none;
+
+		margin-left: 1.0em;
+		padding-left: 0px; /* Normally 17px, to leave room for the background image */
+	}
+
+	/* ============= EZ Agreement ============= */
+
+	ol.agreement
+	{
+		color: gray;
+	}
+
+	ol.agreement em 
+	{
+		color: black;
+	}
