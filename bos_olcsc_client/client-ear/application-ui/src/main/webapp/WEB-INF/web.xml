@@ -1,0 +1,62 @@
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <!-- Uncomment this for a non-default location of the Datasource.  -->
+    <!--
+        <context-param> <param-name>APP_DATASOURCE</param-name>
+        <param-value>java:comp/env/jdbc/OLCSCDS</param-value> </context-param>
+    -->
+    <context-param>
+        <param-name>OLCSC_VERSION</param-name>
+        <param-value>${version}</param-value>
+    </context-param>
+    
+    <filter>
+		<filter-name>SystemLoggingFilter</filter-name>
+		<filter-class>com.etcc.csc.util.LogRequestFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SystemLoggingFilter</filter-name>
+		<url-pattern>/services/*</url-pattern>
+	</filter-mapping>
+	
+    <listener>
+        <listener-class>com.etcc.csc.util.OLCSCContextListener</listener-class>
+    </listener>
+    
+    <servlet>
+        <servlet-name>XFireServlet</servlet-name>
+        <servlet-class>org.codehaus.xfire.transport.http.XFireConfigurableServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>XFireServlet</servlet-name>
+        <url-pattern>/services/*</url-pattern>
+    </servlet-mapping>
+    <mime-mapping>
+        <extension>xsd</extension>
+        <mime-type>text/xml</mime-type>
+    </mime-mapping>
+
+	<servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>com.etcc.csc.webservice.rest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jersey.config.server.provider.classnames</param-name>
+			<param-value>org.glassfish.jersey.media.multipart.MultiPartFeature,com.etcc.csc.webservice.rest.exception.OlcscRestExceptionHandler,com.etcc.csc.webservice.rest.exception.OlcscRestValidationExceptionHandler,com.etcc.csc.webservice.rest.logging.OlcscRestLoggingFilter</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+	<resource-ref>
+		<res-ref-name>jdbc/OLCSCDS</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+</web-app>

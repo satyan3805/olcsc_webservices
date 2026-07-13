@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Class-Path: xfire-jsr181-api-1.0-M1.jar xfire-all-1.2.6.jar xfire-aegi
+ s-1.2.6.jar xfire-core-1.2.6.jar wsdl4j-1.6.1.jar jaxen-1.1-beta-9.ja
+ r jdom-1.0.jar xmlParserAPIs-2.6.2.jar stax-api-1.0.1.jar XmlSchema-1
+ .1.jar wstx-asl-3.2.0.jar stax-utils-20040917.jar xfire-ws-security-1
+ .2.6.jar jmock-1.0.1.jar junit-3.8.1.jar opensaml-1.0.1.jar bcprov-jd
+ k15-133.jar xmlsec-1.3.0.jar wss4j-1.5.1.jar xfire-java5-1.2.6.jar xf
+ ire-annotations-1.2.6.jar commons-beanutils-1.7.0.jar commons-attribu
+ tes-api-2.1.jar ant-1.5.jar qdox-1.5.jar xfire-generator-1.2.6.jar xf
+ ire-jaxb2-1.2.6.jar jaxb-xjc-2.0.1.jar jaxb-impl-2.0.1.jar jaxb-api-2
+ .0.jar jsr173_api-1.0.jar jaxws-api-2.0.jar xfire-xmlbeans-1.2.6.jar 
+ xbean-2.2.0.jar xfire-spring-1.2.6.jar xbean-spring-2.8.jar spring-1.
+ 2.6.jar xfire-jaxws-1.2.6.jar saaj-impl-1.3.jar saaj-api-1.3.jar
+
