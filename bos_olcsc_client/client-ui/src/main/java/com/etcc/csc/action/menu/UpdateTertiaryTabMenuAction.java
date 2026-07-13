@@ -1,0 +1,52 @@
+package com.etcc.csc.action.menu;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.validator.DynaValidatorForm;
+
+import com.etcc.csc.common.EtccException;
+import com.etcc.csc.util.SessionUtil;
+
+public class UpdateTertiaryTabMenuAction extends Action {
+    @Override
+    public ActionForward execute(ActionMapping mapping, ActionForm form, 
+          HttpServletRequest request, HttpServletResponse response) 
+          throws Exception {
+
+    	String menu = null;
+    	String url = null;
+    	try {
+    		if (SessionUtil.isSessionExpired(request)) {
+    			return mapping.findForward("expiredSession");
+    		}
+    		DynaValidatorForm dynaValidatorForm = ( DynaValidatorForm ) form;
+    		menu = (String) dynaValidatorForm.get("menu");
+    		url = (String) dynaValidatorForm.get("url");
+
+    		//TODO: this needs to change
+    		if ( StringUtils.isEmpty( menu ) && StringUtils.isEmpty( url ) ) {
+    			return mapping.findForward( "accountHome" ); 
+    		}
+
+    		if (url != null && !url.startsWith("/")) {
+    			url = "/" + url;
+    		}
+
+    		//        request.getSession().removeAttribute("currentMenu");
+
+    		SessionUtil.setTertiaryMenusInRequest(request);
+
+    		return new ActionForward(url);
+    	} catch (Throwable t) {
+    		throw new EtccException("Error updating tertiary tab menu (/menu/url/ip): " 
+    				+ menu + "/" + url + "/" + request.getRemoteAddr() + "/" 
+    				+ request.getHeader("USER-AGENT") + "/" + t, t);
+    	}
+    }
+}
