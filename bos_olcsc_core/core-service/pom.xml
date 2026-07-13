@@ -1,0 +1,196 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.etcc.olcsc.core</groupId>
+	<artifactId>hctra-olcsc-service</artifactId>
+	<!--<version>0.1.0</version>-->
+	<packaging>jar</packaging>
+	<name>HCTRA - Core olcsc Party Business component</name>
+	<parent>
+		<groupId>com.etcc.olcsc.core</groupId>
+		<artifactId>hctra-olcsc-core</artifactId>
+		<version>2.9.1-RELEASE</version>
+	</parent>
+	<profiles>
+		<profile>
+			<id>eclipse-generate-project</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins
+						</groupId>
+						<artifactId>maven-eclipse-plugin</artifactId>
+						<version>2.7</version>
+						<configuration>
+							<downloadSources>true</downloadSources>
+							<additionalBuildcommands>
+								<buildcommand>de.loskutov.FileSync.FSBuilder
+								</buildcommand>
+							</additionalBuildcommands>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins
+						</groupId>
+						<artifactId>maven-resources-plugin
+						</artifactId>
+						<executions>
+							<execution>
+								<id>copy-resources</id>
+								<phase>validate</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${basedir}/.settings
+									</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${basedir}/src/main/eclipse
+											</directory>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<build>
+		<plugins>
+		<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-non-java-resources</id>
+						<phase>compile</phase>
+
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Include the tld from ui components in this war file -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				
+			</plugin>
+			</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+			<scope>provided</scope>
+		</dependency>
+        <dependency>
+            <groupId>com.etcc.core.translationcache</groupId>
+            <artifactId>TranslationCache-Biz</artifactId>
+            <version>1.2</version>
+        </dependency>   		
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.13</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.wutka</groupId>
+			<artifactId>jox</artifactId>
+			<version>1.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>		
+		
+		
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+			<scope>provided</scope>
+		</dependency>
+
+       		<!-- <dependency>
+		  <groupId>com.etcc.core.service</groupId>
+		  <artifactId>CoreServiceLocator</artifactId>
+		  <version>2.0.0.45</version>
+		</dependency> -->
+
+		<dependency>
+		  <groupId>com.etcc.core.sysadmin</groupId>
+		  <artifactId>sysadmin_ui</artifactId>
+		  <version>1.2.2</version>
+		</dependency>
+
+		
+		<dependency>
+  			<groupId>commons-beanutils</groupId>
+  			<artifactId>commons-beanutils</artifactId>
+  			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+				  <groupId>com.etcc.olcsc.ntta</groupId>
+				  <artifactId>plsql</artifactId>
+				  <version>1.0.0.22</version>
+				</dependency>
+		<dependency>
+  			<groupId>opensymphony</groupId>
+  			<artifactId>oscache</artifactId>
+  			<version>2.3</version>
+		</dependency>
+				<dependency>
+		  			<groupId>com.oracle</groupId>
+		  			<artifactId>ojdbc14</artifactId>
+		  			<version>10.1.3</version>
+		</dependency>		
+						<dependency>
+				  			<groupId>com.oracle</groupId>
+				  			<artifactId>runtime12</artifactId>
+				  			<version>10.2</version>
+		</dependency>
+<dependency>
+  <groupId>commons-betwixt</groupId>
+  <artifactId>commons-betwixt</artifactId>
+  <version>0.8</version>
+</dependency>
+
+
+		
+
+	</dependencies>
+</project>
