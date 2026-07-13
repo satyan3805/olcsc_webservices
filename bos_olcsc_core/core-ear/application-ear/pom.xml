@@ -1,0 +1,200 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.etcc.olcsc.core</groupId>
+	<artifactId>hctra-olcsc-oracle-oc4j-ear</artifactId>
+	<packaging>ear</packaging>
+	<!--<version>0.1.0</version>-->
+	<name>HCTRA - Oracle OLCSC  Ear</name>
+	<parent>
+		<groupId>com.etcc.olcsc.core</groupId>
+		<artifactId>hctra-olcsc-client</artifactId>
+		<version>2.9.1-RELEASE</version>
+		<relativePath>../../../olcsc_client/pom.xml</relativePath>
+	</parent>
+	<profiles>
+	      <profile>
+			<id>deploy</id>
+			<build>
+				<plugins>
+					<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resource-to-staging-dir</id>
+						<phase>verify</phase>
+						<configuration>
+							<tasks>
+								<echo message="Copy to the autodeploy directory."></echo>
+								<copy todir="${oracleAutoDeployDir}/${project.build.finalName}">
+									<fileset dir="${project.build.directory}/${project.build.finalName}">
+										<exclude name="*.jar"></exclude>
+										<exclude name="**/*-war-*.war"></exclude>
+										<exclude name="**/*-war-*.jar"></exclude>
+										<exclude name="**/*hctra-olcsc-war*.war"></exclude>
+									</fileset>
+								</copy>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>copy-resource-to-appserver</id>
+						<phase>install</phase>
+						<configuration>
+							<tasks>
+								<echo message="Copy to the autodeploy directory."></echo>
+								 <zip destfile="${oracleAutoDeployDir}/${project.build.finalName}.ear"
+								       basedir="${oracleAutoDeployDir}/${project.build.finalName}"
+								  />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>hctra-olcsc-war-client</id>
+						<phase>verify</phase>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.etcc.olcsc.core</groupId>
+									<artifactId>hctra-olcsc-oracle-oc4j-war</artifactId>
+									<version>2.1.0</version>
+									<type>war</type>
+									<outputDirectory>${oracleAutoDeployDir}/${project.build.finalName}/hctra-olcsc-oracle-oc4j-war-${project.version}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+						<goals><goal>unpack</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
+			</plugins>
+				<resources>
+					<resource>
+						<directory>src/main/application</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		
+	</profiles>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
+					<displayName>OLCSC</displayName>
+					<description>OLCSC application</description>
+					<ejbVersion>3.0</ejbVersion>
+					<defaultJavaBundleDir>lib/</defaultJavaBundleDir>
+					<modules>
+						<webModule>
+							<groupId>com.etcc.olcsc.core</groupId>
+							<artifactId>hctra-olcsc-oracle-oc4j-war</artifactId>
+							<contextRoot>${contextname}</contextRoot>
+						</webModule>
+						<webModule>
+							<groupId>com.etcc.core.service.uicomponents</groupId>
+							<artifactId>Demo-UI-Components-War</artifactId>
+							<contextRoot>CoreUIComponents</contextRoot>
+						</webModule>
+					</modules>
+					<!-- This is a bit of a hack. By default the earSourceDirectory
+					     is the same as the earResourceDir (src/main/application)
+					     which means that resources are copied without being 
+					     filtered into the ear file. This directory will cause 
+					     the filtered resource files to be included in the ear.-->
+					<earSourceDirectory>target/classes</earSourceDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>clean-autodeploy</id>
+						<phase>clean</phase>
+						<configuration>
+							<tasks>
+								<echo message="Deleting OLCSC in autodeploy dir ${oracleAutoDeployDir}/${project.build.finalName}."></echo>
+								 <delete dir="${oracleAutoDeployDir}/${project.build.finalName}"/>
+								  <delete file="${oracleAutoDeployDir}/${project.build.finalName}.ear"/>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>copy ear to client folder</id>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<echo message="Rename Core UI Components WAR"></echo>
+		
+							  
+								 
+								 <zip destfile="${project.build.directory}/${project.build.finalName}.ear"
+								       basedir="${project.build.directory}/${project.build.finalName}"
+								  />
+
+								 <!-- Developers are used to finding the ear in clients/<client>/java/client-ear/target 
+								 so copy it over there 
+								 <echo message="Copying to Client ear project"></echo>
+								 <copyfile src="${project.build.directory}/${project.build.finalName}.ear" 
+							  			dest="../../../clients/${client-folder-name}/java/client-ear/target/${project.build.finalName}.ear"/> -->
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>					
+				</executions>
+				
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/application</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<finalName>OLCSC</finalName>
+	</build>
+	<properties>
+		<deployEar>rmideploy</deployEar>
+		<oc4jUsername>${rmiDeployPassword}</oc4jUsername>
+	    <oc4jPassword>${rmiDeployPassword}</oc4jPassword>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.etcc.olcsc.core</groupId>
+			<artifactId>olcsc-oracle-oc4j-war</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com.etcc.core.service.uicomponents</groupId>
+			<artifactId>Demo-UI-Components-War</artifactId>
+			<version>0.1.0-RELEASE</version>
+			<type>war</type>
+		</dependency>		
+   </dependencies>
+</project>
+ 

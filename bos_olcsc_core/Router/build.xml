@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!-- Build file for OLCSC router -->
+<project name="olcscr" default="build_ear" basedir=".">
+  <property file="build.properties"/>
+  <property name="src.dir" value="./src"/>
+  <property name="web.dir" value="./public_html"/>
+  <property name="config.dir" value="./config"/>
+  <property name="build.dir" value="./build"/>
+  <property name="dist.dir" value="./dist"/>
+  <property name="release.dir" value="./release"/>
+  <path id="classpath">
+    <pathelement location="${build.dir}/WEB-INF/lib/commons-configuration-1.2.jar"/>
+    <pathelement location="${build.dir}/WEB-INF/lib/commons-collections-3.2.jar"/>
+    <pathelement location="${build.dir}/WEB-INF/lib/commons-lang-2.1.jar"/>
+    <pathelement location="${build.dir}/WEB-INF/lib/commons-logging-1.1.jar"/>
+    <pathelement location="${build.dir}/WEB-INF/lib/servlet.jar"/>
+  </path>
+  
+  <target name="init">
+    <delete dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.dir}/WEB-INF"/>
+    <mkdir dir="${build.dir}/WEB-INF/classes"/>
+    <mkdir dir="${build.dir}/WEB-INF/lib"/>
+    <delete dir="${dist.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${release.dir}"/>
+  </target>
+  
+  <target name="copy" depends="init">
+    <copy todir="${build.dir}">
+      <fileset dir="${web.dir}">
+        <include name="*.html"/>
+        <include name="*.jsp"/>
+        <include name="image/**/*.*"/>
+        <include name="WEB-INF/lib/*.jar"/>
+        <include name="WEB-INF/web.xml"/>
+      </fileset>
+    </copy>
+    <copy todir="${dist.dir}/META-INF">
+      <fileset dir="./META-INF">
+        <include name="orion-application.xml"/>
+      </fileset>
+      <fileset dir="${buildtype}">
+        <include name="data-sources.xml"/>
+      </fileset>
+    </copy>
+    <copy todir="${build.dir}/WEB-INF/classes">
+      <fileset dir="${buildtype}">
+        <include name="config.properties"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile" depends="copy">
+    <javac srcdir="${src.dir}" 
+           destdir="${build.dir}/WEB-INF/classes"
+           classpathref="classpath" 
+           debug="on" 
+           encoding="Cp1252">
+      <include name="**/*.java"/>
+    </javac>
+  </target>
+  
+  <target name="build_war" depends="compile">
+    <war destfile="${dist.dir}/olcscr.war"
+         webxml="${build.dir}/WEB-INF/web.xml">
+      <fileset dir="${build.dir}" includes="**"/>
+    </war>
+  </target>
+ 
+  <target name="build_ear" depends="build_war">
+    <tstamp><format property="completion.time" pattern="yyyyMMddHHmm"/></tstamp>
+    <ear destfile="${release.dir}/olcscr_${buildtype}_${completion.time}.ear" basedir="${dist.dir}" appxml="./META-INF/application.xml"/>
+  </target>
+
+</project>

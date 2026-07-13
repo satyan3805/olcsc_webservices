@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding = 'windows-1252'?>
+<!DOCTYPE application PUBLIC
+	"-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN"
+	"http://java.sun.com/dtd/application_1_3.dtd">
+<application>
+  <display-name>OLCSC</display-name>
+ 
+  <module>
+    <web>
+      <web-uri>hctra-olcsc-oracle-oc4j-war-${project.version}.war</web-uri>
+      <context-root>olcsc</context-root>
+    </web>
+  </module>
+
+</application>

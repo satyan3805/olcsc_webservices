@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="cart">
+            <!--  Change Log
+            JKing 07/28/2011   Added payer information and links to payments.
+                                               Added columns for ca payments.
+                        07/29/2011  changed schema id
+                                               Added paye_sequence to external_payments
+                        08/03/2011  Added comment to items
+                                               Futzed with apply/unapply/undo/bounced check/chargeback
+                        08/09/2011  make payment amount required.  Added credit as payment type
+                        08/16/2011 partial payments and payments + excusals
+                        09/15/2011 replaced payment_source_code /w pos_type
+                        09/16/2011 added token into payment element!
+                        09/20/2011 cvv added to payment
+                        09/21/2011 altered payer, move supervisor override to item level
+                        09/22/2011 remove payer
+                        10/06/2011 deposit +/-
+                        11/02/2011 one-off payment refinements
+                        11/03/2011 clarify element to database table.column mappings
+                        11/16/2011 paymentstatustypes match payment_statuses.payment_status_code(s)
+                                              reverse and unreverse moved from payments to items
+                        11/18/2011 added account_balance_type_code for fee assessing.
+                                              removed payments/charge_fee
+                        11/21/2011 added unpay fee.
+                        12/08/2011 commented payment_cancels and payment_confirms, added
+                        12/14/2011 payment plan stuff
+                        12/28/2011 general clean-up, post_action
+                        03/14/2012 removed obsolete sections added unapplied_payments section for installments.
+                        09/13/2012 added unpay_tag
+            -->
+            <!-- payment transactions enumerated here  -->
+            <xs:simpleType name="paymentform">
+                        <xs:restriction base="xs:string">
+                                    <xs:enumeration value="cash"/>
+                                    <xs:enumeration value="check"/>
+                                    <xs:enumeration value="mo"/>
+                                    <xs:enumeration value="card"/>                                      <!-- MC/Visa/Etc -->
+                                    <xs:enumeration value="e-money"/>
+                                    <xs:enumeration value="eft"/>
+                                    <xs:enumeration value="credit"/>                                     <!-- amounts added to balance, not MC/Visa/Etc -->
+                                    <xs:enumeration value="balance"/>                                <!-- not payment form in db, using balance as source of funds  -->
+                                    <xs:enumeration value="dontpay"/>                                 <!-- no payment form in db, marker for balancing partial payments -->
+                        </xs:restriction>
+            </xs:simpleType>
+            <!-- reversal payment statuses here -->
+            <xs:simpleType name="paymentStatusType">                <!-- payment_statuses.payment_status_code -->
+                        <xs:restriction base="xs:string">
+                                    <xs:enumeration value="B"/>                                    <!--BOUNCED-->
+                                    <xs:enumeration value="C"/>                                    <!--CHARGEBACK-->
+                                    <xs:enumeration value="U"/>                                    <!--UNDO-->
+                                    <xs:enumeration value="P"/>                                    <!--PENDING-->
+                                    <xs:enumeration value="A"/>                                    <!--APPLIED-->
+                                    <xs:enumeration value="O"/>                                    <!--OPEN-->
+                                    <xs:enumeration value="F"/>                                    <!--FAILED-->
+                                    <xs:enumeration value="R"/>                                    <!--REVERSED-->
+                        </xs:restriction>
+            </xs:simpleType>
+            <!-- items to pay off enumerated here -->
+            <xs:simpleType name="itemtype">
+                        <xs:restriction base="xs:string">
+                                    <xs:enumeration value="add_account"/>
+                                    <xs:enumeration value="add_deposit"/>          <!-- add amount to account_deposit -->
+                                    <xs:enumeration value="add_tag"/>
+                                    <xs:enumeration value="add_vehicle"/>
+                                    <xs:enumeration value="adjust_toll"/>
+                                    <xs:enumeration value="apply_hold"/>
+                                    <xs:enumeration value="apply_from_balance"/> <!-- use money from balance to pay an open item -->
+                                    <xs:enumeration value="apply_hold"/>
+                                    <xs:enumeration value="apply_hold_item"/>
+                                    <xs:enumeration value="apply_to_balance"/>     <!-- take some of payments in cart and put money in balance -->
+                                    <xs:enumeration value="apply_undirected"/>
+                                    <xs:enumeration value="assess_fee"/>
+                                    <xs:enumeration value="create_installments"/>
+                                    <xs:enumeration value="change_returned"/>
+                                    <xs:enumeration value="change_status"/>
+                                    <xs:enumeration value="end_installments"/>
+                                    <xs:enumeration value="escalate_fee"/>
+                                    <xs:enumeration value="escalate_invoice"/>
+                                    <xs:enumeration value="escalate_toll"/>
+                                    <xs:enumeration value="excuse_cart"/>          <!-- payment + generalized excusal-->
+                                    <xs:enumeration value="excuse_fee"/>
+                                    <xs:enumeration value="excuse_invoice"/>
+                                    <xs:enumeration value="excuse_toll"/>
+                                    <xs:enumeration value="is_dispute"/>
+                                    <xs:enumeration value="inactivate_vehicle"/>
+                                    <xs:enumeration value="lose_goods"/>
+                                    <xs:enumeration value="lose_tag"/>
+                                    <xs:enumeration value="merge"/>
+                                    <xs:enumeration value="move_goods"/>
+                                    <xs:enumeration value="move_payment_in"/>      <!-- control  to account -->
+                                    <xs:enumeration value="move_payment_out"/>     <!-- account to control -->
+                                    <xs:enumeration value="move_tag"/>
+                                    <xs:enumeration value="move_vehicle"/>
+                                    <xs:enumeration value="other_credit"/>
+                                    <xs:enumeration value="other_debit"/>
+                                    <xs:enumeration value="other_posting"/>
+                                    <xs:enumeration value="pay_deposit"/>
+                                    <xs:enumeration value="pay_fee"/>
+                                    <xs:enumeration value="pay_goods"/>
+                                    <xs:enumeration value="pay_installment"/>                                    
+                                    <xs:enumeration value="pay_invoice"/>
+                                    <xs:enumeration value="pay_tag"/>
+                                    <xs:enumeration value="pay_toll"/>
+                                    <xs:enumeration value="post_action"/>
+                                    <xs:enumeration value="post_fail_action"/>                                    
+                                    <xs:enumeration value="reassign_toll"/>
+                                    <xs:enumeration value="refund"/>
+                                    <xs:enumeration value="remove_deposit"/>       <!-- subtract amount from account_deposit -->
+                                    <xs:enumeration value="remove_hold_item"/>
+                                    <xs:enumeration value="return_goods"/>
+                                    <xs:enumeration value="return_tag"/>
+                                    <xs:enumeration value="reverse_payment"/>
+                                    <xs:enumeration value="sell_goods"/>
+                                    <xs:enumeration value="split_payment"/>
+                                    <xs:enumeration value="unapply_hold"/>
+                                    <xs:enumeration value="unassign_invoice"/>
+                                    <xs:enumeration value="unassign_toll"/>
+                                    <xs:enumeration value="undo_refund"/>
+                                    <xs:enumeration value="unexcuse_fee"/>
+                                    <xs:enumeration value="unexcuse_invoice"/>
+                                    <xs:enumeration value="unexcuse_toll"/>
+                                    <xs:enumeration value="unlose_goods"/>
+                                    <xs:enumeration value="unlose_tag"/>
+                                    <xs:enumeration value="unpay_deposit"/>
+                                    <xs:enumeration value="unpay_fee"/>
+                                    <xs:enumeration value="unpay_goods"/>
+                                    <xs:enumeration value="unpay_installment"/>
+                                    <xs:enumeration value="unpay_tag"/>
+                                    <xs:enumeration value="unpay_toll"/>
+                                    <!--  xs:enumeration value="unreverse_payment"/--><!-- not implemented, will be when agency complains-->
+                        </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="cart">
+                        <xs:complexType>
+                                    <xs:sequence>
+                                                <xs:element name="payments" minOccurs="0" maxOccurs="1">
+                                                            <xs:complexType>
+                                                                        <xs:sequence>
+                                                                                    <xs:element name="payment" minOccurs="0" maxOccurs="unbounded">
+                                                                                                <xs:complexType>
+                                                                                                            <xs:sequence>
+                                                                                                                        <xs:element name="form" maxOccurs="1" minOccurs="1" type="paymentform"/>
+                                                                                                                        <xs:element name="payment_id" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="token" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="cvv" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="delivery_mode" maxOccurs="1" minOccurs="0" type="xs:integer"/>                                     <!--  delivery_mode.delivery_mode_id -->
+                                                                                                                        <xs:element name="ca_company_id" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="is_combined" maxOccurs="1" minOccurs="0" type="xs:boolean"/>
+                                                                                                                        <xs:element name="is_external" maxOccurs="1" minOccurs="0" type="xs:boolean"/>
+                                                                                                                        <xs:element name="items_start_date" maxOccurs="1" minOccurs="0" type="xs:date"/>
+                                                                                                                        <xs:element name="items_end_date" maxOccurs="1" minOccurs="0" type="xs:date"/>
+                                                                                                                        <xs:element name="billing_method" maxOccurs="1" minOccurs="0" type="xs:integer"/>                                  <!-- account_billing_methods.account_billing_method_id -->
+                                                                                                                        <xs:element name="amount" maxOccurs="1" minOccurs="0" type="xs:decimal"/>
+                                                                                                                        <!-- check -->
+                                                                                                                        <xs:element name="check_mo_nbr" maxOccurs="1" minOccurs="0" type="xs:string"/>
+                                                                                                                        <xs:element name="aba_number" maxOccurs="1" minOccurs="0" type="xs:string"/>
+                                                                                                                        <!-- one-off cc -->
+                                                                                                                        <xs:element name="credit_card_type_id" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="credit_card_exp_date" maxOccurs="1" minOccurs="0" type="xs:date"/>
+                                                                                                                        <xs:element name="cc_last4" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="comment_action_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="comment" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                                                                                                                        <xs:element name="person_id" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="person_revision_number" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="address_id" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="person_phone_id" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="phone_revision_number" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="person_email_id" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="email_revision_number" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="external" maxOccurs="1" minOccurs="0" type="xs:boolean"/>
+                                                                                                                        <!-- EFT -->
+                                                                                                                        <xs:element name="bank_account_type_id" maxOccurs="1" minOccurs="0" type="xs:integer"/>
+                                                                                                                        <xs:element name="bank_account_number" maxOccurs="1" minOccurs="0" type="xs:string"/>
+                                                                                                            </xs:sequence>
+                                                                                                            <xs:attribute use="required" name="sequence" type="xs:string"/>
+                                                                                                </xs:complexType>
+                                                                                    </xs:element>
+                                                                        </xs:sequence>
+                                                            </xs:complexType>
+                                                </xs:element>
+                                                <xs:element name="items" minOccurs="0" maxOccurs="1">
+                                                            <xs:complexType>
+                                                                        <xs:sequence>
+                                                                                    <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+                                                                                                <xs:complexType>
+                                                                                                            <xs:all>
+                                                                                                                        <!-- mandatory -->
+                                                                                                                        <xs:element name="type" minOccurs="1" maxOccurs="1" type="itemtype"/>
+                                                                                                                        <!-- optional -->
+                                                                                                                        <xs:element name="account_balance_type_code" minOccurs="0" maxOccurs="1" type="xs:string"/>     <!-- account_balance_types.account_balance_type_code -->
+                                                                                                                        <xs:element name="account_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="account_status_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>                                                                                                                        
+                                                                                                                        <xs:element name="account_inventory_id"  minOccurs="0" maxOccurs="1" type="xs:integer"/>                                                                                                                        
+                                                                                                                        <xs:element name="account_tag_id"  minOccurs="0" maxOccurs="1" type="xs:integer"/>                                                                                                                        
+                                                                                                                        <xs:element name="account_vehicle_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>                                                                                                                        
+                                                                                                                        <xs:element name="amount" minOccurs="0" maxOccurs="1" type="xs:decimal"/>
+                                                                                                                        <xs:element name="comment" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                                                                                                                        <xs:element name="comment_action_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="escalation_fee_code" minOccurs="0" maxOccurs="1" type="xs:string"/>                    <!-- escalation_fees.escalation_fee_code -->
+                                                                                                                        <xs:element name="excused_reason" minOccurs="0" maxOccurs="1" type="xs:string"/> <!-- status_reasons.status_reason -->                          <!-- status_reasons.status_reason_code -->
+                                                                                                                        <xs:element name="fee_type" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                                                                                                                        <xs:element name="hold_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="hold_txn_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="ignore_status" minOccurs="0" maxOccurs="1" type="xs:boolean"/>
+                                                                                                                        <xs:element name="inventory_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="invoice_escalation_state_code" minOccurs="0" maxOccurs="1" type="xs:string"/>  <!-- invoice_escalation_states.invoice_escalation_state_code -->
+                                                                                                                        <xs:element name="invoice_id"  minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="old_account_inventory_id"  minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="old_account_tag_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>          
+                                                                                                                        <xs:element name="old_account_vehicle_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="other_posting_code" minOccurs="0" maxOccurs="1" type="xs:string"/>                     <!-- other_postings.other_posting_code -->
+                                                                                                                        <xs:element name="payment_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="payment_plan_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="payment_plan_installment_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="plan_status_code" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                                                                                                                        <xs:element name="payment_status_code" minOccurs="0" maxOccurs="1" type="paymentStatusType"/>
+                                                                                                                        <xs:element name="post_action" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                                                                                                                        <xs:element name="ref_sequence" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="refund_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="refund_status_code" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                                                                                                                        <xs:element name="retail_detail_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="supervisor_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="toll_adjustment_type_code" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                                                                                                                        <xs:element name="toll_txn_workflow_state_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="toll_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                                        <xs:element name="unassignment_type_code" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                                                                                                                        <xs:element name="vehicle_class_id" minOccurs="0" maxOccurs="1" type="xs:integer"/>
+                                                                                                            </xs:all>
+                                                                                                            <xs:attribute name="sequence" type="xs:string"/>
+                                                                                                </xs:complexType>
+                                                                                    </xs:element>
+                                                                        </xs:sequence>
+                                                            </xs:complexType>
+                                                </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute use="required" name="account_id" type="xs:integer"/>
+                                    <xs:attribute use="required" name="shift_id" type="xs:integer"/>
+                                    <xs:attribute use="required" name="account_posting_id" type="xs:integer"/>
+                                    <xs:attribute use="optional" name="supervisor_id" type="xs:integer"/>
+                                    <xs:attribute use="optional" name="resend" type="xs:boolean"/>
+                        </xs:complexType>
+            </xs:element>
+</xs:schema>
+
